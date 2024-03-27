@@ -23,6 +23,7 @@ const Login = () => {
   return (
     <div className='main'>
       <div className='citlogo'></div>
+     
       <div className='title'>
         <h1>TRANSPORTATION RESERVATION SYSTEM</h1>
       </div>
