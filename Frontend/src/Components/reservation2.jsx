@@ -9,7 +9,9 @@ import { RiBuildingFill } from "react-icons/ri";
 import { BsPersonPlusFill } from "react-icons/bs";
 import { FaBus } from "react-icons/fa";
 import { AiFillFileText } from "react-icons/ai";
-import '../CSS/reservation2.css';
+import { BiSolidTimeFive } from "react-icons/bi";
+import { AiFillMessage } from "react-icons/ai";
+import { HiDocumentDownload } from "react-icons/hi";import '../CSS/reservation2.css';
 
 const Reservation2 = () => {
   const [loading, setLoading] = useState(true);
@@ -36,7 +38,7 @@ const Reservation2 = () => {
             <h2>RESERVATION</h2>
           </div>
           <div className='selectsched'>
-            <h2><LuCalendarClock size={28} style={{marginRight: '15px', marginBottom: '-5px'}}/>SELECT SCHEDULE</h2>
+            <h2><LuCalendarClock size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT SCHEDULE</h2>
           </div>
           <div className='calendar-div'>
             <Calendar onDateSelect={handleDateSelect} />
@@ -54,7 +56,7 @@ const Reservation2 = () => {
               <label htmlFor="roundtrip"> Round Trip</label>
             </div>
         <div className='to'>
-          <FaLocationDot size={20} style={{ marginRight: '10px', marginBottom: '-5px' }}/>
+          <FaLocationDot size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
           <input 
             type="text" 
             id="to" 
@@ -63,7 +65,7 @@ const Reservation2 = () => {
           />
         </div>
         <div className='from'>
-          <FaLocationDot size={20} style={{ marginRight: '10px', marginBottom: '-5px' }}/>
+          <FaLocationDot size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
           <input 
             type="text" 
             id="from" 
@@ -72,7 +74,7 @@ const Reservation2 = () => {
           />
         </div>
         <div className='capacity'>
-          <BsPersonPlusFill size={20} style={{ marginRight: '10px', marginBottom: '-5px' }}/>
+          <BsPersonPlusFill size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px',padding: '5px' }}/>
           <input 
             type="text" 
             id="capacity" 
@@ -81,7 +83,7 @@ const Reservation2 = () => {
           />
         </div>
         <div className='schedule'>
-          <LuCalendarClock size={20} style={{ marginRight: '10px', marginBottom: '-5px' }}/>
+          <LuCalendarClock size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
           <input 
             type="text" 
             id="schedule" 
@@ -92,7 +94,7 @@ const Reservation2 = () => {
           />
         </div>
         <div className='vehicle'>
-          < FaBus size={20} style={{ marginRight: '10px', marginBottom: '-5px' }}/>
+          < FaBus size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
           <input 
             type="text" 
             id="vehicle" 
@@ -101,7 +103,7 @@ const Reservation2 = () => {
           />
         </div>
         <div className='dropdown'>
-          <RiBuildingFill size={20} style={{ marginRight: '10px', marginBottom: '-5px' }}/>
+          <RiBuildingFill size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
           <select id="category" name="category">
             <option value="" disabled selected>Select Department</option>
             <option value="economy">Economy</option>
@@ -109,7 +111,44 @@ const Reservation2 = () => {
             <option value="firstclass">First Class</option>
           </select>
         </div>
+        <div className='pickup'>
+          < BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
+          <input 
+            type="text" 
+            id="pickup" 
+            name="pickup" 
+            placeholder='Pick up time' 
+          />
+        </div>
+        <div className='departure'>
+          < BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
+          <input 
+            type="text" 
+            id="departure" 
+            name="departure" 
+            placeholder='Departure time' 
+          />
+        </div>
+        <div className='file-upload'>
+              <label htmlFor="file-upload"> 
+              <HiDocumentDownload  size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px', color:'#782324' }}/>
+              Proof of Approval Request<br/>
+              <p style={{fontSize: '12px', fontWeight: '500'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: this is optional</p>
+              </label>
+              <input type="file" id="file-upload" name="file" accept=".doc, .docx, .pdf" />
+      
+            </div>
+            <div className='reason'>
+          < AiFillMessage size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
+          <input 
+            type="text" 
+            id="reason" 
+            name="reason" 
+            placeholder='Reason of Reservation' 
+          />
+        </div>
       </div>
+      
       <div className='cit-bglogo'></div>
       </>
       )}
