@@ -2,8 +2,10 @@
     position: absolute;
     left: 350px;
     top: 100px;
-    font-size: 24px;
     color: #782324;
+  }
+  .subheader h2{
+    font-size: 36px;
   }
   *{
     overflow: hidden;
@@ -11,43 +13,52 @@
  .calendar-div{
     position: absolute;
     left: 350px;
-    top: 200px;
+    top: 210px;
  }
  .selectsched{
     position: absolute;
     left: 350px;
-    top: 150px;
+    top: 170px;
     font-size: 14px;
     color: #782324;
  }
  .resform{
     position: absolute;
     left: 850px;
-    top: 200px;
+    top: 210px;
     font-size: 14px;
     background-color: #CBC3C3;
     height: 700px;
     width: 1020px;
     border-radius: 15px;
  }
+ .restitle{
+  background-color: #782324;
+  color: white;
+  padding: 10px;
+
+}
+.restitle h2{
+  margin-left: 10px;
+}
  .oneway{
     position: absolute;
     left: 40px;
-    top: 50px;
+    top: 70px;
     font-weight: 800;
     font-size: 16px;
  }
  .roundtrip{
     position: absolute;
     left: 200px;
-    top: 50px;
+    top: 70px;
     font-weight: 800;
     font-size: 16px;
  }
  .to{
     position: absolute;
     left: 40px;
-    top: 100px;
+    top: 120px;
     color: #782324;
  }
  .to input[type="text"] {
@@ -59,7 +70,7 @@
   .from{
     position: absolute;
     left: 400px;
-    top: 100px;
+    top: 120px;
     color: #782324;
  }
  .from input[type="text"] {
@@ -71,7 +82,7 @@
   .capacity{
     position: absolute;
     left: 770px;
-    top: 100px;
+    top: 120px;
     color: #782324;
  }
  .capacity input[type="text"] {
@@ -83,7 +94,7 @@
   .vehicle{
     position: absolute;
     left: 660px;
-    top: 150px;
+    top: 165px;
     margin-top: 10px;
     color: #782324;
  }
@@ -96,7 +107,7 @@
   .schedule{
     position: absolute;
     left: 400px;
-    top: 150px;
+    top: 165px;
     color: #782324;
     margin-top: 10px;
  }
@@ -152,7 +163,7 @@ input[type="radio"] {
 .dropdown {
     position: absolute;
     left: 40px;
-    top: 150px;
+    top: 165px;
     color: #782324;
     margin-top: 10px;
   }

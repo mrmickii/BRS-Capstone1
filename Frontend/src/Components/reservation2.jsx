@@ -2,43 +2,57 @@ import React, { useState } from 'react';
 import Header from '../Components/header';
 import SideNavBar from '../Components/sidenavbar';
 import Calendar from '../Components/calendar';
+import Preloader from '../Components/preloader';
 import { LuCalendarClock } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { RiBuildingFill } from "react-icons/ri";
 import { BsPersonPlusFill } from "react-icons/bs";
 import { FaBus } from "react-icons/fa";
-
+import { AiFillFileText } from "react-icons/ai";
 import '../CSS/reservation2.css';
 
 const Reservation2 = () => {
+  const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateSelect = (date) => {
     setSelectedDate(date);
   };
+  
+  setTimeout(() => {
+    setLoading(false);
+  }, 5000);
 
+  
   return (
     <div className="reservation">
-      <Header />
-      <SideNavBar />
-      <div className='subheader'>
-        <h2>RESERVATION</h2>
-      </div>
-      <div className='selectsched'>
-        <h2><LuCalendarClock size={28} style={{marginRight: '15px', marginBottom: '-5px'}}/>SELECT SCHEDULE</h2>
-      </div>
-      <div className='calendar-div'>
-        <Calendar onDateSelect={handleDateSelect} />
-      </div>
-      <div className='resform'>
-        <div className='oneway'>
-          <input type="radio" id="oneway" name="drone" value="oneway" checked />
-          <label htmlFor="oneway"> One Way</label>
-        </div>
-        <div className='roundtrip'>
-          <input type="radio" id="roundtrip" name="drone" value="roundtrip" checked />
-          <label htmlFor="roundtrip"> Round Trip</label>
-        </div>
+      {loading ? (
+        <Preloader />
+      ) : (
+        <>
+          <Header />
+          <SideNavBar />
+          <div className='subheader'>
+            <h2>RESERVATION</h2>
+          </div>
+          <div className='selectsched'>
+            <h2><LuCalendarClock size={28} style={{marginRight: '15px', marginBottom: '-5px'}}/>SELECT SCHEDULE</h2>
+          </div>
+          <div className='calendar-div'>
+            <Calendar onDateSelect={handleDateSelect} />
+          </div>
+          <div className='resform'>
+            <div className='restitle'>
+              <h2><AiFillFileText  size={28} style={{marginRight: '10px', marginBottom: '-5px'}}/>RESERVATION FORM</h2>
+            </div>
+            <div className='oneway'>
+              <input type="radio" id="oneway" name="drone" value="oneway" />
+              <label htmlFor="oneway"> One Way</label>
+            </div>
+            <div className='roundtrip'>
+              <input type="radio" id="roundtrip" name="drone" value="roundtrip" />
+              <label htmlFor="roundtrip"> Round Trip</label>
+            </div>
         <div className='to'>
           <FaLocationDot size={20} style={{ marginRight: '10px', marginBottom: '-5px' }}/>
           <input 
@@ -97,6 +111,8 @@ const Reservation2 = () => {
         </div>
       </div>
       <div className='cit-bglogo'></div>
+      </>
+      )}
     </div>
   );
 }
