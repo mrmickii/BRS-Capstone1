@@ -22,6 +22,22 @@
     font-size: 14px;
     color: #782324;
  }
+ .selecttime{
+  position: absolute;
+  left: 350px;
+  top: 670px;
+  font-size: 14px;
+  color: #782324;
+}
+ .timeframe{
+  background-color: #CBC3C3;
+  position: absolute;
+  top: 710px;
+  left: 350px;
+  height: 200px;
+  width: 450px;
+  border-radius: 15px;
+ }
  .resform{
     position: absolute;
     left: 850px;
@@ -29,7 +45,7 @@
     font-size: 14px;
     background-color: #CBC3C3;
     height: 700px;
-    width: 1020px;
+    width: 1000px;
     border-radius: 15px;
  }
  .restitle{
@@ -160,6 +176,50 @@ input[type="radio"] {
     filter: saturate(0%);
     opacity: 0.2;
 }
+.cit-banner {
+  position: absolute;
+  top: -140px;
+  left: 850px;
+  width: 800px; 
+  height: 500px;
+  background-image: url("../Images/banner1.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.color-yellow-palete{
+  position: absolute;
+  top: 85px;
+  left: 1650px;
+  width: 50px; 
+  height: 120px;
+  background-color: #f4c108;
+}
+.color-red-palete{
+  position: absolute;
+  top: 85px;
+  left: 1700px;
+  width: 50px; 
+  height: 120px;
+  background-color: #782324
+}
+.color-gray-palete{
+  position: absolute;
+  top: 85px;
+  left: 1750px;
+  width: 50px; 
+  height: 120px;
+  background-color: #CBC3C3;
+}
+.color-black-palete{
+  position: absolute;
+  top: 85px;
+  left: 1800px;
+  width: 50px; 
+  height: 120px;
+  background-color: black;
+}
+
 .dropdown {
     position: absolute;
     left: 40px;
@@ -233,4 +293,57 @@ input[type="radio"] {
     height: 35px; 
     padding: 5px;
   }
-  
+  .clearentitiies{
+    position: absolute;
+    top: 345px;
+    left: 500px;
+  }
+  .clear{
+    padding: 10px 30px;
+    font-size: 18px;
+    border: none;
+    background-color: #f4c108;
+    font-weight: 600;
+    cursor: pointer;
+    color: #782324;
+    border-radius: 50px;
+
+  }
+  .clear:hover{
+    background-color: white;
+    transition: background-color 0.3s;
+  }
+  .sendreq{
+    position: absolute;
+    top: 345px;
+    left: 735px;
+  }
+  .sendreqbutton{
+    padding: 10px 30px;
+    font-size: 18px;
+    border: none;
+    background-color: #782324;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    border-radius: 50px;
+
+  }
+  .sendreqbutton:hover{
+    background-color: #4d0005;
+    transition: background-color 0.3s;
+  }
+  .summarylabel{
+    position: absolute;
+    top: 370px;
+    left: 40px;
+  }
+  .summary{
+    position: absolute;
+    top: 415px;
+    left: 40px;
+    background-color: white;
+    height: 250px;
+    width: 910px;;
+    overflow-y: scroll;
+  }

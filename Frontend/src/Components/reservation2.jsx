@@ -11,19 +11,45 @@ import { FaBus } from "react-icons/fa";
 import { AiFillFileText } from "react-icons/ai";
 import { BiSolidTimeFive } from "react-icons/bi";
 import { AiFillMessage } from "react-icons/ai";
+import { BsFillTrash3Fill } from "react-icons/bs";
 import { HiDocumentDownload } from "react-icons/hi";import '../CSS/reservation2.css';
+import { IoIosSend } from "react-icons/io";
+import { AiOutlineClockCircle } from "react-icons/ai";
 
 const Reservation2 = () => {
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [formValues, setFormValues] = useState({
+    to: '',
+    from: '',
+    capacity: '',
+    vehicle: '',
+    category: '',
+    pickup: '',
+    departure: '',
+    reason: ''
+  });
 
   const handleDateSelect = (date) => {
     setSelectedDate(date);
   };
+
+  const handleClearEntities = () => {
+    setFormValues({
+      to: '',
+      from: '',
+      capacity: '',
+      vehicle: '',
+      category: '',
+      pickup: '',
+      departure: '',
+      reason: ''
+    });
+  };
   
   setTimeout(() => {
     setLoading(false);
-  }, 5000);
+  }, 3000);
 
   
   return (
@@ -37,11 +63,21 @@ const Reservation2 = () => {
           <div className='subheader'>
             <h2>RESERVATION</h2>
           </div>
+          <div className='cit-banner'></div>
+          <div className='color-yellow-palete'></div>
+          <div className='color-red-palete'></div>
+          <div className='color-gray-palete'></div>
+          <div className='color-black-palete'></div>
           <div className='selectsched'>
             <h2><LuCalendarClock size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT SCHEDULE</h2>
           </div>
           <div className='calendar-div'>
             <Calendar onDateSelect={handleDateSelect} />
+          </div>
+          <div className='selecttime'>
+            <h2><AiOutlineClockCircle size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT TIMEFRAME</h2>
+          </div>
+          <div className='timeframe'>
           </div>
           <div className='resform'>
             <div className='restitle'>
@@ -61,7 +97,9 @@ const Reservation2 = () => {
             type="text" 
             id="to" 
             name="to"
-            placeholder='To:' 
+            placeholder='To:'
+            value={formValues.to}
+                onChange={(e) => setFormValues({...formValues, to: e.target.value})} 
           />
         </div>
         <div className='from'>
@@ -70,7 +108,9 @@ const Reservation2 = () => {
             type="text" 
             id="from" 
             name="from" 
-            placeholder='From:' 
+            placeholder='From:'
+            value={formValues.from}
+                onChange={(e) => setFormValues({...formValues, from: e.target.value})}
           />
         </div>
         <div className='capacity'>
@@ -79,7 +119,9 @@ const Reservation2 = () => {
             type="text" 
             id="capacity" 
             name="capacity" 
-            placeholder='Capacity' 
+            placeholder='Capacity'
+            value={formValues.capacity}
+                onChange={(e) => setFormValues({...formValues, capacity: e.target.value})} 
           />
         </div>
         <div className='schedule'>
@@ -99,7 +141,8 @@ const Reservation2 = () => {
             type="text" 
             id="vehicle" 
             name="vehicle" 
-            placeholder='Type of Vehicle' 
+            placeholder='Type of Vehicle'
+             
           />
         </div>
         <div className='dropdown'>
@@ -117,7 +160,9 @@ const Reservation2 = () => {
             type="text" 
             id="pickup" 
             name="pickup" 
-            placeholder='Pick up time' 
+            placeholder='Pick up time'
+            value={formValues.pickup}
+                onChange={(e) => setFormValues({...formValues, pickup: e.target.value})} 
           />
         </div>
         <div className='departure'>
@@ -126,7 +171,9 @@ const Reservation2 = () => {
             type="text" 
             id="departure" 
             name="departure" 
-            placeholder='Departure time' 
+            placeholder='Departure time'
+            value={formValues.departure}
+                onChange={(e) => setFormValues({...formValues, departure: e.target.value})} 
           />
         </div>
         <div className='file-upload'>
@@ -144,13 +191,28 @@ const Reservation2 = () => {
             type="text" 
             id="reason" 
             name="reason" 
-            placeholder='Reason of Reservation' 
+            placeholder='Reason of Reservation'
+            value={formValues.reason}
+                onChange={(e) => setFormValues({...formValues, reason: e.target.value})} 
           />
+        </div>
+        <div className='clearentitiies'>
+        <button className='clear' onClick={handleClearEntities}><BsFillTrash3Fill style={{marginRight: '5px', marginBottom: '-2px'}}/>CLEAR ENTITIES</button>
+        </div>
+        <div className='sendreq'>
+          <button className='sendreqbutton'><IoIosSend style={{marginRight: '5px', marginBottom: '-2px'}}/>SEND REQUEST</button>
+        </div>
+        <div className='summarylabel'>
+          <h2>SUMMARY OF REQUEST</h2>
+        </div>
+        <div className='summary'>
         </div>
       </div>
       
       <div className='cit-bglogo'></div>
+      
       </>
+      
       )}
     </div>
   );
