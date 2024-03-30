@@ -1,6 +1,5 @@
-
 import React from "react";
-import '../CSS/header.css'
+import '../../CSS/userCSS/header.css'
 import { FaBus } from "react-icons/fa";
 
 const Header = () => {

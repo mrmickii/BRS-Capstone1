@@ -1,6 +1,6 @@
 
 import React from 'react';
-import '../CSS/sidenavbar.css'
+import '../../CSS/userCSS/sidenavbar.css'
 import { BiSolidBook } from "react-icons/bi";
 import { BsBellFill } from "react-icons/bs";
 import { IoMdSettings } from "react-icons/io";
