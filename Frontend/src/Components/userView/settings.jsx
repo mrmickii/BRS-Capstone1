@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../Components/header'
-import SideNavBar from '../Components/sidenavbar'
+import Header from '../userView/header'
+import SideNavBar from '../userView/sidenavbar'
 
 const Settings = () => {
   return (

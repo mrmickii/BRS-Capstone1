@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../CSS/preloader.css'; 
-import spinnerImage from '../Images/loadingscreen.png'; 
+import '../../CSS/userCSS/preloader.css'; 
+import spinnerImage from '../../Images/loadingscreen.png'; 
 
 const Preloader = () => {
   const [loading, setLoading] = useState(true);

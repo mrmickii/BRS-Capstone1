@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from '../Components/header'
-import SideNavBar from '../Components/sidenavbar'
+import Header from '../userView/header'
+import SideNavBar from '../userView/sidenavbar'
 import { FaBus } from "react-icons/fa";
-import '../CSS/reservation.css'
+import '../../CSS/userCSS/reservation.css'
 
 const Reservation = () => {
   return (
