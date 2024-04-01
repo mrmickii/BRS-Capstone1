@@ -19,8 +19,9 @@ const HeadSide = () =>{
               <p>Select Department:</p>
               <select name="selector" id="selector">
                 <option value="0">--Choose a Department--</option>
-                <option value="1">Collage of Computer Studies (CCS) </option>
-                <option value="1">Collage of Nursing and Allied Health Sciences(CNAHS) </option>
+                <option value="1">College of Computer Studies (CCS) </option>
+                <option value="1">College of Nursing and Allied Health Sciences(CNAHS) </option>
+                <option value="1">College of Engineering and Architecture(CEA) </option>
               </select>
               <button>Set Configuration</button>
             </div>

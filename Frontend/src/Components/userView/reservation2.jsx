@@ -21,37 +21,72 @@ const Reservation2 = () => {
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(null);
   const [formValues, setFormValues] = useState({
-    to: '',
-    from: '',
+    typeOfTrip: '',
+    destinationTo: '',
+    destinationFrom: '',
     capacity: '',
-    vehicle: '',
-    category: '',
-    pickup: '',
-    departure: '',
+    department: '',
+    schedule: '',
+    vehicleType: '',
+    pickUpTime: '',
+    departureTime: '',
     reason: ''
   });
 
   const handleDateSelect = (date) => {
     setSelectedDate(date);
+    setFormValues({...formValues, schedule: date});
   };
 
   const handleClearEntities = () => {
     setFormValues({
-      to: '',
-      from: '',
+      typeOfTrip: '',
+      destinationTo: '',
+      destinationFrom: '',
       capacity: '',
-      vehicle: '',
-      category: '',
-      pickup: '',
-      departure: '',
+      department: '',
+      schedule: '',
+      vehicleType: '',
+      pickUpTime: '',
+      departureTime: '',
       reason: ''
     });
+    setSelectedDate(null);
+  };
+
+  const handleDepartmentChange = (e) => {
+    setFormValues({ ...formValues, department: e.target.value });
+  };
+
+  const handleTripTypeChange = (e) => {
+    setFormValues({ ...formValues, typeOfTrip: e.target.value });
   };
   
   setTimeout(() => {
     setLoading(false);
   }, 3000);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/post', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formValues)
+      });
+      if (response.ok) {
+        // Handle success
+        console.log('Reservation submitted successfully');
+      } else {
+        // Handle error
+        console.error('Failed to submit reservation');
+      }
+    } catch (error) {
+      console.error('Error submitting reservation:', error);
+    }
+  };
   
   return (
     <div className="reservation">
@@ -85,11 +120,11 @@ const Reservation2 = () => {
               <h2><AiFillFileText  size={28} style={{marginRight: '10px', marginBottom: '-5px'}}/>RESERVATION FORM</h2>
             </div>
             <div className='oneway'>
-              <input type="radio" id="oneway" name="drone" value="oneway" />
+              <input type="radio" id="oneway" name="tripType" value="One Way" onChange={handleTripTypeChange} />
               <label htmlFor="oneway"> One Way</label>
             </div>
             <div className='roundtrip'>
-              <input type="radio" id="roundtrip" name="drone" value="roundtrip" />
+              <input type="radio" id="roundtrip" name="tripType" value="Round Trip" onChange={handleTripTypeChange} />
               <label htmlFor="roundtrip"> Round Trip</label>
             </div>
         <div className='to'>
@@ -99,8 +134,8 @@ const Reservation2 = () => {
             id="to" 
             name="to"
             placeholder='To:'
-            value={formValues.to}
-                onChange={(e) => setFormValues({...formValues, to: e.target.value})} 
+            value={formValues.destinationTo}
+                onChange={(e) => setFormValues({...formValues, destinationTo: e.target.value})} 
           />
         </div>
         <div className='from'>
@@ -110,8 +145,8 @@ const Reservation2 = () => {
             id="from" 
             name="from" 
             placeholder='From:'
-            value={formValues.from}
-                onChange={(e) => setFormValues({...formValues, from: e.target.value})}
+            value={formValues.destinationFrom}
+                onChange={(e) => setFormValues({...formValues, destinationFrom: e.target.value})}
           />
         </div>
         <div className='capacity'>
@@ -137,44 +172,46 @@ const Reservation2 = () => {
           />
         </div>
         <div className='vehicle'>
-          < FaBus size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
+          <FaBus size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
           <input 
             type="text" 
             id="vehicle" 
             name="vehicle" 
             placeholder='Type of Vehicle'
-             
+            value={formValues.vehicleType}
+            onChange={(e) => setFormValues({...formValues, vehicleType: e.target.value})} 
           />
         </div>
         <div className='dropdown'>
           <RiBuildingFill size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
-          <select id="category" name="category">
-            <option value="" disabled selected>Select Department</option>
-            <option value="economy">Economy</option>
-            <option value="business">Business</option>
-            <option value="firstclass">First Class</option>
+          <select id="department" name="department" onChange={handleDepartmentChange}>
+            <option value="">Select Department</option>
+            <option value="College of Computer Studies (CCS)">College of Computer Studies (CCS)</option>
+            <option value="College of Nursing and Allied Health Sciences(CNAHS)">College of Nursing and Allied Health Sciences(CNAHS)</option>
+            <option value="College of Engineering and Architecture(CEA)">College of Engineering and Architecture(CEA)</option>
           </select>
+
         </div>
         <div className='pickup'>
-          < BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
+          <BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
           <input 
             type="text" 
             id="pickup" 
             name="pickup" 
             placeholder='Pick up time'
-            value={formValues.pickup}
-                onChange={(e) => setFormValues({...formValues, pickup: e.target.value})} 
+            value={formValues.pickUpTime}
+            onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
           />
         </div>
         <div className='departure'>
-          < BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
+          <BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
           <input 
             type="text" 
             id="departure" 
             name="departure" 
             placeholder='Departure time'
-            value={formValues.departure}
-                onChange={(e) => setFormValues({...formValues, departure: e.target.value})} 
+            value={formValues.departureTime}
+            onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})} 
           />
         </div>
         <div className='file-upload'>
@@ -201,7 +238,7 @@ const Reservation2 = () => {
         <button className='clear' onClick={handleClearEntities}><BsFillTrash3Fill style={{marginRight: '5px', marginBottom: '-2px'}}/>CLEAR ENTITIES</button>
         </div>
         <div className='sendreq'>
-          <button className='sendreqbutton'><IoIosSend style={{marginRight: '5px', marginBottom: '-2px'}}/>SEND REQUEST</button>
+          <button className='sendreqbutton' onClick={handleSubmit}><IoIosSend style={{marginRight: '5px', marginBottom: '-2px'}}/>SEND REQUEST</button>
         </div>
         <div className='summarylabel'>
           <h2>SUMMARY OF REQUEST</h2>
