@@ -5,6 +5,7 @@ import Reservation2 from './Components/userView/reservation2'
 import Reservation from './Components/userView/reservation'
 import Notification from './Components/userView/notification'
 import HeadView from './Components/headView/headSide';
+import OpcView from './Components/opcView/opcSide'
 import Settings from './Components/userView/settings'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -12,6 +13,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {/* <Notification/> */}
     {/* <Login /> */}
     {/* <HeadView /> */}
+     {/* <OpcView />  */}
+    {/*<Reservation2 /> */}
     <Reservation2 /> 
     {/* <Reservation />  */}
     {/* <Settings /> */}
