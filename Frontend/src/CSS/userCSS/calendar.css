@@ -63,3 +63,9 @@
   margin: 0;
   font-size: 24px;
 }
+
+.calendar-day:hover {
+  background-color: #782324;
+  color: white;
+  font-weight: 900;
+}
