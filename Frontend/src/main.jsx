@@ -14,7 +14,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {/* <Login /> */}
     {/* <HeadView /> */}
      {/* <OpcView />  */}
-    {/*<Reservation2 /> */}
     <Reservation2 /> 
     {/* <Reservation />  */}
     {/* <Settings /> */}
