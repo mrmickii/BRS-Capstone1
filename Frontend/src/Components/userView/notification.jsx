@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../CSS/userCSS/notification.css';
 import { BsBellFill } from "react-icons/bs";
-import Header from '../userView/header';
+import Header from '../../Components/userView/header';
 import SideNavBar from '../userView/sidenavbar';
 
 const Notifications = () => {
@@ -13,7 +13,7 @@ const Notifications = () => {
   };
 
   return (
-    <div className="reservation">
+    <div className="notifications">
       <Header />
       <SideNavBar />
       <div className="notification-container">
