@@ -7,9 +7,9 @@ import HeadView from './Components/headView/headSide';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Notification/>
+    {/*<Notification/>*/}
    {/* <Login />*/}
     {/* <HeadView /> */}
-    {/*<Reservation2 /> */}
+    <Reservation2 /> 
   </React.StrictMode>,
 )
