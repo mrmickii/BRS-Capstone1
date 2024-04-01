@@ -1,11 +1,11 @@
 .main{
   height: 100vh;
-
 }
 
 *{
   overflow: hidden;
 }
+
 .login-container {
   background-color: #ccc;
   padding: 50px;
