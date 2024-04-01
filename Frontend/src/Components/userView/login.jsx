@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
-import '../CSS/login.css';
+import '../../CSS/userCSS/login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');

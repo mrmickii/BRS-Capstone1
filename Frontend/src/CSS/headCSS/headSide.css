@@ -1,0 +1,84 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.head-view-content-container{
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  padding-left: 15%;
+  padding-top: 1%;
+}
+
+.head-view-content{
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  width: 85%;
+}
+
+.banner{
+  width: 100vw;
+  height: 20vh;
+  background-image: url('../../Images//banner1.png');
+  background-repeat: no-repeat;
+  background-position: 0% 59%;
+  background-size: 72.5% 430%;
+}
+
+.l-request{
+  width: 100%;
+  height: 20%;
+  margin-top: 1%;
+  background-color: #782324;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+.department-selector{
+  display: flex;
+  width: 100%;
+  height: 50%;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+}
+
+.department-selector select{
+  width: 50%;
+}
+
+.department-selector button{
+  padding: 0.3%;
+  border: none;
+  background-color: #f4c108;
+  border-radius: 5%;
+}
+
+.r-content{
+  width: 100%;
+  height: 100%;
+  background-color: #cbc3c3;
+}
+
+.bg-logo{
+  
+}
+/* .content-logo{
+  height: 50vh;
+  width: 100%;
+  background-image: url("../../Images/citbglogo.png");
+  background-position: 110% 80%;
+  background-repeat: no-repeat;
+  background-size: 30%;
+  filter: saturate(0%);
+  opacity: 0.2;
+} */
