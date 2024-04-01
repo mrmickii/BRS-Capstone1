@@ -55,6 +55,11 @@
     background-color: #ffcc00;
     font-weight: bold;
   }
+  .calendar-day:hover{
+    background-color: #782324;
+    color: #f0f0f0;
+    font-weight: 900;
+  }
   
   .subheader {
     text-align: center;
