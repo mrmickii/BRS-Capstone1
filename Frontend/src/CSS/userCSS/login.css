@@ -7,22 +7,26 @@
 }
 
 .login-container {
+  position: absolute;
+  left: 670px;
   background-color: #ccc;
   padding: 50px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 500px;
-  height: 350px;
+  height: 420px;
+  margin-top: 30px;
   align-items: center;
-  margin-left: 650px;
+  
 }
 
-h2 {
+.login-container h2 {
   text-align: center;
   color: #333;
-  font-size: 32px;
+  font-size: 28px;
   font-family: 'Poppins', sans-serif;
-  margin-top: 5px;
+  margin-top: -5px;
+  margin-bottom: 15px;
 }
 
 .title h1{
@@ -30,16 +34,14 @@ h2 {
  color: #8c3a3f;
  font-family: 'Poppins', sans-serif;
  font-size: 46px;
+ margin-top: 50px;
 }
 
 .title{
+
   margin-bottom: 30px;
 }
 
-.logo {
-  margin-bottom: 20px;
-  margin-left: -500px;
-}
 
 form {
   display: flex;
@@ -107,24 +109,24 @@ input {
 }
 
 .citlogo {
-  background-image: url("../../Images/citlogo.png");
+  background-image: url(../../Images/citlogo.png);
   background-size: cover; 
   background-repeat: no-repeat;
   background-position: center center;
   width: 550px; 
   height: 100px;
-  margin-top: 10px; 
+  
 }
 
-.cit-bglogo {
-  background-image: url("../../Images/citbglogo.png");
+.logincit-bglogo {
+  position: absolute;
+  left: 1200px;
+  background-image: url(../../Images/citbglogo.png);
   background-size: cover; 
   background-repeat: no-repeat;
   background-position: center center;
   width: 1000px; 
   height: 900px;
-  margin-top: -600px;
-  margin-left: 1250px;
   filter: saturate(0%);
   opacity: 0.2;
 }

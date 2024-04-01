@@ -23,10 +23,11 @@ const Login = () => {
   return (
     <div className='main'>
       <div className='citlogo'></div>
-     
+      <div className='logincit-bglogo'></div>
       <div className='title'>
         <h1>TRANSPORTATION RESERVATION SYSTEM</h1>
       </div>
+      <div className='parent-login'>
       <div className='login-container'>
         <h2>User Authentication</h2>
         {isLoggedIn ? (
@@ -63,7 +64,8 @@ const Login = () => {
           </form>
         )}
       </div>
-      <div className='cit-bglogo'></div>
+      </div>
+      
     </div>
   );
 };
