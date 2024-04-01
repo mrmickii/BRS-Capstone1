@@ -1,40 +1,74 @@
 .settings-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px;
-    border-radius: 8px;
-    padding: 20px;
-    margin-left: 400px;
-    width: 600px;
+    position: absolute;
+    left: 400px;
+    top: 200px;
+    width: 800px;
+    height: 160px;
+    background-color: #e3e1e1;
+  }
+  .setting-title{
+    position: absolute;
+    left: 350px;
+    top: 120px;
+  }
+  .setting-title h2{
+    color: #782324;
+    font-size: 32px;
   }
   
-  .setting-button {
-    background-color: #e3e1e1;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+  .changepass-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color:white;
+    padding: 10px 297px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s;
+    border: none;
+    font-size: 18px;
+    color: black;
+    
+  }
+  .userdetails-button {
+    position: absolute;
+    top: 90px;
+    left: 20px;
+    background-color:white;
+    padding: 10px 326px;
+    cursor: pointer;
+    border: none;
+   
     font-size: 18px;
     color: black;
     text-decoration: none;
   }
   
-  .setting-button:hover {
+  .changepass-button:hover {
     background-color: #782324;
     color: white;
   }
+  .userdetails-button:hover {
+    background-color: #782324;
+    color: white;
+  }
+  .floating-box-container{
+    position: absolute;
+    top: 400px;
+    left: 400px;
+    background-color: #e3e1e1;
+    width: 800px;
+    height: 500px;
+  }
+  
   
   .floating-box {
-    position: fixed;
-    top: 60%;
-    left: 60%;
+    position: absolute;
+    top: 230px;
+    left: 320px;
     transform: translate(-50%, -50%);
-    background-color: #e3e1e1;
     padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    width: 1000px;
+    width: 700px;
+    height: 500px;
+    
   }
   
   .floating-box h2 {
@@ -42,20 +76,25 @@
   }
   
   .floating-box input {
-    width: 900px;
-    padding: 20px;
-    margin-bottom: 10px;
+    width: 600px;
+    padding: 15px;
+    margin-bottom: 20px;
   }
   
   .floating-box button {
-    padding: 9px 16px;
+    position: absolute;
+    left: 477px;
+    top: 360px;
+    padding: 15px 25px;
     background-color: #782324;
     color: #e3e1e1;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 700px;
-    margin-top: 10px;
+   
+  }
+  .floating-box h2{
+    margin-bottom: 50px;
   }
   
   .floating-box button:hover {

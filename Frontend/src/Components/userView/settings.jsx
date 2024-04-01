@@ -18,17 +18,22 @@ const Settings = () => {
   };
 
   return (
-    <div className="reservation">
+    <div className="settings">
       <Header />
       <SideNavBar />
       {showPasswordChange || showUserDetails ? <div className="overlay" /> : null}
+      <div className='setting-title'>
+        <h2>SETTINGS</h2>
+      </div>
       <div className="settings-container">
-        <button className="setting-button" onClick={togglePasswordChange}>
+        <button className="changepass-button" onClick={togglePasswordChange}>
           Change Password
         </button>
-        <button className="setting-button" onClick={toggleUserDetails}>
+        <button className="userdetails-button" onClick={toggleUserDetails}>
           User Details
         </button>
+        </div>
+        <div className='floating-box-container'>
         {showPasswordChange && (
           <div className="floating-box">
             <h2>Change Password</h2>
@@ -56,7 +61,7 @@ const Settings = () => {
 )}
 
       </div>
-    </div>
+      </div>
   );
 };
 
