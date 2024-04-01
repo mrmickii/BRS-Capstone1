@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Header from '../Components/header';
-import SideNavBar from '../Components/sidenavbar';
-import Calendar from '../Components/calendar';
-import Preloader from '../Components/preloader';
+import Header from '../userView/header';
+import SideNavBar from '../userView/sidenavbar';
+import Calendar from '../userView/calendar';
+import Preloader from '../userView/preloader';
 import { LuCalendarClock } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { RiBuildingFill } from "react-icons/ri";
@@ -12,7 +12,8 @@ import { AiFillFileText } from "react-icons/ai";
 import { BiSolidTimeFive } from "react-icons/bi";
 import { AiFillMessage } from "react-icons/ai";
 import { BsFillTrash3Fill } from "react-icons/bs";
-import { HiDocumentDownload } from "react-icons/hi";import '../CSS/reservation2.css';
+import { HiDocumentDownload } from "react-icons/hi";
+import '../../CSS/userCSS/reservation2.css';
 import { IoIosSend } from "react-icons/io";
 import { AiOutlineClockCircle } from "react-icons/ai";
 
