@@ -4,6 +4,7 @@ import { BsBellFill } from "react-icons/bs";
 import Header from '../../Components/userView/header';
 import SideNavBar from '../userView/sidenavbar';
 
+
 const Notifications = () => {
   const [showNotifications, setShowNotifications] = useState(false);
 
