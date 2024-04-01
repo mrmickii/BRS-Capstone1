@@ -55,6 +55,7 @@
   width: 1000px;
   border-radius: 15px;
 }
+
 .restitle{
   background-color: #782324;
   color: white;
@@ -64,6 +65,7 @@
 .restitle h2{
   margin-left: 10px;
 }
+
 .oneway{
   position: absolute;
   left: 40px;
@@ -117,7 +119,6 @@
   width: 150px; 
   height: 35px; 
   padding: 5px; 
-  
 }
 
 .vehicle{
@@ -180,7 +181,7 @@ input[type="radio"]:checked + label::before {
   left: 1300px;
   width: 1000px; 
   height: 900px;
-  background-image: url("../Images/citbglogo.png");
+  background-image: url("../../Images/citbglogo.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -190,15 +191,15 @@ input[type="radio"]:checked + label::before {
 }
 
 .cit-banner {
-  position: absolute;
-  top: -140px;
-  left: 850px;
-  width: 800px; 
-  height: 500px;
-  background-image: url("../Images/banner1.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
+position: absolute;
+top: -140px;
+left: 850px;
+width: 800px; 
+height: 500px;
+background-image: url("../Images/banner1.png");
+background-size: 100% 100%;
+background-repeat: no-repeat;
+background-position: center;
 }
 
 .color-yellow-palete{
@@ -245,13 +246,13 @@ input[type="radio"]:checked + label::before {
   margin-top: 10px;
 }
 
-
 .dropdown select {
   width: 300px; 
   height: 35px; 
   padding: 5px; 
   box-sizing: border-box; 
 }
+
 .pickup{
   position: absolute;
   left: 40px;
