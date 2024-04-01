@@ -20,7 +20,7 @@ const Notifications = () => {
       <div className="notification-container">
         <div className="noftitle">
           <h2>
-            <BsBellFill size={25} style={{ marginRight: '30px', marginBottom: '-5px' }} />
+            <BsBellFill size={25} style={{ marginRight: '20px', marginBottom: '-5px' }} />
             NOTIFICATION
           </h2>
         </div>
