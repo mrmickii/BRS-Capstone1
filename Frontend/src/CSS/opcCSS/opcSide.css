@@ -5,7 +5,7 @@
   overflow: hidden;
 }
 
-.head-view-content-container{
+.opc-view-content-container{
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -14,7 +14,7 @@
   padding-top: 1%;
 }
 
-.head-view-content{
+.opc-view-content{
   display: flex;
   flex-direction: column;
   height: 90%;
@@ -24,49 +24,63 @@
 .banner{
   width: 100vw;
   height: 20vh;
-  background-image: url('../../Images//banner1.png');
+  background-image: url('../../Images/OPCbanner.png');
   background-repeat: no-repeat;
   background-position: 0% 59%;
   background-size: 72.5% 430%;
 }
 
-.l-request{
+.request-container{
+  height: 100%;
+  z-index: 2;
+}
+
+.opc-request {
   width: 100%;
-  height: 20%;
-  margin-top: 1%;
+  height: 17%;
+  margin-top: 10%;
   background-color: #782324;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* Adjusted to align items to the left */
   justify-content: center;
+  padding-left: 2%;
   font-family: 'Poppins', sans-serif;
   color: white;
 }
 
-.department-selector{
+.view-request{
   display: flex;
-  width: 100%;
-  height: 50%;
-  align-items: center;
-  justify-content: center;
-  gap: 2%;
+  margin-top: 14%;
+  height: 4%;
+  margin-left: 1%;
 }
 
-.department-selector select{
-  width: 50%;
-}
-
-.department-selector button{
-  padding: 0.3%;
+.viewbut-color{
+  background-color: #f4c108; 
+  color: #782324; 
+  padding: 3px 20px; 
   border: none;
-  background-color: #f4c108;
-  border-radius: 5%;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
 }
 
-.r-content{
+.viewbut-color:hover{
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.opc-content{
   width: 100%;
   height: 100%;
+  margin-top: 2%;
   background-color: #cbc3c3;
+  overflow: hidden;
+  padding: 1.4%; 
 }
 
 /* .content-logo{
