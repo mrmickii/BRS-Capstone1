@@ -13,8 +13,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {/* <Notification/> */}
     {/* <Login /> */}
     {/* <HeadView /> */}
-     {/* <OpcView />  */}
-    <Reservation2 /> 
+    <OpcView /> 
+    {/* <Reservation2 />  */}
     {/* <Reservation />  */}
     {/* <Settings /> */}
   </React.StrictMode>,
