@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../userView/header';
 import SideNavBar from '../userView/sidenavbar';
 import Calendar from '../userView/calendar';
@@ -33,6 +33,30 @@ const Reservation2 = () => {
     reason: ''
   });
 
+  useEffect(() => {
+    // Fetch reservation data from the database
+    fetchReservationData();
+  }, []); // Empty dependency array to run only once when the component mounts
+
+  const fetchReservationData = async () => {
+    try {
+      // Fetch reservation data from the database
+      const response = await fetch('http://localhost:8080/reservationData');
+      if (response.ok) {
+        // If the response is successful, parse the JSON data
+        const data = await response.json();
+        // Set the retrieved data to the formValues state
+        setFormValues(data);
+      } else {
+        console.error('Failed to fetch reservation data');
+      }
+    } catch (error) {
+      console.error('Error fetching reservation data:', error);
+    } finally {
+      setLoading(false); // Set loading to false after fetching data
+    }
+  };
+
   const handleDateSelect = (date) => {
     setSelectedDate(date);
     setFormValues({...formValues, schedule: date});
@@ -61,10 +85,6 @@ const Reservation2 = () => {
   const handleTripTypeChange = (e) => {
     setFormValues({ ...formValues, typeOfTrip: e.target.value });
   };
-  
-  setTimeout(() => {
-    setLoading(false);
-  }, 3000);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -113,8 +133,7 @@ const Reservation2 = () => {
           <div className='selecttime'>
             <h2><AiOutlineClockCircle size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT TIMEFRAME</h2>
           </div>
-          <div className='timeframe'>
-          </div>
+          <div className='timeframe'></div>
           <div className='resform'>
             <div className='restitle'>
               <h2><AiFillFileText  size={28} style={{marginRight: '10px', marginBottom: '-5px'}}/>RESERVATION FORM</h2>
@@ -243,14 +262,15 @@ const Reservation2 = () => {
         <div className='summarylabel'>
           <h2>SUMMARY OF REQUEST</h2>
         </div>
-        <div className='summary'>
+
+          <div className='summary'>
+              
+          </div>
         </div>
-      </div>
       
       <div className='cit-bglogo'></div>
       
       </>
-      
       )}
     </div>
   );
