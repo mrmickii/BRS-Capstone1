@@ -1,9 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../../CSS/headCSS/headSide.css'
 import Header from '../userView/header'
 import SideNavBar from '../userView/sidenavbar'
 
 const HeadSide = () =>{
+  const [departments, setDepartments] = useState([]);
+  const [selectedDepartment, setSelectedDepartment] = useState(0);
+
+  useEffect(() => {
+    fetchDepartments();
+  }, []);
+
+  const fetchDepartments = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/department/departments');
+      if (response.ok) {
+        const data = await response.json();
+        setDepartments(data);
+        console.log('Success fetching department data.');
+      } else {
+        console.error('Failed to fetch department data.');
+      }
+    } catch (error) {
+      console.error('Error fetching department data:', error);
+    }
+  };
+
+  const handleDepartmentChange = (e) => {
+    setSelectedDepartment(e.target.value);
+  };
+
   return(
     <div className="head-view-container">
       <Header />
@@ -17,11 +43,16 @@ const HeadSide = () =>{
             <h1>LIST OF REQUESTS</h1>
             <div className="department-selector">
               <p>Select Department:</p>
-              <select name="selector" id="selector">
+              <select 
+                name="selector" 
+                id="selector" 
+                value={selectedDepartment} 
+                onChange={handleDepartmentChange}
+              >
                 <option value="0">--Choose a Department--</option>
-                <option value="1">College of Computer Studies (CCS) </option>
-                <option value="1">College of Nursing and Allied Health Sciences(CNAHS) </option>
-                <option value="1">College of Engineering and Architecture(CEA) </option>
+                {departments.map(department => (
+                  <option key={department.id} value={department.id}>{department.name}</option>
+                ))}
               </select>
               <button>Set Configuration</button>
             </div>
@@ -37,4 +68,4 @@ const HeadSide = () =>{
   );
 }
 
-export default HeadSide
+export default HeadSide;
