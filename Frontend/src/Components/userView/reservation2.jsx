@@ -102,6 +102,21 @@ const Reservation2 = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+  
+    const mandatoryFields = ['typeOfTrip', 'destinationTo', 'destinationFrom', 'capacity', 'schedule', 'vehicleType', 'pickUpTime', 'departureTime', 'reason'];
+    const missingFields = mandatoryFields.filter(field => !formValues[field]);
+    
+    if (missingFields.length > 0) {
+
+      alert(`Please fill in the missing fields`);
+      return;
+    }
+  
+    const confirmation = window.confirm('Are you sure you want to send this request?');
+    if (!confirmation) {
+      return;
+    }
+  
     try {
       const response = await fetch('http://localhost:8080/reservation/add', {
         method: 'POST',
@@ -111,14 +126,28 @@ const Reservation2 = () => {
         body: JSON.stringify(formValues)
       });
       if (response.ok) {
-        console.log('Reservation submitted successfully');
+        
+        alert('Reservation submitted successfully');
       } else {
+        
         console.error('Failed to submit reservation');
+        alert('Failed to submit reservation. Please try again later.');
       }
     } catch (error) {
       console.error('Error submitting reservation:', error);
+      alert('Error submitting reservation. Please try again later.');
     }
   };
+
+  const handleCapacityChange = (e) => {
+    const value = parseInt(e.target.value, 10); 
+    if (!isNaN(value) && value >= 0) {
+     
+      setFormValues({...formValues, capacity: value});
+    }
+  };
+  
+  
   
   return (
     <div className="reservation">
@@ -151,11 +180,11 @@ const Reservation2 = () => {
               <h2><AiFillFileText  size={28} style={{marginRight: '10px', marginBottom: '-5px'}}/>RESERVATION FORM</h2>
             </div>
             <div className='oneway'>
-              <input type="radio" id="oneway" name="tripType" value="One Way" onChange={handleTripTypeChange} />
+              <input type="radio" id="oneway" name="tripType" value="One Way" onChange={handleTripTypeChange} required/>
               <label htmlFor="oneway"> One Way</label>
             </div>
             <div className='roundtrip'>
-              <input type="radio" id="roundtrip" name="tripType" value="Round Trip" onChange={handleTripTypeChange} />
+              <input type="radio" id="roundtrip" name="tripType" value="Round Trip" onChange={handleTripTypeChange} required/>
               <label htmlFor="roundtrip"> Round Trip</label>
             </div>
             <div className='to'>
@@ -167,6 +196,7 @@ const Reservation2 = () => {
                 placeholder='To:'
                 value={formValues.destinationTo}
                     onChange={(e) => setFormValues({...formValues, destinationTo: e.target.value})} 
+                    required
               />
             </div>
             <div className='from'>
@@ -178,17 +208,18 @@ const Reservation2 = () => {
                 placeholder='From:'
                 value={formValues.destinationFrom}
                     onChange={(e) => setFormValues({...formValues, destinationFrom: e.target.value})}
+                    required
               />
             </div>
             <div className='capacity'>
               <BsPersonPlusFill size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px',padding: '5px' }}/>
               <input 
-                type="text" 
+                type="number" 
                 id="capacity" 
                 name="capacity" 
                 placeholder='Capacity'
                 value={formValues.capacity}
-                    onChange={(e) => setFormValues({...formValues, capacity: e.target.value})} 
+                onChange={handleCapacityChange} 
               />
             </div>
             <div className='schedule'>
@@ -200,6 +231,7 @@ const Reservation2 = () => {
                 placeholder='Schedule'
                 value={selectedDate ? `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}` : ''}
                 readOnly
+                required
               />
             </div>
             <div className='vehicle'>
@@ -211,6 +243,7 @@ const Reservation2 = () => {
                 placeholder='Type of Vehicle'
                 value={formValues.vehicleType}
                 onChange={(e) => setFormValues({...formValues, vehicleType: e.target.value})} 
+                required
               />
             </div>
             <div className='dropdown'>
@@ -231,6 +264,7 @@ const Reservation2 = () => {
                 placeholder='Pick up time'
                 value={formValues.pickUpTime}
                 onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
+                required
               />
             </div>
             <div className='departure'>
@@ -242,6 +276,7 @@ const Reservation2 = () => {
                 placeholder='Departure time'
                 value={formValues.departureTime}
                 onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})} 
+                required
               />
             </div>
             <div className='file-upload'>
@@ -273,7 +308,36 @@ const Reservation2 = () => {
               <h2>SUMMARY OF REQUEST</h2>
             </div>
             <div className='summary'>
-              
+            <table>
+    <thead>
+      <tr>
+        <th>Type of Trip</th>
+        <th style={{width: '300px'}}>To</th>
+        <th style={{width: '300px'}}>From</th>
+        <th>Capacity</th>
+        <th>Schedule</th>
+        <th>Department</th>
+        <th>Type of Vehicle</th>
+        <th>Pick up Time</th>
+        <th>Departure Time</th>
+        <th>Reason of Reservation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{formValues.typeOfTrip}</td>
+        <td>{formValues.destinationTo}</td>
+        <td>{formValues.destinationFrom}</td>
+        <td>{formValues.capacity}</td>
+        <td>{selectedDate ? `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}` : ''}</td>
+        <td>{formValues.department}</td>
+        <td>{formValues.vehicleType}</td>
+        <td>{formValues.pickUpTime}</td>
+        <td>{formValues.departureTime}</td>
+        <td>{formValues.reason}</td>
+      </tr>
+    </tbody>
+  </table>
             </div>
           </div>
           <div className='cit-bglogo'></div>
