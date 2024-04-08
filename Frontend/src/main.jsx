@@ -9,6 +9,7 @@ import HeadView from './Components/headView/headSide';
 import OpcView from './Components/opcView/opcSide';
 import Settings from './Components/userView/settings';
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>

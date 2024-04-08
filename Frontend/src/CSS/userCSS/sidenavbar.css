@@ -22,6 +22,7 @@
   color: #fff;
   font-size: 20px;
   margin-top: 10px;
+ 
 }
 
 .sidenavbar ul li:last-child {
@@ -51,4 +52,15 @@
   left: 20px;
   font-size: 22px;
   color: white;
+}
+.sidenavbar a {
+  text-decoration: none; 
+  color: white; 
+}
+
+
+
+.active {
+  background-color: #F4C108;
+  color: #782324 !important;
 }

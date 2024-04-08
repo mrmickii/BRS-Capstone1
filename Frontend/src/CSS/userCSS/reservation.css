@@ -15,18 +15,18 @@
 }
 .view-request{
   position: absolute;
-  left: 1500px;
-  top: 180px;
+  left: 1430px;
+  top: -40px;
   
 }
 .viewrequest-button{
   background-color: #782324; 
   color: white; 
-  padding: 8px 40px; 
+  padding: 5px 40px;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
 }
 .viewrequest-button:hover{
@@ -49,5 +49,5 @@
   height: 600px;
   width: 1350px;
   overflow: auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
 }
