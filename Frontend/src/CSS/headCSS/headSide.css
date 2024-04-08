@@ -67,15 +67,16 @@
   width: 100%;
   height: 100%;
   background-color: #cbc3c3;
+  padding: 2% 2%;
+  display: flex;
+  overflow-y: scroll;
 }
 
-/* .content-logo{
-  height: 50vh;
-  width: 100%;
-  background-image: url("../../Images/citbglogo.png");
-  background-position: 110% 80%;
-  background-repeat: no-repeat;
-  background-size: 30%;
-  filter: saturate(0%);
-  opacity: 0.2;
-} */
+.r-content-box{
+  background-color: white;
+  width: 100vw;
+  height: 25vh;
+  display: flex;
+}
+
+

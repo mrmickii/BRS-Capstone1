@@ -2,10 +2,8 @@ package com.brscapstone1.brscapstone1.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.brscapstone1.brscapstone1.Entity.DepartmentEntity;
 import com.brscapstone1.brscapstone1.Repository.DepartmentRepository;
 

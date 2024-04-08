@@ -59,11 +59,16 @@ const HeadSide = () =>{
           </div>
 
           <div className="r-content">
-            {/* DIRI MASULOD ANG CONTENT IF APPROVE BA OR DILI */}
+            <div className="r-content-box">
+              <div className="r-content-info"></div>
+              <div className="r-content-buttons"></div>
+            </div>
           </div>
         </div>
       </div>
-      <div className="bg-logo"></div>
+      <div className="bg-logo">
+        {/* BACKGROUND LOGO */}
+      </div>
     </div>
   );
 }
