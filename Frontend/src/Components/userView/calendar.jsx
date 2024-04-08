@@ -62,9 +62,9 @@ const Calendar = ({ onDateSelect }) => {
   return (
     <div className="calendar">
       <div className="calendar-nav">
-        <button onClick={prevMonth}>&lt;&lt;</button>
+        <button className='previous' onClick={prevMonth}>&lt;&lt;</button>
         <div className="calendar-month">{new Date(currentYear, currentMonth).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</div>
-        <button onClick={nextMonth}>&gt;&gt;</button>
+        <button className='next' onClick={nextMonth}>&gt;&gt;</button>
       </div>
       <div className="calendar-grid">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (

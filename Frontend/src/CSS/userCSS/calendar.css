@@ -1,7 +1,7 @@
 .calendar {
   padding: 30px;
   width: 450px;
-  background-color: #782324; 
+  background-color: #CBC3C3; 
   border-radius: 15px;
 }
   
@@ -22,8 +22,11 @@
 .calendar-month {
   font-weight: bold;
   font-size: 18px;
-  color: white;
-  padding: 10px;
+  color: black;
+  border-radius: 10px;
+  background-color: #ffcc00;
+  border: 2px solid black;
+  padding: 10px 50px;
 }
 
 .calendar-grid {
@@ -38,7 +41,8 @@
   font-weight: bold;
   font-size: 14px;
   padding: 10px;
-  background-color: #F4C108;
+  background-color: #782324;
+  color: white;
 }
 .calendar-day{
   text-align: center;
@@ -51,7 +55,15 @@
 
 .calendar-day.active {
   background-color: #ffcc00;
+  border: 2px solid black;
   font-weight: bold;
+}
+.calendar-day:hover{
+  background-color:  #782324;
+  transition: background-color 0.3s;
+  font-weight: 700;
+  color: white
+
 }
 
 .subheader {
@@ -62,4 +74,20 @@
 .subheader h2 {
   margin: 0;
   font-size: 24px;
+}
+.previous{
+  font-weight: 900;
+}
+.next{
+  font-weight: 900;
+}
+.previous:hover{
+  background-color: #782324;
+  transition: background-color 0.3s;
+  color: #ffcc00;
+}
+.next:hover{
+  background-color: #782324;
+  transition: background-color 0.3s;
+  color: #ffcc00;
 }
