@@ -96,17 +96,12 @@
     margin-top: 5px;
   }
   
-  .clear-btn:hover {
+  .back-btn:hover {
     background-color: #ffc800;
     transition: background-color 0.3s;
   }
   
-  .fpass {
-    font-size: 14px;
-    text-align: center;
-    margin-top: 30px;
-    font-family: 'Poppins', sans-serif;
-  }
+
   
   .citlogo {
     background-image: url(../../Images/citlogo.png);

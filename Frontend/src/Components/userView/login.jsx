@@ -87,7 +87,7 @@ const Login = () => {
                 CLEAR ENTITIES
               </button>
               <div className='fpass'>
-                <p>Forgot Password? <a href="#">Click here</a></p>
+                <p>Forgot Password? <a href="/forgotpass">Click here</a></p>
               </div>
             </form>
           )}

@@ -3,21 +3,19 @@ import { MdEmail } from "react-icons/md";
 import '../../CSS/userCSS/forgotpass.css';
 
 const ForgotPass = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [isLoggedIn, setLoggedIn] = useState(false);
 
-  const handleLogin = () => {
-    if (username === 'user' && password === 'password') {
+  const handleSend = () => {
+    if (email === 'email') {
       setLoggedIn(true);
     } else {
       alert('Invalid credentials. Please try again.');
     }
   };
 
-  const handleClear = () => {
-    setUsername('');
-    setPassword('');
+  const handleBack = () => {
+  
   };
 
   return (
@@ -35,15 +33,15 @@ const ForgotPass = () => {
             <MdEmail />
               <input
                 type="text"
-                value={username}
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter Email"
               />
             </label>
-            <button className='forgot-btn' type="button" onClick={handleLogin}>
+            <button className='forgot-btn' type="button" onClick={handleSend}>
               Send Email
             </button>
-            <button className='back-btn' type="button" onClick={handleClear}>
+            <button className='back-btn' type="button" onClick={handleBack}>
               Back to Login
             </button>
           </form>
