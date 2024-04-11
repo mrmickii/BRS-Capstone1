@@ -10,7 +10,6 @@ const SideNavbar = () => {
   const [activeTab, setActiveTab] = useState('');
 
   useEffect(() => {
-    // Update the active tab based on the current location
     setActiveTab(location.pathname);
   }, [location]);
 

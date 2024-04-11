@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import Preloader from '../userView/preloader';
 import '../../CSS/userCSS/login.css';
 
 const Login = () => {
@@ -8,8 +9,10 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    setLoading(true);
     try {
       const response = await fetch('http://localhost:8080/auth_login/login', {
         method: 'POST',
@@ -42,6 +45,8 @@ const Login = () => {
       }
     } catch (error) {
       console.error('Error logging in:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -60,7 +65,9 @@ const Login = () => {
       <div className='parent-login'>
         <div className='login-container'>
           <h2>User Authentication</h2>
-          {!isLoggedIn && (
+          {isLoading ? (
+            <Preloader />
+          ) : (
             <form>
               <label>
                 <FaUser />
