@@ -8,6 +8,7 @@ import Notification from './Components/userView/notification';
 import HeadView from './Components/headView/headSide';
 import OpcView from './Components/opcView/opcSide';
 import Settings from './Components/userView/settings';
+import ForgotPass from './Components/userView/forgotpass';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/reservation" element={<Reservation />} />
         <Route path="/user_view" element={<Reservation2 />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/forgotpass" element={<ForgotPass />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
