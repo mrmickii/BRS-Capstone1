@@ -19,9 +19,9 @@ public class ReservationController {
     @Autowired
     private ReservationService resServ;
     
-    @PostMapping("/add")
-		public ReservationEntity addReservation(@RequestParam("file") MultipartFile file, @RequestParam("reservation") String reservationJson) throws IOException {
-				System.out.println("Received file: " + file.getOriginalFilename());
+		@PostMapping("/add")
+		public ReservationEntity addReservation(@RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("reservation") String reservationJson) throws IOException {
+				System.out.println("Received file: " + (file != null ? file.getOriginalFilename() : "No file uploaded"));
 				System.out.println("Received JSON: " + reservationJson);
 				
 				ObjectMapper objectMapper = new ObjectMapper();

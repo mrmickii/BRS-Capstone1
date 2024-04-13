@@ -18,10 +18,14 @@ public class ReservationService {
 
     public ReservationEntity saveReservation(ReservationEntity reservation, MultipartFile file) throws IOException {
         if (file != null && !file.isEmpty()) {
-            reservation.setFileName(file.getOriginalFilename());
-            reservation.setFileType(file.getContentType());
-            reservation.setFileSize(file.getSize());
-        }
+					reservation.setFileName(file.getOriginalFilename());
+					reservation.setFileType(file.getContentType());
+					reservation.setFileSize(file.getSize());
+        }else{
+					reservation.setFileName("N/A");
+					reservation.setFileType("N/A");
+					reservation.setFileSize(0);
+				}
         return resRepo.save(reservation);
     }
 

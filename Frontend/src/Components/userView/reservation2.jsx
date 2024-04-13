@@ -110,9 +110,9 @@ const Reservation2 = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const mandatoryFields = ['typeOfTrip', 'destinationTo', 'destinationFrom', 'capacity', 'schedule', 'vehicleType', 'pickUpTime', 'departureTime', 'reason'];
+    const mandatoryFields = ['typeOfTrip', 'destinationTo', 'destinationFrom', 'capacity', 'schedule', 'department', 'vehicleType', 'pickUpTime', 'departureTime', 'reason'];
     const missingFields = mandatoryFields.filter(field => !formValues[field]);
-    
+  
     if (missingFields.length > 0) {
       alert(`Please fill in the missing fields`);
       return;
@@ -151,6 +151,20 @@ const Reservation2 = () => {
   
       if (response.ok) {
         console.log('Reservation submitted successfully.');
+        alert('Reservation submitted successfully.');
+        setFormValues({
+          typeOfTrip: '',
+          destinationTo: '',
+          destinationFrom: '',
+          capacity: '',
+          department: '',
+          schedule: '',
+          vehicleType: '',
+          pickUpTime: '',
+          departureTime: '',
+          reason: '',
+          file: null
+        });
       } else {
         setError('Failed to submit reservation.');
       }
@@ -266,7 +280,7 @@ const Reservation2 = () => {
             <div className='dropdown'>
               <RiBuildingFill size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
               <select id="department" name="department" onChange={handleDepartmentChange}>
-                <option value="">Select Department</option>
+                <option value="" selected>Select Department</option>
                 {departments.map((department) => (
                   <option key={department.id} value={department.name}>{department.name}</option>
                 ))}
