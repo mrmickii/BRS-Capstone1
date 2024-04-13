@@ -1,11 +1,17 @@
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
 .settings-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px;
+   position: absolute;
+   flex-direction: column;
+    top: 150px;
     border-radius: 8px;
     padding: 20px;
-    margin-left: 400px;
+    left: 400px;
     width: 600px;
+    z-index: -999;
+    
   }
   
   .setting-button {
@@ -17,7 +23,10 @@
     transition: background-color 0.3s ease, color 0.3s;
     font-size: 18px;
     color: black;
+    border: none;
+    padding: 20px;
     text-decoration: none;
+    margin-left: 20px;
   }
   
   .setting-button:hover {

@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   overflow: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
 .opc-view-content-container{
@@ -42,7 +43,7 @@
   background-color: #782324;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Adjusted to align items to the left */
+  align-items: flex-start;
   justify-content: center;
   padding-left: 2%;
   font-family: 'Poppins', sans-serif;
