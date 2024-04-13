@@ -1,32 +1,39 @@
 package com.brscapstone1.brscapstone1.Controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.brscapstone1.brscapstone1.Entity.ReservationEntity;
 import com.brscapstone1.brscapstone1.Service.ReservationService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/reservation")
 public class ReservationController {
-	
-	@Autowired
-	ReservationService resServ;
-	
-	@PostMapping("/add")
-	public ReservationEntity post(@RequestBody ReservationEntity reservation) {
-		return resServ.post(reservation);
-	}
-	
-	@GetMapping("/reservations")
-	public List<ReservationEntity> reservations(){
-		return resServ.reservations();
-	}
+    
+    @Autowired
+    private ReservationService resServ;
+    
+    @PostMapping("/add")
+		public ReservationEntity addReservation(@RequestParam("file") MultipartFile file, @RequestParam("reservation") String reservationJson) throws IOException {
+				System.out.println("Received file: " + file.getOriginalFilename());
+				System.out.println("Received JSON: " + reservationJson);
+				
+				ObjectMapper objectMapper = new ObjectMapper();
+				ReservationEntity reservation = objectMapper.readValue(reservationJson, ReservationEntity.class);
+				
+				System.out.println("Mapped reservation: " + reservation);
+				
+				return resServ.saveReservation(reservation, file);
+		}
+
+    @GetMapping("/reservations")
+    public List<ReservationEntity> getAllReservations(){
+        return resServ.getAllReservations();
+    }
 }

@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import '../../CSS/headCSS/headSide.css'
 import Header from '../userView/header'
 import SideNavBar from '../userView/sidenavbar'
+import FileDialogBox from '../headView/dialogBox';
 
 const HeadSide = () => {
-
   const [reservations, setReservations] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(0);
   const [filteredReservations, setFilteredReservations] = useState([]);
   const [showFilteredReservations, setShowFilteredReservations] = useState(false);
+  const [showFileDialog, setShowFileDialog] = useState(false);
 
   useEffect(() => {
     fetchReservations();
@@ -53,6 +54,14 @@ const HeadSide = () => {
   const handleSetConfiguration = () => {
     setShowFilteredReservations(true);
     setFilteredReservations(reservations.filter(reservation => reservation.department === selectedDepartment));
+  };
+
+  const handleViewFile = () => {
+    setShowFileDialog(true); 
+  };
+
+  const handleCloseFileDialog = () => {
+    setShowFileDialog(false);
   };
 
   return(
@@ -106,7 +115,7 @@ const HeadSide = () => {
                   <button>Approve</button>
                   <button>Reject</button>
                   <button>View Feedback</button>
-                  <button>View Attached File</button>
+                  <button onClick={handleViewFile}>View Attached File</button> {}
                 </div>
               </div>
             ))
@@ -119,6 +128,7 @@ const HeadSide = () => {
       </div>
       <div className='cit-bglogo'></div>
     </div>
+    {showFileDialog && <FileDialogBox onClose={handleCloseFileDialog} />}
     </>
   );
 }
