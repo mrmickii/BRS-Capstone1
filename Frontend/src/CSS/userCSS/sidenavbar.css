@@ -1,3 +1,7 @@
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
 .sidenavbar {
   width: 320px; 
   height: 100%; 
@@ -58,9 +62,7 @@
   color: white; 
 }
 
-
-
-.active {
+.sidenavbar .active {
   background-color: #F4C108;
   color: #782324 !important;
 }

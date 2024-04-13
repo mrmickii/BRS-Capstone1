@@ -4,6 +4,7 @@
   
   *{
     overflow: hidden;
+    font-family: 'Poppins', sans-serif;
   }
   
   .forgot-container {
@@ -13,7 +14,7 @@
     padding: 50px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 700px;
+    width: 550px;
     height: 300px;
     margin-top: 30px;
     align-items: center;
