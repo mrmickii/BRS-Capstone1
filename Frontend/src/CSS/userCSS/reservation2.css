@@ -399,9 +399,8 @@ background-position: center;
 }
 
 .summary table {
-  width: 100%;
+  width: 50vw;
   border-collapse: collapse;
-  
 }
 
 .summary th {

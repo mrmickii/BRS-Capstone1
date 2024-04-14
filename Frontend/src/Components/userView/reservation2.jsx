@@ -13,9 +13,9 @@ import { BiSolidTimeFive } from "react-icons/bi";
 import { AiFillMessage } from "react-icons/ai";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { HiDocumentDownload } from "react-icons/hi";
-import '../../CSS/userCSS/reservation2.css';
 import { IoIosSend } from "react-icons/io";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import '../../CSS/userCSS/reservation2.css';
 
 const Reservation2 = () => {
   const [pickUpTime, setPickUpTime] = useState('12:00');
@@ -32,9 +32,11 @@ const Reservation2 = () => {
     vehicleType: '',
     pickUpTime: '',
     departureTime: '',
-    reason: ''
+    reason: '',
+    file: null
   });
   const [departments, setDepartments] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchReservationData();
@@ -49,10 +51,10 @@ const Reservation2 = () => {
         setFormValues(data);
         console.log('Success fetching reservation data.');
       } else {
-        console.error('Failed to fetch reservation data.');
+        setError('Failed to fetch reservation data.');
       }
     } catch (error) {
-      console.error('Error fetching reservation data:', error);
+      setError('Error fetching reservation data:', error);
     } finally {
       setLoading(false);
     }
@@ -66,10 +68,10 @@ const Reservation2 = () => {
         setDepartments(data);
         console.log('Success fetching department data.');
       } else {
-        console.error('Failed to fetch department data.');
+        setError('Failed to fetch department data.');
       }
     } catch (error) {
-      console.error('Error fetching department data:', error);
+      setError('Error fetching department data:', error);
     }
   };
 
@@ -89,7 +91,8 @@ const Reservation2 = () => {
       vehicleType: '',
       pickUpTime: '',
       departureTime: '',
-      reason: ''
+      reason: '',
+      file: null
     });
     setSelectedDate(null);
   };
@@ -102,14 +105,17 @@ const Reservation2 = () => {
     setFormValues({ ...formValues, typeOfTrip: e.target.value });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-  
-    const mandatoryFields = ['typeOfTrip', 'destinationTo', 'destinationFrom', 'capacity', 'schedule', 'vehicleType', 'pickUpTime', 'departureTime', 'reason'];
-    const missingFields = mandatoryFields.filter(field => !formValues[field]);
-    
-    if (missingFields.length > 0) {
+  const handleFileChange = (e) => {
+    setFormValues({ ...formValues, file: e.target.files[0] });
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const mandatoryFields = ['typeOfTrip', 'destinationTo', 'destinationFrom', 'capacity', 'schedule', 'department', 'vehicleType', 'pickUpTime', 'departureTime', 'reason'];
+    const missingFields = mandatoryFields.filter(field => !formValues[field]);
+  
+    if (missingFields.length > 0) {
       alert(`Please fill in the missing fields`);
       return;
     }
@@ -119,32 +125,59 @@ const Reservation2 = () => {
       return;
     }
   
+    const formData = new FormData();
+    if (formValues.file) {
+      formData.append('file', formValues.file);
+    }
+    formData.append('reservation', JSON.stringify({
+      typeOfTrip: formValues.typeOfTrip,
+      destinationTo: formValues.destinationTo,
+      destinationFrom: formValues.destinationFrom,
+      capacity: formValues.capacity,
+      department: formValues.department,
+      schedule: formValues.schedule,
+      vehicleType: formValues.vehicleType,
+      pickUpTime: formValues.pickUpTime,
+      departureTime: formValues.departureTime,
+      reason: formValues.reason,
+      fileName: formValues.file ? formValues.file.name : null,
+      fileType: formValues.file ? formValues.file.type : null,
+      fileSize: formValues.file ? formValues.file.size : null,
+    }));
+  
     try {
       const response = await fetch('http://localhost:8080/reservation/add', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formValues)
+        body: formData,
       });
+  
       if (response.ok) {
-        
-        alert('Reservation submitted successfully');
+        console.log('Reservation submitted successfully.');
+        alert('Reservation submitted successfully.');
+        setFormValues({
+          typeOfTrip: '',
+          destinationTo: '',
+          destinationFrom: '',
+          capacity: '',
+          department: '',
+          schedule: '',
+          vehicleType: '',
+          pickUpTime: '',
+          departureTime: '',
+          reason: '',
+          file: null
+        });
       } else {
-        
-        console.error('Failed to submit reservation');
-        alert('Failed to submit reservation. Please try again later.');
+        setError('Failed to submit reservation.');
       }
     } catch (error) {
-      console.error('Error submitting reservation:', error);
-      alert('Error submitting reservation. Please try again later.');
+      setError('Error submitting reservation:', error);
     }
   };
 
   const handleCapacityChange = (e) => {
     const value = parseInt(e.target.value, 10); 
     if (!isNaN(value) && value >= 0) {
-     
       setFormValues({...formValues, capacity: value});
     }
   };
@@ -155,8 +188,6 @@ const Reservation2 = () => {
   const handleDepartureTimeChange = (time) => {
     setDepartureTime(time);
   };
-  
-  
   
   return (
     <div className="reservation">
@@ -206,8 +237,8 @@ const Reservation2 = () => {
                 name="to"
                 placeholder='To:'
                 value={formValues.destinationTo}
-                    onChange={(e) => setFormValues({...formValues, destinationTo: e.target.value})} 
-                    required
+                onChange={(e) => setFormValues({...formValues, destinationTo: e.target.value})} 
+                required
               />
             </div>
             <div className='from'>
@@ -218,8 +249,8 @@ const Reservation2 = () => {
                 name="from" 
                 placeholder='From:'
                 value={formValues.destinationFrom}
-                    onChange={(e) => setFormValues({...formValues, destinationFrom: e.target.value})}
-                    required
+                onChange={(e) => setFormValues({...formValues, destinationFrom: e.target.value})}
+                required
               />
             </div>
             <div className='capacity'>
@@ -260,7 +291,7 @@ const Reservation2 = () => {
             <div className='dropdown'>
               <RiBuildingFill size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
               <select id="department" name="department" onChange={handleDepartmentChange}>
-                <option value="">Select Department</option>
+                <option value="" selected>Select Department</option>
                 {departments.map((department) => (
                   <option key={department.id} value={department.name}>{department.name}</option>
                 ))}
@@ -296,7 +327,7 @@ const Reservation2 = () => {
                 Proof of Approval Request<br/>
                 <p style={{fontSize: '12px', fontWeight: '500'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: this is optional</p>
               </label>
-              <input type="file" id="file-upload" name="file" accept=".doc, .docx, .pdf" />
+              <input type="file" id="file-upload" name="file" accept=".doc, .docx, .pdf" onChange={handleFileChange}/>
             </div>
             <div className='reason'>
               < AiFillMessage size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
@@ -306,7 +337,7 @@ const Reservation2 = () => {
                 name="reason" 
                 placeholder='Reason of Reservation'
                 value={formValues.reason}
-                    onChange={(e) => setFormValues({...formValues, reason: e.target.value})} 
+                onChange={(e) => setFormValues({...formValues, reason: e.target.value})} 
               />
             </div>
             <div className='clearentitiies'>
@@ -319,36 +350,38 @@ const Reservation2 = () => {
               <h2>SUMMARY OF REQUEST</h2>
             </div>
             <div className='summary'>
-            <table>
-    <thead>
-      <tr>
-        <th>Type of Trip</th>
-        <th style={{width: '300px'}}>To</th>
-        <th style={{width: '300px'}}>From</th>
-        <th>Capacity</th>
-        <th>Schedule</th>
-        <th>Department</th>
-        <th>Type of Vehicle</th>
-        <th>Pick up Time</th>
-        <th>Departure Time</th>
-        <th>Reason of Reservation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{formValues.typeOfTrip}</td>
-        <td>{formValues.destinationTo}</td>
-        <td>{formValues.destinationFrom}</td>
-        <td>{formValues.capacity}</td>
-        <td>{selectedDate ? `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}` : ''}</td>
-        <td>{formValues.department}</td>
-        <td>{formValues.vehicleType}</td>
-        <td>{formValues.pickUpTime}</td>
-        <td>{formValues.departureTime}</td>
-        <td>{formValues.reason}</td>
-      </tr>
-    </tbody>
-  </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Type of Trip</th>
+                    <th style={{width: '300px'}}>To</th>
+                    <th style={{width: '300px'}}>From</th>
+                    <th>Capacity</th>
+                    <th>Schedule</th>
+                    <th>Department</th>
+                    <th>Type of Vehicle</th>
+                    <th>Pick up Time</th>
+                    <th>Departure Time</th>
+                    <th>Reason of Reservation</th>
+                    <th>File Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{formValues.typeOfTrip}</td>
+                    <td>{formValues.destinationTo}</td>
+                    <td>{formValues.destinationFrom}</td>
+                    <td>{formValues.capacity}</td>
+                    <td>{selectedDate ? `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}` : ''}</td>
+                    <td>{formValues.department}</td>
+                    <td>{formValues.vehicleType}</td>
+                    <td>{formValues.pickUpTime}</td>
+                    <td>{formValues.departureTime}</td>
+                    <td>{formValues.reason}</td>
+                    <td>{formValues.file ? formValues.file.name : 'N/A'}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
           <div className='cit-bglogo'></div>
