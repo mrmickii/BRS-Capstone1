@@ -68,10 +68,10 @@ const Reservation2 = () => {
         setDepartments(data);
         console.log('Success fetching department data.');
       } else {
-        setError('Failed to fetch department data.');
+        console.error('Failed to fetch department data.');
       }
     } catch (error) {
-      setError('Error fetching department data:', error);
+      console.error('Error fetching department data:', error);
     }
   };
 
@@ -168,10 +168,13 @@ const Reservation2 = () => {
           file: null
         });
       } else {
-        setError('Failed to submit reservation.');
+        
+        console.error('Failed to submit reservation');
+        alert('Failed to submit reservation. Please try again later.');
       }
     } catch (error) {
-      setError('Error submitting reservation:', error);
+      console.error('Error submitting reservation:', error);
+      alert('Error submitting reservation. Please try again later.');
     }
   };
 
@@ -181,13 +184,8 @@ const Reservation2 = () => {
       setFormValues({...formValues, capacity: value});
     }
   };
-  const handlePickUpTimeChange = (time) => {
-    setPickUpTime(time);
-  };
-
-  const handleDepartureTimeChange = (time) => {
-    setDepartureTime(time);
-  };
+  
+  
   
   return (
     <div className="reservation">

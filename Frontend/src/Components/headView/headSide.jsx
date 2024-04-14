@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import '../../CSS/headCSS/headSide.css'
-import Header from '../userView/header'
-import HeadNavBar from '../headView/headnavbar'
+import '../../CSS/headCSS/headSide.css';
+import Header from '../userView/header';
+import HeadNavBar from '../headView/headnavbar';
 import FileDialogBox from '../headView/dialogBox';
 
 const HeadSide = () => {
@@ -78,11 +78,7 @@ const HeadSide = () => {
             <h1>LIST OF REQUESTS</h1>
           </div>
           <div className="dropdown-selector">
-            <p style ={{fontWeight: '600'}}>
-              <RiBuildingFill 
-              size={25} 
-              style={{ marginRight: '10px', marginBottom: '-5px'}}/>
-              Select Department:</p>
+            <p>Select Department:</p>
             <select 
                 name="selector" 
                 id="selector" 
@@ -94,7 +90,7 @@ const HeadSide = () => {
                   <option key={department.id} value={department.name}>{department.name}</option>
                 ))}
               </select>
-            <button onClick={handleSetConfiguration}><FaSearch style={{marginRight: '5px', marginBottom: '-3px'}} />Search</button>
+            <button onClick={handleSetConfiguration}>Search</button>
           </div>
         </div>
         <div className="data-container">
