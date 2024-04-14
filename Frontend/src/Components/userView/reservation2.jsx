@@ -18,8 +18,6 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import '../../CSS/userCSS/reservation2.css';
 
 const Reservation2 = () => {
-  const [pickUpTime, setPickUpTime] = useState('12:00');
-  const [departureTime, setDepartureTime] = useState('12:00');
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(null);
   const [formValues, setFormValues] = useState({
@@ -207,9 +205,7 @@ const Reservation2 = () => {
           <div className='selecttime'>
             <h2><AiOutlineClockCircle size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT TIMEFRAME</h2>
           </div>
-          <div className='timeframe'>
-   
-          </div>
+          <div className='timeframe'></div>
           <div className='resform'>
             <div className='restitle'>
               <h2><AiFillFileText  size={28} style={{marginRight: '10px', marginBottom: '-5px'}}/>RESERVATION FORM</h2>
