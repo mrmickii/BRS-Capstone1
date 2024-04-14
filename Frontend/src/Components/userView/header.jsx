@@ -1,6 +1,7 @@
 import React from "react";
 import '../../CSS/userCSS/header.css'
 import { FaBus } from "react-icons/fa";
+import { ImExit } from "react-icons/im";
 
 const Header = () => {
   return(
@@ -12,7 +13,7 @@ const Header = () => {
         </div>
         <h2 className="header-label">TRANSPORTATION RESERVATION SYSTEM</h2>
         <div className="button-container">
-          <button className="header-button">LOG OUT</button>
+          <button className="header-button"><ImExit size={18} style={{marginRight: '5px', marginBottom : '-4px'}}/>LOG OUT</button>
         </div>
       </div>
     </div>

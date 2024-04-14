@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import '../../CSS/headCSS/headSide.css'
 import Header from '../userView/header'
-import SideNavBar from '../userView/sidenavbar'
+import HeadNavBar from '../headView/headnavbar'
+import { RiBuildingFill } from "react-icons/ri";
+import { FaSearch } from "react-icons/fa";
 
 const HeadSide = () => {
 
@@ -58,7 +60,7 @@ const HeadSide = () => {
   return(
     <>
     <Header />
-    <SideNavBar />
+    <HeadNavBar />
 
     <div className="head-view-container">
       <div className="content-container">
@@ -69,7 +71,11 @@ const HeadSide = () => {
             <h1>LIST OF REQUESTS</h1>
           </div>
           <div className="dropdown-selector">
-            <p>Select Department:</p>
+            <p style ={{fontWeight: '600'}}>
+              <RiBuildingFill 
+              size={25} 
+              style={{ marginRight: '10px', marginBottom: '-5px'}}/>
+              Select Department:</p>
             <select 
                 name="selector" 
                 id="selector" 
@@ -81,7 +87,7 @@ const HeadSide = () => {
                   <option key={department.id} value={department.name}>{department.name}</option>
                 ))}
               </select>
-            <button onClick={handleSetConfiguration}>Search</button>
+            <button onClick={handleSetConfiguration}><FaSearch style={{marginRight: '5px', marginBottom: '-3px'}} />Search</button>
           </div>
         </div>
         <div className="data-container">
