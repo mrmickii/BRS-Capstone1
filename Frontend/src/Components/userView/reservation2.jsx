@@ -367,7 +367,7 @@ const Reservation2 = () => {
                     <td>{formValues.pickUpTime}</td>
                     <td>{formValues.departureTime}</td>
                     <td>{formValues.reason}</td>
-                    <td>{formValues.file ? formValues.file.name : 'N/A'}</td>
+                    <td>{formValues.file ? formValues.file.name : 'No file(s) attached'}</td>
                   </tr>
                 </tbody>
               </table>

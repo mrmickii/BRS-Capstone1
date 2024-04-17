@@ -10,6 +10,7 @@ const HeadSide = () => {
   const [selectedDepartment, setSelectedDepartment] = useState(0);
   const [filteredReservations, setFilteredReservations] = useState([]);
   const [showFilteredReservations, setShowFilteredReservations] = useState(false);
+  const [selectedReservation, setSelectedReservation] = useState(null);
   const [showFileDialog, setShowFileDialog] = useState(false);
 
   useEffect(() => {
@@ -56,7 +57,8 @@ const HeadSide = () => {
     setFilteredReservations(reservations.filter(reservation => reservation.department === selectedDepartment));
   };
 
-  const handleViewFile = () => {
+  const handleViewFile = (reservation) => {
+    setSelectedReservation(reservation);
     setShowFileDialog(true); 
   };
 
@@ -66,69 +68,66 @@ const HeadSide = () => {
 
   return(
     <>
-    <Header />
-    <SideNavBar />
-
-    <div className="head-view-container">
-      <div className="content-container">
-        {/* TO BE DECIDED IF BUTANGAN UG BANNER OR DILI */}
-        {/* <div className="head-banner-container"></div> */}
-        <div className="dropdown-container">
-          <div className="dropdown-h1">
-            <h1>LIST OF REQUESTS</h1>
-          </div>
-          <div className="dropdown-selector">
-            <p>Select Department:</p>
-            <select 
-                name="selector" 
-                id="selector" 
-                value={selectedDepartment} 
-                onChange={handleDepartmentChange}
-              >
-                <option value="0">-- Choose a Department --</option>
-                {departments.map(department => (
-                  <option key={department.id} value={department.name}>{department.name}</option>
-                ))}
-              </select>
-            <button onClick={handleSetConfiguration}>Search</button>
-          </div>
-        </div>
-        <div className="data-container">
-          {showFilteredReservations && filteredReservations.length > 0 ? (
-            filteredReservations.map((reservation, index) => (
-              <div className="request-data-container" key={index}>
-                <div className="r-d-container-left">
-                  <h2>Type of Trip: {reservation.typeOfTrip}</h2>
-                  <p>Capacity: {reservation.capacity}</p>
-                  <p>Departure Time: {reservation.departureTime}</p>
-                  <p>Destination To: {reservation.destinationTo}</p>
-                  <div className="feedback-container">
-                    <input type="text" placeholder="Send feedback (optional)"/>
-                    <button>Send</button>
-                  </div>
-                  <h2>Vehicle Type: {reservation.vehicleType}</h2>
-                  <p>Destination From: {reservation.destinationFrom}</p>
-                  <p>Pick-up Time: {reservation.pickUpTime}</p>
-                  <p>Reason: {reservation.reason}</p>
-                </div>
-                <div className="r-d-container-right">
-                  <button>Approve</button>
-                  <button>Reject</button>
-                  <button>View Feedback</button>
-                  <button onClick={handleViewFile}>View Attached File</button> {}
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="no-reservations-message">
-              <p>No reservations for this department.</p>
+      <Header />
+      <SideNavBar />
+      <div className="head-view-container">
+        <div className="content-container">
+          <div className="dropdown-container">
+            <div className="dropdown-h1">
+              <h1>LIST OF REQUESTS</h1>
             </div>
-          )}
+            <div className="dropdown-selector">
+              <p>Select Department:</p>
+              <select 
+                  name="selector" 
+                  id="selector" 
+                  value={selectedDepartment} 
+                  onChange={handleDepartmentChange}
+                >
+                  <option value="0">-- Choose a Department --</option>
+                  {departments.map(department => (
+                    <option key={department.id} value={department.name}>{department.name}</option>
+                  ))}
+                </select>
+              <button onClick={handleSetConfiguration}>Search</button>
+            </div>
+          </div>
+          <div className="data-container">
+            {showFilteredReservations && filteredReservations.length > 0 ? (
+              filteredReservations.map((reservation, index) => (
+                <div className="request-data-container" key={index}>
+                  <div className="r-d-container-left">
+                    <h2>Type of Trip: {reservation.typeOfTrip}</h2>
+                    <p>Capacity: {reservation.capacity}</p>
+                    <p>Departure Time: {reservation.departureTime}</p>
+                    <p>Destination To: {reservation.destinationTo}</p>
+                    <div className="feedback-container">
+                      <input type="text" placeholder="Send feedback (optional)"/>
+                      <button>Send</button>
+                    </div>
+                    <h2>Vehicle Type: {reservation.vehicleType}</h2>
+                    <p>Destination From: {reservation.destinationFrom}</p>
+                    <p>Pick-up Time: {reservation.pickUpTime}</p>
+                    <p>Reason: {reservation.reason}</p>
+                  </div>
+                  <div className="r-d-container-right">
+                    <button>Approve</button>
+                    <button>Reject</button>
+                    <button>View Feedback</button>
+                    <button onClick={() => handleViewFile(reservation)}>View Attached File</button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="no-reservations-message">
+                <p>No reservations for this department.</p>
+              </div>
+            )}
+          </div>
         </div>
+        <div className='cit-bglogo'></div>
       </div>
-      <div className='cit-bglogo'></div>
-    </div>
-    {showFileDialog && <FileDialogBox onClose={handleCloseFileDialog} />}
+      {showFileDialog && <FileDialogBox onClose={handleCloseFileDialog} reservation={selectedReservation} />}
     </>
   );
 }
