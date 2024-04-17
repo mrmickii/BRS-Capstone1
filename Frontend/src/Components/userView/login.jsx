@@ -31,7 +31,7 @@ const Login = () => {
             navigate('/staff_view');
             break;
           case 'USER':
-            navigate('/user_view');
+            navigate('/reservation');
             break;
           case 'HEAD':
             navigate('/head_view');

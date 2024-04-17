@@ -9,6 +9,8 @@ import HeadView from './Components/headView/headSide';
 import OpcView from './Components/opcView/opcSide';
 import Settings from './Components/userView/settings';
 import ForgotPass from './Components/userView/forgotpass';
+import HeadNotification from './Components/headView/headnotification';
+import HeadSettings from './Components/headView/headsettings';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -17,11 +19,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/notification" element={<Notification />} />
+        <Route path="/head_view/notification" element={<HeadNotification />} />
         <Route path="/head_view" element={<HeadView />} /> 
         <Route path="/staff_view" element={<OpcView />} />
         <Route path="/reservation" element={<Reservation />} />
         <Route path="/user_view" element={<Reservation2 />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/head_view/settings" element={<HeadSettings />} />
         <Route path="/forgotpass" element={<ForgotPass />} />
       </Routes>
     </BrowserRouter>

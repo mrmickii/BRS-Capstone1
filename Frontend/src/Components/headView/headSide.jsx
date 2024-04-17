@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import '../../CSS/headCSS/headSide.css'
-import Header from '../userView/header'
-import SideNavBar from '../userView/sidenavbar'
+import '../../CSS/headCSS/headSide.css';
+import Header from '../userView/header';
+import SideNavBar from '../headView/headnavbar';
 import FileDialogBox from '../headView/dialogBox';
 
 const HeadSide = () => {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../CSS/userCSS/calendar.css';
+import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
 
 const Calendar = ({ onDateSelect }) => {
   // Get current date
@@ -62,9 +63,9 @@ const Calendar = ({ onDateSelect }) => {
   return (
     <div className="calendar">
       <div className="calendar-nav">
-        <button className='previous' onClick={prevMonth}>&lt;&lt;</button>
+        <button className='previous' onClick={prevMonth}><BiSolidLeftArrow /></button>
         <div className="calendar-month">{new Date(currentYear, currentMonth).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</div>
-        <button className='next' onClick={nextMonth}>&gt;&gt;</button>
+        <button className='next' onClick={nextMonth}><BiSolidRightArrow /></button>
       </div>
       <div className="calendar-grid">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (

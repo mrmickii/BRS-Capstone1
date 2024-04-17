@@ -32,7 +32,6 @@
 .selectsched h2{
   font-size: 24px;
   color: #782324;
-  font-family: 'Poppins', sans-serif;
 }
 .selecttime{
   position: absolute;
@@ -337,7 +336,7 @@ background-position: center;
 .clearentitiies{
   position: absolute;
   top: 345px;
-  left: 500px;
+  left: 470px;
 }
 
 .clear{
@@ -359,7 +358,7 @@ background-position: center;
 .sendreq{
   position: absolute;
   top: 345px;
-  left: 735px;
+  left: 720px;
 }
 
 .sendreqbutton{
