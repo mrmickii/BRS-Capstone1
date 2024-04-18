@@ -1,17 +1,24 @@
 import React from "react";
-import '../../CSS/headCSS/dialogBox.css'
+import { getDownloadURL, ref } from "firebase/storage";
+import { storage } from "../../firebaseConfig";
+import '../../CSS/headCSS/dialogBox.css';
 
-// Dialog Box
 const FileDialogBox = ({ onClose, reservation }) => {
-  const handleDownload = () => {
-    const downloadUrl = `http://localhost:8080/reservation/reservations/download/${reservation.id}`;
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.setAttribute('download', reservation.fileName);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const handleView = async () => {
+    try {
+      if (!reservation || !reservation.fileName) {
+        console.error("No file associated with the reservation.");
+        return;
+      }
+      const fileRef = ref(storage, `reservation_files/${reservation.fileName}`);
+
+      const downloadUrl = await getDownloadURL(fileRef);
+  
+      window.open(downloadUrl, "_blank");
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    }
+  };  
 
   return (
     <div className="file-dialog-overlay">
@@ -21,13 +28,13 @@ const FileDialogBox = ({ onClose, reservation }) => {
           <button onClick={onClose}>X</button>
         </div>
         <div className="file-dialog-content">
-          {reservation ? (
+          {reservation && reservation.fileName ? (
             <div className="file-download-container">
               <p>File Name: {reservation.fileName}</p>
-              <button onClick={handleDownload}>Download</button>
+              <button onClick={handleView}>View</button>
             </div>
           ) : (
-            <p>No reservation selected.</p>
+            <p>No file attached to this reservation.</p>
           )}
         </div>
       </div>

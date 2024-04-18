@@ -16,6 +16,12 @@ import { HiDocumentDownload } from "react-icons/hi";
 import { IoIosSend } from "react-icons/io";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import '../../CSS/userCSS/reservation2.css';
+import { app, storage } from "../../firebaseConfig";
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
+
+const db = getFirestore(app);
+const storageRef = getStorage();
 
 const Reservation2 = () => {
   const [loading, setLoading] = useState(true);
@@ -31,45 +37,26 @@ const Reservation2 = () => {
     pickUpTime: '',
     departureTime: '',
     reason: '',
-    file: null
+    file: null,
+    fileURL: null 
   });
   const [departments, setDepartments] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchReservationData();
     fetchDepartments();
   }, []);
 
-  const fetchReservationData = async () => {
-    try {
-      const response = await fetch('http://localhost:8080/reservation/reservations');
-      if (response.ok) {
-        const data = await response.json();
-        setFormValues(data);
-        console.log('Success fetching reservation data.');
-      } else {
-        setError('Failed to fetch reservation data.');
-      }
-    } catch (error) {
-      setError('Error fetching reservation data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const fetchDepartments = async () => {
     try {
-      const response = await fetch('http://localhost:8080/department/departments');
-      if (response.ok) {
-        const data = await response.json();
-        setDepartments(data);
-        console.log('Success fetching department data.');
-      } else {
-        setError('Failed to fetch department data.');
-      }
+      const departmentsSnapshot = await getDocs(collection(db, 'departments'));
+      const departmentData = departmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setDepartments(departmentData);
+      console.log('Success fetching department data.');
     } catch (error) {
       setError('Error fetching department data:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -109,7 +96,7 @@ const Reservation2 = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const mandatoryFields = ['typeOfTrip', 'destinationTo', 'destinationFrom', 'capacity', 'schedule', 'department', 'vehicleType', 'pickUpTime', 'departureTime', 'reason'];
     const missingFields = mandatoryFields.filter(field => !formValues[field]);
   
@@ -122,12 +109,8 @@ const Reservation2 = () => {
     if (!confirmation) {
       return;
     }
-  
-    const formData = new FormData();
-    if (formValues.file) {
-      formData.append('file', formValues.file);
-    }
-    formData.append('reservation', JSON.stringify({
+
+    const reservationData = {
       typeOfTrip: formValues.typeOfTrip,
       destinationTo: formValues.destinationTo,
       destinationFrom: formValues.destinationFrom,
@@ -141,35 +124,35 @@ const Reservation2 = () => {
       fileName: formValues.file ? formValues.file.name : null,
       fileType: formValues.file ? formValues.file.type : null,
       fileSize: formValues.file ? formValues.file.size : null,
-    }));
-  
+    };
+
     try {
-      const response = await fetch('http://localhost:8080/reservation/add', {
-        method: 'POST',
-        body: formData,
-      });
-  
-      if (response.ok) {
-        console.log('Reservation submitted successfully.');
-        alert('Reservation submitted successfully.');
-        setFormValues({
-          typeOfTrip: '',
-          destinationTo: '',
-          destinationFrom: '',
-          capacity: '',
-          department: '',
-          schedule: '',
-          vehicleType: '',
-          pickUpTime: '',
-          departureTime: '',
-          reason: '',
-          file: null
-        });
-      } else {
-        setError('Failed to submit reservation.');
+      if (formValues.file) {
+        const fileRef = ref(storageRef, `reservation_files/${formValues.file.name}`);
+        await uploadBytes(fileRef, formValues.file);
+        console.log('File uploaded successfully.');
       }
+
+      await addDoc(collection(db, "reservations"), reservationData);
+      console.log('Reservation submitted successfully.');
+      alert('Reservation submitted successfully.');
+
+      setFormValues({
+        typeOfTrip: '',
+        destinationTo: '',
+        destinationFrom: '',
+        capacity: '',
+        department: '',
+        schedule: '',
+        vehicleType: '',
+        pickUpTime: '',
+        departureTime: '',
+        reason: '',
+        file: null
+      });
     } catch (error) {
-      setError('Error submitting reservation:', error);
+      console.error('Error submitting reservation:', error);
+      setError('Failed to submit reservation.');
     }
   };
 

@@ -3,11 +3,14 @@ import '../../CSS/headCSS/headSide.css';
 import Header from '../userView/header';
 import SideNavBar from '../headView/headnavbar';
 import FileDialogBox from '../headView/dialogBox';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+
+const db = getFirestore();
 
 const HeadSide = () => {
   const [reservations, setReservations] = useState([]);
   const [departments, setDepartments] = useState([]);
-  const [selectedDepartment, setSelectedDepartment] = useState(0);
+  const [selectedDepartment, setSelectedDepartment] = useState('');
   const [filteredReservations, setFilteredReservations] = useState([]);
   const [showFilteredReservations, setShowFilteredReservations] = useState(false);
   const [selectedReservation, setSelectedReservation] = useState(null);
@@ -20,14 +23,10 @@ const HeadSide = () => {
 
   const fetchReservations = async () => {
     try {
-      const response = await fetch('http://localhost:8080/reservation/reservations');
-      if (response.ok) {
-        const data = await response.json();
-        setReservations(data);
-        console.log('Success fetching reservation data.');
-      } else {
-        console.error('Failed to fetch reservation data.');
-      }
+      const reservationsSnapshot = await getDocs(collection(db, 'reservations'));
+      const reservationData = reservationsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setReservations(reservationData);
+      console.log('Success fetching reservation data.');
     } catch (error) {
       console.error('Error fetching reservation data:', error);
     }
@@ -35,14 +34,10 @@ const HeadSide = () => {
 
   const fetchDepartments = async () => {
     try {
-      const response = await fetch('http://localhost:8080/department/departments');
-      if (response.ok) {
-        const data = await response.json();
-        setDepartments(data);
-        console.log('Success fetching department data.');
-      } else {
-        console.error('Failed to fetch department data.');
-      }
+      const departmentsSnapshot = await getDocs(collection(db, 'departments'));
+      const departmentData = departmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setDepartments(departmentData);
+      console.log('Success fetching department data.');
     } catch (error) {
       console.error('Error fetching department data:', error);
     }
@@ -84,7 +79,7 @@ const HeadSide = () => {
                   value={selectedDepartment} 
                   onChange={handleDepartmentChange}
                 >
-                  <option value="0">-- Choose a Department --</option>
+                  <option value="">-- Choose a Department --</option>
                   {departments.map(department => (
                     <option key={department.id} value={department.name}>{department.name}</option>
                   ))}
