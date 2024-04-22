@@ -195,6 +195,13 @@
   background-color: #ef4444;
 }
 
+.bg-maroon-500 {
+  background-color: #782324;
+}
+
+.bg-attach-500 {
+  background-color: #ffffff;
+}
 .text-white {
   color: #fff;
 }
@@ -215,6 +222,19 @@
   display: flex;
   flex-direction: column;
   align-items: center; /* Align content horizontally at center */
+}
+.opc-container-bg {
+  background-color: #f0f0f0;
+  padding: 50px;
+  margin-top: 0%;
+  margin-left: 0; 
+  margin-right: 0;
+  overflow: hidden;
+}
+
+button {
+  padding: 20px 10px; /* Adjust padding as needed */
+  font-size: 10px; /* Adjust font size as needed */
 }
 
 /* .content-logo{

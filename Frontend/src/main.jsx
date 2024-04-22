@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<OpcView />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/head_view/notification" element={<HeadNotification />} />
         <Route path="/head_view" element={<HeadView />} /> 
