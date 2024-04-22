@@ -1,25 +1,14 @@
-
-.modalBackground {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modalContainer {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    width: 400px; 
-  }
-
-  
+.modalBackground{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .approvemodalBackground {
     position: fixed;
     top: 0;
@@ -30,67 +19,134 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .approvemodalContainer {
+}
+
+.modalContainer{
+  background-color: white;
+  padding: 25px;
+  padding-left: 2.5%;
+  padding-right: 2%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative; 
+}
+.approvemodalContainer {
     background-color: white;
-    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative; 
+}
+
+.approvemodalContainer {
     padding: 80px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     width: 600px; 
-  }
+}
 
-  .modaltitle {
+.modaltitle,
+.approvetitle,
+.subtitle {
     text-align: center;
     margin-bottom: 10px;
-  }
+}
 
-  .approvetitle {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .subtitle {
-    text-align: center;
+.subtitle {
     margin-bottom: 20px;
-  }
-  
-  form {
+    font-weight: bold;
+    font-size: larger;
+}
+
+form {
     display: flex;
     flex-wrap: wrap;
-  }
-  
-  form > div {
-    flex: 1;
-    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.formRow {
     margin-bottom: 10px;
-  }
-  
-  form > div:last-child {
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.gap-4 > * {
+    margin-right: 1rem;
+}
+
+.gap-4 > *:last-child {
     margin-right: 0;
-  }
-  
- input {
+}
+
+input {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-  }
-  
-  button {
-    background-color: #f44336; 
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-    float: right;
-    margin-right: 5px;
-  }
-  
-  button:hover {
-    background-color: #d32f2f;
-  }
-  
+    margin-bottom: 10px;
+    font-size: larger;
+}
+
+.formRow input {
+  width: calc(100% - 20px); /* Adjust the width to accommodate the gap */
+}
+
+.opc-save-container {
+  display: flex;
+  justify-content: flex-end; /* Align button to the right */
+}
+
+
+.opc-save-button {
+  background-color: #782324;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  float: right;
+  margin-right: 20px;
+  max-width: 150px;
+}
+
+.opc-save-button:hover {
+  background-color: #ef4444; 
+}
+
+.closeButton {
+  background-color: #782324; 
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem; 
+  font-weight: bold; 
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin-right: 45px;
+  margin-top: 25px;
+}
+
+.closeButton:hover{
+  background-color: #ef4444;
+}
