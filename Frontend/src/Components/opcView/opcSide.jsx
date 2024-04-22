@@ -30,30 +30,27 @@ const OpcSide = () =>{
       <Header />
       <SideNavBar />
       <div></div>
-      <h1 className="title-opc">REQUESTS</h1>
-      <div className="OPC-container opc-container-bg">
-      <div className="flex space-x-4 mb-4 justify-start">
-          <div className="flex-1 p-4">
-            <div className="flex space-x-4 mb-4">
-              <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
-                <span className="material-icons">inbox</span>
-                <span className="ml-2">REQUESTS</span>
-                <span className="ml-2 bg-red-600 text-white p-1 rounded">02</span>
+        <div className="opc-title">
+          <h1 className="title-opc">REQUESTS</h1>
+        </div>
+        <div className="OPC-container opc-container-bg">
+          <div className="opc-header-button">
+              <div className="flex-1 p-4">
+                <div className="flex space-x-4 mb-4">
+                  <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
+                    <span className="ml-2">REQUESTS</span>
+                    <span className="ml-2 bg-red-600 text-white p-1 rounded">02</span>
+                  </div>
+                  <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
+                    <span className="ml-2">DRIVERS</span>
+                    <span className="ml-2 bg-red-600 text-white p-1 rounded">08</span>
+                  </div>
+                  <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
+                    <span className="ml-2">VEHICLES</span>
+                    <span className="ml-2 bg-red-600 text-white p-1 rounded">12</span>
+                  </div>
               </div>
-              <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
-                <span className="material-icons">people</span> 
-                <span className="ml-2">DRIVERS</span>
-                <span className="ml-2 bg-red-600 text-white p-1 rounded">08</span>
-              </div>
-              <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
-                <span className="material-icons">directions_car</span>
-                <span className="ml-2">VEHICLES</span>
-                <span className="ml-2 bg-red-600 text-white p-1 rounded">12</span>
-              </div>
-            </div>
-            
-              <button className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2">View Approved Request</button>
-            
+              <button className="view-request-button">View Approved Request</button>
             <div className="bg-white p-4 rounded-lg shadow-md">
               
               <h2 className="text-xl font-bold mb-2">EDUCATIONAL TOUR</h2>
@@ -112,7 +109,7 @@ const OpcSide = () =>{
           </div>
           </div>
         </div>
-      </div>
+        </div>
       <div className="bg-logo"></div>
     </div>
   );
