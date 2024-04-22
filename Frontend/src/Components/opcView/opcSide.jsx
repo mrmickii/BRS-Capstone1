@@ -50,7 +50,9 @@ const OpcSide = () =>{
                     <span className="ml-2 bg-red-600 text-white p-1 rounded">12</span>
                   </div>
               </div>
-              <button className="view-request-button">View Approved Request</button>
+              <div className="opc-view-req-container">
+                <button className="view-request-button">View Approved Request</button>
+              </div>
             <div className="bg-white p-4 rounded-lg shadow-md">
               
               <h2 className="text-xl font-bold mb-2">EDUCATIONAL TOUR</h2>
@@ -76,27 +78,36 @@ const OpcSide = () =>{
                 <strong>Reason:</strong> ICT Congress - Central Visayas
               </p>
               <div className="flex mt-4">
-                <button  className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2"
-                  onClick={handleUpdateButtonClick}>
-                  UPDATE  
-                </button>
-                {showModal && <Modal onClose={handleCloseModal} />}
-                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
-                  onClick={handleApproveButtonClick}>
-                  APPROVE
-                </button>
-                {showApproveModal && <ApproveModal onClose={handleCloseApproveModal} />}
-                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-10 px-20 rounded">
-                  REJECT
-                </button>
-                <button className="bg-maroon-500 hover:bg-yellow-700 text-white font-bold py-10 px-20 rounded">
-                  VIEW FEEDBACK
-                </button>
-                <button className="bg-attach-500 hover:bg-yellow-700 text-maroon font-bold py-10 px-20 rounded">
-                  VIEW ATTACHED FILE
-                </button>  
-            </div>
-            
+                  <button
+                    className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2"
+                    onClick={handleUpdateButtonClick}
+                  >
+                    UPDATE
+                  </button>
+                  {showModal && <Modal onClose={handleCloseModal} />}
+                  <button
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
+                    onClick={handleApproveButtonClick}
+                  >
+                    APPROVE
+                  </button>
+                  {showApproveModal && <ApproveModal onClose={handleCloseApproveModal} />}
+                  <button
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
+                  >
+                    REJECT
+                  </button>
+                  <button
+                    className="bg-maroon-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2"
+                  >
+                    VIEW FEEDBACK
+                  </button>
+                  <button
+                    className="bg-attach-500 hover:bg-yellow-700 text-maroon font-bold py-2 px-4 rounded"
+                  >
+                    VIEW ATTACHED FILE
+                  </button>
+                </div>
               <div className="opc-feedback">
                 <form>
                   <br></br>

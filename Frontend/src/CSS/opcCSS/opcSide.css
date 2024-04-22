@@ -261,6 +261,10 @@
   overflow: hidden;
 }
 
+.opc-view-req-container{
+  padding-bottom: 1.1%;
+}
+
 /* .content-logo{
   height: 50vh;
   width: 100%;
