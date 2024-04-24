@@ -1,52 +1,108 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Preloader from '../userView/preloader';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 import '../../CSS/userCSS/login.css';
+import { auth, db } from '../../firebaseConfig';
+import { onAuthStateChanged } from "firebase/auth";
 
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async () => {
-    setLoading(true);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async user => {
+      if (user) {
+        console.log("User:", user.email);
+        
+        const userType = await getUserTypeSomehow(user.uid);
+        if (userType) {
+          console.log("UserType:", userType);
+          switch (userType) {
+            case "head":
+              navigate("/head_view");
+              break;
+            case "user":
+              navigate("/user_view");
+              break;
+            case "staff":
+              navigate("/staff_view");
+              break;
+            default:
+              navigate("/");
+              break;
+          }
+        } else {
+          navigate("/");
+        }
+      } else {
+        navigate("/");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const getUserTypeSomehow = async (uid) => {
     try {
-      const response = await fetch('http://localhost:8080/auth_login/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: username, password }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setLoggedIn(true);
-        const { role } = data;
+      const docRef = doc(db, "users", uid);
+      const docSnap = await getDoc(docRef);
+    
+      if (docSnap.exists) {
+        const userData = docSnap.data();
+        return userData.userType;
+      } else {
+        console.log("User document not found in Firestore");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching user data from Firestore:", error);
+      return null;
+    }
+  };
 
-        switch (role) {
-          case 'STAFF':
-            navigate('/staff_view');
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+  
+    try {
+      console.log("Attempting login...");
+  
+      const userCredential = await signInWithEmailAndPassword(auth, username, password);
+      const user = userCredential.user;
+  
+      console.log("User authenticated:", user);
+  
+      const userType = await getUserTypeSomehow(user.uid);
+      if (userType) {
+        console.log("UserType:", userType);
+        switch (userType) {
+          case "head":
+            navigate("/head_view");
             break;
-          case 'USER':
-            navigate('/reservation');
+          case "user":
+            navigate("/user_view");
             break;
-          case 'HEAD':
-            navigate('/head_view');
+          case "staff":
+            navigate("/staff_view");
             break;
           default:
-            navigate('/');
+            navigate("/");
             break;
         }
       } else {
-        alert('Invalid credentials. Please try again.');
+        navigate("/");
       }
+  
+      console.log("User successfully logged in:", user.email);
     } catch (error) {
-      console.error('Error logging in:', error);
+      console.error("Login error:", error);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
