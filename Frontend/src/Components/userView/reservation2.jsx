@@ -186,9 +186,50 @@ const Reservation2 = () => {
             <Calendar onDateSelect={handleDateSelect} />
           </div>
           <div className='selecttime'>
-            <h2><AiOutlineClockCircle size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT TIMEFRAME</h2>
+            <h2><AiOutlineClockCircle size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT AVAILABLE TIMEFRAME</h2>
           </div>
-          <div className='timeframe'></div>
+          <div className='timeframe'>
+          <div className="pick-depart-container">
+          <BiSolidTimeFive size={25} style={{marginLeft: '10px', marginRight: '10px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/> 
+              <h4>Select Pick-Up Time</h4>
+              <br/>
+              <select 
+                id="pickup" 
+                name="pickup" 
+                value={formValues.pickUpTime}
+                onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
+                required
+              >
+                <option value="" disabled>Select Pick-up Time</option>
+                {Array.from({ length: 24 }).map((_, index) => {
+                  const hour = index % 12 || 12;
+                  const ampm = index < 12 ? 'AM' : 'PM';
+                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
+                  return <option key={index} value={time}>{time}</option>;
+                })}
+              </select>
+            </div>
+
+            <div className="pick-depart-container">
+            <BiSolidTimeFive size={25} style={{marginLeft: '10px', marginRight: '10px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>
+              <h4>Select Departure Time</h4>
+              <select 
+                id="departure" 
+                name="departure" 
+                value={formValues.departureTime}
+                onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})} 
+                required
+              >
+                <option value="" disabled>Select Departure Time</option>
+                {Array.from({ length: 24 }).map((_, index) => {
+                  const hour = index % 12 || 12;
+                  const ampm = index < 12 ? 'AM' : 'PM';
+                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
+                  return <option key={index} value={time}>{time}</option>;
+                })}
+              </select>
+            </div>
+          </div>
           <div className='resform'>
             <div className='restitle'>
               <h2><AiFillFileText  size={28} style={{marginRight: '10px', marginBottom: '-5px'}}/>RESERVATION FORM</h2>
@@ -277,7 +318,8 @@ const Reservation2 = () => {
                 name="pickup" 
                 placeholder='Pick up time'
                 value={formValues.pickUpTime}
-                onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
+                onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})}
+                readOnly 
                 required
               />
             </div>
@@ -289,7 +331,8 @@ const Reservation2 = () => {
                 name="departure" 
                 placeholder='Departure time'
                 value={formValues.departureTime}
-                onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})} 
+                onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})}
+                readOnly 
                 required
               />
             </div>

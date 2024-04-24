@@ -98,7 +98,7 @@ const HeadSide = () => {
                     <p>Destination To: {reservation.destinationTo}</p>
                     <div className="feedback-container">
                       <input type="text" placeholder="Send feedback (optional)"/>
-                      <button>Send</button>
+                      <button>Send Feedback</button>
                     </div>
                     <h2>Vehicle Type: {reservation.vehicleType}</h2>
                     <p>Destination From: {reservation.destinationFrom}</p>
