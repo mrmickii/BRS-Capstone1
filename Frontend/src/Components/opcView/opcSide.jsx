@@ -1,36 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import '../../CSS/opcCSS/opcSide.css'
 import Header from '../userView/header'
 import SideNavBar from '../opcView/sidenavbar'
+import Modal from '../opcView/Modal'
+import ApproveModal from "./approvemodal";
 
 const OpcSide = () =>{
+
+  const [showModal, setShowModal] = useState(false);
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  
+  const handleUpdateButtonClick = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleApproveButtonClick = () => {
+    setShowApproveModal(true);
+  };
+
+  const handleCloseApproveModal = () => {
+    setShowApproveModal(false);
+  };
   return(
     <div className="opc-view-container">
       <Header />
       <SideNavBar />
-
-      <div className="flex space-x-4 mb-4 justify-start">
-          <div className="flex-1 p-4">
-            <h1 className="text-4xl font-bold mb-4">DASHBOARD</h1>
-            <div className="flex space-x-4 mb-4">
-              <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
-                <span className="material-icons">inbox</span>
-                <span className="ml-2">REQUESTS</span>
-                <span className="ml-2 bg-red-600 text-white p-1 rounded">02</span>
+      <div></div>
+        <div className="opc-title">
+          <h1 className="title-opc">REQUESTS</h1>
+        </div>
+        <div className="OPC-container opc-container-bg">
+          <div className="opc-header-button">
+              <div className="flex-1 p-4">
+                <div className="flex space-x-4 mb-4">
+                  <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
+                    <span className="ml-2">REQUESTS</span>
+                    <span className="ml-2 bg-red-600 text-white p-1 rounded">02</span>
+                  </div>
+                  <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
+                    <span className="ml-2">DRIVERS</span>
+                    <span className="ml-2 bg-red-600 text-white p-1 rounded">08</span>
+                  </div>
+                  <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
+                    <span className="ml-2">VEHICLES</span>
+                    <span className="ml-2 bg-red-600 text-white p-1 rounded">12</span>
+                  </div>
               </div>
-              <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
-                <span className="material-icons">people</span> 
-                <span className="ml-2">DRIVERS</span>
-                <span className="ml-2 bg-red-600 text-white p-1 rounded">08</span>
+              <div className="opc-view-req-container">
+                <button className="view-request-button">View Approved Request</button>
               </div>
-              <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
-                <span className="material-icons">directions_car</span>
-                <span className="ml-2">VEHICLES</span>
-                <span className="ml-2 bg-red-600 text-white p-1 rounded">12</span>
-              </div>
-            </div>
-
             <div className="bg-white p-4 rounded-lg shadow-md">
+              
               <h2 className="text-xl font-bold mb-2">EDUCATIONAL TOUR</h2>
               <p>
                 <strong>Requester name:</strong> Jeff Conson
@@ -54,19 +78,49 @@ const OpcSide = () =>{
                 <strong>Reason:</strong> ICT Congress - Central Visayas
               </p>
               <div className="flex mt-4">
-                <button className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2">
-                  UPDATE
-                </button>
-                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2">
-                  APPROVE
-                </button>
-                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                  REJECT
-                </button>
-            </div>
+                  <button
+                    className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2"
+                    onClick={handleUpdateButtonClick}
+                  >
+                    UPDATE
+                  </button>
+                  {showModal && <Modal onClose={handleCloseModal} />}
+                  <button
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
+                    onClick={handleApproveButtonClick}
+                  >
+                    APPROVE
+                  </button>
+                  {showApproveModal && <ApproveModal onClose={handleCloseApproveModal} />}
+                  <button
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
+                  >
+                    REJECT
+                  </button>
+                  <button
+                    className="bg-maroon-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2"
+                  >
+                    VIEW FEEDBACK
+                  </button>
+                  <button
+                    className="bg-attach-500 hover:bg-yellow-700 text-maroon font-bold py-2 px-4 rounded"
+                  >
+                    VIEW ATTACHED FILE
+                  </button>
+                </div>
+              <div className="opc-feedback">
+                <form>
+                  <br></br>
+                  <div>
+                    <input placeholder="send feedback (optional)" name="send feedback" />
+                  </div>
+                    <button className="bg-maroon-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Send</button>
+                </form>
+              </div>
+          </div>
           </div>
         </div>
-      </div>
+        </div>
       <div className="bg-logo"></div>
     </div>
   );
