@@ -19,7 +19,6 @@
   width: 80vw;
   height: 100vh;
   max-height: 88vh;
-  overflow: auto;
   flex-direction: column;
 }
 

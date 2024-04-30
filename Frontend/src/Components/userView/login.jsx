@@ -79,7 +79,6 @@ const Login = () => {
   
       const userType = await getUserTypeSomehow(user.uid);
       if (userType) {
-        console.log("UserType:", userType);
         switch (userType) {
           case "head":
             navigate("/head_view");
@@ -143,7 +142,7 @@ const Login = () => {
                   placeholder="Password"
                 />
               </label>
-              <button className='login-btn' type="button" onClick={handleLogin}>
+              <button className='login-btn' type="submit" onClick={handleLogin}>
                 LOGIN
               </button>
               <button className='clear-btn' type="button" onClick={handleClear}>

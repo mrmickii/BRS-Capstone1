@@ -10,7 +10,7 @@ const FileDialogBox = ({ onClose, reservation }) => {
         console.error("No file associated with the reservation.");
         return;
       }
-      const fileRef = ref(storage, `reservation_files/${reservation.fileName}`);
+      const fileRef = ref(storage, `${reservation.fileName}`);
 
       const downloadUrl = await getDownloadURL(fileRef);
   

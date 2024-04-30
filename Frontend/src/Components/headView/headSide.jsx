@@ -23,25 +23,31 @@ const HeadSide = () => {
 
   const fetchReservations = async () => {
     try {
-      const reservationsSnapshot = await getDocs(collection(db, 'reservations'));
-      const reservationData = reservationsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const response = await fetch('http://localhost:8080/reservation/reservations');
+      if (!response.ok) {
+        throw new Error('Failed to fetch reservation data');
+      }
+      const reservationData = await response.json();
       setReservations(reservationData);
       console.log('Success fetching reservation data.');
     } catch (error) {
       console.error('Error fetching reservation data:', error);
     }
-  };
+  };  
 
   const fetchDepartments = async () => {
     try {
-      const departmentsSnapshot = await getDocs(collection(db, 'departments'));
-      const departmentData = departmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const response = await fetch('http://localhost:8080/department/departments');
+      if (!response.ok) {
+        throw new Error('Failed to fetch department data');
+      }
+      const departmentData = await response.json();
       setDepartments(departmentData);
       console.log('Success fetching department data.');
     } catch (error) {
       console.error('Error fetching department data:', error);
     }
-  };
+  };  
 
   const handleDepartmentChange = (e) => {
     setSelectedDepartment(e.target.value);
