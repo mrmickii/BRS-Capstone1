@@ -10,6 +10,8 @@ import OpcView from './Components/opcView/opcSide';
 import Settings from './Components/userView/settings';
 import ForgotPass from './Components/userView/forgotpass';
 import { auth } from './firebaseConfig';
+import OpcDriver from './Components/opcView/opcDriver';
+import OpcVehicle from './Components/opcView/opcVehicle';
 
 function App() {
   const navigate = useNavigate(); 
@@ -49,6 +51,8 @@ function App() {
       <Route path="/user_view" element={<Reservation2 />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/forgotpass" element={<ForgotPass />} />
+      <Route path="/driver-management" element={<OpcDriver/>} />
+      <Route path="/vehicle-management" element={<OpcVehicle/>} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

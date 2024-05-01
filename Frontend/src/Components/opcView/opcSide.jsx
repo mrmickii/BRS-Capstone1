@@ -1,129 +1,148 @@
-import React, { useState } from "react";
-import '../../CSS/opcCSS/opcSide.css'
-import Header from '../userView/header'
-import SideNavBar from '../opcView/sidenavbar'
+import React, { useState, useEffect } from "react";
+import Header from '../userView/header';
+import SideNavBar from '../opcView/sidenavbar';
+import '../../CSS/opcCSS/opcSide.css';
 import Modal from '../opcView/Modal'
-import ApproveModal from "./approvemodal";
+import ApproveModal from "../opcView/approvemodal";
+import UpdatetModal from "../opcView/updateRequestModal";
+import { useNavigate } from 'react-router-dom';
 
-const OpcSide = () =>{
-
+const OpcSide = () => {
+  const [reservations, setReservations] = useState([]);
+  const [departments, setDepartments] = useState([]);
+  const [selectedReservation, setSelectedReservation] = useState(null);
+  const [showFileDialog, setShowFileDialog] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showApproveModal, setShowApproveModal] = useState(false);
-  
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleDriverManagement = () => {
+    navigate('/driver-management');
+  }
+
+  const handleVehicleManagement = () => {
+    navigate('/vehicle-management');
+  }
+
   const handleUpdateButtonClick = () => {
     setShowModal(true);
   };
-
+ 
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
+ 
   const handleApproveButtonClick = () => {
     setShowApproveModal(true);
   };
-
+ 
   const handleCloseApproveModal = () => {
     setShowApproveModal(false);
   };
-  return(
+ 
+  const handleRejectButtonClick = () => {
+    setShowRejectModal(true);
+  };
+ 
+  const handleCloseRejectModal = () => {
+    setShowRejectModal(false);
+  };
+
+  useEffect(() => {
+    fetchReservations();
+    fetchDepartments();
+  }, []);
+
+  const fetchReservations = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/reservation/reservations');
+      if (!response.ok) {
+        throw new Error('Failed to fetch reservation data');
+      }
+      const reservationData = await response.json();
+      setReservations(reservationData);
+      console.log('Success fetching reservation data.');
+    } catch (error) {
+      console.error('Error fetching reservation data:', error);
+    }
+  };
+
+  const fetchDepartments = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/department/departments');
+      if (!response.ok) {
+        throw new Error('Failed to fetch department data');
+      }
+      const departmentData = await response.json();
+      setDepartments(departmentData);
+      console.log('Success fetching department data.');
+    } catch (error) {
+      console.error('Error fetching department data:', error);
+    }
+  };
+
+  const handleViewFile = (reservation) => {
+    setSelectedReservation(reservation);
+    setShowFileDialog(true);
+  };
+
+  return (
     <div className="opc-view-container">
       <Header />
       <SideNavBar />
-      <div></div>
-        <div className="opc-title">
-          <h1 className="title-opc">REQUESTS</h1>
-        </div>
-        <div className="OPC-container opc-container-bg">
-          <div className="opc-header-button">
-              <div className="flex-1 p-4">
-                <div className="flex space-x-4 mb-4">
-                  <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
-                    <span className="ml-2">REQUESTS</span>
-                    <span className="ml-2 bg-red-600 text-white p-1 rounded">02</span>
-                  </div>
-                  <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
-                    <span className="ml-2">DRIVERS</span>
-                    <span className="ml-2 bg-red-600 text-white p-1 rounded">08</span>
-                  </div>
-                  <div className="bg-yellow-300 p-4 flex items-center rounded-lg">
-                    <span className="ml-2">VEHICLES</span>
-                    <span className="ml-2 bg-red-600 text-white p-1 rounded">12</span>
-                  </div>
+      <div className="opc-title">
+        <h1 className="title-opc">REQUESTS</h1>
+      </div>
+      <div className="data-container1">
+      <div className="sample">
+                <div className="sample">
+                    <button>Request</button>
+                    <button onClick={handleDriverManagement}>Driver</button>
+                    <button  onClick={handleVehicleManagement}>Vehicle</button>
               </div>
-              <div className="opc-view-req-container">
-                <button className="view-request-button">View Approved Request</button>
+        {reservations.map((reservation, index) => (
+          <div className="request-data-container1" key={index}>
+            <div className="r-d-container-left1">
+              <h2>Type of Trip: {reservation.typeOfTrip}</h2>
+              <p>Capacity: {reservation.capacity}</p>
+              <p>Departure Time: {reservation.departureTime}</p>
+              <p>Destination To: {reservation.destinationTo}</p>
+              <div className="feedback-container1">
+                <input type="text" placeholder="Send feedback (optional)" />
+                <button>Send Feedback</button>
               </div>
-            <div className="bg-white p-4 rounded-lg shadow-md">
-              
-              <h2 className="text-xl font-bold mb-2">EDUCATIONAL TOUR</h2>
-              <p>
-                <strong>Requester name:</strong> Jeff Conson
-              </p>
-              <p>
-                <strong>To:</strong> Cebu city <strong>From:</strong> CIT - U
-              </p>
-              <p>
-                <strong>Type of Trip:</strong> Round Trip <strong>Capacity:</strong> 40
-              </p>
-              <p>
-                <strong>Send time:</strong> 11:00 AM <strong>Pick up time:</strong> 4:30 PM
-              </p>
-              <p>
-                <strong>Department:</strong> CCS Department <strong>Vehicle:</strong> Bus 1
-              </p>
-              <p>
-                <strong>Date:</strong> 16/03/2024
-              </p>
-              <p>
-                <strong>Reason:</strong> ICT Congress - Central Visayas
-              </p>
-              <div className="flex mt-4">
-                  <button
-                    className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2"
-                    onClick={handleUpdateButtonClick}
-                  >
-                    UPDATE
-                  </button>
-                  {showModal && <Modal onClose={handleCloseModal} />}
-                  <button
-                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
-                    onClick={handleApproveButtonClick}
-                  >
-                    APPROVE
-                  </button>
-                  {showApproveModal && <ApproveModal onClose={handleCloseApproveModal} />}
-                  <button
-                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
-                  >
-                    REJECT
-                  </button>
-                  <button
-                    className="bg-maroon-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2"
-                  >
-                    VIEW FEEDBACK
-                  </button>
-                  <button
-                    className="bg-attach-500 hover:bg-yellow-700 text-maroon font-bold py-2 px-4 rounded"
-                  >
-                    VIEW ATTACHED FILE
-                  </button>
-                </div>
-              <div className="opc-feedback">
-                <form>
-                  <br></br>
-                  <div>
-                    <input placeholder="send feedback (optional)" name="send feedback" />
-                  </div>
-                    <button className="bg-maroon-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Send</button>
-                </form>
-              </div>
+              <h2>Vehicle Type: {reservation.vehicleType}</h2>
+              <p>Destination From: {reservation.destinationFrom}</p>
+              <p>Pick-up Time: {reservation.pickUpTime}</p>
+              <p>Reason: {reservation.reason}</p>
+            </div>
+            <div className="r-d-container-right1">
+              <button onClick={handleApproveButtonClick}>
+                  Approve
+              </button> 
+              {showApproveModal && <ApproveModal onClose={handleCloseApproveModal} />}
+
+              <button onClick={handleRejectButtonClick}>
+                  Reject
+              </button>
+              {showRejectModal && <RejectModal onClose={handleCloseRejectModal} />}
+
+              <button onClick={handleUpdateButtonClick}>
+                  Update
+              </button>
+              {showModal && <Modal onClose={handleCloseModal} />}
+
+              <button>View Feedback</button>
+              <button onClick={() => handleViewFile(reservation)}>View Attached File</button>
+            </div>
           </div>
-          </div>
-        </div>
-        </div>
+        ))}
+      </div>
+      </div>
       <div className="bg-logo"></div>
     </div>
   );
-}
+};
 
-export default OpcSide
+export default OpcSide;
