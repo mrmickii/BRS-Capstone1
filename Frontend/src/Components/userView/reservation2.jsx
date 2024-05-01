@@ -324,7 +324,7 @@ const Reservation2 = () => {
             <div className='dropdown'>
               <RiBuildingFill size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
               <select id="department" name="department" onChange={handleDepartmentChange}>
-                <option value="" selected>Select Department</option>
+                <option value="">Select Department</option>
                 {departments.map((department) => (
                   <option key={department.id} value={department.name}>{department.name}</option>
                 ))}

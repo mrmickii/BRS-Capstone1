@@ -19,9 +19,10 @@ const Login = () => {
       if (user) {
         console.log("User:", user.email);
         
-        const userType = await getUserTypeSomehow(user.uid);
-        if (userType) {
-          console.log("UserType:", userType);
+        const userData = await getUserData(user.uid);
+        if (userData) {
+          console.log("UserData:", userData);
+          const { userType, department } = userData;
           switch (userType) {
             case "head":
               navigate("/head_view");
@@ -47,14 +48,14 @@ const Login = () => {
     return () => unsubscribe();
   }, []);
 
-  const getUserTypeSomehow = async (uid) => {
+  const getUserData = async (uid) => {
     try {
       const docRef = doc(db, "users", uid);
       const docSnap = await getDoc(docRef);
     
       if (docSnap.exists) {
         const userData = docSnap.data();
-        return userData.userType;
+        return userData;
       } else {
         console.log("User document not found in Firestore");
         return null;
@@ -77,8 +78,9 @@ const Login = () => {
   
       console.log("User authenticated:", user);
   
-      const userType = await getUserTypeSomehow(user.uid);
-      if (userType) {
+      const userData = await getUserData(user.uid);
+      if (userData) {
+        const { userType, department } = userData;
         switch (userType) {
           case "head":
             navigate("/head_view");
@@ -93,6 +95,10 @@ const Login = () => {
             navigate("/");
             break;
         }
+  
+        if (department) {
+          console.log("User Department:", department);
+        }
       } else {
         navigate("/");
       }
@@ -100,10 +106,11 @@ const Login = () => {
       console.log("User successfully logged in:", user.email);
     } catch (error) {
       console.error("Login error:", error);
+      alert("Login failed. Please check email and password correctly.");
     } finally {
       setIsLoading(false);
     }
-  };
+  };  
 
   const handleClear = () => {
     setUsername('');
