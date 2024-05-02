@@ -6,6 +6,7 @@ import Modal from '../opcView/Modal'
 import ApproveModal from "../opcView/approvemodal";
 import UpdatetModal from "../opcView/updateRequestModal";
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineEdit, AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
 
 const OpcSide = () => {
   const [reservations, setReservations] = useState([]);
@@ -96,11 +97,19 @@ const OpcSide = () => {
       </div>
       <div className="data-container1">
       <div className="sample">
-                <div className="sample">
-                    <button>Request</button>
-                    <button onClick={handleDriverManagement}>Driver</button>
-                    <button  onClick={handleVehicleManagement}>Vehicle</button>
+           <div className="opc-header-button-container">
+                <div className="opc-header-button">
+                    <button className="header-buttons"> <AiOutlineFileText size={20} style={{ marginLeft: '19px' }} /> Request <span class="number">1</span> </button>
+                    <button className="header-buttons" onClick={handleDriverManagement}> <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> Driver <span class="number">1</span> </button>
+                    <button className="header-buttons" onClick={handleVehicleManagement}> <AiOutlineCar size={20} style={{ marginLeft: '25px' }} /> Vehicle <span class="number">1</span> </button>
               </div>
+            </div>
+        <div className="opc-requests-header-container">
+            <div className="opc-requests-header">
+              <h1> <AiOutlineFileText size={35}/> REQUESTS</h1>
+              <button>View Approve Request</button>
+              </div> 
+            </div> 
         {reservations.map((reservation, index) => (
           <div className="request-data-container1" key={index}>
             <div className="r-d-container-left1">
