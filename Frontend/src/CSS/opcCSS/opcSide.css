@@ -13,6 +13,7 @@
   width: 100vw;
   padding-left: 15%;
   padding-top: 1%;
+  z-index: -999;
 }
 
 .opc-view-content{
@@ -99,6 +100,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  z-index: 30;
 }
 
 .request-data-container1 {
@@ -265,10 +267,13 @@
   font-weight: bold; /* Make the font bold */
   /* Add other button styles here if needed */
 }
+.header-buttons{
+  font-size: 20px;
+}
 
 .opc-header-button .header-buttons span {
   vertical-align: middle;
-  /* Add other span styles here if needed */
+  
 }
 
 .opc-requests-header {

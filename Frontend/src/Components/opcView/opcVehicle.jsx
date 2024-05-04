@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../userView/header';
-import SideNavBar from '../opcView/sidenavbar';
+import OpcNavBar from '../opcView/opcnavbar';
 import { AiOutlineEdit, AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
 import '../../CSS/opcCSS/opcSide.css';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +23,7 @@ const OpcVehicle = () => {
   return (
     <div className="opc-view-container">
       <Header />
-      <SideNavBar />
+      <OpcNavBar />
       <div className="opc-title">
         <h1 className="title-opc">VEHICLES</h1>
       </div>
