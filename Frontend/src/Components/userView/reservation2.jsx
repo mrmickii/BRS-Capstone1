@@ -209,13 +209,14 @@ const Reservation2 = () => {
             <h2><AiOutlineClockCircle size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT AVAILABLE TIMEFRAME</h2>
           </div>
           <div className='timeframe'>
-          <div className="pick-depart-container">
+          <div className="pick-pick-container">
           <BiSolidTimeFive size={25} style={{marginLeft: '10px', marginRight: '10px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/> 
               <h4>Select Pick-Up Time</h4>
               <br/>
               <select 
                 id="pickup" 
                 name="pickup" 
+                style={{ position: 'absolute', top: '55px', left: '55px', width: '190px'}}
                 value={formValues.pickUpTime}
                 onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
                 required
@@ -230,12 +231,13 @@ const Reservation2 = () => {
               </select>
             </div>
 
-            <div className="pick-depart-container">
+            <div className="pick-depart-container" style={{marginTop: '60px'}}>
             <BiSolidTimeFive size={25} style={{marginLeft: '10px', marginRight: '10px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>
               <h4>Select Departure Time</h4>
               <select 
                 id="departure" 
-                name="departure" 
+                name="departure"
+                style={{position: 'absolute', top: '140px', left: '55px'}} 
                 value={formValues.departureTime}
                 onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})} 
                 required

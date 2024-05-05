@@ -13,11 +13,9 @@ const Calendar = ({ onDateSelect }) => {
   // Function to move to the previous month
   const prevMonth = () => {
     if (currentMonth === 0) {
-      setCurrentMonth(11);
-      setCurrentYear(currentYear - 1);
-    } else {
-      setCurrentMonth(currentMonth - 1);
+      return; // Prevent going to previous month if current month is January
     }
+    setCurrentMonth(currentMonth - 1);
   };
 
   // Function to move to the next month
@@ -43,12 +41,14 @@ const Calendar = ({ onDateSelect }) => {
 
     // Fill the days before the current month
     for (let i = 0; i < firstDay; i++) {
-      days.push({ day: '', selected: false });
+      days.push({ day: '', selected: false, disabled: true });
     }
 
     // Fill the days of the current month
     for (let i = 1; i <= totalDays; i++) {
-      days.push({ day: i, selected: selectedDay === i });
+      const date = new Date(currentYear, currentMonth, i);
+      const isPast = date < currentDate;
+      days.push({ day: i, selected: selectedDay === i, disabled: isPast });
     }
 
     return days;
@@ -63,7 +63,7 @@ const Calendar = ({ onDateSelect }) => {
   return (
     <div className="calendar">
       <div className="calendar-nav">
-        <button className='previous' onClick={prevMonth}><BiSolidLeftArrow /></button>
+        <button className='previous' onClick={prevMonth} disabled={currentMonth === currentDate.getMonth()}><BiSolidLeftArrow /></button>
         <div className="calendar-month">{new Date(currentYear, currentMonth).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</div>
         <button className='next' onClick={nextMonth}><BiSolidRightArrow /></button>
       </div>
@@ -72,7 +72,7 @@ const Calendar = ({ onDateSelect }) => {
           <div key={day} className="calendar-day-name">{day}</div>
         ))}
         {generateDays().map((item, index) => (
-          <div key={index} className={`calendar-day${item.selected ? ' active' : ''}`} onClick={() => handleDayClick(item.day)}>
+          <div key={index} className={`calendar-day${item.selected ? ' active' : ''}${item.disabled ? ' disabled' : ''}`} onClick={() => !item.disabled && handleDayClick(item.day)}>
             {item.day}
           </div>
         ))}
