@@ -429,12 +429,11 @@ background-position: center;
 .pick-depart-container {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .pick-depart-container {
   margin-left: 10px;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 .pick-depart-container h4{
   margin-right: 15px;
@@ -455,5 +454,36 @@ background-position: center;
 }
 
 .pick-depart-container select:hover {
+  border-color: #999;
+}
+.pick-pick-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.pick-pick-container {
+  margin-left: 10px;
+  margin-top: 20px;
+}
+.pick-pick-container h4{
+  margin-right: 15px;
+}
+.pick-pick-container option{
+ color: green;
+ font-weight: 800;
+}
+.pick-pick-container option:hover{
+  background: #f4c108 ;
+ }
+
+.pick-pick-container select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.pick-pick-container select:hover {
   border-color: #999;
 }

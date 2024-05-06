@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Header from '../userView/header';
-import SideNavBar from '../opcView/sidenavbar';
+import OpcNavBar from '../opcView/opcnavbar';
 import '../../CSS/opcCSS/opcSide.css';
 import Modal from '../opcView/Modal'
 import ApproveModal from "../opcView/approvemodal";
 import UpdatetModal from "../opcView/updateRequestModal";
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineEdit, AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
 
 const OpcSide = () => {
   const [reservations, setReservations] = useState([]);
@@ -90,17 +91,25 @@ const OpcSide = () => {
   return (
     <div className="opc-view-container">
       <Header />
-      <SideNavBar />
+      <OpcNavBar />
       <div className="opc-title">
         <h1 className="title-opc">REQUESTS</h1>
       </div>
       <div className="data-container1">
       <div className="sample">
-                <div className="sample">
-                    <button>Request</button>
-                    <button onClick={handleDriverManagement}>Driver</button>
-                    <button  onClick={handleVehicleManagement}>Vehicle</button>
+           <div className="opc-header-button-container">
+                <div className="opc-header-button">
+                    <button className="header-buttons"> <AiOutlineFileText size={40}/>Request <span class="number">1</span> </button>
+                    <button className="header-buttons" onClick={handleDriverManagement}> <AiOutlineUser size={40}/> Driver <span class="number">1</span> </button>
+                    <button className="header-buttons" onClick={handleVehicleManagement}> <AiOutlineCar size={40}/> Vehicle <span class="number">1</span> </button>
               </div>
+            </div>
+        <div className="opc-requests-header-container">
+            <div className="opc-requests-header">
+              <h1> <AiOutlineFileText size={35}/> REQUESTS</h1>
+              <button>View Approve Request</button>
+              </div> 
+            </div> 
         {reservations.map((reservation, index) => (
           <div className="request-data-container1" key={index}>
             <div className="r-d-container-left1">

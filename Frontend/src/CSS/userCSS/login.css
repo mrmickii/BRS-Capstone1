@@ -9,9 +9,10 @@
 
 .login-container {
   position: absolute;
-  left: 570px;
+  left: 660px;
   background-color: #ccc;
-  padding: 50px;
+  padding: 30px;
+  font-size: 14px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 550px;
@@ -82,6 +83,7 @@ input {
 
 .login-btn:hover {
   background-color: #4d0005;
+  color: white;
   transition: background-color 0.3s;
 }
 
@@ -99,6 +101,7 @@ input {
 
 .clear-btn:hover {
   background-color: #ffc800;
+  color: #8c3a3f;
   transition: background-color 0.3s;
 }
 

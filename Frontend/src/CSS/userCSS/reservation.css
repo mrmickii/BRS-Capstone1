@@ -30,11 +30,12 @@
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 .viewrequest-button:hover{
-  background-color: #4d0005;
+  background-color: #f4c108;
+  color: #782324;
   transition: background-color 0.3s;
 }
 .reminder{
@@ -52,6 +53,6 @@
   background-color: #CBC3C3;
   height: 600px;
   width: 1350px;
-  overflow: auto;
+  overflow-y: scroll;
 
 }

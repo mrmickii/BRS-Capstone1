@@ -6,6 +6,7 @@ import { auth } from '../../firebaseConfig';
 
 const Header = () => {
   const [userName, setUserName] = useState(null);
+  const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -17,6 +18,16 @@ const Header = () => {
         setUserName(null); 
       }
     });
+
+    // Determine the greeting based on the current time
+    const currentHour = new Date().getHours();
+    if (currentHour >= 5 && currentHour < 12) {
+      setGreeting("☀️ Good Morning");
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting("⛅ Good Afternoon");
+    } else {
+      setGreeting("🌙 Good Evening");
+    }
 
     return () => unsubscribe();
   }, []);
@@ -43,10 +54,10 @@ const Header = () => {
           <FaBus size={32}/>
         </div>
         <h2 className="header-label">TRANSPORTATION RESERVATION SYSTEM</h2>
-        <div className="logged-in-user-name">Hi, {userName}</div>
+        <div className="logged-in-user-name">{greeting}, {userName}</div>
         <div className="button-container">
           <button className="header-button" onClick={handleLogout}>
-            <ImExit size={18} style={{marginRight: '5px', marginBottom : '-4px'}}/>LOG OUT
+            <ImExit size={18} style={{marginRight: '5px', marginTop : '5px'}}/>LOG OUT
           </button>
         </div>
       </div>

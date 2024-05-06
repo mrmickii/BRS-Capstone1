@@ -10,6 +10,7 @@
   height: 8vh;
   display: flex;
   background-color: #782324;
+  z-index: 999;
 }
 
 .division-one{
@@ -37,6 +38,7 @@
 .button-container{
   position: absolute;
   left: 1700px;
+  margin-top: 10px;
 }
 
 .header-button {
@@ -62,5 +64,5 @@
 }
 
 .logged-in-user-name{
-  margin-left: 600px;
+  margin-left: 450px;
 }

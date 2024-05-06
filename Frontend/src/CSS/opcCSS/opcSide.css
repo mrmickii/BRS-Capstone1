@@ -13,6 +13,7 @@
   width: 100vw;
   padding-left: 15%;
   padding-top: 1%;
+  z-index: -999;
 }
 
 .opc-view-content{
@@ -99,6 +100,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  z-index: 30;
 }
 
 .request-data-container1 {
@@ -212,6 +214,92 @@
   margin-left: 1rem; /* 16px */
 }
 
+.sample{
+  padding-bottom: 2%;
+}
+
+.number {
+  background-color: #ffc107; /* Yellow background color */
+  color: #fff; /* White text color */
+  padding: 2px 5px; /* Adjust padding for spacing */
+  border-radius: 5px; /* Rounded corners */
+  margin-left: 5px; /* Add some space between the number and the text */
+}
+
+.opc-header-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.opc-header-button {
+  display: grid;
+  grid-template-columns: auto auto auto; /* Each column will be as wide as its content */
+  gap: 100px; /* Adjust the gap between the buttons as needed */
+}
+
+.opc-header-button button {
+  background-color: #ffffff; /* White background color */
+  color: #782324; /* Dark red text color */
+  padding: 20px 0px; /* Adjust padding for spacing */
+  padding-left: 20px;
+  border: none; /* Remove border */
+  cursor: pointer; /* Change cursor on hover */
+  margin-right: 10px; /* Add space between buttons */
+  transition: background-color 0.3s; /* Smooth transition */
+  width: 400px;
+}
+
+.opc-header-button button:hover {
+  background-color: #f4c108; /* Yellow on hover */
+}
+
+.opc-header-button .number {
+  background-color: #782324; /* Dark red background color */
+  color: #ffffff; /* White text color */
+  padding: 25px 30px; /* Adjust padding for width and height */
+  border-radius: 0px; /* Rounded corners */
+  margin-left: 200px; /* Add some space between the number and the text */
+}
+
+.opc-header-button .header-buttons {
+  text-align: center;
+  font-size: 16px; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the font bold */
+  /* Add other button styles here if needed */
+}
+.header-buttons{
+  font-size: 20px;
+}
+
+.opc-header-button .header-buttons span {
+  vertical-align: middle;
+  
+}
+
+.opc-requests-header {
+  display: flex;
+  justify-content: space-between; /* Distribute space between the h1 and button */
+}
+
+.opc-requests-header h1 {
+  /* Add h1 styles here */
+  color: #fff;
+}
+
+.opc-requests-header button {
+  background-color: #F4C108; /* Yellow background color */
+  color: #782324; /* Dark red text color */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Adjust padding for spacing */
+  border-radius: 5px; /* Add border radius */
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.opc-requests-header-container{
+  background-color: #782324;
+  padding: 10px;
+}
 
 .opc-view-container {
   display: flex;
