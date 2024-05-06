@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from '../userView/header';
-import SideNavBar from '../headView/headnavbar';
+import HeadNavbar from "./headNavBar"; 
 import FileDialogBox from '../headView/dialogBox';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import '../../CSS/headCSS/headSide.css';
@@ -68,7 +68,7 @@ const HeadSide = () => {
   return(
     <>
       <Header />
-      <SideNavBar />
+      <HeadNavbar />
       <div className="head-view-container">
         <div className="content-container">
           <div className="data-container">
