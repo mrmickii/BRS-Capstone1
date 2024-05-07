@@ -1,38 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import '../../CSS/headCSS/headnavbar.css';
+import { Link, useLocation } from 'react-router-dom';
+import '../../CSS/userCSS/sidenavbar.css';
 import { BiSolidBook } from 'react-icons/bi';
 import { BsBellFill } from 'react-icons/bs';
 import { IoMdSettings } from 'react-icons/io';
 
-const HeadNavbar = () => {
+const SideNavbar = () => {
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState('');
 
   useEffect(() => {
-    setActiveTab(window.location.pathname);
-  }, []);
+    setActiveTab(location.pathname);
+  }, [location]);
 
   return (
     <div className="sidenavbar">
       <ul>
+      <Link to="/head_view">
         <li className={activeTab === '/head_view' ? 'active' : ''}>
-          <NavLink to="/head_view">
-            <BiSolidBook size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
-            REQUESTS
-          </NavLink>
+        
+          <BiSolidBook size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
+          REQUESTS
         </li>
+        </Link>
+        <Link to="/head_view/notification">
         <li className={activeTab === '/head_view/notification' ? 'active' : ''}>
-          <NavLink to="/head_view/notification">
-            <BsBellFill size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
-            NOTIFICATIONS
-          </NavLink>
+          <BsBellFill size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
+          NOTIFICATIONS
         </li>
+        </Link>
+        <Link to="/head_view/settings">
+          
         <li className={activeTab === '/head_view/settings' ? 'active' : ''}>
-          <NavLink to="/head_view/settings">
-            <IoMdSettings size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
-            SETTINGS
-          </NavLink>
+        
+          <IoMdSettings size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
+          SETTINGS
+          
         </li>
+        </Link>
       </ul>
 
       <div className="sublogo"></div>
@@ -43,4 +48,4 @@ const HeadNavbar = () => {
   );
 };
 
-export default HeadNavbar;
+export default SideNavbar;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../CSS/userCSS/notification.css';
 import { BsBellFill } from "react-icons/bs";
 import Header from '../userView/header';
-import HeadNavBar from './headNavBar'
+import HeadNavBar from './headnavbar'
 
 
 const HeadNotifications = () => {
@@ -18,7 +18,7 @@ const HeadNotifications = () => {
       <Header />
       <HeadNavBar />
       <div className="notification-container">
-        <div className="noftitle">
+        <div className="noftitle" style={{color: 'white'}}>
           <h2>
             <BsBellFill size={25} style={{ marginRight: '20px', marginBottom: '-5px' }} />
             NOTIFICATION

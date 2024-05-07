@@ -10,6 +10,7 @@
   border: 1px green solid;
   margin-left: 320px;
   padding: 50px;
+  position: absolute;
 }
 
 h1{
