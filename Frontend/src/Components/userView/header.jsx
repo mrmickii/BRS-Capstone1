@@ -19,7 +19,6 @@ const Header = () => {
       }
     });
 
-    // Determine the greeting based on the current time
     const currentHour = new Date().getHours();
     if (currentHour >= 5 && currentHour < 12) {
       setGreeting("☀️ Good Morning");

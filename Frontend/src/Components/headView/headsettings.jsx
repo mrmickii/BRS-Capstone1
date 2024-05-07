@@ -4,6 +4,8 @@ import HeadNavbar from './headNavBar';
 import { auth, db } from '../../firebaseConfig';
 import { doc, getDoc, updateDoc } from 'firebase/firestore'; 
 import '../../CSS/headCSS/headSettings.css';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { updatePassword } from "firebase/auth";
 
 const HeadSettings = () => {
   const [displayedContainer, setDisplayedContainer] = useState('account');
@@ -13,7 +15,6 @@ const HeadSettings = () => {
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async user => {
@@ -49,6 +50,33 @@ const HeadSettings = () => {
     return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
 
+  const handleChangePassword = async () => {
+    try {
+      if (newPassword !== confirmNewPassword) {
+        return;
+      }
+
+      const confirm = window.confirm("Are you sure you want to change your password?");
+      if (!confirm) return;
+
+      const user = auth.currentUser;
+      const credential = await signInWithEmailAndPassword(auth, user.email, currentPassword);
+      
+      if (credential.user) {
+        await updatePassword(user, newPassword);
+        setSuccess("Password updated successfully");
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmNewPassword('');
+        setError(null); // Reset error message when successful
+      }
+    } catch (error) {
+      console.error("Error updating password:", error);
+      setError("Failed to update password. Please try again.");
+      setSuccess(null); // Reset success message on error
+    }
+  };
+
   const showChangePassword = () => {
     setDisplayedContainer('password');
   };
@@ -74,10 +102,30 @@ const HeadSettings = () => {
         {displayedContainer === 'password' && (
           <div className="s-container-two">
             <h3>CHANGE PASSWORD</h3>
-            <input type="password" placeholder='Current Password' />
-            <input type="password" placeholder='New Password' />
-            <input type="password" placeholder='Confirm Password' />
-            <button className='btn-change-password'>Change Password</button>
+            <input
+              type="password"
+              placeholder="Current Password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="New Password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Confirm New Password"
+              value={confirmNewPassword}
+              onChange={(e) => setConfirmNewPassword(e.target.value)}
+            />
+            <p className="password-requirements"><span>Note:</span> Password must be at least 6 characters long.</p>
+            <button className='btn-change-password' onClick={handleChangePassword}>
+              Change Password
+            </button>
+            {error && <p className="error-message">{error}</p>}
+            {success && <p className="success-message">{success}</p>}
           </div>
         )}
         {displayedContainer === 'account' && (

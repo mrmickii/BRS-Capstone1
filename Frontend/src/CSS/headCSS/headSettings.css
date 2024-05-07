@@ -40,7 +40,7 @@ h1{
 }
 
 .s-container-two{
-  height: 350px;
+  height: 400px;
   margin-top: 20px;
   background-color: #cbc3c3;
   padding: 20px;
@@ -90,3 +90,17 @@ input::placeholder{
 
 }
 
+.error-message, .success-message{
+  font-size: 12px;
+  margin-left: 35px;
+}
+
+.password-requirements{
+  font-size: 12px;
+  margin-right: 35px;
+  text-align: right;
+}
+
+span{
+  font-weight: bold;
+}
