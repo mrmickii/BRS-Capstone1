@@ -135,6 +135,7 @@ const Login = () => {
                 <FaUser />
                 <input
                   type="text"
+                  style ={{fontSize: '16px'}}
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="Username"
@@ -145,6 +146,7 @@ const Login = () => {
                 <input
                   type="password"
                   value={password}
+                  style ={{fontSize: '16px'}}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                 />

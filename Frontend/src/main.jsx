@@ -5,6 +5,8 @@ import Login from './Components/userView/login';
 import Reservation2 from './Components/userView/reservation2';
 import Reservation from './Components/userView/reservation';
 import Notification from './Components/userView/notification';
+import HeadNotification from './Components/headView/headnotification';
+import HeadSettings from './Components/headView/headsettings';
 import HeadView from './Components/headView/headSide';
 import OpcView from './Components/opcView/opcSide';
 import Settings from './Components/userView/settings';
@@ -46,6 +48,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/notification" element={<Notification />} />
+      <Route path="/head_view/notification" element={<HeadNotification />} />
+      <Route path="/head_view/settings" element={<HeadSettings/>} />
       <Route path="/head_view" element={<HeadView />} /> 
       <Route path="/staff_view" element={<OpcView />} />
       <Route path="/reservation" element={<Reservation />} /> 

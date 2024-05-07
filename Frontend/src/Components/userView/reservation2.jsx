@@ -271,6 +271,7 @@ const Reservation2 = () => {
                 id="to" 
                 name="to"
                 placeholder='To:'
+                style={{fontSize: '14px'}} 
                 value={formValues.destinationTo}
                 onChange={(e) => setFormValues({...formValues, destinationTo: e.target.value})} 
                 required
@@ -281,7 +282,8 @@ const Reservation2 = () => {
               <input 
                 type="text" 
                 id="from" 
-                name="from" 
+                name="from"
+                style={{fontSize: '14px'}} 
                 placeholder='From:'
                 value={formValues.destinationFrom}
                 onChange={(e) => setFormValues({...formValues, destinationFrom: e.target.value})}
@@ -294,6 +296,7 @@ const Reservation2 = () => {
                 type="number" 
                 id="capacity" 
                 name="capacity" 
+                style={{fontSize: '14px'}} 
                 placeholder='Capacity'
                 value={formValues.capacity}
                 onChange={handleCapacityChange} 
@@ -304,7 +307,8 @@ const Reservation2 = () => {
               <input 
                 type="text" 
                 id="schedule" 
-                name="schedule" 
+                name="schedule"
+                style={{fontSize: '14px'}}  
                 placeholder='Schedule'
                 value={selectedDate ? `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}` : ''}
                 readOnly
@@ -317,6 +321,7 @@ const Reservation2 = () => {
                 type="text" 
                 id="vehicle" 
                 name="vehicle" 
+                style={{fontSize: '14px'}} 
                 placeholder='Type of Vehicle'
                 value={formValues.vehicleType}
                 onChange={(e) => setFormValues({...formValues, vehicleType: e.target.value})} 
@@ -338,6 +343,7 @@ const Reservation2 = () => {
                 type="text" 
                 id="pickup" 
                 name="pickup" 
+                style={{fontSize: '14px'}} 
                 placeholder='Pick up time'
                 value={formValues.pickUpTime}
                 onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})}
@@ -352,6 +358,7 @@ const Reservation2 = () => {
                 id="departure" 
                 name="departure" 
                 placeholder='Departure time'
+                style={{fontSize: '14px'}} 
                 value={formValues.departureTime}
                 onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})}
                 readOnly 
@@ -364,7 +371,7 @@ const Reservation2 = () => {
                 Proof of Approval Request<br/>
                 <p style={{fontSize: '12px', fontWeight: '500'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: this is optional</p>
               </label>
-              <input type="file" id="file-upload" name="file" accept=".doc, .docx, .pdf" onChange={handleFileChange}/>
+              <input style={{fontSize: '14px'}}  type="file" id="file-upload" name="file" accept=".doc, .docx, .pdf" onChange={handleFileChange}/>
             </div>
             <div className='reason'>
               < AiFillMessage size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
@@ -372,6 +379,7 @@ const Reservation2 = () => {
                 type="text" 
                 id="reason" 
                 name="reason" 
+                style={{fontSize: '14px'}} 
                 placeholder='Reason of Reservation'
                 value={formValues.reason}
                 onChange={(e) => setFormValues({...formValues, reason: e.target.value})} 
