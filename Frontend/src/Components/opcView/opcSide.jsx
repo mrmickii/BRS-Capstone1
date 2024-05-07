@@ -4,6 +4,7 @@ import OpcNavBar from '../opcView/opcnavbar';
 import '../../CSS/opcCSS/opcSide.css';
 import Modal from '../opcView/Modal'
 import ApproveModal from "../opcView/approvemodal";
+import RejectModal from "../opcView/rejectmodal";
 import UpdatetModal from "../opcView/updateRequestModal";
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineEdit, AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
