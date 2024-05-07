@@ -2,21 +2,20 @@ import React, { useState, useEffect } from "react";
 import Header from '../userView/header';
 import OpcNavBar from '../opcView/opcnavbar';
 import '../../CSS/opcCSS/opcSide.css';
-import Modal from '../opcView/Modal'
+import Modal from '../opcView/Modal';
 import ApproveModal from "../opcView/approvemodal";
-import UpdatetModal from "../opcView/updateRequestModal";
+import UpdateModal from "../opcView/updateRequestModal";
 import { useNavigate } from 'react-router-dom';
-import { AiOutlineEdit, AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
+import {  AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
 
 const OpcSide = () => {
+  const navigate = useNavigate();
   const [reservations, setReservations] = useState([]);
-  const [departments, setDepartments] = useState([]);
-  const [selectedReservation, setSelectedReservation] = useState(null);
-  const [showFileDialog, setShowFileDialog] = useState(false);
+  const [drivers, setDrivers] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showApproveModal, setShowApproveModal] = useState(false);
   const [showRejectModal, setShowRejectModal] = useState(false);
-  const navigate = useNavigate();
 
   const handleDriverManagement = () => {
     navigate('/driver-management');
@@ -52,7 +51,8 @@ const OpcSide = () => {
 
   useEffect(() => {
     fetchReservations();
-    fetchDepartments();
+    fetchDrivers();
+    fetchVehicles(); 
   }, []);
 
   const fetchReservations = async () => {
@@ -69,17 +69,31 @@ const OpcSide = () => {
     }
   };
 
-  const fetchDepartments = async () => {
+  const fetchDrivers = async () => {
     try {
-      const response = await fetch('http://localhost:8080/department/departments');
+      const response = await fetch('http://localhost:8080/driver/drivers');
       if (!response.ok) {
-        throw new Error('Failed to fetch department data');
+        throw new Error('Failed to fetch driver data');
       }
-      const departmentData = await response.json();
-      setDepartments(departmentData);
-      console.log('Success fetching department data.');
+      const driverData = await response.json();
+      setDrivers(driverData);
+      console.log('Success fetching driver data.');
     } catch (error) {
-      console.error('Error fetching department data:', error);
+      console.error('Error fetching driver data:', error);
+    }
+  };
+
+  const fetchVehicles = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/vehicle/vehicles');
+      if (!response.ok) {
+        throw new Error('Failed to fetch vehicle data');
+      }
+      const vehicleData = await response.json();
+      setVehicles(vehicleData);
+      console.log('Success fetching vehicle data.');
+    } catch (error) {
+      console.error('Error fetching vehicle data:', error);
     }
   };
 
@@ -96,58 +110,49 @@ const OpcSide = () => {
         <h1 className="title-opc">REQUESTS</h1>
       </div>
       <div className="data-container1">
-      <div className="sample">
-           <div className="opc-header-button-container">
-                <div className="opc-header-button">
-                    <button className="header-buttons"> <AiOutlineFileText size={40}/>Request <span class="number">1</span> </button>
-                    <button className="header-buttons" onClick={handleDriverManagement}> <AiOutlineUser size={40}/> Driver <span class="number">1</span> </button>
-                    <button className="header-buttons" onClick={handleVehicleManagement}> <AiOutlineCar size={40}/> Vehicle <span class="number">1</span> </button>
-              </div>
+        <div className="sample">
+          <div className="opc-header-button-container">
+            <div className="opc-header-button">
+              <button className="header-buttons"> <AiOutlineFileText size={40}/> Request <span className="number">{reservations.length}</span> </button>
+              <button className="header-buttons" onClick={handleDriverManagement}> <AiOutlineUser size={40}/> Driver <span className="number">{drivers.length}</span> </button>
+              <button className="header-buttons" onClick={handleVehicleManagement}> <AiOutlineCar size={40}/> Vehicle <span className="number">{vehicles.length}</span> </button>
             </div>
-        <div className="opc-requests-header-container">
+          </div>
+          <div className="opc-requests-header-container">
             <div className="opc-requests-header">
               <h1> <AiOutlineFileText size={35}/> REQUESTS</h1>
               <button>View Approve Request</button>
-              </div> 
             </div> 
-        {reservations.map((reservation, index) => (
-          <div className="request-data-container1" key={index}>
-            <div className="r-d-container-left1">
-              <h2>Type of Trip: {reservation.typeOfTrip}</h2>
-              <p>Capacity: {reservation.capacity}</p>
-              <p>Departure Time: {reservation.departureTime}</p>
-              <p>Destination To: {reservation.destinationTo}</p>
-              <div className="feedback-container1">
-                <input type="text" placeholder="Send feedback (optional)" />
-                <button>Send Feedback</button>
+          </div> 
+          {reservations.map((reservation, index) => (
+            <div className="request-data-container1" key={index}>
+              <div className="r-d-container-left1">
+                <h2>Type of Trip: {reservation.typeOfTrip}</h2>
+                <p>Capacity: {reservation.capacity}</p>
+                <p>Departure Time: {reservation.departureTime}</p>
+                <p>Destination To: {reservation.destinationTo}</p>
+                <div className="feedback-container1">
+                  <input type="text" placeholder="Send feedback (optional)" />
+                  <button>Send Feedback</button>
+                </div>
+                <h2>Vehicle Type: {reservation.vehicleType}</h2>
+                <p>Destination From: {reservation.destinationFrom}</p>
+                <p>Pick-up Time: {reservation.pickUpTime}</p>
+                <p>Reason: {reservation.reason}</p>
               </div>
-              <h2>Vehicle Type: {reservation.vehicleType}</h2>
-              <p>Destination From: {reservation.destinationFrom}</p>
-              <p>Pick-up Time: {reservation.pickUpTime}</p>
-              <p>Reason: {reservation.reason}</p>
+              <div className="r-d-container-right1">
+                <button onClick={handleApproveButtonClick}>Approve</button> 
+                {showApproveModal && <ApproveModal onClose={handleCloseApproveModal} />}
+                <button onClick={handleRejectButtonClick}>Reject</button>
+                {showRejectModal && <RejectModal onClose={handleCloseRejectModal} />}
+                <button onClick={handleUpdateButtonClick}>Update</button>
+                {showModal && <Modal onClose={handleCloseModal} />}
+                <button>View Feedback</button>
+                <button onClick={() => handleViewFile(reservation)}>View Attached File</button>
+              </div>
             </div>
-            <div className="r-d-container-right1">
-              <button onClick={handleApproveButtonClick}>
-                  Approve
-              </button> 
-              {showApproveModal && <ApproveModal onClose={handleCloseApproveModal} />}
-
-              <button onClick={handleRejectButtonClick}>
-                  Reject
-              </button>
-              {showRejectModal && <RejectModal onClose={handleCloseRejectModal} />}
-
-              <button onClick={handleUpdateButtonClick}>
-                  Update
-              </button>
-              {showModal && <Modal onClose={handleCloseModal} />}
-
-              <button>View Feedback</button>
-              <button onClick={() => handleViewFile(reservation)}>View Attached File</button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
       <div className="bg-logo"></div>
     </div>

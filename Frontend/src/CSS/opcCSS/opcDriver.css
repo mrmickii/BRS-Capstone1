@@ -1,0 +1,93 @@
+.opc-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.opc-title {
+  margin-right: 1000px;
+  margin-top: 1%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.opc-view-req-container {
+  padding-bottom: 1.1%;
+}
+
+.opc-requests-header{
+  display: flex;
+  gap: 1150px;
+  background-color: #782324;
+  align-items: center;
+  padding: 15px 0px;
+}
+
+.opc-requests-header h1{
+  color: #FFF;
+  margin-left: 20px;
+}
+
+.opc-requests-header button{
+  border: none;
+  background-color: #f4c108;
+  border-radius: 20px;
+  color: #782324;
+  font-weight: bold;
+  padding: 10px 15px;
+}
+
+.data-container1 {
+  width: 80%;
+  
+  min-height: 400px;
+  background-color: #cbc3c3;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.driver-data {
+  width: 100%;
+  background-color: #FFF;
+  overflow-y: auto;
+  min-height: 350px;
+}
+
+.driver-availability{
+  text-align: center;
+  margin-top: 150px;
+  font-size: 16px;
+}
+
+.driver-data-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.driver-info{
+  background-color: #cbc3c3;
+  padding: 20px;
+  margin: 20px;
+}
+.driver-info h1, .driver-info p{
+  display: flex;
+  justify-content: space-between;
+}
+
+.driver-update-button, .driver-delete-button{
+  width: 100px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.driver-update-button{
+  background-color: #00bf63;
+}
+
+.driver-delete-button{
+  background-color: #782324;
+  color: #FFF;
+}
