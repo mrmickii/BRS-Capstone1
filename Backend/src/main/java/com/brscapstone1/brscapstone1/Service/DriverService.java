@@ -27,6 +27,7 @@ public class DriverService {
     try{
       driver = driverRepo.findById(id).orElseThrow(() -> new NoSuchElementException("Driver with id " +id+ " does not exist"));
       driver.setDriverName(newDriver.getDriverName());
+      driver.setContactNumber(newDriver.getContactNumber());
       return driverRepo.save(driver);
     } catch(NoSuchElementException e){
       throw e;
@@ -38,9 +39,9 @@ public class DriverService {
 
     if(driverRepo.findById(id).isPresent()){
       driverRepo.deleteById(id);
-      msg = "Driver with id " +id+ " is successfully deleted";
+      msg = "Driver with id " +id+ " is successfully deleted.";
     }else{
-      msg = "Driver with id " +id+ " does not exist";
+      msg = "Driver with id " +id+ " does not exist.";
     }
     return msg;
   }
