@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from '../userView/header';
-import HeadNavbar from "./headNavBar"; 
+import HeadNavbar from "./headnavbar"; 
 import FileDialogBox from '../headView/dialogBox';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import '../../CSS/headCSS/headSide.css';

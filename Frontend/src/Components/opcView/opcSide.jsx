@@ -5,6 +5,7 @@ import '../../CSS/opcCSS/opcSide.css';
 import Modal from '../opcView/Modal';
 import ApproveModal from "../opcView/approvemodal";
 import UpdateModal from "../opcView/updateRequestModal";
+import RejectModal from "../opcView/rejectmodal";
 import { useNavigate } from 'react-router-dom';
 import {  AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
 
