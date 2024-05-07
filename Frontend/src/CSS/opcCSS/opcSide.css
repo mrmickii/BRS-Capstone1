@@ -119,6 +119,14 @@
   line-height: 1.5;
 }
 
+.r-d-container-left1-driver{
+  width: 70vw;
+  column-count: 1;
+  padding: 30px 30px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
 .feedback-container1{
   display: flex;
   justify-content: space-between;
@@ -151,6 +159,7 @@
   align-items: center;
   gap: 10px;
 }
+
 
 .r-d-container-right1 button {
   height: 35px;

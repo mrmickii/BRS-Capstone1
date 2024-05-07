@@ -1,64 +1,149 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../userView/header';
-import HeadNavBar from '../headView/headnavbar'
-import '../../CSS/userCSS/settings.css'; 
+import HeadNavbar from './headNavBar';
+import { auth, db } from '../../firebaseConfig';
+import { doc, getDoc, updateDoc } from 'firebase/firestore'; 
+import '../../CSS/headCSS/headSettings.css';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { updatePassword } from "firebase/auth";
 
 const HeadSettings = () => {
-  const [showPasswordChange, setShowPasswordChange] = useState(false);
-  const [showUserDetails, setShowUserDetails] = useState(false);
+  const [displayedContainer, setDisplayedContainer] = useState('account');
+  const [userData, setUserData] = useState(null);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
-  const togglePasswordChange = () => {
-    setShowPasswordChange(!showPasswordChange);
-    setShowUserDetails(false); 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async user => {
+      if (user) {
+        const userEmail = user.email;
+        const name = capitalizeFirstLetter(userEmail.split('@')[0].replace('.', ' '));
+
+        const userDocRef = doc(db, 'users', user.uid);
+        const userDocSnap = await getDoc(userDocRef);
+
+        if (userDocSnap.exists()) {
+          const userDataFromFirestore = userDocSnap.data();
+          const { department, userType } = userDataFromFirestore;
+
+          setUserData({
+            name: name,
+            email: userEmail,
+            department: department,
+            userType: userType 
+          });
+        } else {
+          console.error('User document does not exist');
+        }
+      } else {
+        setUserData(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const capitalizeFirstLetter = string => {
+    return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
 
-  const toggleUserDetails = () => {
-    setShowUserDetails(!showUserDetails);
-    setShowPasswordChange(false); 
+  const handleChangePassword = async () => {
+    try {
+      if (newPassword !== confirmNewPassword) {
+        return;
+      }
+
+      const confirm = window.confirm("Are you sure you want to change your password?");
+      if (!confirm) return;
+
+      const user = auth.currentUser;
+      const credential = await signInWithEmailAndPassword(auth, user.email, currentPassword);
+      
+      if (credential.user) {
+        await updatePassword(user, newPassword);
+        setSuccess("Password updated successfully");
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmNewPassword('');
+        setError(null); // Reset error message when successful
+      }
+    } catch (error) {
+      console.error("Error updating password:", error);
+      setError("Failed to update password. Please try again.");
+      setSuccess(null); // Reset success message on error
+    }
+  };
+
+  const showChangePassword = () => {
+    setDisplayedContainer('password');
+  };
+
+  const showViewAccount = () => {
+    setDisplayedContainer('account');
   };
 
   return (
-    <div className="reservation">
+    <div>
       <Header />
-      <HeadNavBar/>
-      {showPasswordChange || showUserDetails ? <div className="overlay" /> : null}
-      <div className="settings-container">
-        <button className="setting-button" onClick={togglePasswordChange}>
-          Change Password
-        </button>
-        <button className="setting-button" onClick={toggleUserDetails}>
-          User Details
-        </button>
-        {showPasswordChange && (
-          <div className="floating-box">
-            <h2>Change Password</h2>
-            <input type="password" placeholder="Current Password" />
-            <input type="password" placeholder="New Password" />
-            <input type="password" placeholder="Retype New Password" />
-            <button>Change Password</button>
+      <HeadNavbar />
+      <div className="settings-page-box">
+        <h1>SETTINGS</h1>
+        <div className="s-container-one">
+          <button className="s-box-one" onClick={showViewAccount}>
+            View Account
+          </button>
+          <button className="s-box-two" onClick={showChangePassword}>
+            Change Password
+          </button>
+        </div>
+        {displayedContainer === 'password' && (
+          <div className="s-container-two">
+            <h3>CHANGE PASSWORD</h3>
+            <input
+              type="password"
+              placeholder="Current Password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="New Password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Confirm New Password"
+              value={confirmNewPassword}
+              onChange={(e) => setConfirmNewPassword(e.target.value)}
+            />
+            <p className="password-requirements"><span>Note:</span> Password must be at least 6 characters long.</p>
+            <button className='btn-change-password' onClick={handleChangePassword}>
+              Change Password
+            </button>
+            {error && <p className="error-message">{error}</p>}
+            {success && <p className="success-message">{success}</p>}
           </div>
         )}
-        {showUserDetails && (
-          <div className="floating-box">
-            <h2>Account Details</h2>
-            <div className="user-info">
-            <div className="info-item">
-              <span className="info-label">Name:</span>
-              <span className="info-value">John Doe</span>
+        {displayedContainer === 'account' && (
+          <div className="s-container-three">
+            <h3 className='acc-details'>ACCOUNT DETAILS</h3>
+            {userData && (
+              <div>
+                <p>Name: {userData.name}</p>
+                <p>Email: {userData.email}</p>
+                <p>Department: {userData.department}</p>
+              </div>
+            )}
           </div>
-         <div className="info-item">
-        <span className="info-label">Email:</span>
-        <span className="info-value">john.doe@cit.edu</span>
+        )}
       </div>
-      
-    </div>
-  </div>
-)}
-
-      </div>
+      <div className='cit-bglogo'></div>
     </div>
   );
 };
 
 export default HeadSettings;
-

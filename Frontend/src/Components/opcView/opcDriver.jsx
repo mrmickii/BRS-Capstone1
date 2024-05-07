@@ -42,7 +42,21 @@ const OpcDriver = () => {
               <button>Add Driver</button>
               </div> 
             </div> 
-            </div> 
+            <div className="request-data-container1" >
+            <div className="r-d-container-left1-driver">
+              <h1>JUAN DELA CRUZ </h1>
+              <p>Contact Number </p>
+            </div>
+            <div className="r-d-container-right1">       
+              <button>
+                  Update
+              </button>
+              <button>
+                  Delete
+              </button>
+            </div>
+          </div>
+        </div> 
       <div className="bg-logo"></div>
     </div>
     </div> 

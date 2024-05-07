@@ -83,7 +83,7 @@ const Login = () => {
         const { userType, department } = userData;
         switch (userType) {
           case "head":
-            navigate("/head_view");
+            navigate("/head_view", { state: { department } }); 
             break;
           case "user":
             navigate("/user_view");

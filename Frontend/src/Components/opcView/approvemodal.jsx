@@ -10,7 +10,9 @@ function ApproveModal({ onClose }) {
   return (
     <div className="approvemodalBackground">
       <div className="approvemodalContainer">
+        <div className="approve-exit">
         <Button onClick={onClose}> X </Button>
+        </div>
         <div className="approvetitle">
           <h2>Are you sure to approve the request?</h2>
         </div>
@@ -22,9 +24,10 @@ function ApproveModal({ onClose }) {
           <div className="assign-driver">
             <input placeholder="Assign Driver"/> 
           </div>
-          <button  className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mr-2" type="button">CANCEL</button>
-          <br></br>
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit">SAVE CHANGES</button>
+          <div className="approve-modal-button">
+          <button  className="approve-modal-button-cancel" type="button" onClick={onClose}>CANCEL</button>
+          <button className="approve-modal-button-save" type="submit">SAVE CHANGES</button>
+          </div>
         </form>
       </div>
     </div>

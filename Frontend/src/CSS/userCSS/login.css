@@ -80,18 +80,6 @@ input {
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
 }
-.password-input {
-  position: relative;
-  width: 450px;
-}
-
-.password-toggle {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
 
 .login-btn:hover {
   background-color: #4d0005;
