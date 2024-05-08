@@ -1,4 +1,4 @@
-.dialog-overlay {
+.vehicle-dialog-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.dialog-box {
+.vehicle-dialog-box {
   background-color: white;
   width: 400px;
   padding: 20px;
@@ -18,28 +18,28 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.dialog-header {
+.vehicle-dialog-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.dialog-header  h3{
+.vehicle-dialog-header h3 {
   margin: 0;
 }
 
-.dialog-header button {
+.vehicle-dialog-header button {
   width: 30px;
   border: none;
   background-color: white;
   font-weight: bold;
 }
 
-.dialog-content {
+.vehicle-dialog-content {
   margin-top: 20px;
 }
 
-.dialog-content input {
+.vehicle-dialog-content input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -48,13 +48,13 @@
   font-size: 12px;
 }
 
-.dialog-footer {
+.vehicle-dialog-footer {
   margin-top: 20px;
   display: flex;
   justify-content: flex-end;
 }
 
-.dialog-footer button {
+.vehicle-dialog-footer button {
   padding: 8px 20px;
   margin-left: 10px;
   border: none;
@@ -64,18 +64,19 @@
   color: white;
 }
 
-.dialog-footer button:hover {
+.vehicle-dialog-footer button:hover {
   background-color: #0056b3;
 }
 
-.success-message, .error-message{
+.success-message,
+.error-message {
   margin: 10px;
 }
 
-.success-message{
+.success-message {
   color: green;
 }
 
-.error-message{
-  color: red ;
+.error-message {
+  color: red;
 }

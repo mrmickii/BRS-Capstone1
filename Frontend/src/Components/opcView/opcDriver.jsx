@@ -18,15 +18,21 @@ const OpcDriver = () => {
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);
   const [driverToUpdate, setDriverToUpdate] = useState(null);
   const [driverCount, setDriverCount] = useState(0); 
+  const [vehicleCount, setVehicleCount] = useState(0); 
 
   useEffect(() => {
     fetchReservations();
     fetchDrivers();
+    fetchVehicles();
   }, []);
 
   useEffect(() => {
     setDriverCount(drivers.length); 
   }, [drivers]);
+
+  useEffect(() => {
+    setVehicleCount(vehicles.length); 
+  }, [vehicles]);
 
   const fetchReservations = async () => {
     try {
@@ -51,6 +57,19 @@ const OpcDriver = () => {
       setDrivers(driverData);
     } catch (error) {
       console.error('Error fetching driver data:', error);
+    }
+  };
+
+  const fetchVehicles = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/vehicle/vehicles');
+      if (!response.ok) {
+        throw new Error('Failed to fetch vehicle data');
+      }
+      const vehicleData = await response.json();
+      setVehicles(vehicleData);
+    } catch (error) {
+      console.error('Error fetching vehicle data:', error);
     }
   };
 
@@ -143,7 +162,7 @@ const OpcDriver = () => {
                 <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> Driver <span className="number">{driverCount}</span>
               </button>
               <button className="header-buttons" onClick={handleVehicleManagement}>
-                <AiOutlineCar size={20} style={{ marginLeft: '25px' }} /> Vehicle <span className="number">{vehicles.length}</span>
+                <AiOutlineCar size={20} style={{ marginLeft: '25px' }} /> Vehicle <span className="number">{vehicleCount}</span>
               </button>
             </div>
           </div>

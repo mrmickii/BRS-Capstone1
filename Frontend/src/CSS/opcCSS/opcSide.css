@@ -48,19 +48,7 @@
   line-height: 1.5;
 }
 
-<<<<<<< HEAD
 .feedback-container1 {
-=======
-.r-d-container-left1-driver{
-  width: 70vw;
-  column-count: 1;
-  padding: 30px 30px;
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.feedback-container1{
->>>>>>> be280487f8c72e770a9c8a4adabfcdab65f692b2
   display: flex;
   justify-content: space-between;
   align-items: center;
