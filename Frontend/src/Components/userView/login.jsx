@@ -28,7 +28,7 @@ const Login = () => {
               navigate("/head_view");
               break;
             case "user":
-              navigate("/user_view");
+              navigate("/reservation");
               break;
             case "staff":
               navigate("/staff_view");
@@ -86,7 +86,7 @@ const Login = () => {
             navigate("/head_view", { state: { department } }); 
             break;
           case "user":
-            navigate("/user_view");
+            navigate("/reservation");
             break;
           case "staff":
             navigate("/staff_view");

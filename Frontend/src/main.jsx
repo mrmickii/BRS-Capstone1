@@ -28,7 +28,7 @@ function App() {
             navigate("/head_view");
             break;
           case "user":
-            navigate("/user_view");
+            navigate("/reservation");
             break;
           case "staff":
             navigate("/staff_view");

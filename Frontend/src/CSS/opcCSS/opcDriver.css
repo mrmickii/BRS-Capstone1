@@ -15,15 +15,18 @@
   padding-bottom: 1.1%;
 }
 
+
 .opc-requests-header{
   display: flex;
   gap: 1150px;
   background-color: #782324;
   align-items: center;
-  padding: 15px 0px;
+  padding: 0px 0px;
 }
 
 .opc-requests-header h1{
+  display: flex;
+  flex-direction: row;
   color: #FFF;
   margin-left: 20px;
 }
@@ -39,7 +42,6 @@
 
 .data-container1 {
   width: 80%;
-  
   min-height: 400px;
   background-color: #cbc3c3;
   overflow-y: auto;
