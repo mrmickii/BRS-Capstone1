@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import Login from './Components/userView/login';
-import Reservation2 from './Components/userView/reservation2';
-import Reservation from './Components/userView/reservation';
-import Notification from './Components/userView/notification';
-import HeadNotification from './Components/headView/headnotification';
-import HeadView from './Components/headView/headSide';
-import HeadSettings from './Components/headView/headsettings';
-import OpcView from './Components/opcView/opcSide';
-import Settings from './Components/userView/settings';
-import ForgotPass from './Components/userView/forgotpass';
-import UserRequestMade from './Components/userView/userrequestsmade';
-import { auth } from './firebaseConfig';
-import OpcDriver from './Components/opcView/opcDriver';
-import OpcVehicle from './Components/opcView/opcVehicle';
+import Login from './Components/userView/Login';
+import Reservation2 from './Components/userView/Reservation2';
+import Reservation from './Components/userView/Reservation';
+import Notification from './Components/userView/Notification';
+import HeadView from './Components/headView/HeadSide';
+import HeadNotification from './Components/headView/HeadNotification';
+import HeadSettings from './Components/headView/HeadSettings';
+import Settings from './Components/userView/Settings';
+import ForgotPassword from './Components/userView/ForgotPassword';
+import UserRequestMade from './Components/userView/UserRequestMade';
+import OpcView from './Components/opcView/OpcSide';
+import OpcDriver from './Components/opcView/OpcDriver';
+import OpcVehicle from './Components/opcView/OpcVehicle';
+import { auth } from './FirebaseConfig';
 
 function App() {
   const navigate = useNavigate(); 
@@ -25,13 +25,13 @@ function App() {
         const userType = getUserTypeSomehow(); 
         switch (userType) {
           case "head":
-            navigate("/head_view");
+            navigate("/head-view");
             break;
           case "user":
             navigate("/reservation");
             break;
           case "staff":
-            navigate("/staff_view");
+            navigate("/staff-view");
             break;
           default:
             navigate("/");
@@ -48,15 +48,15 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/notification" element={<Notification />} />
-      <Route path="/head_view" element={<HeadView />} />
-      <Route path="/head_view/settings" element={<HeadSettings />} /> 
-      <Route path="/head_view/notification" element={<HeadNotification />} />
-      <Route path="/staff_view" element={<OpcView />} />
+      <Route path="/head-view" element={<HeadView />} />
+      <Route path="/head-view/settings" element={<HeadSettings />} /> 
+      <Route path="/head-view/notification" element={<HeadNotification />} />
       <Route path="/reservation" element={<Reservation />} /> 
-      <Route path="/user_view" element={<Reservation2 />} />
+      <Route path="/user-view" element={<Reservation2 />} />
       <Route path="/settings" element={<Settings />} />
-      <Route path="/user_request_made" element={<UserRequestMade />} />
-      <Route path="/forgotpass" element={<ForgotPass />} />
+      <Route path="/user-request-made" element={<UserRequestMade />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/staff-view" element={<OpcView />} />
       <Route path="/driver-management" element={<OpcDriver/>} />
       <Route path="/vehicle-management" element={<OpcVehicle/>} />
       <Route path="*" element={<Navigate to="/" />} />
