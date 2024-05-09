@@ -1,9 +1,9 @@
 import React from "react";
 import { getDownloadURL, ref } from "firebase/storage";
-import { storage } from "../../firebaseConfig";
-import '../../CSS/headCSS/dialogBox.css';
+import { storage } from "../../FirebaseConfig";
+import '../../CSS/headCSS/head-view-file.css';
 
-const FileDialogBox = ({ onClose, reservation }) => {
+const HeadViewFile = ({ onClose, reservation }) => {
   const handleView = async () => {
     try {
       if (!reservation || !reservation.fileName) {
@@ -42,4 +42,4 @@ const FileDialogBox = ({ onClose, reservation }) => {
   );
 };
 
-export default FileDialogBox;
+export default HeadViewFile;

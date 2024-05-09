@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../../CSS/userCSS/notification.css';
+import '../../CSS/headCSS/head-notification.css';
 import { BsBellFill } from "react-icons/bs";
-import Header from '../userView/header';
-import HeadNavBar from './headnavbar'
+import Header from '../userView/Header';
+import HeadNavBar from './HeadNavBar'
 
 
 const HeadNotifications = () => {

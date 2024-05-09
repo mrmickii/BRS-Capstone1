@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from '../userView/header';
-import SideNavBar from '../userView/sidenavbar';
+import Header from './Header';
+import SideNavBar from './SideNavBar';
 import { IoArrowBackCircleSharp } from "react-icons/io5";
-import '../../CSS/userCSS/userrequestsmade.css';
+import '../../CSS/userCSS/user-request-made.css';
 
 const UserRequestsMade = () => {
   const goBack = () => {

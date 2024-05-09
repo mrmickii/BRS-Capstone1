@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../CSS/opcCSS/opcDeleteDriver.css';
+import '../../CSS/opcCSS/opc-delete-driver.css';
 
 const DeleteDriver = ({ onClose, onDelete }) => {
   const handleDelete = () => {

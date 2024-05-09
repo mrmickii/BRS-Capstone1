@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../userView/header';
-import SideNavBar from '../userView/sidenavbar';
-import Calendar from '../userView/calendar';
-import Preloader from '../userView/preloader';
+import Header from './Header';
+import SideNavBar from './SideNavBar';
+import Calendar from './Calendar';
+import Preloader from './Preloader';
 import { LuCalendarClock } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { RiBuildingFill } from "react-icons/ri";
@@ -16,7 +16,7 @@ import { HiDocumentDownload } from "react-icons/hi";
 import { IoIosSend } from "react-icons/io";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import '../../CSS/userCSS/reservation2.css';
-import { app } from "../../firebaseConfig";
+import { app } from "../../FirebaseConfig";
 import { getFirestore } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 

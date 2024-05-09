@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../userView/header';
-import SideNavBar from '../userView/sidenavbar';
+import Header from './Header';
+import SideNavBar from './SideNavBar';
 import { FaBus } from "react-icons/fa";
 import '../../CSS/userCSS/reservation.css';
 

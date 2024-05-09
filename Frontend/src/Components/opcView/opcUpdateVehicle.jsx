@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../CSS/opcCSS/opcUpdateVehicle.css';
+import '../../CSS/opcCSS/opc-update-vehicle.css';
 
 const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
   const [updatedName, setUpdatedName] = useState(vehicle.name);

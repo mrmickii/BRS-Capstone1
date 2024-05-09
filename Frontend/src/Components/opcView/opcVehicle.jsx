@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../userView/header';
-import OpcNavBar from '../opcView/opcnavbar';
+import Header from '../userView/Header';
+import OpcNavBar from './OpcSideNavBar';
 import { AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
-import VehicleDialogBox from './opcAddVehicle';
-import DeleteConfirmationDialogBox from './opcDeleteVehicle'; 
-import UpdateDialogBox from './opcUpdateVehicle'; 
-import AddVehicle from './opcAddVehicle'; 
-import "../../CSS/opcCSS/opcVehicle.css"; 
+import VehicleDialogBox from './OpcAddVehicle';
+import DeleteConfirmationDialogBox from './OpcDeleteVehicle'; 
+import UpdateDialogBox from './OpcUpdateVehicle'; 
+import AddVehicle from './OpcAddVehicle'; 
+import "../../CSS/opcCSS/opc-vehicle.css"; 
 
 const OpcVehicle = () => {
   const navigate = useNavigate();

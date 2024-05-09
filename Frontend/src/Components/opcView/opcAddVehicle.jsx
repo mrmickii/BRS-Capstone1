@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../CSS/opcCSS/opcAddVehicle.css';
+import '../../CSS/opcCSS/opc-add-vehicle.css';
 
 const AddVehicle = ({ onClose }) => {
   const [name, setName] = useState('');

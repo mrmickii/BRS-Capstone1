@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Header from '../userView/header';
-import SideNavBar from '../userView/sidenavbar';
+import Header from './Header';
+import SideNavBar from './SideNavBar';
 import '../../CSS/userCSS/settings.css'; 
 
 const Settings = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../CSS/opcCSS/opcDeleteVehicle.css';
+import '../../CSS/opcCSS/opc-delete-vehicle.css';
 
 const DeleteVehicle = ({ onClose, onDelete }) => {
   const handleDelete = () => {

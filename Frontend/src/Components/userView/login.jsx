@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import Preloader from '../userView/preloader';
+import Preloader from './Preloader';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import '../../CSS/userCSS/login.css';
-import { auth, db } from '../../firebaseConfig';
+import { auth, db } from '../../FirebaseConfig';
 import { onAuthStateChanged } from "firebase/auth";
 
 const Login = () => {
@@ -25,13 +25,13 @@ const Login = () => {
           const { userType, department } = userData;
           switch (userType) {
             case "head":
-              navigate("/head_view");
+              navigate("/head-view");
               break;
             case "user":
               navigate("/reservation");
               break;
             case "staff":
-              navigate("/staff_view");
+              navigate("/staff-view");
               break;
             default:
               navigate("/");
@@ -83,13 +83,13 @@ const Login = () => {
         const { userType, department } = userData;
         switch (userType) {
           case "head":
-            navigate("/head_view", { state: { department } }); 
+            navigate("/head-view", { state: { department } }); 
             break;
           case "user":
             navigate("/reservation");
             break;
           case "staff":
-            navigate("/staff_view");
+            navigate("/staff-view");
             break;
           default:
             navigate("/");

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import '../../CSS/userCSS/header.css'
 import { FaBus } from "react-icons/fa";
 import { ImExit } from "react-icons/im";
-import { auth } from '../../firebaseConfig'; 
+import { auth } from '../../FirebaseConfig'; 
 
 const Header = () => {
   const [userName, setUserName] = useState(null);

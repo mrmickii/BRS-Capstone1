@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Header from '../userView/header';
-import HeadNavbar from "./headnavbar"; 
-import FileDialogBox from '../headView/dialogBox';
+import Header from '../userView/Header';
+import HeadNavbar from "./HeadNavBar"; 
+import FileDialogBox from './HeadViewFile';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import '../../CSS/headCSS/headSide.css';
-import { auth } from "../../firebaseConfig"; 
+import '../../CSS/headCSS/head-side.css';
+import { auth } from "../../FirebaseConfig"; 
 
 const db = getFirestore();
 
