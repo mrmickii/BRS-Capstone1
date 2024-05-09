@@ -3,27 +3,28 @@ import Header from '../userView/header';
 import OpcNavBar from '../opcView/opcnavbar';
 import { AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
-import VehicleDialogBox from '../opcView/opcVehicleDialogBox';
-import DeleteConfirmationDialogBox from './opcDeleteDialogBox';
-import UpdateDialogBox from './opcUpdateDialogBox';
-import "../../CSS/opcCSS/opcVehicle.css";
+import VehicleDialogBox from './opcAddVehicle';
+import DeleteConfirmationDialogBox from './opcDeleteVehicle'; 
+import UpdateDialogBox from './opcUpdateVehicle'; 
+import AddVehicle from './opcAddVehicle'; 
+import "../../CSS/opcCSS/opcVehicle.css"; 
 
 const OpcVehicle = () => {
   const navigate = useNavigate();
   const [reservations, setReservations] = useState([]);
   const [vehicles, setVehicles] = useState([]);
-  const [drivers, setDrivers] = useState([]); // State for drivers
+  const [drivers, setDrivers] = useState([]);
   const [showAddVehicleDialog, setShowAddVehicleDialog] = useState(false);
   const [showDeleteConfirmationDialog, setShowDeleteConfirmationDialog] = useState(false);
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);
   const [vehicleToUpdate, setVehicleToUpdate] = useState(null);
   const [vehicleCount, setVehicleCount] = useState(0);
-  const [driverCount, setDriverCount] = useState(0); // State for driver count
+  const [driverCount, setDriverCount] = useState(0); 
 
   useEffect(() => {
     fetchReservations();
     fetchVehicles();
-    fetchDrivers(); // Fetch drivers data when component mounts
+    fetchDrivers(); 
   }, []);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const OpcVehicle = () => {
   }, [vehicles]);
 
   useEffect(() => {
-    setDriverCount(drivers.length); // Update driver count when drivers data changes
+    setDriverCount(drivers.length); 
   }, [drivers]);
 
   const fetchReservations = async () => {
@@ -62,7 +63,7 @@ const OpcVehicle = () => {
 
   const fetchDrivers = async () => {
     try {
-      const response = await fetch('http://localhost:8080/driver/drivers'); // Assuming the endpoint for drivers data
+      const response = await fetch('http://localhost:8080/driver/drivers');
       if (!response.ok) {
         throw new Error('Failed to fetch drivers data');
       }
@@ -195,7 +196,7 @@ const OpcVehicle = () => {
           )}
         </div>
       </div>
-      {showAddVehicleDialog && <VehicleDialogBox onClose={() => setShowAddVehicleDialog(false)} />}
+      {showAddVehicleDialog && <AddVehicle onClose={() => setShowAddVehicleDialog(false)} />} {/* Changed component */}
       {showDeleteConfirmationDialog && <DeleteConfirmationDialogBox onClose={() => setShowDeleteConfirmationDialog(false)} onDelete={confirmDeleteVehicle} />}
       {showUpdateDialog && <UpdateDialogBox vehicle={vehicleToUpdate} onUpdate={confirmUpdateVehicle} onClose={() => setShowUpdateDialog(false)} />}
     </div>

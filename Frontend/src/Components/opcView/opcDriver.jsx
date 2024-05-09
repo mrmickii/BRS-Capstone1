@@ -4,9 +4,9 @@ import OpcNavBar from '../opcView/opcnavbar';
 import { AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
 import '../../CSS/opcCSS/opcDriver.css';
 import { useNavigate } from 'react-router-dom';
-import DialogBox from './opcDialogbox'; 
-import DeleteConfirmationDialogBox from './opcDeleteDialogBox';
-import UpdateDialogBox from './opcUpdateDialogBox'; 
+import DialogBox from './opcAddDriver'; 
+import DeleteConfirmationDialogBox from './opcDeleteDriver';
+import UpdateDialogBox from './opcUpdateDriver'; 
 
 const OpcDriver = () => {
   const navigate = useNavigate();
