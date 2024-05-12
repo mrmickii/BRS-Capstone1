@@ -55,8 +55,8 @@ const Header = () => {
         <h2 className="header-label">TRANSPORTATION RESERVATION SYSTEM</h2>
         <div className="logged-in-user-name">{greeting}, {userName}</div>
         <div className="button-container">
-          <button className="header-button" onClick={handleLogout}>
-            <ImExit size={18} style={{marginRight: '5px', marginTop : '5px'}}/>LOG OUT
+          <button className="header1-button" onClick={handleLogout}>
+            <ImExit size={18} style={{marginRight: '5px', marginBottom: '-4px'}}/>LOG OUT
           </button>
         </div>
       </div>

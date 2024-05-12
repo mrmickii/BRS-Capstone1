@@ -19,7 +19,7 @@ const Notifications = () => {
       <SideNavBar />
       <div className="notification-container">
         <div className="noftitle">
-          <h2>
+          <h2 style={{color: 'white'}}>
             <BsBellFill size={25} style={{ marginRight: '20px', marginBottom: '-5px' }} />
             NOTIFICATION
           </h2>

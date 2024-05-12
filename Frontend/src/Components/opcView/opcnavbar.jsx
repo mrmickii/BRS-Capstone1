@@ -41,7 +41,7 @@ const OpcNavbar = () => {
 
       <div className="sublogo"></div>
       <div className="laban">
-        <h1>BRS WILDCATS</h1>
+        <h1 style={{color: 'white'}}>BRS WILDCATS</h1>
       </div>
     </div>
   );

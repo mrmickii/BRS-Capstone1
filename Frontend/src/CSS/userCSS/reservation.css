@@ -17,21 +17,23 @@
   font-size: 18px;
   color: #782324;
 }
-.view-request{
+.view-request1{
   position: absolute;
   left: 1430px;
-  top: -40px;
+  top: 230px;
   
 }
 .viewrequest-button{
   background-color: #782324; 
   color: white; 
-  padding: 5px 40px;
+  padding: 50px;
+  height: 50px;
   border: none;
-  border-radius: 20px;
+  border-radius: 50px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
+  z-index: 30px;
 }
 .viewrequest-button:hover{
   background-color: #f4c108;

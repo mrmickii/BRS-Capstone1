@@ -38,10 +38,9 @@
 .button-container{
   position: absolute;
   left: 1700px;
-  margin-top: 10px;
 }
 
-.header-button {
+.header1-button {
   background-color: #f4c108; 
   color: #782324; 
   padding: 8px 40px; 
@@ -52,7 +51,7 @@
   font-weight: bold;
 }
 
-.header-button:hover{
+.header1-button:hover{
   background-color: white;
   transition: background-color 0.3s ease;
 }

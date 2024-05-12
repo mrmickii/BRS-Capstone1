@@ -18,8 +18,8 @@ const HeadNotifications = () => {
       <Header />
       <HeadNavBar />
       <div className="notification-container">
-        <div className="noftitle" style={{color: 'white'}}>
-          <h2>
+        <div className="noftitle">
+          <h2 style={{color: 'white'}}>
             <BsBellFill size={25} style={{ marginRight: '20px', marginBottom: '-5px' }} />
             NOTIFICATION
           </h2>

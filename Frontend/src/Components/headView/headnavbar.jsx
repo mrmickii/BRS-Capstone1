@@ -41,8 +41,8 @@ const SideNavbar = () => {
       </ul>
 
       <div className="sublogo"></div>
-      <div className="laban">
-        <h1>BRS WILDCATS</h1>
+      <div className="laban1">
+        <h1 style={{color: 'white'}}>BRS WILDCATS</h1>
       </div>
     </div>
   );
