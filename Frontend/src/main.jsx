@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Login from './Components/userView/Login';
 import Reservation2 from './Components/userView/Reservation2';
 import Reservation from './Components/userView/Reservation';
 import Notification from './Components/userView/Notification';
-import HeadView from './Components/headView/HeadSide';
-import HeadNotification from './Components/headView/HeadNotification';
-import HeadSettings from './Components/headView/HeadSettings';
 import Settings from './Components/userView/Settings';
 import ForgotPassword from './Components/userView/ForgotPassword';
 import UserRequestMade from './Components/userView/UserRequestMade';
+import HeadView from './Components/headView/HeadSide';
+import HeadNotification from './Components/headView/HeadNotification';
+import HeadSettings from './Components/headView/HeadSettings';
 import OpcView from './Components/opcView/OpcSide';
 import OpcDriver from './Components/opcView/OpcDriver';
 import OpcVehicle from './Components/opcView/OpcVehicle';
@@ -64,8 +64,9 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
+  document.getElementById('root')
 );
