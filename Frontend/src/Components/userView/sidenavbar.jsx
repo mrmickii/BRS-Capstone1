@@ -17,7 +17,7 @@ const SideNavbar = () => {
     <div className="sidenavbar">
       <ul>
       <Link to="/reservation">
-        <li className={activeTab === '/reservation' || activeTab === '/user_view' || activeTab === '/user_request_made' ? 'active' : ''}>
+        <li className={activeTab === '/reservation' || activeTab === '/user-view' || activeTab === '/user-request-made' ? 'active' : ''}>
         
           <BiSolidBook size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           RESERVATION

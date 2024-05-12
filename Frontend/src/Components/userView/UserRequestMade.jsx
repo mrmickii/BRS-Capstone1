@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import SideNavBar from './SideNavBar';
+import SideNavBar from './SideNavbar';
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import '../../CSS/userCSS/user-request-made.css';
 

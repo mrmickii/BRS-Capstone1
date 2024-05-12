@@ -16,22 +16,22 @@ const SideNavbar = () => {
   return (
     <div className="sidenavbar">
       <ul>
-      <Link to="/head_view">
-        <li className={activeTab === '/head_view' ? 'active' : ''}>
+      <Link to="/head-view">
+        <li className={activeTab === '/head-view' ? 'active' : ''}>
         
           <BiSolidBook size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           REQUESTS
         </li>
         </Link>
-        <Link to="/head_view/notification">
-        <li className={activeTab === '/head_view/notification' ? 'active' : ''}>
+        <Link to="/head-view/notification">
+        <li className={activeTab === '/head-view/notification' ? 'active' : ''}>
           <BsBellFill size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           NOTIFICATIONS
         </li>
         </Link>
-        <Link to="/head_view/settings">
+        <Link to="/head-view/settings">
           
-        <li className={activeTab === '/head_view/settings' ? 'active' : ''}>
+        <li className={activeTab === '/head-view/settings' ? 'active' : ''}>
         
           <IoMdSettings size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           SETTINGS
