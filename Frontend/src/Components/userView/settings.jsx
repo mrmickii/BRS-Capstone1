@@ -104,18 +104,21 @@ const Settings = () => {
           <div className="s-container-two">
             <h3>CHANGE PASSWORD</h3>
             <input
+               style={{width: '500px'}}
               type="password"
               placeholder="Current Password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
             />
             <input
+            style={{width: '500px'}}
               type="password"
               placeholder="New Password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
             <input
+               style={{width: '500px'}}
               type="password"
               placeholder="Confirm New Password"
               value={confirmNewPassword}

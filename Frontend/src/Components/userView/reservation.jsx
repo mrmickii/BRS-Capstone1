@@ -48,10 +48,10 @@ const Reservation = () => {
             <p>Status: </p>
             {/* Insert diri ang availability status */}
             </h1>
-            <p className='vehicle-pn-cap'>Plate Number: {vehicle.plateNumber}
+            <p className='vehicle-pn-cap' style={{fontSize: '16px'}}>Plate Number: {vehicle.plateNumber}
               <p>Capacity: {vehicle.capacity}</p>
             </p>
-            <button>Select</button>
+            <button style={{width: '200px', height: '50px', fontSize: '16px', borderRadius: '30px', fontWeight: '700'}}>Select Vehicle</button>
           </div>
         ))}
       </div>

@@ -11,7 +11,7 @@
   background-color: #782324; 
   font-weight: bold;
   padding-top: 90px;
-  z-index: -1; 
+  z-index: 1; 
 }
 
 .sidenavbar ul {
