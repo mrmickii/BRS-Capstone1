@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import '../../CSS/userCSS/sidenavbar.css';
+import '../../CSS/userCSS/side-nav-bar.css';
 import { BiSolidBook } from 'react-icons/bi';
 import { BsBellFill } from 'react-icons/bs';
 import { IoMdSettings } from 'react-icons/io';

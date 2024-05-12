@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../CSS/opcCSS/opcDeleteDialogBox.css';
+import '../../CSS/opcCSS/opc-delete-driver.css';
 
-const DeleteConfirmationDialogBox = ({ onClose, onDelete }) => {
+const DeleteDriver = ({ onClose, onDelete }) => {
   const handleDelete = () => {
     onDelete();
     window.location.reload();
@@ -21,4 +21,4 @@ const DeleteConfirmationDialogBox = ({ onClose, onDelete }) => {
   );
 };
 
-export default DeleteConfirmationDialogBox;
+export default DeleteDriver;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../../CSS/opcCSS/opcDialogBox.css';
+import '../../CSS/opcCSS/opc-add-vehicle.css';
 
-const VehicleDialogBox = ({ onClose }) => {
+const AddVehicle = ({ onClose }) => {
   const [name, setName] = useState('');
   const [plateNumber, setPlateNumber] = useState('');
   const [capacity, setCapacity] = useState('');
@@ -88,4 +88,4 @@ const VehicleDialogBox = ({ onClose }) => {
   );
 };
 
-export default VehicleDialogBox;
+export default AddVehicle;

@@ -56,5 +56,37 @@
   height: 600px;
   width: 1350px;
   overflow-y: scroll;
+  padding: 20px;
+}
 
+.vehicle-info{
+  display: flex;
+  background-color: white !important;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.vehicle-pn-cap{
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.vehicle-name{
+  display: flex;
+  flex-direction: column;
+}
+
+.vehicle-name p{
+  font-size: 12px;
+}
+
+.vehicle-container button{
+  width: 100px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 12px;
+  background-color: #782324;
+  color: white;
 }

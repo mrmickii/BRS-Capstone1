@@ -3,22 +3,19 @@ import '../../CSS/userCSS/calendar.css';
 import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
 
 const Calendar = ({ onDateSelect }) => {
-  // Get current date
   const currentDate = new Date();
   const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
   const [currentDay] = useState(currentDate.getDate());
-  const [selectedDay, setSelectedDay] = useState(currentDay); // Set current day as default selected
+  const [selectedDay, setSelectedDay] = useState(currentDay); 
 
-  // Function to move to the previous month
   const prevMonth = () => {
     if (currentMonth === 0) {
-      return; // Prevent going to previous month if current month is January
+      return; 
     }
     setCurrentMonth(currentMonth - 1);
   };
 
-  // Function to move to the next month
   const nextMonth = () => {
     if (currentMonth === 11) {
       setCurrentMonth(0);
@@ -28,23 +25,19 @@ const Calendar = ({ onDateSelect }) => {
     }
   };
 
-  // Function to get the number of days in a month
   const daysInMonth = (month, year) => {
     return new Date(year, month + 1, 0).getDate();
   };
 
-  // Generate days for the current month
   const generateDays = () => {
     const totalDays = daysInMonth(currentMonth, currentYear);
     const firstDay = new Date(currentYear, currentMonth, 1).getDay();
     const days = [];
 
-    // Fill the days before the current month
     for (let i = 0; i < firstDay; i++) {
       days.push({ day: '', selected: false, disabled: true });
     }
 
-    // Fill the days of the current month
     for (let i = 1; i <= totalDays; i++) {
       const date = new Date(currentYear, currentMonth, i);
       const isPast = date < currentDate;
@@ -54,7 +47,6 @@ const Calendar = ({ onDateSelect }) => {
     return days;
   };
 
-  // Handle click on a day
   const handleDayClick = (day) => {
     setSelectedDay(day);
     onDateSelect(new Date(currentYear, currentMonth, day));

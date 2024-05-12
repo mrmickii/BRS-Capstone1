@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { MdEmail } from "react-icons/md";
-import '../../CSS/userCSS/forgotpass.css';
+import '../../CSS/userCSS/forgot-password.css';
 
-const ForgotPass = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -52,4 +52,4 @@ const ForgotPass = () => {
   );
 };
 
-export default ForgotPass;
+export default ForgotPassword;

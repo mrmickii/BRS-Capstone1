@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Header from '../userView/header';
-import OpcNavBar from '../opcView/opcnavbar'
+import Header from '../userView/Header';
+import OpcNavBar from './OpcSideNavBar'
 import '../../CSS/userCSS/settings.css'; 
 
 const OpcSettings = () => {

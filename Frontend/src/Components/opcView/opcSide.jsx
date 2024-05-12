@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Header from '../userView/header';
-import OpcNavBar from '../opcView/opcnavbar';
-import '../../CSS/opcCSS/opcSide.css';
-import Modal from '../opcView/Modal';
-import ApproveModal from "../opcView/approvemodal";
-import UpdateModal from "../opcView/updateRequestModal";
-import RejectModal from "../opcView/rejectmodal";
+import Header from '../userView/Header';
+import OpcNavBar from './OpcSideNavBar';
+import '../../CSS/opcCSS/opc-side.css';
+import Modal from './Modal';
+import ApproveModal from "./approvemodal";
+import UpdateModal from "./updateRequestModal";
+import RejectModal from "./rejectmodal";
 import { useNavigate } from 'react-router-dom';
 import {  AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
 
@@ -114,9 +114,9 @@ const OpcSide = () => {
         <div className="sample">
           <div className="opc-header-button-container">
             <div className="opc-header-button">
-              <button className="header-buttons"> <AiOutlineFileText size={40}/> Request <span className="number">{reservations.length}</span> </button>
-              <button className="header-buttons" onClick={handleDriverManagement}> <AiOutlineUser size={40}/> Driver <span className="number">{drivers.length}</span> </button>
-              <button className="header-buttons" onClick={handleVehicleManagement}> <AiOutlineCar size={40}/> Vehicle <span className="number">{vehicles.length}</span> </button>
+              <button className="header-buttons"> <AiOutlineFileText size={20}/> Request <span className="number">{reservations.length}</span> </button>
+              <button className="header-buttons" onClick={handleDriverManagement}> <AiOutlineUser size={20}/> Driver <span className="number">{drivers.length}</span> </button>
+              <button className="header-buttons" onClick={handleVehicleManagement}> <AiOutlineCar size={20}/> Vehicle <span className="number">{vehicles.length}</span> </button>
             </div>
           </div>
           <div className="opc-requests-header-container">

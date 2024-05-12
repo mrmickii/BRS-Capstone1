@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import '../../CSS/opcCSS/opcDialogBox.css';
+import '../../CSS/opcCSS/opc-add-driver.css';
 
-const DialogBox = ({ onClose }) => {
+const AddDriver = ({ onClose }) => {
   const [driverName, setDriverName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleClose = () => {
-    onClose();
-    window.location.reload();
-  };
-
-  const handleCancel = () => {
     onClose();
     window.location.reload();
   };
@@ -70,7 +65,7 @@ const DialogBox = ({ onClose }) => {
         </div>
         <div className="dialog-footer">
           <button onClick={handleAddDriver}>Add</button>
-          <button onClick={handleCancel}>Cancel</button>
+          <button onClick={handleClose}>Cancel</button>
         </div>
         {successMessage && <p className="success-message">{successMessage}</p>}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -79,4 +74,4 @@ const DialogBox = ({ onClose }) => {
   );
 };
 
-export default DialogBox;
+export default AddDriver;

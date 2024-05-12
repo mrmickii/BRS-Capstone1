@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../../CSS/opcCSS/opcUpdateDialogBox.css';
+import '../../CSS/opcCSS/opc-update-driver.css';
 
-const UpdateDialogBox = ({ driver, onUpdate, onClose }) => {
+const UpdateDriver = ({ driver, onUpdate, onClose }) => {
   const [updatedDriverName, setUpdatedDriverName] = useState(driver.driverName);
   const [updatedContactNumber, setUpdatedContactNumber] = useState(driver.contactNumber);
   const [successMessage, setSuccessMessage] = useState('');
@@ -73,4 +73,4 @@ const UpdateDialogBox = ({ driver, onUpdate, onClose }) => {
   );
 };
 
-export default UpdateDialogBox;
+export default UpdateDriver;

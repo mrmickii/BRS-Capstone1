@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../userView/header';
-import HeadNavbar from './headnavbar';
-import { auth, db } from '../../firebaseConfig';
+import Header from '../userView/Header';
+import HeadNavbar from './HeadNavBar';
+import { auth, db } from '../../FirebaseConfig';
 import { doc, getDoc, updateDoc } from 'firebase/firestore'; 
-import '../../CSS/headCSS/headSettings.css';
+import '../../CSS/headCSS/head-settings.css';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { updatePassword } from "firebase/auth";
 

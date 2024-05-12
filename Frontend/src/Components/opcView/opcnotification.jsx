@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../../CSS/userCSS/notification.css';
 import { BsBellFill } from "react-icons/bs";
-import Header from '../../Components/userView/header';
-import OpcNavBar from '../opcView/opcnavbar'
+import Header from '../../Components/userView/Header';
+import OpcNavBar from './OpcSideNavBar'
 
 
 const OpcNotifications = () => {

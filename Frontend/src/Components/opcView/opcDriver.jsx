@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../userView/header';
-import OpcNavBar from '../opcView/opcnavbar';
+import Header from '../userView/Header';
+import OpcNavBar from './OpcSideNavBar';
 import { AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
-import '../../CSS/opcCSS/opcDriver.css';
+import '../../CSS/opcCSS/opc-driver.css';
 import { useNavigate } from 'react-router-dom';
-import DialogBox from './opcDialogbox'; 
-import DeleteConfirmationDialogBox from './opcDeleteDialogBox';
-import UpdateDialogBox from './opcUpdateDialogBox'; 
+import DialogBox from './OpcAddDriver'; 
+import DeleteConfirmationDialogBox from './OpcDeleteDriver';
+import UpdateDialogBox from './OpcUpdateDriver'; 
 
 const OpcDriver = () => {
   const navigate = useNavigate();
