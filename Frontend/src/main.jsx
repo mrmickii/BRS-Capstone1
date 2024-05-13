@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Login from './Components/userView/Login';
 import Reservation2 from './Components/userView/Reservation2';
@@ -11,7 +11,7 @@ import UserRequestMade from './Components/userView/UserRequestMade';
 import HeadView from './Components/headView/HeadSide';
 import HeadNotification from './Components/headView/HeadNotification';
 import HeadSettings from './Components/headView/HeadSettings';
-import OpcView from './Components/opcView/OpcSide';
+import OpcSide from './Components/opcView/OpcSide';
 import OpcDriver from './Components/opcView/OpcDriver';
 import OpcVehicle from './Components/opcView/OpcVehicle';
 import { auth } from './FirebaseConfig';
@@ -56,7 +56,7 @@ function App() {
       <Route path="/settings" element={<Settings />} />
       <Route path="/user-request-made" element={<UserRequestMade />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/staff-view" element={<OpcView />} />
+      <Route path="/staff-view" element={<OpcSide />} />
       <Route path="/driver-management" element={<OpcDriver/>} />
       <Route path="/vehicle-management" element={<OpcVehicle/>} />
       <Route path="*" element={<Navigate to="/" />} />
@@ -64,9 +64,8 @@ function App() {
   );
 }
 
-ReactDOM.render(
+createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
-  document.getElementById('root')
+  </BrowserRouter>
 );

@@ -17,8 +17,18 @@
 }
 
 .sample{
-  height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 1000px;
   min-height: 100px;
+}
+
+.rdc-box{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
 }
 
 .data-container1 {
@@ -35,9 +45,9 @@
 .request-data-container1 {
   width: 100%;
   min-height: 250px;
+  max-height: 1000px;
   background-color: white;
   display: flex;
-  border-radius: 10px;
 }
 
 .r-d-container-left1 {
@@ -120,4 +130,11 @@
 
 .opc-requests-header button{
   margin-left: 0;
+}
+
+.rdc-buttons{
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

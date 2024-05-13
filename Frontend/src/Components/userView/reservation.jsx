@@ -36,7 +36,7 @@ const Reservation = () => {
         <h2><FaBus size={32} style={{marginRight: '15px', marginBottom: '-5px'}}/>SELECT VEHICLE</h2>
       </div>
       <div className='view-request1'>
-        <Link to="/user_request_made" className="viewrequest-button" style={{textDecoration: 'none'}}>VIEW REQUESTS MADE</Link>
+        <Link to="/user-request-made" className="viewrequest-button" style={{textDecoration: 'none'}}>VIEW REQUESTS MADE</Link>
       </div>
       <div className='reminder'>
         <p>Note: Please select the vehicle that will be reasonable to use with its capacity</p>

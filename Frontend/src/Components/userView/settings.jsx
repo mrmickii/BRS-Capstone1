@@ -9,19 +9,19 @@ const Settings = () => {
 
   const togglePasswordChange = () => {
     setShowPasswordChange(!showPasswordChange);
-    setShowUserDetails(false); 
+    setShowUserDetails(false);
   };
 
   const toggleUserDetails = () => {
     setShowUserDetails(!showUserDetails);
-    setShowPasswordChange(false); 
+    setShowPasswordChange(false);
   };
 
   return (
     <div className="reservation">
       <Header />
       <SideNavBar />
-      {showPasswordChange || showUserDetails ? <div className="overlay" /> : null}
+      {(showPasswordChange || showUserDetails) && <div className="overlay" />}
       <div className="settings-container">
         <button className="setting-button" onClick={togglePasswordChange}>
           Change Password
@@ -42,23 +42,21 @@ const Settings = () => {
           <div className="floating-box">
             <h2>Account Details</h2>
             <div className="user-info">
-            <div className="info-item">
-              <span className="info-label">Name:</span>
-              <span className="info-value">John Doe</span>
+              <div className="info-item">
+                <span className="info-label">Name:</span>
+                <span className="info-value">John Doe</span>
+              </div>
+              <div className="info-item">
+                <span className="info-label">Email:</span>
+                <span className="info-value">john.doe@cit.edu</span>
+              </div>
+            </div>
           </div>
-         <div className="info-item">
-        <span className="info-label">Email:</span>
-        <span className="info-value">john.doe@cit.edu</span>
+        )}
       </div>
-      
-    </div>
-  </div>
-)}
-
-      </div>
+      <div className='cit-bglogo'></div>
     </div>
   );
 };
 
 export default Settings;
-

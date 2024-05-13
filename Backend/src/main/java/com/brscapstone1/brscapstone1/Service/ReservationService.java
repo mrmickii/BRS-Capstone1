@@ -1,8 +1,6 @@
 package com.brscapstone1.brscapstone1.Service;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +14,32 @@ public class ReservationService {
     @Autowired
     private ReservationRepository resRepo;
 
+    public void approveReservation(int reservationId) {
+        ReservationEntity reservation = resRepo.findById(reservationId).orElse(null);
+        if (reservation == null) {
+            throw new IllegalArgumentException("Reservation not found");
+        }
+        reservation.setStatus("Approved");
+        resRepo.save(reservation);
+    }
+
+    public List<ReservationEntity> getApprovedReservations() {
+        return resRepo.findByStatus("Approved");
+    }
+
     public ReservationEntity saveReservation(ReservationEntity reservation, MultipartFile file) throws IOException {
         if (file != null && !file.isEmpty()) {
-					reservation.setFileName(file.getOriginalFilename());
-					reservation.setFileType(file.getContentType());
-					reservation.setFileSize(file.getSize());
-        }else{
-					reservation.setFileName("No file(s) attached");
-					reservation.setFileType("No file(s) attached");
-					reservation.setFileSize(0);
-				}
+            reservation.setFileName(file.getOriginalFilename());
+            reservation.setFileType(file.getContentType());
+            reservation.setFileSize(file.getSize());
+        } else {
+            reservation.setFileName("No file(s) attached");
+            reservation.setFileType("No file(s) attached");
+            reservation.setFileSize(0);
+        }
+        if (reservation.getStatus() == null || reservation.getStatus().isEmpty()) {
+            reservation.setStatus("Pending");
+        }
         return resRepo.save(reservation);
     }
 
@@ -35,14 +49,5 @@ public class ReservationService {
 
     public ReservationEntity getReservationById(int id) {
         return resRepo.findById(id).orElse(null);
-    }
-
-    public byte[] getFileContent(ReservationEntity reservation) throws IOException {
-        if (reservation != null && reservation.getFileName() != null) {
-            String directoryPath = "C:\\Users\\garci\\Downloads\\";
-            File file = new File(directoryPath + reservation.getFileName());
-            return Files.readAllBytes(file.toPath());
-        }
-        return null;
     }
 }

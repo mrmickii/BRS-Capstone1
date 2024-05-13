@@ -38,6 +38,7 @@ const Notifications = () => {
           </div>
         )}
       </div>
+      <div className='cit-bglogo'></div>
     </div>
   );
 };

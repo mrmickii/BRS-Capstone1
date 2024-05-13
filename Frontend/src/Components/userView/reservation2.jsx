@@ -16,7 +16,7 @@ import { HiDocumentDownload } from "react-icons/hi";
 import { IoIosSend } from "react-icons/io";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import '../../CSS/userCSS/reservation2.css';
-import { app } from "../../FirebaseConfig";
+import { app, auth } from "../../FirebaseConfig";
 import { getFirestore } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 
@@ -80,7 +80,8 @@ const Reservation2 = () => {
       pickUpTime: '',
       departureTime: '',
       reason: '',
-      file: null
+      file: null,
+      userEmail: ''
     });
     setSelectedDate(null);
   };
@@ -127,11 +128,12 @@ const Reservation2 = () => {
       vehicleType: formValues.vehicleType,
       pickUpTime: formValues.pickUpTime,
       departureTime: formValues.departureTime,
-      reason: formValues.reason,
     };
   
     const formData = new FormData();
     formData.append('reservation', JSON.stringify(reservationData));
+    
+    // Check if formValues.file exists before appending
     if (formValues.file) {
       formData.append('file', formValues.file);
     }
@@ -142,8 +144,11 @@ const Reservation2 = () => {
     }
   
     try {
-      const fileRef = ref(storageRef, formValues.file.name);
-      await uploadBytes(fileRef, formValues.file);
+      // Only upload file if it exists
+      if (formValues.file) {
+        const fileRef = ref(storageRef, formValues.file.name);
+        await uploadBytes(fileRef, formValues.file);
+      }
   
       const response = await fetch('http://localhost:8080/reservation/add', {
         method: 'POST',
@@ -174,7 +179,9 @@ const Reservation2 = () => {
       console.error('Error submitting reservation:', error);
       setError('Failed to submit reservation.');
     }
-  };  
+  };
+
+
   
   const handleCapacityChange = (e) => {
     const value = parseInt(e.target.value, 10); 

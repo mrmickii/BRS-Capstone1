@@ -19,6 +19,7 @@ const OpcDriver = () => {
   const [driverToUpdate, setDriverToUpdate] = useState(null);
   const [driverCount, setDriverCount] = useState(0); 
   const [vehicleCount, setVehicleCount] = useState(0); 
+  const [approvedReservationCount, setApprovedReservationCount] = useState(0);
 
   useEffect(() => {
     fetchReservations();
@@ -33,6 +34,11 @@ const OpcDriver = () => {
   useEffect(() => {
     setVehicleCount(vehicles.length); 
   }, [vehicles]);
+
+  useEffect(() => {
+    const approvedReservations = reservations.filter(reservation => reservation.status === 'Approved');
+    setApprovedReservationCount(approvedReservations.length);
+  }, [reservations]);
 
   const fetchReservations = async () => {
     try {
@@ -82,7 +88,7 @@ const OpcDriver = () => {
   };
 
   const handleRequest = () => {
-    navigate('/staff_view');
+    navigate('/staff-view');
   };
 
   const handleAddDriver = () => {
@@ -156,7 +162,7 @@ const OpcDriver = () => {
           <div className="opc-header-button-container">
             <div className="opc-header-button">
               <button className="header-buttons" onClick={handleRequest}>
-                <AiOutlineFileText size={20} style={{ marginLeft: '19px' }} /> Request <span className="number">{reservations.length}</span>
+                <AiOutlineFileText size={20} style={{ marginLeft: '19px' }} /> Request <span className="number">{approvedReservationCount}</span>
               </button>
               <button className="header-buttons" id="driverButton" onClick={handleDriverManagement}>
                 <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> Driver <span className="number">{driverCount}</span>
