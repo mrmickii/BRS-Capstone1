@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../CSS/userCSS/notification.css';
 import { BsBellFill } from "react-icons/bs";
-import Header from '../../Components/userView/Header';
+import Header from '../userView/Header';
 import OpcNavBar from './OpcSideNavBar'
 
 

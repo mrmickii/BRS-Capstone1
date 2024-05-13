@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import SideNavBar from './SideNavBar';
 import Calendar from './Calendar';
-import Preloader from './Preloader';
+import Preloader from './PreLoader';
 import { LuCalendarClock } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { RiBuildingFill } from "react-icons/ri";

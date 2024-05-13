@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../userView/Header';
-import HeadNavbar from './HeadNavBar';
+import HeadNavbar from './Headnavbar';
 import { auth, db } from '../../FirebaseConfig';
 import { doc, getDoc, updateDoc } from 'firebase/firestore'; 
 import '../../CSS/headCSS/head-settings.css';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { MdOutlineManageAccounts } from "react-icons/md";
 import { updatePassword } from "firebase/auth";
 
 const HeadSettings = () => {
@@ -93,7 +94,7 @@ const HeadSettings = () => {
         <h1>SETTINGS</h1>
         <div className="s-container-one">
           <button className="s-box-one" onClick={showViewAccount}>
-            View Account
+          <MdOutlineManageAccounts />View Account
           </button>
           <button className="s-box-two" onClick={showChangePassword}>
             Change Password
@@ -130,12 +131,12 @@ const HeadSettings = () => {
         )}
         {displayedContainer === 'account' && (
           <div className="s-container-three">
-            <h3 className='acc-details'>ACCOUNT DETAILS</h3>
+            <h3 className='acc-details' style={{fontSize: '24px'}}>ACCOUNT DETAILS</h3>
             {userData && (
               <div>
-                <p>Name: {userData.name}</p>
-                <p>Email: {userData.email}</p>
-                <p>Department: {userData.department}</p>
+                <p style={{fontSize: '20px', marginBottom: '10px'}}>Name: {userData.name}</p>
+                <p style={{fontSize: '18px'}}>Email: {userData.email}</p>
+                <p style={{fontSize: '18px'}}>Department: {userData.department}</p>
               </div>
             )}
           </div>

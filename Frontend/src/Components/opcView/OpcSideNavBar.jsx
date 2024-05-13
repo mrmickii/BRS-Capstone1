@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import '../../CSS/opcCSS/opc-side-nav-bar.css';
+import '../../CSS/userCSS/side-nav-bar.css';
 import { MdSpaceDashboard } from "react-icons/md";
 import { BsBellFill } from 'react-icons/bs';
 import { IoMdSettings } from 'react-icons/io';
@@ -16,21 +16,21 @@ const OpcSideNavBar = () => {
   return (
     <div className="sidenavbar">
       <ul>
-      <Link to="/staff_view">
-        <li className={activeTab === '/staff_view' || activeTab === '/staff_view' ? 'active' : ''}>
+      <Link to="/staff-view">
+        <li className={activeTab === '/staff-view' || activeTab === '/driver-management' || activeTab === '/vehicle-management' ? 'active' : ''}>
           <MdSpaceDashboard size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           DASHBOARD
         </li>
         </Link>
-        <Link to="/notification">
-        <li className={activeTab === '/opcnotification' ? 'active' : ''}>
+        <Link to="/opc-view/notification">
+        <li className={activeTab === '/opc-view/notification' ? 'active' : ''}>
           <BsBellFill size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           NOTIFICATIONS
         </li>
         </Link>
-        <Link to="/settings">
+        <Link to="/opc-vew/settings">
           
-        <li className={activeTab === '/opcsettings' ? 'active' : ''}>
+        <li className={activeTab === '/opc-vew/settings' ? 'active' : ''}>
         
           <IoMdSettings size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           SETTINGS
