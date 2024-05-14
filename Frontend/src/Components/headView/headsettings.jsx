@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../userView/Header';
-import HeadNavbar from './Headnavbar';
+import HeadNavbar from './HeadNavBar';
 import { auth, db } from '../../FirebaseConfig';
 import { doc, getDoc, updateDoc } from 'firebase/firestore'; 
 import '../../CSS/headCSS/head-settings.css';

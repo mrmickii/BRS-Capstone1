@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import SideNavBar from './SideNavBar';
 import { FaBus } from "react-icons/fa";
@@ -7,6 +7,7 @@ import '../../CSS/userCSS/reservation.css';
 
 const Reservation = () => {
   const [vehicles, setVehicles] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -24,6 +25,10 @@ const Reservation = () => {
 
     fetchVehicles();
   }, []);
+
+  const handleSelectVehicle = (vehicle) => {
+    navigate('/user-view', { state: { vehicleType: vehicle.vehicleType } });
+  };  
 
   return (
     <div className="reservation">
@@ -44,14 +49,18 @@ const Reservation = () => {
       <div className='vehicle-container'>
         {vehicles.map((vehicle, index) => (
           <div className='vehicle-info' key={index}>
-            <h1 className='vehicle-name'>{vehicle.name}
-            <p>Status: </p>
-            {/* Insert diri ang availability status */}
-            </h1>
-            <p className='vehicle-pn-cap' style={{fontSize: '16px'}}>Plate Number: {vehicle.plateNumber}
+            <h1 className='vehicle-name'>{vehicle.vehicleType}</h1>
+            <p>Status: {/* Insert diri ang availability status */}</p>
+            <p className='vehicle-pn-cap' style={{fontSize: '16px'}}>
+              Plate Number: {vehicle.plateNumber}
               <p>Capacity: {vehicle.capacity}</p>
             </p>
-            <button style={{width: '200px', height: '50px', fontSize: '16px', borderRadius: '30px', fontWeight: '700'}}>Select Vehicle</button>
+            <button
+              style={{width: '200px', height: '50px', fontSize: '16px', borderRadius: '30px', fontWeight: '700'}}
+              onClick={() => handleSelectVehicle(vehicle)}
+            >
+              Select Vehicle
+            </button>
           </div>
         ))}
       </div>

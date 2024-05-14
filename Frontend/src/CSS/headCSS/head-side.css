@@ -16,12 +16,25 @@
 }
 
 .content-container {
+  display: flex;
   width: 80vw;
   height: 100vh;
   max-height: 88vh;
   flex-direction: column;
 }
 
+.view-history{
+  display: flex;
+  margin: 20px;
+  flex-direction: column;
+}
+
+.view-history button{
+  padding: 5px 15px;
+  font-size: 12px;
+  border: none;
+  align-self: flex-end;
+}
 
 .dropdown-container {
   width: 100%;

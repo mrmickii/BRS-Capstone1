@@ -187,7 +187,7 @@ const OpcVehicle = () => {
             <div className="vehicle-data-container">
               {vehicles.map((vehicle, index) => (
                 <div className='vehicle-info' key={index}>
-                  <h1 className='vecihle-info-h1'>{vehicle.name}
+                  <h1 className='vecihle-info-h1'>{vehicle.vehicleType}
                     <button className='vehicle-update-button' onClick={() => handleUpdateVehicle(vehicle)}>Update
                     </button>
                   </h1>
@@ -202,7 +202,7 @@ const OpcVehicle = () => {
           )}
         </div>
       </div>
-      {showAddVehicleDialog && <AddVehicle onClose={() => setShowAddVehicleDialog(false)} />} {/* Changed component */}
+      {showAddVehicleDialog && <AddVehicle onClose={() => setShowAddVehicleDialog(false)} />} 
       {showDeleteConfirmationDialog && <DeleteConfirmationDialogBox onClose={() => setShowDeleteConfirmationDialog(false)} onDelete={confirmDeleteVehicle} />}
       {showUpdateDialog && <UpdateDialogBox vehicle={vehicleToUpdate} onUpdate={confirmUpdateVehicle} onClose={() => setShowUpdateDialog(false)} />}
     </div>

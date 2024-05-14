@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../CSS/opcCSS/opc-add-vehicle.css';
 
 const AddVehicle = ({ onClose }) => {
-  const [name, setName] = useState('');
+  const [vehicleType, setVehicleType] = useState('');
   const [plateNumber, setPlateNumber] = useState('');
   const [capacity, setCapacity] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -20,7 +20,7 @@ const AddVehicle = ({ onClose }) => {
 
   const handleAddVehicle = async () => {
     try {
-      if (!name || !plateNumber || !capacity) {
+      if (!vehicleType || !plateNumber || !capacity) {
         setErrorMessage('Please fill in all fields.');
         return;
       }
@@ -31,7 +31,7 @@ const AddVehicle = ({ onClose }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name,
+          vehicleType,
           plateNumber,
           capacity,
         }),
@@ -42,7 +42,7 @@ const AddVehicle = ({ onClose }) => {
       }
       
       setSuccessMessage('Vehicle added successfully!');
-      setName('');
+      setVehicleType('');
       setPlateNumber('');
       setCapacity('');
     } catch (error) {
@@ -60,9 +60,9 @@ const AddVehicle = ({ onClose }) => {
         <div className="dialog-content">
           <input
             type="text"
-            placeholder="Vehicle Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            placeholder="Vehicle Type"
+            value={vehicleType}
+            onChange={(e) => setVehicleType(e.target.value)}
           />
           <input
             type="text"

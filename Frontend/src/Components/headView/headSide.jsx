@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from '../userView/Header';
-import HeadNavbar from "./Headnavbar"; 
+import HeadNavbar from "./HeadNavBar"; 
 import FileDialogBox from './HeadViewFile';
 import ConfirmationDialog from './ConfirmationDialog';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
@@ -158,6 +158,9 @@ const HeadSide = () => {
       <HeadNavbar />
       <div className="head-view-container">
         <div className="content-container">
+          <div className="view-history">
+            <button>View History</button>
+          </div>
           <div className="data-container">
             {filteredReservations.length > 0 ? (
               filteredReservations.map((reservation, index) => (

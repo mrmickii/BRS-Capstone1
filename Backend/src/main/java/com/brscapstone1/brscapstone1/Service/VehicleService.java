@@ -26,7 +26,7 @@ public class VehicleService {
 
     try{
       vehicle = vehicleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Vehicle with id " +id+ " does not exist"));
-      vehicle.setName(newVehicle.getName());
+      vehicle.setVehicleType(newVehicle.getVehicleType());
       vehicle.setPlateNumber(newVehicle.getPlateNumber());
       vehicle.setCapacity(newVehicle.getCapacity());
       return vehicleRepository.save(vehicle);

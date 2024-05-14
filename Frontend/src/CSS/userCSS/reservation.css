@@ -55,7 +55,7 @@
   background-color: #CBC3C3;
   height: 600px;
   width: 1350px;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 20px;
 }
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import Preloader from './PreLoader';
+import Preloader from './Preloader';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import '../../CSS/userCSS/login.css';

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import SideNavBar from './SideNavBar';
 import Calendar from './Calendar';
-import Preloader from './PreLoader';
+import Preloader from './Preloader';
 import { LuCalendarClock } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { RiBuildingFill } from "react-icons/ri";
@@ -19,11 +19,14 @@ import '../../CSS/userCSS/reservation2.css';
 import { app, auth } from "../../FirebaseConfig";
 import { getFirestore } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { useLocation } from 'react-router-dom';
 
 const db = getFirestore(app);
 const storageRef = getStorage();
 
 const Reservation2 = () => {
+  const location = useLocation();
+  const { vehicleType } = location.state || {};
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(null);
   const [formValues, setFormValues] = useState({
@@ -33,7 +36,7 @@ const Reservation2 = () => {
     capacity: '',
     department: '',
     schedule: '',
-    vehicleType: '',
+    vehicleType: vehicleType || '',
     pickUpTime: '',
     departureTime: '',
     reason: '',
@@ -76,7 +79,7 @@ const Reservation2 = () => {
       capacity: '',
       department: '',
       schedule: '',
-      vehicleType: '',
+      vehicleType: vehicleType || '',
       pickUpTime: '',
       departureTime: '',
       reason: '',
@@ -133,7 +136,6 @@ const Reservation2 = () => {
     const formData = new FormData();
     formData.append('reservation', JSON.stringify(reservationData));
     
-    // Check if formValues.file exists before appending
     if (formValues.file) {
       formData.append('file', formValues.file);
     }
@@ -142,9 +144,7 @@ const Reservation2 = () => {
     if (!confirmed) {
       return;
     }
-  
     try {
-      // Only upload file if it exists
       if (formValues.file) {
         const fileRef = ref(storageRef, formValues.file.name);
         await uploadBytes(fileRef, formValues.file);
@@ -154,7 +154,6 @@ const Reservation2 = () => {
         method: 'POST',
         body: formData,
       });
-  
       if (!response.ok) {
         throw new Error('Failed to submit reservation');
       }
@@ -169,7 +168,7 @@ const Reservation2 = () => {
         capacity: '',
         department: '',
         schedule: '',
-        vehicleType: '',
+        vehicleType: vehicleType || '',
         pickUpTime: '',
         departureTime: '',
         reason: '',
@@ -181,8 +180,6 @@ const Reservation2 = () => {
     }
   };
 
-
-  
   const handleCapacityChange = (e) => {
     const value = parseInt(e.target.value, 10); 
     if (!isNaN(value) && value >= 0) {
@@ -330,8 +327,8 @@ const Reservation2 = () => {
                 name="vehicle" 
                 style={{fontSize: '14px'}} 
                 placeholder='Type of Vehicle'
-                value={formValues.vehicleType}
-                onChange={(e) => setFormValues({...formValues, vehicleType: e.target.value})} 
+                value={vehicleType}
+                readOnly
                 required
               />
             </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../CSS/opcCSS/opc-update-vehicle.css';
 
 const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
-  const [updatedName, setUpdatedName] = useState(vehicle.name);
+  const [updatedVehicleType, setUpdatedVehicleType] = useState(vehicle.name);
   const [updatedPlateNumber, setUpdatedPlateNumber] = useState(vehicle.plateNumber);
   const [updatedCapacity, setUpdatedCapacity] = useState(vehicle.capacity);
   const [successMessage, setSuccessMessage] = useState('');
@@ -16,7 +16,7 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: updatedName,
+          vehicleType: updatedVehicleType,
           plateNumber: updatedPlateNumber,
           capacity: updatedCapacity,
         }),
@@ -27,7 +27,7 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
       }
 
       onUpdate({
-        name: updatedName,
+        vehicleType: updatedVehicleType,
         plateNumber: updatedPlateNumber,
         capacity: updatedCapacity,
       });
@@ -43,7 +43,7 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
 
   const handleClose = () => {
     onClose();
-    window.location.reload(); // This line refreshes the page, consider removing it if not needed.
+    window.location.reload();
   };
 
   return (
@@ -56,7 +56,7 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
         <input
           type="text"
           value={updatedName}
-          onChange={(e) => setUpdatedName(e.target.value)}
+          onChange={(e) => setUpdatedVehicleType(e.target.value)}
           placeholder="Vehicle Name"
         />
         <input
