@@ -1,13 +1,11 @@
 .opc-view-container {
-  display: flex;
-  flex-direction: column;
+
   align-items: center; 
 }
 
 .opc-title {
   margin-right: 1000px;
   margin-top: 1%;
-  display: flex;
   align-items: flex-start;
 }
 
@@ -16,10 +14,7 @@
 }
 
 .opc-requests-header{
-  display: flex;
-  gap: 1150px;
   background-color: #782324;
-  align-items: center;
   padding: 15px 0px;
 }
 
@@ -29,28 +24,36 @@
 }
 
 .opc-requests-header button{
+  position: absolute;
+  left: 1650px;
   border: none;
+  font-size: 16px;
   background-color: #f4c108;
   border-radius: 20px;
   color: #782324;
   font-weight: bold;
-  padding: 10px 15px;
+  cursor: pointer;
+  width: 180px;
 }
-
+.opc-requests-header button:hover {
+  background-color: white; 
+  color: #782324; 
+}
 .data-container1 {
   width: 80%;
-  min-height: 400px;
-  background-color: #cbc3c3;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
+  min-height: 700px;
+  margin-top: 40px;
+  background-color: white;
+  border-radius: 10px;
+ 
 }
 
 .vehicle-data {
   width: 100%;
-  background-color: #FFF;
-  overflow-y: auto;
-  min-height: 350px;
+  margin-top: -22px;
+  background-color: #cbc3c3;
+  overflow-y: scroll;
+  min-height: 500px;
 }
 
 .vehicle-availability{
@@ -60,22 +63,20 @@
 }
 
 .vehicle-data-container {
-  display: flex;
-  flex-direction: column;
+  border-radius: 10px;
 }
 
 .vehicle-info{
-  background-color: #cbc3c3;
   padding: 20px;
   margin: 20px;
+  border-radius: 10px;
+}
+.vecihle-info-plate{
+  position: absolute;
+  left: 800px;
+  font-weight: 700;
 }
 
-
-
-.vehicle-info h1, .vehicle-info p{
-  display: flex;
-  justify-content: space-between;
-}
 
 .vehicle-update-button, .vehicle-delete-button{
   width: 100px;
@@ -86,10 +87,37 @@
 }
 
 .vehicle-update-button{
+  position: absolute;
+  left: 1450px;
+  width: 150px;
   background-color: #00bf63;
+  font-weight: 700;
 }
 
 .vehicle-delete-button{
+  position: absolute;
+  left: 1620px;
+  width: 150px; 
   background-color: #782324;
   color: #FFF;
+  font-weight: 700;
+}
+.vecihle-info-capa{
+  position: absolute;
+  left: 1200px;
+  font-weight: 700;
+}
+.cit-bglogo {
+  position: fixed;
+  top: 200px;
+  left: 1200px;
+  width: 1000px; 
+  height: 900px;
+  background-image: url(../../Images/citbglogo.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -2;
+  filter: saturate(0%);
+  opacity: 0.2;
 }

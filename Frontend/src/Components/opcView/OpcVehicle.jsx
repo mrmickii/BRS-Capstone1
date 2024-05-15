@@ -3,11 +3,14 @@ import Header from '../userView/Header';
 import OpcNavBar from './OpcSideNavBar';
 import { AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
-import VehicleDialogBox from './OpcAddVehicle';
+import { FaBus } from "react-icons/fa";
 import DeleteConfirmationDialogBox from './OpcDeleteVehicle'; 
 import UpdateDialogBox from './OpcUpdateVehicle'; 
 import AddVehicle from './OpcAddVehicle'; 
 import "../../CSS/opcCSS/opc-vehicle.css"; 
+import { FaRectangleAd } from "react-icons/fa6";
+import { IoMdPersonAdd } from "react-icons/io";
+import { FaPlusCircle } from "react-icons/fa";
 
 const OpcVehicle = () => {
   const navigate = useNavigate();
@@ -169,14 +172,18 @@ const OpcVehicle = () => {
                 <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> Driver <span className="number">{driverCount}</span>
               </button>
               <button className="header-buttons" id="vehicleButton" onClick={handleVehicleManagement}>
-                <AiOutlineCar size={20} style={{ marginLeft: '25px' }} /> Vehicle <span className="number">{vehicleCount}</span>
+                <FaBus size={20} style={{ marginLeft: '25px' }} /> Vehicle <span className="number">{vehicleCount}</span>
               </button>
             </div>
           </div>
           <div className="opc-requests-header-container">
             <div className="opc-requests-header">
-              <h1> <AiOutlineCar size={35}/> VEHICLES </h1>
-              <button onClick={handleAddVehicle}>Add Vehicle</button>
+              <h1> <FaBus size={35} style={{ marginRight: '20px', marginTop: '4px'}}/> VEHICLES </h1>
+              <button 
+              onClick={handleAddVehicle}
+              className="add-vehicle-btn">
+                <FaPlusCircle size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Add Vehicle
+                </button>
             </div>
           </div>
         </div>
@@ -191,11 +198,10 @@ const OpcVehicle = () => {
                     <button className='vehicle-update-button' onClick={() => handleUpdateVehicle(vehicle)}>Update
                     </button>
                   </h1>
-                  <p className='vecihle-info-p'>Plate Number: {vehicle.plateNumber}
-                    <button className='vehicle-delete-button' onClick={() => handleDeleteVehicle(vehicle)}>Delete
-                    </button>
+                  <p className='vecihle-info-plate'><FaRectangleAd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Plate Number: {vehicle.plateNumber}
                   </p>
-                  <p className='vecihle-info-p'>Capacity: {vehicle.capacity}</p>
+                  <button className='vehicle-delete-button' onClick={() => handleDeleteVehicle(vehicle)}>Delete</button>
+                  <p className='vecihle-info-capa'><IoMdPersonAdd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Capacity: {vehicle.capacity}</p>
                 </div>
               ))}
             </div>
@@ -205,7 +211,9 @@ const OpcVehicle = () => {
       {showAddVehicleDialog && <AddVehicle onClose={() => setShowAddVehicleDialog(false)} />} 
       {showDeleteConfirmationDialog && <DeleteConfirmationDialogBox onClose={() => setShowDeleteConfirmationDialog(false)} onDelete={confirmDeleteVehicle} />}
       {showUpdateDialog && <UpdateDialogBox vehicle={vehicleToUpdate} onUpdate={confirmUpdateVehicle} onClose={() => setShowUpdateDialog(false)} />}
+      <div className='cit-bglogo'></div>
     </div>
+    
   );
 }
 

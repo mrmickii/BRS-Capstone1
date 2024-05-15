@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
-import SideNavBar from './SideNavBar';
+import SideNavBar from './SideNavbar';
+import CalendarModal from './CalendarModal';
 import Calendar from './Calendar';
 import Preloader from './Preloader';
 import { LuCalendarClock } from "react-icons/lu";
@@ -14,7 +15,6 @@ import { AiFillMessage } from "react-icons/ai";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { HiDocumentDownload } from "react-icons/hi";
 import { IoIosSend } from "react-icons/io";
-import { AiOutlineClockCircle } from "react-icons/ai";
 import '../../CSS/userCSS/reservation2.css';
 import { app, auth } from "../../FirebaseConfig";
 import { getFirestore } from 'firebase/firestore';
@@ -45,6 +45,7 @@ const Reservation2 = () => {
   });
   const [departments, setDepartments] = useState([]);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchDepartments();
@@ -67,9 +68,18 @@ const Reservation2 = () => {
   };
 
   const handleDateSelect = (date) => {
+    console.log(date); // Check if selectedDate is correct
     setSelectedDate(date);
-    setFormValues({...formValues, schedule: date});
+    setIsModalOpen(false);
   };
+  
+  const handleDateConfirm = () => {
+    console.log('Confirming schedule:', selectedDate); // Check if handleDateConfirm is triggered
+    setFormValues({...formValues, schedule: selectedDate});
+  };
+  
+  
+  
 
   const handleClearEntities = () => {
     setFormValues({
@@ -196,65 +206,7 @@ const Reservation2 = () => {
           <Header />
           <SideNavBar />
           <div className='subheader'>
-            <h2>RESERVATION</h2>
-          </div>
-          <div className='cit-banner'></div>
-          <div className='color-yellow-palete'></div>
-          <div className='color-red-palete'></div>
-          <div className='color-gray-palete'></div>
-          <div className='color-black-palete'></div>
-          <div className='selectsched'>
-            <h2><LuCalendarClock size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT SCHEDULE</h2>
-          </div>
-          <div className='calendar-div'>
-            <Calendar onDateSelect={handleDateSelect} />
-          </div>
-          <div className='selecttime'>
-            <h2><AiOutlineClockCircle size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT AVAILABLE TIMEFRAME</h2>
-          </div>
-          <div className='timeframe'>
-          <div className="pick-pick-container">
-          <BiSolidTimeFive size={25} style={{marginLeft: '10px', marginRight: '10px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/> 
-              <h4>Select Pick-Up Time</h4>
-              <br/>
-              <select 
-                id="pickup" 
-                name="pickup" 
-                style={{ position: 'absolute', top: '55px', left: '55px', width: '190px'}}
-                value={formValues.pickUpTime}
-                onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
-                required
-              >
-                <option value="" disabled>Select Pick-up Time</option>
-                {Array.from({ length: 24 }).map((_, index) => {
-                  const hour = index % 12 || 12;
-                  const ampm = index < 12 ? 'AM' : 'PM';
-                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
-                  return <option key={index} value={time}>{time}</option>;
-                })}
-              </select>
-            </div>
-
-            <div className="pick-depart-container" style={{marginTop: '60px'}}>
-            <BiSolidTimeFive size={25} style={{marginLeft: '10px', marginRight: '10px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>
-              <h4>Select Departure Time</h4>
-              <select 
-                id="departure" 
-                name="departure"
-                style={{position: 'absolute', top: '140px', left: '55px'}} 
-                value={formValues.departureTime}
-                onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})} 
-                required
-              >
-                <option value="" disabled>Select Departure Time</option>
-                {Array.from({ length: 24 }).map((_, index) => {
-                  const hour = index % 12 || 12;
-                  const ampm = index < 12 ? 'AM' : 'PM';
-                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
-                  return <option key={index} value={time}>{time}</option>;
-                })}
-              </select>
-            </div>
+            <h2 style={{fontSize: '36px'}}>RESERVATION</h2>
           </div>
           <div className='resform'>
             <div className='restitle'>
@@ -315,6 +267,7 @@ const Reservation2 = () => {
                 style={{fontSize: '14px'}}  
                 placeholder='Schedule'
                 value={selectedDate ? `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}` : ''}
+                onClick={() => setIsModalOpen(true)}
                 readOnly
                 required
               />
@@ -343,31 +296,41 @@ const Reservation2 = () => {
             </div>
             <div className='pickup'>
               <BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
-              <input 
-                type="text" 
+              <select
+                className="pickupselect"
                 id="pickup" 
                 name="pickup" 
-                style={{fontSize: '14px'}} 
-                placeholder='Pick up time'
                 value={formValues.pickUpTime}
-                onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})}
-                readOnly 
+                onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
                 required
-              />
+              >
+                <option value="" disabled>Select Pick-up Time</option>
+                {Array.from({ length: 24 }).map((_, index) => {
+                  const hour = index % 12 || 12;
+                  const ampm = index < 12 ? 'AM' : 'PM';
+                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
+                  return <option key={index} value={time}>{time}</option>;
+                })}
+              </select>
             </div>
             <div className='departure'>
               <BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
-              <input 
-                type="text" 
-                id="departure" 
-                name="departure" 
-                placeholder='Departure time'
-                style={{fontSize: '14px'}} 
+              <select 
+                id="departure"
+                className="departureselect" 
+                name="departure"
                 value={formValues.departureTime}
-                onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})}
-                readOnly 
+                onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})} 
                 required
-              />
+              >
+                <option value="" disabled>Select Departure Time</option>
+                {Array.from({ length: 24 }).map((_, index) => {
+                  const hour = index % 12 || 12;
+                  const ampm = index < 12 ? 'AM' : 'PM';
+                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
+                  return <option key={index} value={time}>{time}</option>;
+                })}
+              </select>
             </div>
             <div className='file-upload'>
               <label htmlFor="file-upload"> 
@@ -395,6 +358,11 @@ const Reservation2 = () => {
             <div className='sendreq'>
               <button className='sendreqbutton' onClick={handleSubmit}><IoIosSend style={{marginRight: '5px', marginBottom: '-2px'}}/>SEND REQUEST</button>
             </div>
+            <CalendarModal show={isModalOpen} onClose={() => setIsModalOpen(false)} onDateConfirm={handleDateConfirm}>
+            <Calendar onDateSelect={handleDateSelect} />
+
+            </CalendarModal>
+    
             <div className='summarylabel'>
               <h2>SUMMARY OF REQUEST</h2>
             </div>
@@ -434,6 +402,7 @@ const Reservation2 = () => {
             </div>
           </div>
           <div className='cit-bglogo'></div>
+          <div className='cit-bglogo1'></div>
         </>
       )}
     </div>

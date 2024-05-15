@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../CSS/userCSS/notification.css';
 import { BsBellFill } from "react-icons/bs";
 import Header from './Header';
-import SideNavBar from './SideNavBar';
+import SideNavBar from './SideNavbar';
 
 
 const Notifications = () => {

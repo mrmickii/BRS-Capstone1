@@ -14,7 +14,9 @@
 .opc-view-req-container {
   padding-bottom: 1.1%;
 }
-
+.add-vehicle{
+  padding: 15px 30px;
+}
 
 .opc-requests-header{
   display: flex;
