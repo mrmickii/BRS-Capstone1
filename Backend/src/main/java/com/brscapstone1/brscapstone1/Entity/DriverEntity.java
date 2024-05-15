@@ -15,6 +15,7 @@ public class DriverEntity {
   private int id;
   private String driverName;
   private String contactNumber;
+  private String status;
   
   public int getId() {
     return id;
@@ -34,9 +35,16 @@ public class DriverEntity {
   public void setContactNumber(String contactNumber) {
     this.contactNumber = contactNumber;
   }
-  public DriverEntity(String driverName, String contactNumber) {
+  public String getStatus() {
+    return status;
+  }
+  public void setStatus(String status) {
+    this.status = status;
+  }
+  public DriverEntity(String driverName, String contactNumber, String status) {
     this.driverName = driverName;
     this.contactNumber = contactNumber;
+    this.status = status;
   }
   public DriverEntity() {
     super();

@@ -18,6 +18,9 @@ public class DriverService {
   }
 
   public DriverEntity post(DriverEntity post){
+    if(post.getStatus() == null || post.getStatus().isEmpty()){
+      post.setStatus("Pending");
+    }
     return driverRepo.save(post);
   }
 
@@ -28,6 +31,7 @@ public class DriverService {
       driver = driverRepo.findById(id).orElseThrow(() -> new NoSuchElementException("Driver with id " +id+ " does not exist"));
       driver.setDriverName(newDriver.getDriverName());
       driver.setContactNumber(newDriver.getContactNumber());
+      driver.setStatus(newDriver.getStatus());
       return driverRepo.save(driver);
     } catch(NoSuchElementException e){
       throw e;

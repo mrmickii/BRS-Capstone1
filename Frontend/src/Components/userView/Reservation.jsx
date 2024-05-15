@@ -50,7 +50,7 @@ const Reservation = () => {
         {vehicles.map((vehicle, index) => (
           <div className='vehicle-info' key={index}>
             <h1 className='vehicle-name'>{vehicle.vehicleType}</h1>
-            <p>Status: {/* Insert diri ang availability status */}</p>
+            <p>Status: {vehicle.status}</p>
             <p className='vehicle-pn-cap' style={{fontSize: '16px'}}>
               Plate Number: {vehicle.plateNumber}
               <p>Capacity: {vehicle.capacity}</p>

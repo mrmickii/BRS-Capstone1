@@ -14,6 +14,10 @@ public class VehicleService {
   VehicleRepository vehicleRepository;
 
   public VehicleEntity post(VehicleEntity post){
+
+    if(post.getStatus() == null || post.getStatus().isEmpty()){
+      post.setStatus("Pending");
+    }
     return vehicleRepository.save(post);
   }
 
@@ -29,6 +33,7 @@ public class VehicleService {
       vehicle.setVehicleType(newVehicle.getVehicleType());
       vehicle.setPlateNumber(newVehicle.getPlateNumber());
       vehicle.setCapacity(newVehicle.getCapacity());
+      vehicle.setStatus(newVehicle.getStatus());
       return vehicleRepository.save(vehicle);
     } catch(NoSuchElementException e){
       throw e;
