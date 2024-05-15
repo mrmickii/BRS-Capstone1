@@ -85,10 +85,10 @@ const OpcSide = () => {
                 <AiOutlineFileText size={20} /> REQUEST <span class="number">{approvedReservations.length}</span>
               </button>
               <button id="driver-button" class="header-buttons" onClick={handleDriverManagement}>
-                <AiOutlineUser size={20} /> DRIVERS <span class="number">{drivers.length}</span>
+                <AiOutlineUser size={20} /> DRIVER <span class="number">{drivers.length}</span>
               </button>
               <button id="vehicle-button" class="header-buttons" onClick={handleVehicleManagement}>
-                <AiOutlineCar size={20} /> VEHICLES <span class="number">{vehicles.length}</span>
+                <AiOutlineCar size={20} /> VEHICLE <span class="number">{vehicles.length}</span>
               </button>
             </div>
           </div>
