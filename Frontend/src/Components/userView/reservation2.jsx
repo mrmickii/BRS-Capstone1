@@ -198,64 +198,6 @@ const Reservation2 = () => {
           <div className='subheader'>
             <h2>RESERVATION</h2>
           </div>
-          <div className='cit-banner'></div>
-          <div className='color-yellow-palete'></div>
-          <div className='color-red-palete'></div>
-          <div className='color-gray-palete'></div>
-          <div className='color-black-palete'></div>
-          <div className='selectsched'>
-            <h2><LuCalendarClock size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT SCHEDULE</h2>
-          </div>
-          <div className='calendar-div'>
-            <Calendar onDateSelect={handleDateSelect} />
-          </div>
-          <div className='selecttime'>
-            <h2><AiOutlineClockCircle size={32} style={{marginRight: '15px', marginBottom: '-7px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>SELECT AVAILABLE TIMEFRAME</h2>
-          </div>
-          <div className='timeframe'>
-          <div className="pick-pick-container">
-          <BiSolidTimeFive size={25} style={{marginLeft: '10px', marginRight: '10px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/> 
-              <h4>Select Pick-Up Time</h4>
-              <br/>
-              <select 
-                id="pickup" 
-                name="pickup" 
-                style={{ position: 'absolute', top: '55px', left: '55px', width: '190px'}}
-                value={formValues.pickUpTime}
-                onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
-                required
-              >
-                <option value="" disabled>Select Pick-up Time</option>
-                {Array.from({ length: 24 }).map((_, index) => {
-                  const hour = index % 12 || 12;
-                  const ampm = index < 12 ? 'AM' : 'PM';
-                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
-                  return <option key={index} value={time}>{time}</option>;
-                })}
-              </select>
-            </div>
-
-            <div className="pick-depart-container" style={{marginTop: '60px'}}>
-            <BiSolidTimeFive size={25} style={{marginLeft: '10px', marginRight: '10px', background: '#782324', borderRadius: '50px', padding: '5px', color: 'white'}}/>
-              <h4>Select Departure Time</h4>
-              <select 
-                id="departure" 
-                name="departure"
-                style={{position: 'absolute', top: '140px', left: '55px'}} 
-                value={formValues.departureTime}
-                onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})} 
-                required
-              >
-                <option value="" disabled>Select Departure Time</option>
-                {Array.from({ length: 24 }).map((_, index) => {
-                  const hour = index % 12 || 12;
-                  const ampm = index < 12 ? 'AM' : 'PM';
-                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
-                  return <option key={index} value={time}>{time}</option>;
-                })}
-              </select>
-            </div>
-          </div>
           <div className='resform'>
             <div className='restitle'>
               <h2><AiFillFileText  size={28} style={{marginRight: '10px', marginBottom: '-5px'}}/>RESERVATION FORM</h2>
@@ -343,31 +285,41 @@ const Reservation2 = () => {
             </div>
             <div className='pickup'>
               <BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
-              <input 
-                type="text" 
+              <select
+                className="pickupselect"
                 id="pickup" 
                 name="pickup" 
-                style={{fontSize: '14px'}} 
-                placeholder='Pick up time'
                 value={formValues.pickUpTime}
-                onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})}
-                readOnly 
+                onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
                 required
-              />
+              >
+                <option value="" disabled>Select Pick-up Time</option>
+                {Array.from({ length: 24 }).map((_, index) => {
+                  const hour = index % 12 || 12;
+                  const ampm = index < 12 ? 'AM' : 'PM';
+                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
+                  return <option key={index} value={time}>{time}</option>;
+                })}
+              </select>
             </div>
             <div className='departure'>
               <BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
-              <input 
-                type="text" 
-                id="departure" 
-                name="departure" 
-                placeholder='Departure time'
-                style={{fontSize: '14px'}} 
+              <select 
+                id="departure"
+                className="departureselect" 
+                name="departure"
                 value={formValues.departureTime}
-                onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})}
-                readOnly 
+                onChange={(e) => setFormValues({...formValues, departureTime: e.target.value})} 
                 required
-              />
+              >
+                <option value="" disabled>Select Departure Time</option>
+                {Array.from({ length: 24 }).map((_, index) => {
+                  const hour = index % 12 || 12;
+                  const ampm = index < 12 ? 'AM' : 'PM';
+                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
+                  return <option key={index} value={time}>{time}</option>;
+                })}
+              </select>
             </div>
             <div className='file-upload'>
               <label htmlFor="file-upload"> 
@@ -434,6 +386,7 @@ const Reservation2 = () => {
             </div>
           </div>
           <div className='cit-bglogo'></div>
+          <div className='cit-bglogo1'></div>
         </>
       )}
     </div>
