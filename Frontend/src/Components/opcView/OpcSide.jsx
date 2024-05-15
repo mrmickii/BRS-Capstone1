@@ -100,7 +100,7 @@ const OpcSide = () => {
           </div> 
           <div className="rdc-box">
           {approvedReservations.map((reservation, index) => (
-              <div className="request-data-container1" key={index}>
+              <div className="request-main-data-container1" key={index}>
                 <div className="r-d-container-left1">
                   <h2>Type of Trip: {reservation.typeOfTrip}</h2>
                   <p>Capacity: {reservation.capacity}</p>
@@ -115,9 +115,11 @@ const OpcSide = () => {
                   <p>Pick-up Time: {reservation.pickUpTime}</p>
                   <p>Reason: {reservation.reason}</p>
                 </div>
-                <div className="rdc-buttons">
+                <div className="r-d-container-right1">
                   <button>Accept</button>
                   <button>Reject</button>
+                  <button>View Attached File</button>
+                  <button>View Feedback</button>
                 </div>
               </div>
           ))}

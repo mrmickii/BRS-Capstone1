@@ -43,12 +43,13 @@
   flex-direction: column;
 }
 
-.request-data-container1 {
-  width: 100%;
+.request-main-data-container1 {
+  width: 97.8%;
   min-height: 250px;
   max-height: 1000px;
   background-color: white;
   display: flex;
+  margin-left: 25px;
 }
 
 .r-d-container-left1 {
@@ -90,6 +91,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin-right: 30px;
 }
 
 
@@ -99,10 +101,11 @@
   border: none;
   padding: 15px; 
   display: flex; 
-  margin-right: 20px;
+  margin-right: px;
   align-items: center; 
   justify-content: center; 
 }
+
 
 .r-d-container-right1 button:nth-child(1) {
   background-color: rgb(15, 172, 15);
