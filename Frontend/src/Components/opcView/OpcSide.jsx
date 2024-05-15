@@ -19,6 +19,9 @@ const OpcSide = () => {
     navigate('/vehicle-management');
   }
 
+  const handleViewApproveRequests = () => {
+    
+  }
   useEffect(() => {
     fetchApprovedReservations();
     fetchDrivers();
@@ -74,17 +77,26 @@ const OpcSide = () => {
       <div className="opc-title">
         <h1 className="title-opc">REQUESTS</h1>
       </div>
-      <div className="data-container1">
+      <div className="opc-data-container1">
         <div className="sample">
-          <div className="opc-header-button-container">
-            <div className="opc-header-button">
-              <button className="header-buttons"> <AiOutlineFileText size={20}/> Request <span className="number">{approvedReservations.length}</span> </button>
-              <button className="header-buttons" onClick={handleDriverManagement}> <AiOutlineUser size={20}/> Driver <span className="number">{drivers.length}</span> </button>
-              <button className="header-buttons" onClick={handleVehicleManagement}> <AiOutlineCar size={20}/> Vehicle <span className="number">{vehicles.length}</span> </button>
+        <div class="opc-header-button-container">
+            <div class="opc-header-button">
+              <button id="request-button" class="header-buttons">
+                <AiOutlineFileText size={20} /> REQUEST <span class="number">{approvedReservations.length}</span>
+              </button>
+              <button id="driver-button" class="header-buttons" onClick={handleDriverManagement}>
+                <AiOutlineUser size={20} /> DRIVERS <span class="number">{drivers.length}</span>
+              </button>
+              <button id="vehicle-button" class="header-buttons" onClick={handleVehicleManagement}>
+                <AiOutlineCar size={20} /> VEHICLES <span class="number">{vehicles.length}</span>
+              </button>
             </div>
           </div>
-          <div className="opc-requests-header-container opc-requests-header">
-            <h1> <AiOutlineFileText size={35}/> REQUESTS</h1>
+          <div className="opc-requests-header-container">
+          <div className="opc-main-requests-header">
+              <h1> <AiOutlineCar size={35}/> VEHICLES </h1>
+              <button onClick={handleViewApproveRequests}>View Approved Requests</button>
+            </div>
           </div> 
           <div className="rdc-box">
           {approvedReservations.map((reservation, index) => (

@@ -5,7 +5,7 @@
 }
 
 .opc-title {
-  margin-right: 1000px;
+  margin-right: 900px;
   margin-top: 1%;
   display: flex;
   align-items: flex-start;
@@ -15,20 +15,23 @@
   padding-bottom: 1.1%;
 }
 
-.opc-requests-header{
+.opc-vehicle-requests-header{
   display: flex;
-  gap: 1150px;
+  max-width: 1308px;
+  gap: 949px;
   background-color: #782324;
   align-items: center;
-  padding: 15px 0px;
+  margin-left: 26px;
+  padding: 15px 15px;
+  padding-right: 20px;
 }
 
-.opc-requests-header h1{
+.opc-vehicle-requests-header h1{
   color: #FFF;
   margin-left: 20px;
 }
 
-.opc-requests-header button{
+.opc-vehicle-requests-header button{
   border: none;
   background-color: #f4c108;
   border-radius: 20px;
@@ -37,9 +40,11 @@
   padding: 10px 15px;
 }
 
-.data-container1 {
-  width: 80%;
-  min-height: 400px;
+.vehicle-data-container1 {
+  width: 1400px;
+  max-height: 750px;
+  margin-left: 18%;
+  padding: 20px;
   background-color: #cbc3c3;
   overflow-y: auto;
   display: flex;
