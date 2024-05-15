@@ -4,6 +4,7 @@ import '../../CSS/opcCSS/opc-update-driver.css';
 const UpdateDriver = ({ driver, onUpdate, onClose }) => {
   const [updatedDriverName, setUpdatedDriverName] = useState(driver.driverName);
   const [updatedContactNumber, setUpdatedContactNumber] = useState(driver.contactNumber);
+  const [updatedStatus, setUpdatedStatus] = useState(driver.contactNumber);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -17,6 +18,7 @@ const UpdateDriver = ({ driver, onUpdate, onClose }) => {
         body: JSON.stringify({
           driverName: updatedDriverName,
           contactNumber: updatedContactNumber,
+          status: updatedStatus
         }),
       });
 
@@ -27,6 +29,7 @@ const UpdateDriver = ({ driver, onUpdate, onClose }) => {
       onUpdate({
         driverName: updatedDriverName,
         contactNumber: updatedContactNumber,
+        status: updatedStatus
       });
 
       setSuccessMessage('Driver information updated successfully!');
