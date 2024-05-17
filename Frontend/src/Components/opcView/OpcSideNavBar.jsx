@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import '../../CSS/userCSS/side-nav-bar.css';
+import '../../CSS/opcCSS/opc-side-nav-bar.css';
 import { MdSpaceDashboard } from "react-icons/md";
 import { BsBellFill } from 'react-icons/bs';
 import { IoMdSettings } from 'react-icons/io';

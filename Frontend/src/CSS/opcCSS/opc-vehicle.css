@@ -32,9 +32,7 @@
  
 .opc-vehicle-requests-header{
   display: flex;
-  gap: 1150px;
   max-width: 1308px;
-  gap: 949px;
   background-color: #782324;
   align-items: center;
   padding: 15px 0px;
@@ -72,20 +70,8 @@
   width: 180px;
  
 }
-.opc-vehicle-requests-header button:hover {
-  background-color: white;
-  color: #782324;
-}
- 
-.data-container1 {
-  width: 80%;
-  min-height: 700px;
-  margin-top: 40px;
-  background-color: white;
-  border-radius: 10px;
- 
-}
- 
+
+
 .rdc-box1{
   display: flex;
   flex-direction: column;
@@ -119,11 +105,13 @@
   padding: 20px;
   margin: 20px;
   border-radius: 10px;
+  justify-content: space-between;
+
   
 }
-.vecihle-info-plate{
+.vehicle-info-plate{
   position: absolute;
-  left: 800px;
+  left: 400px;
   font-weight: 700;
 }
  
@@ -139,23 +127,21 @@
  
 .vehicle-update-button{
   position: absolute;
-  left: 1450px;
+  left: 1020px;
   width: 150px;
   background-color: #00bf63;
   font-weight: 700;
 }
  
 .vehicle-delete-button{
-  position: absolute;
-  left: 1620px;
   width: 150px;
   background-color: #782324;
   color: #FFF;
   font-weight: 700;
 }
-.vecihle-info-capa{
+.vehicle-info-capa{
   position: absolute;
-  left: 1200px;
+  left: 750px;
   font-weight: 700;
 }
 .cit-bglogo {
@@ -182,5 +168,14 @@
  
 }
 .request-vehicle-data-container1{
+  position: absolute;
+  left: 433px;
+  top: 400px;
+  background-color: #CBC3C3;
+  height: 440px;
+  width: 1400px;
   overflow-y: scroll;
+}
+.vehicle-info{
+  background-color: red;
 }

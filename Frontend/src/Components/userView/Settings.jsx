@@ -6,6 +6,7 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import '../../CSS/headCSS/head-settings.css';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { MdOutlineManageAccounts } from "react-icons/md";
+import { FaLockOpen } from "react-icons/fa";
 import { updatePassword } from "firebase/auth";
 
 const Settings = () => {
@@ -94,10 +95,10 @@ const Settings = () => {
         <h1>SETTINGS</h1>
         <div className="s-container-one">
           <button className="s-box-one" onClick={showViewAccount}>
-          <MdOutlineManageAccounts />View Account
+          <MdOutlineManageAccounts size={28} style={{marginRight: '10px'}}/>View Account
           </button>
           <button className="s-box-two" onClick={showChangePassword}>
-            Change Password
+          <FaLockOpen size={20} style={{marginRight: '10px', marginBottom: '5px'}}/>Change Password
           </button>
         </div>
         {displayedContainer === 'password' && (
