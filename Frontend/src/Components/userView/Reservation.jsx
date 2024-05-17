@@ -50,11 +50,10 @@ const Reservation = () => {
         {vehicles.map((vehicle, index) => (
           <div className='vehicle-info' key={index}>
             <h1 className='vehicle-name'>{vehicle.vehicleType}</h1>
-            <p>Status: {vehicle.status}</p>
-            <p className='vehicle-pn-cap' style={{fontSize: '16px'}}>
-              Plate Number: {vehicle.plateNumber}
-              <p>Capacity: {vehicle.capacity}</p>
-            </p>
+            <p className='vehicle-stat'>Status: {vehicle.status}</p>
+            <p className='vehicle-pn'>Plate Number: <span style={{fontSize: '16px', color: '#782324'}}>{vehicle.plateNumber}</span> </p>
+              <p className='vehicle-cap'>Capacity: {vehicle.capacity}</p>
+
             <button
               style={{width: '200px', height: '50px', fontSize: '16px', borderRadius: '30px', fontWeight: '700'}}
               onClick={() => handleSelectVehicle(vehicle)}
