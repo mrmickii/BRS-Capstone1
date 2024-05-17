@@ -1,23 +1,23 @@
 .opc-view-container {
-
-  align-items: center; 
+ 
+  align-items: center;
 }
-
+ 
 .opc-title {
   margin-right: 900px;
   margin-top: 1%;
   align-items: flex-start;
 }
-
+ 
 .opc-view-req-container {
   padding-bottom: 1.1%;
 }
-
+ 
 .opc-vehicle-header-button-container {
   display: flex;
   justify-content: center;
 }
-
+ 
 .opc-vehicle-header-button {
   display: flex;
   justify-content: space-around;
@@ -25,11 +25,11 @@
   height: 90px;
   max-width: 1400px;
 }
-
+ 
 .opc-vehicle-requests-header-container{
   height: 100px;
 }
-
+ 
 .opc-vehicle-requests-header{
   display: flex;
   gap: 1150px;
@@ -42,7 +42,7 @@
   padding: 15px 15px;
   padding-right: 20px;
 }
-
+ 
 .opc-requests-header{
   background-color: #782324;
   align-items: center;
@@ -51,13 +51,13 @@
   padding-right: 20px;
   padding: 15px 0px;
 }
-
+ 
 .opc-vehicle-requests-header h1{
   color: #FFF;
   margin-left: 20px;
 }
-
-
+ 
+ 
 .opc-vehicle-requests-header button {
   position: absolute;
   left: 1590px;
@@ -70,13 +70,13 @@
   font-weight: bold;
   cursor: pointer;
   width: 180px;
-
+ 
 }
 .opc-vehicle-requests-header button:hover {
-  background-color: white; 
-  color: #782324; 
+  background-color: white;
+  color: #782324;
 }
-
+ 
 .data-container1 {
   width: 80%;
   min-height: 700px;
@@ -85,57 +85,58 @@
   border-radius: 10px;
  
 }
-
+ 
 .rdc-box1{
   display: flex;
   flex-direction: column;
   gap: 20px;
   overflow-y: auto;
 }
-
+ 
 .vehicle-availability{
   text-align: center;
   margin-top: 150px;
   font-size: 16px;
 }
-
+ 
 .vehicle-data-container {
   border-radius: 10px;
-
+ 
 }
-
+ 
 .vehicle-data-container1 {
   width: 1400px;
   max-height: 750px;
   margin-left: 18%;
   padding: 20px;
   background-color: #cbc3c3;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
-
-
+ 
+ 
 .vehicle-info{
   padding: 20px;
   margin: 20px;
   border-radius: 10px;
+  
 }
 .vecihle-info-plate{
   position: absolute;
   left: 800px;
   font-weight: 700;
 }
-
-
+ 
+ 
 .vehicle-update-button, .vehicle-delete-button{
   width: 100px;
   padding: 10px 20px;
   border: none;
   border-radius: 15px;
   margin-top: 10px;
+  
 }
-
+ 
 .vehicle-update-button{
   position: absolute;
   left: 1450px;
@@ -143,11 +144,11 @@
   background-color: #00bf63;
   font-weight: 700;
 }
-
+ 
 .vehicle-delete-button{
   position: absolute;
   left: 1620px;
-  width: 150px; 
+  width: 150px;
   background-color: #782324;
   color: #FFF;
   font-weight: 700;
@@ -161,7 +162,7 @@
   position: fixed;
   top: 200px;
   left: 1200px;
-  width: 1000px; 
+  width: 1000px;
   height: 900px;
   background-image: url(../../Images/citbglogo.png);
   background-size: cover;
@@ -171,12 +172,15 @@
   filter: saturate(0%);
   opacity: 0.2;
 }
-
+ 
 .sample{
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-height: 1000px;
   min-height: 100px;
-  
+ 
+}
+.request-vehicle-data-container1{
+  overflow-y: scroll;
 }

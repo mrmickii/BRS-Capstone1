@@ -7,6 +7,7 @@ import { auth } from '../../FirebaseConfig';
 const Header = () => {
   const [userName, setUserName] = useState(null);
   const [greeting, setGreeting] = useState("");
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -36,13 +37,23 @@ const Header = () => {
   };  
 
   const handleLogout = () => {
+    setShowLogoutModal(true);
+  };
+
+  const confirmLogout = () => {
     auth.signOut() 
       .then(() => {
         console.log("User logged out successfully");
+        setShowLogoutModal(false);
       })
       .catch((error) => {
         console.error("Logout error:", error);
+        setShowLogoutModal(false);
       });
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutModal(false);
   };
 
   return (
@@ -60,6 +71,16 @@ const Header = () => {
           </button>
         </div>
       </div>
+
+      {showLogoutModal && (
+        <div className="logout-modal">
+          <div className="logout-modal-content">
+            <p style={{color: '#782324', fontWeight: '700', marginBottom: '50px'}}>Are you sure you want to log out?</p>
+            <button className="yes-btn"onClick={confirmLogout}>Yes</button>
+            <button className="no-btn" onClick={cancelLogout}>No</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

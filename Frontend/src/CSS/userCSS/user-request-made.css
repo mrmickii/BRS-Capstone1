@@ -2,12 +2,14 @@
     font-family: 'Poppins', sans-serif;
   }
   
-  .subheader {
+  .subheader2 {
     position: absolute;
     left: 350px;
     top: 100px;
     color: #782324;
+
   }
+
   
   .requestsmade-container{
     position: absolute;

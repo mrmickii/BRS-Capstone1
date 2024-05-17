@@ -172,7 +172,7 @@ const OpcVehicle = () => {
                 <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{driverCount}</span>
               </button>
               <button className="header-buttons" id="vehicleButton" onClick={handleVehicleManagement}>
-                <FaBus size={20} style={{ marginLeft: '25px' }} /> Vehicle <span className="number">{vehicleCount}</span>
+                <FaBus size={20} style={{ marginLeft: '25px' }} /> VEHICLE <span className="number">{vehicleCount}</span>
               </button>
             </div>
           </div>
@@ -189,19 +189,16 @@ const OpcVehicle = () => {
             <div className="request-vehicle-data-container1">
               {vehicles.map((vehicle, index) => (
                 <div className='vehicle-info' key={index}>
-                  <h1 className='vecihle-info-h1'>{vehicle.vehicleType}
-                    <button className='vehicle-update-button' onClick={() => handleUpdateVehicle(vehicle)}>Update
-                    </button>
-                  </h1>
-                  <p className='vecihle-info-plate'><FaRectangleAd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Plate Number: {vehicle.plateNumber}
-                  </p>
+                  <h1 className='vecihle-info-h1'>{vehicle.vehicleType}</h1>
+                    <button className='vehicle-update-button' onClick={() => handleUpdateVehicle(vehicle)}>Update</button>
+                  <p className='vecihle-info-plate'><FaRectangleAd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Plate Number: {vehicle.plateNumber}</p>
                   <button className='vehicle-delete-button' onClick={() => handleDeleteVehicle(vehicle)}>Delete</button>
                   <p className='vecihle-info-capa'><IoMdPersonAdd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Capacity: {vehicle.capacity}</p>
                 </div>
               ))}
             </div>
+          
           )}
-        
         </div>
           </div>
           {showAddVehicleDialog && <AddVehicle onClose={() => setShowAddVehicleDialog(false)} />} 

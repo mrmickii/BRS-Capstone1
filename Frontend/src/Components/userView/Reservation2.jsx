@@ -18,6 +18,7 @@ import { IoIosSend } from "react-icons/io";
 import '../../CSS/userCSS/reservation2.css';
 import { app, auth } from "../../FirebaseConfig";
 import { getFirestore } from 'firebase/firestore';
+import { IoArrowBackCircle } from "react-icons/io5";
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { useLocation } from 'react-router-dom';
 
@@ -212,7 +213,7 @@ const Reservation2 = () => {
             <h2 style={{fontSize: '36px'}}>RESERVATION</h2>
           </div>
           <div className='backing'>
-            <button onClick={goBack} className='back-win'>Back to Select Vehicle</button>
+            <button onClick={goBack} className='back-win'><IoArrowBackCircle style={{marginRight: '10px', marginBottom: '-3px'}}/>Back to Select Vehicle</button>
             </div>
           <div className='resform'>
             <div className='restitle'>

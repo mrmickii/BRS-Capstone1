@@ -13,8 +13,8 @@ const UserRequestsMade = () => {
     <div className="reservation">
       <Header />
       <SideNavBar />
-      <div className='subheader'>
-        <h2>REQUESTS MADE</h2>
+      <div className='subheader2'>
+        <h1>REQUESTS MADE</h1>
       </div>
       <button onClick={goBack} className="back-button"><IoArrowBackCircleSharp size={20} style={{marginRight:'10px', marginBottom: '-4px'}}/> Back to reservation</button>
       <div className='requestsmade-container'>
