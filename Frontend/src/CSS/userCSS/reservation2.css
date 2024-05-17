@@ -269,7 +269,7 @@ input[type="radio"]:checked + label::before {
   border: none; 
 }
 
-.pickup{
+.departure{
   position: absolute;
   left: 40px;
   top: 220px;
@@ -277,7 +277,7 @@ input[type="radio"]:checked + label::before {
   color: #782324;
 }
 
-.pickupselect{
+.departureselect{
   width: 200px; 
   height: 35px; 
   padding: 5px;
@@ -285,7 +285,7 @@ input[type="radio"]:checked + label::before {
   border: none;
 }
 
-.departure{
+.pickup{
   position: absolute;
   left: 300px;
   top: 220px;
@@ -293,7 +293,7 @@ input[type="radio"]:checked + label::before {
   color: #782324;
 }
 
-.departureselect{
+.pickupselect{
   width: 200px; 
   height: 35px; 
   padding: 5px;

@@ -125,15 +125,16 @@ const Reservation2 = () => {
       !formValues.destinationFrom ||
       !formValues.capacity ||
       !formValues.department ||
-      !formValues.schedule ||
+      !selectedDate || 
       !formValues.vehicleType ||
-      !formValues.pickUpTime ||
+      (!formValues.pickUpTime && formValues.typeOfTrip !== 'One Way') ||
       !formValues.departureTime ||
       !formValues.reason
     ) {
       alert('Please fill in all required fields.');
       return;
     }
+    const pickUpTime = formValues.typeOfTrip === 'One Way' ? 'N/A' : formValues.pickUpTime;
   
     const reservationData = {
       typeOfTrip: formValues.typeOfTrip,
@@ -141,15 +142,16 @@ const Reservation2 = () => {
       destinationFrom: formValues.destinationFrom,
       capacity: formValues.capacity,
       department: formValues.department,
-      schedule: formValues.schedule,
+      schedule: selectedDate, 
       vehicleType: formValues.vehicleType,
-      pickUpTime: formValues.pickUpTime,
+      pickUpTime: pickUpTime,
       departureTime: formValues.departureTime,
+      reason: formValues.reason,
     };
   
     const formData = new FormData();
     formData.append('reservation', JSON.stringify(reservationData));
-    
+  
     if (formValues.file) {
       formData.append('file', formValues.file);
     }
@@ -302,24 +304,37 @@ const Reservation2 = () => {
               </select>
             </div>
             <div className='pickup'>
-              <BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
-              <select
-                className="pickupselect"
-                id="pickup" 
-                name="pickup" 
-                value={formValues.pickUpTime}
-                onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
-                required
-              >
-                <option value="" disabled>Select Pick-up Time</option>
-                {Array.from({ length: 24 }).map((_, index) => {
-                  const hour = index % 12 || 12;
-                  const ampm = index < 12 ? 'AM' : 'PM';
-                  const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
-                  return <option key={index} value={time}>{time}</option>;
-                })}
-              </select>
-            </div>
+                    <BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
+                    {formValues.typeOfTrip === 'One Way' ? (
+                      <input
+                        className="pickupinput"
+                        type="text"
+                        id="pickup" 
+                        name="pickup" 
+                        value="N/A"
+                        readOnly
+                        disabled
+                        style={{ width: '200px' }}
+                      />
+                    ) : (
+                      <select
+                        className="pickupselect"
+                        id="pickup" 
+                        name="pickup" 
+                        value={formValues.pickUpTime}
+                        onChange={(e) => setFormValues({...formValues, pickUpTime: e.target.value})} 
+                        required
+                      >
+                        <option value="" disabled>Select Pick-up Time</option>
+                        {Array.from({ length: 24 }).map((_, index) => {
+                          const hour = index % 12 || 12;
+                          const ampm = index < 12 ? 'AM' : 'PM';
+                          const time = `${hour}:${index % 2 === 0 ? '00' : '30'} ${ampm}`;
+                          return <option key={index} value={time}>{time}</option>;
+                        })}
+                      </select>
+                    )}
+                  </div>
             <div className='departure'>
               <BiSolidTimeFive size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>
               <select 
