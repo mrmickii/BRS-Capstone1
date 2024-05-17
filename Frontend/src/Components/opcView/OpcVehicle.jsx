@@ -172,7 +172,7 @@ const OpcVehicle = () => {
                 <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{driverCount}</span>
               </button>
               <button className="header-buttons" id="vehicleButton" onClick={handleVehicleManagement}>
-                <FaBus size={20} style={{ marginLeft: '25px' }} /> Vehicle <span className="number">{vehicleCount}</span>
+                <FaBus size={20} style={{ marginLeft: '25px' }} /> VEHICLE <span className="number">{vehicleCount}</span>
               </button>
             </div>
           </div>

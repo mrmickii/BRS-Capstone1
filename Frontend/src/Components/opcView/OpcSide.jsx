@@ -4,6 +4,7 @@ import OpcNavBar from './OpcSideNavBar';
 import '../../CSS/opcCSS/opc-side.css';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
+import { FaBus } from "react-icons/fa";
 
 const OpcSide = () => {
   const navigate = useNavigate();
@@ -82,13 +83,13 @@ const OpcSide = () => {
         <div class="opc-header-button-container">
             <div class="opc-header-button">
               <button id="request-button" class="header-buttons">
-                <AiOutlineFileText size={20} /> REQUEST <span class="number">{approvedReservations.length}</span>
+                <AiOutlineFileText size={20} style={{ marginLeft: '19px' }} /> REQUEST <span class="number">{approvedReservations.length}</span>
               </button>
               <button id="driver-button" class="header-buttons" onClick={handleDriverManagement}>
-                <AiOutlineUser size={20} /> DRIVER <span class="number">{drivers.length}</span>
+                <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> DRIVER <span class="number">{drivers.length}</span>
               </button>
               <button id="vehicle-button" class="header-buttons" onClick={handleVehicleManagement}>
-                <AiOutlineCar size={20} /> VEHICLE <span class="number">{vehicles.length}</span>
+                <FaBus size={20}  style={{ marginLeft: '25px' }} /> VEHICLE <span class="number">{vehicles.length}</span>
               </button>
             </div>
           </div>
