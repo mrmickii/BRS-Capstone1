@@ -163,8 +163,8 @@ const OpcVehicle = () => {
       </div>
       <div className="vehicle-data-container1">
         <div className="sample">
-          <div className="opc-header-button-container">
-            <div className="opc-header-button">
+          <div className="opc-vehicle-header-button-container">
+            <div className="opc-vehicle-header-button">
               <button className="header-buttons" onClick={handleRequest}>
                 <AiOutlineFileText size={20} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{approvedReservationCount}</span>
               </button>
@@ -176,7 +176,7 @@ const OpcVehicle = () => {
               </button>
             </div>
           </div>
-          <div className="opc-requests-header-container">
+          <div className="opc-vehicle-requests-header-container">
           <div className="opc-vehicle-requests-header">
               <h1> <AiOutlineCar size={35}/> VEHICLES </h1>
               <button onClick={handleAddVehicle}>Add Vehicle</button>
