@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import DialogBox from './OpcAddDriver'; 
 import DeleteConfirmationDialogBox from './OpcDeleteDriver';
 import UpdateDialogBox from './OpcUpdateDriver'; 
+import { FaBus } from "react-icons/fa";
 
 const OpcDriver = () => {
   const navigate = useNavigate();
@@ -164,11 +165,11 @@ const OpcDriver = () => {
               <button className="header-buttons" onClick={handleRequest}>
                 <AiOutlineFileText size={20} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{approvedReservationCount}</span>
               </button>
-              <button className="header-buttons" id="driverButton" onClick={handleDriverManagement}>
+              <button className="header-buttons" onClick={handleDriverManagement}>
                 <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{driverCount}</span>
               </button>
-              <button className="header-buttons" onClick={handleVehicleManagement}>
-                <AiOutlineCar size={20} style={{ marginLeft: '25px' }} />VEHICLE <span className="number">{vehicleCount}</span>
+              <button className="header-buttons" id="vehicleButton" onClick={handleVehicleManagement}>
+                <FaBus size={20} style={{ marginLeft: '25px' }} /> VEHICLE <span className="number">{vehicleCount}</span>
               </button>
             </div>
           </div>
