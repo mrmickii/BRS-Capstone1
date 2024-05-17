@@ -4,7 +4,7 @@
 }
 
 .opc-title {
-  margin-right: 1000px;
+  margin-right: 900px;
   margin-top: 1%;
   align-items: flex-start;
 }
@@ -13,17 +13,27 @@
   padding-bottom: 1.1%;
 }
 
+.opc-vehicle-requests-header{
+  display: flex;
+  max-width: 1308px;
+  gap: 949px;
+}
 .opc-requests-header{
   background-color: #782324;
+  align-items: center;
+  margin-left: 26px;
+  padding: 15px 15px;
+  padding-right: 20px;
   padding: 15px 0px;
 }
 
-.opc-requests-header h1{
+.opc-vehicle-requests-header h1{
   color: #FFF;
   margin-left: 20px;
 }
 
-.opc-requests-header button{
+
+.opc-requests-header button {
   position: absolute;
   left: 1650px;
   border: none;
@@ -34,6 +44,7 @@
   font-weight: bold;
   cursor: pointer;
   width: 180px;
+
 }
 .opc-requests-header button:hover {
   background-color: white; 

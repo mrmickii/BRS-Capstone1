@@ -5,6 +5,7 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
   const [updatedVehicleType, setUpdatedVehicleType] = useState(vehicle.name);
   const [updatedPlateNumber, setUpdatedPlateNumber] = useState(vehicle.plateNumber);
   const [updatedCapacity, setUpdatedCapacity] = useState(vehicle.capacity);
+  const [updatedStatus, setUpdatedStatus] = useState(vehicle.capacity);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -19,6 +20,7 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
           vehicleType: updatedVehicleType,
           plateNumber: updatedPlateNumber,
           capacity: updatedCapacity,
+          status: updatedStatus,
         }),
       });
 
@@ -30,6 +32,7 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
         vehicleType: updatedVehicleType,
         plateNumber: updatedPlateNumber,
         capacity: updatedCapacity,
+        status: updatedStatus,
       });
 
       setSuccessMessage('Vehicle information updated successfully!');
@@ -55,7 +58,7 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
         </div>
         <input
           type="text"
-          value={updatedName}
+          value={updatedVehicleType}
           onChange={(e) => setUpdatedVehicleType(e.target.value)}
           placeholder="Vehicle Name"
         />

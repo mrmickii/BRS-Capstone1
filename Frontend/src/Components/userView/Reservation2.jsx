@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
-import SideNavBar from './SideNavbar';
+import SideNavBar from './SideNavBar';
 import CalendarModal from './CalendarModal';
 import Calendar from './Calendar';
 import Preloader from './Preloader';
@@ -77,9 +77,8 @@ const Reservation2 = () => {
     console.log('Confirming schedule:', selectedDate); // Check if handleDateConfirm is triggered
     setFormValues({...formValues, schedule: selectedDate});
   };
-  
-  
-  
+
+ 
 
   const handleClearEntities = () => {
     setFormValues({
@@ -98,6 +97,10 @@ const Reservation2 = () => {
     });
     setSelectedDate(null);
   };
+  
+    const goBack = () => {
+      window.history.back(); 
+    };
 
   const handleDepartmentChange = (e) => {
     setFormValues({ ...formValues, department: e.target.value });
@@ -208,6 +211,9 @@ const Reservation2 = () => {
           <div className='subheader'>
             <h2 style={{fontSize: '36px'}}>RESERVATION</h2>
           </div>
+          <div className='backing'>
+            <button onClick={goBack} className='back-win'>Back to Select Vehicle</button>
+            </div>
           <div className='resform'>
             <div className='restitle'>
               <h2><AiFillFileText  size={28} style={{marginRight: '10px', marginBottom: '-5px'}}/>RESERVATION FORM</h2>
@@ -362,6 +368,7 @@ const Reservation2 = () => {
             <Calendar onDateSelect={handleDateSelect} />
 
             </CalendarModal>
+          
     
             <div className='summarylabel'>
               <h2>SUMMARY OF REQUEST</h2>
@@ -407,6 +414,7 @@ const Reservation2 = () => {
       )}
     </div>
   );
+
 }
 
 export default Reservation2;

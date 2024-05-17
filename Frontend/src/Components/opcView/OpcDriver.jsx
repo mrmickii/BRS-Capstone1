@@ -157,23 +157,23 @@ const OpcDriver = () => {
       <div className="opc-title">
         <h1 className="title-opc">DRIVERS</h1>
       </div>
-      <div className="data-container1">
+      <div className="driver-data-container1">
         <div className="sample">
           <div className="opc-header-button-container">
             <div className="opc-header-button">
               <button className="header-buttons" onClick={handleRequest}>
-                <AiOutlineFileText size={20} style={{ marginLeft: '19px' }} /> Request <span className="number">{approvedReservationCount}</span>
+                <AiOutlineFileText size={20} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{approvedReservationCount}</span>
               </button>
               <button className="header-buttons" id="driverButton" onClick={handleDriverManagement}>
-                <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> Driver <span className="number">{driverCount}</span>
+                <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{driverCount}</span>
               </button>
               <button className="header-buttons" onClick={handleVehicleManagement}>
-                <AiOutlineCar size={20} style={{ marginLeft: '25px' }} /> Vehicle <span className="number">{vehicleCount}</span>
+                <AiOutlineCar size={20} style={{ marginLeft: '25px' }} />VEHICLE <span className="number">{vehicleCount}</span>
               </button>
             </div>
           </div>
           <div className="opc-requests-header-container">
-            <div className="opc-requests-header">
+            <div className="opc-driver-requests-header">
               <h1> <AiOutlineUser size={35}/> DRIVERS </h1>
               <button onClick={handleAddDriver}>Add Driver</button>
             </div> 

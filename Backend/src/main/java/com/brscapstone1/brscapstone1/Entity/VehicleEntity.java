@@ -16,6 +16,7 @@ public class VehicleEntity {
   private String vehicleType;
   private String plateNumber;
   private int capacity;
+  private String status;
   
   public int getId() {
     return id;
@@ -41,10 +42,17 @@ public class VehicleEntity {
   public void setCapacity(int capacity) {
     this.capacity = capacity;
   }
-  public VehicleEntity(String vehicleType, String plateNumber, int capacity) {
+  public String getStatus() {
+    return status;
+  }
+  public void setStatus(String status) {
+    this.status = status;
+  }
+  public VehicleEntity(String vehicleType, String plateNumber, int capacity, String status) {
     this.vehicleType = vehicleType;
     this.plateNumber = plateNumber;
     this.capacity = capacity;
+    this.status = status;
   }
   public VehicleEntity() {
     super();

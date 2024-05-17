@@ -5,7 +5,7 @@ import { BiSolidBook } from 'react-icons/bi';
 import { BsBellFill } from 'react-icons/bs';
 import { IoMdSettings } from 'react-icons/io';
 
-const SideNavbar = () => {
+const SideNavBar = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState('');
 
@@ -48,4 +48,4 @@ const SideNavbar = () => {
   );
 };
 
-export default SideNavbar;
+export default SideNavBar;

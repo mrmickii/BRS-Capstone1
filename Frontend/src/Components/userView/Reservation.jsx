@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from './Header';
-import SideNavBar from './SideNavbar';
+import SideNavBar from './SideNavBar';
 import { FaBus } from "react-icons/fa";
 import '../../CSS/userCSS/reservation.css';
 
@@ -41,7 +41,7 @@ const Reservation = () => {
         <h2><FaBus size={32} style={{marginRight: '15px', marginBottom: '-5px'}}/>SELECT VEHICLE</h2>
       </div>
       <div className='view-request1'>
-        <Link to="/user-request-made" className="viewrequest-button" style={{textDecoration: 'none'}}>VIEW REQUESTS MADE</Link>
+        <button className="viewrequest-button" ><Link to="/user-request-made" style={{textDecoration: 'none', color: 'white', fontWeight: '700'}}>VIEW REQUESTS MADE</Link></button>
       </div>
       <div className='reminder'>
         <p>Note: Please select the vehicle that will be reasonable to use with its capacity</p>
@@ -50,7 +50,7 @@ const Reservation = () => {
         {vehicles.map((vehicle, index) => (
           <div className='vehicle-info' key={index}>
             <h1 className='vehicle-name'>{vehicle.vehicleType}</h1>
-            <p>Status: {/* Insert diri ang availability status */}</p>
+            <p>Status: {vehicle.status}</p>
             <p className='vehicle-pn-cap' style={{fontSize: '16px'}}>
               Plate Number: {vehicle.plateNumber}
               <p>Capacity: {vehicle.capacity}</p>

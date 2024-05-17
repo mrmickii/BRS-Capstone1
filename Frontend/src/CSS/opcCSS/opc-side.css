@@ -7,7 +7,7 @@
 }
 
 .opc-title {
-  margin-right: 1000px;
+  margin-right: 900px;
   margin-top: 1%;
   display: flex;
 }
@@ -22,6 +22,7 @@
   gap: 20px;
   max-height: 1000px;
   min-height: 100px;
+  
 }
 
 .rdc-box{
@@ -31,8 +32,8 @@
   overflow-y: auto;
 }
 
-.data-container1 {
-  width: 80%;
+.opc-data-container1 {
+  width: 1400px;
   max-height: 750px;
   margin-left: 18%;
   padding: 20px;
@@ -42,12 +43,13 @@
   flex-direction: column;
 }
 
-.request-data-container1 {
-  width: 100%;
+.request-main-data-container1 {
+  width: 97.8%;
   min-height: 250px;
   max-height: 1000px;
   background-color: white;
   display: flex;
+  margin-left: 25px;
 }
 
 .r-d-container-left1 {
@@ -89,6 +91,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin-right: 30px;
 }
 
 
@@ -98,10 +101,11 @@
   border: none;
   padding: 15px; 
   display: flex; 
-  margin-right: 20px;
+  margin-right: px;
   align-items: center; 
   justify-content: center; 
 }
+
 
 .r-d-container-right1 button:nth-child(1) {
   background-color: rgb(15, 172, 15);
@@ -137,4 +141,84 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.opc-header-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.opc-header-button {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff; /* White background color */
+  color: #782324; /* Dark red text color */
+  padding-left: 10px;
+  border: 2px solid #782324; /* Dark red border */
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 400px; /* Adjust width as needed */
+  height: 60px;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  font-size: 24px;
+}
+
+.header-buttons:hover {
+  background-color: #F4C108;
+}
+
+.header-buttons.active {
+  background-color: yellow; /* Change to yellow when active */
+  color: #782324; /* Change text color to black for contrast */
+}
+
+.number {
+  background-color: #782324; /* Dark red background color */
+  color: #ffffff; /* White text color */
+  padding: 11px 31px;
+  border-radius: 0px;
+  margin-left: 20px; /* Space between text and number */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-buttons svg {
+  margin-right: 10px; /* Space between icon and text */
+}
+
+.opc-main-requests-header{
+  display: flex;
+  max-width: 1308px;
+  gap: 860px;
+  background-color: #782324;
+  align-items: center;
+  margin-left: 26px;
+  padding: 15px 15px;
+  padding-right: 20px;
+}
+
+.opc-main-requests-header h1{
+  color: #FFF;
+  margin-left: 20px;
+}
+
+.opc-main-requests-header button{
+  border: none;
+  background-color: #f4c108;
+  border-radius: 20px;
+  color: #782324;
+  font-weight: bold;
+  padding: 10px 15px;
 }
