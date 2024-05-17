@@ -94,7 +94,7 @@ const OpcSide = () => {
           </div>
           <div className="opc-requests-header-container">
           <div className="opc-main-requests-header">
-              <h1> <AiOutlineCar size={35}/> VEHICLES </h1>
+            <h1> <AiOutlineFileText size={35}/> REQUESTS</h1>
               <button onClick={handleViewApproveRequests}>View Approved Requests</button>
             </div>
           </div> 

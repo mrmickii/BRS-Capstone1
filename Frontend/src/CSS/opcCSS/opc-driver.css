@@ -43,6 +43,11 @@
   padding: 10px 15px;
 }
 
+.opc-driver-requests-header button:hover {
+  background-color: #ffffff; /* Change background to white */
+  color: #782324; /* Keep font color the same */
+}
+
 .driver-data-container1 {
   width: 1400px;
   max-height: 750px;

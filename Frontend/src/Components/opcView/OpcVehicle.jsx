@@ -177,21 +177,16 @@ const OpcVehicle = () => {
             </div>
           </div>
           <div className="opc-requests-header-container">
-            <div className="opc-requests-header">
-              <h1> <FaBus size={35} style={{ marginRight: '20px', marginTop: '4px'}}/> VEHICLES </h1>
-              <button 
-              onClick={handleAddVehicle}
-              className="add-vehicle-btn">
-                <FaPlusCircle size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Add Vehicle
-                </button>
+          <div className="opc-vehicle-requests-header">
+              <h1> <AiOutlineCar size={35}/> VEHICLES </h1>
+              <button onClick={handleAddVehicle}>Add Vehicle</button>
             </div>
-          </div>
         </div>
-        <div className="vehicle-data">
+        <div className="rdc-box1">
           {vehicles.length === 0 ? (
             <p className='vehicle-availability'>No vehicles available.</p>
           ) : (
-            <div className="vehicle-data-container">
+            <div className="request-vehicle-data-container1">
               {vehicles.map((vehicle, index) => (
                 <div className='vehicle-info' key={index}>
                   <h1 className='vecihle-info-h1'>{vehicle.vehicleType}
@@ -206,13 +201,16 @@ const OpcVehicle = () => {
               ))}
             </div>
           )}
+        
+        </div>
+          </div>
+          {showAddVehicleDialog && <AddVehicle onClose={() => setShowAddVehicleDialog(false)} />} 
+          {showDeleteConfirmationDialog && <DeleteConfirmationDialogBox onClose={() => setShowDeleteConfirmationDialog(false)} onDelete={confirmDeleteVehicle} />}
+          {showUpdateDialog && <UpdateDialogBox vehicle={vehicleToUpdate} onUpdate={confirmUpdateVehicle} onClose={() => setShowUpdateDialog(false)} />}
+          <div className='cit-bglogo'></div>
         </div>
       </div>
-      {showAddVehicleDialog && <AddVehicle onClose={() => setShowAddVehicleDialog(false)} />} 
-      {showDeleteConfirmationDialog && <DeleteConfirmationDialogBox onClose={() => setShowDeleteConfirmationDialog(false)} onDelete={confirmDeleteVehicle} />}
-      {showUpdateDialog && <UpdateDialogBox vehicle={vehicleToUpdate} onUpdate={confirmUpdateVehicle} onClose={() => setShowUpdateDialog(false)} />}
-      <div className='cit-bglogo'></div>
-    </div>
+    
     
   );
 }

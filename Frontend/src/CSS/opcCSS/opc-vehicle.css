@@ -15,9 +15,17 @@
 
 .opc-vehicle-requests-header{
   display: flex;
+  gap: 1150px;
   max-width: 1308px;
   gap: 949px;
+  background-color: #782324;
+  align-items: center;
+  padding: 15px 0px;
+  margin-left: 26px;
+  padding: 15px 15px;
+  padding-right: 20px;
 }
+
 .opc-requests-header{
   background-color: #782324;
   align-items: center;
@@ -33,9 +41,10 @@
 }
 
 
-.opc-requests-header button {
+.opc-vehicle-requests-header button {
   position: absolute;
-  left: 1650px;
+  left: 1590px;
+  height: 40px;
   border: none;
   font-size: 16px;
   background-color: #f4c108;
@@ -46,10 +55,11 @@
   width: 180px;
 
 }
-.opc-requests-header button:hover {
+.opc-vehicle-requests-header button:hover {
   background-color: white; 
   color: #782324; 
 }
+
 .data-container1 {
   width: 80%;
   min-height: 700px;
@@ -59,12 +69,11 @@
  
 }
 
-.vehicle-data {
-  width: 100%;
-  margin-top: -22px;
-  background-color: #cbc3c3;
-  overflow-y: scroll;
-  min-height: 500px;
+.rdc-box1{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
 }
 
 .vehicle-availability{
@@ -75,7 +84,20 @@
 
 .vehicle-data-container {
   border-radius: 10px;
+
 }
+
+.vehicle-data-container1 {
+  width: 1400px;
+  max-height: 750px;
+  margin-left: 18%;
+  padding: 20px;
+  background-color: #cbc3c3;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
 
 .vehicle-info{
   padding: 20px;
@@ -131,4 +153,13 @@
   z-index: -2;
   filter: saturate(0%);
   opacity: 0.2;
+}
+
+.sample{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 1000px;
+  min-height: 100px;
+  
 }
