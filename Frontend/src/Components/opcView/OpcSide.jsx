@@ -82,7 +82,7 @@ const OpcSide = () => {
         <div class="opc-header-button-container">
             <div class="opc-header-button">
               <button id="request-button" class="header-buttons">
-                <AiOutlineFileText size={20} /> REQUEST <span class="number">{approvedReservations.length}</span>
+                <AiOutlineFileText size={20} /> REQUEST <div> <span class="number">{approvedReservations.length}</span></div>
               </button>
               <button id="driver-button" class="header-buttons" onClick={handleDriverManagement}>
                 <AiOutlineUser size={20} /> DRIVER <span class="number">{drivers.length}</span>
