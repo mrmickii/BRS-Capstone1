@@ -53,7 +53,7 @@
   max-height: 750px;
   margin-left: 18%;
   padding: 20px;
-  background-color: #cbc3c3;
+  background-color: #ccc;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -78,7 +78,7 @@
 }
 
 .driver-info{
-  background-color: #cbc3c3;
+  background-color: #ccc;
   padding: 20px;
   margin: 20px;
 }

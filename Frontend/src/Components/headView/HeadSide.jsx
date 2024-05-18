@@ -170,6 +170,7 @@ const HeadSide = () => {
                     <p>Capacity: {reservation.capacity}</p>
                     <p>Department: {reservation.department}</p>
                     <p>Departure Time: {reservation.departureTime}</p>
+                    <p>Requestor: {reservation.userEmail}</p>
                     <div className="feedback-container">
                       <input type="text" placeholder="Send feedback (optional)"/>
                       <button>Send Feedback</button>

@@ -27,7 +27,7 @@ public class ReservationService {
         return resRepo.findByStatus("Approved");
     }
 
-    public ReservationEntity saveReservation(ReservationEntity reservation, MultipartFile file) throws IOException {
+    public ReservationEntity saveReservation(String userEmail, ReservationEntity reservation, MultipartFile file) throws IOException {
         if (file != null && !file.isEmpty()) {
             reservation.setFileName(file.getOriginalFilename());
             reservation.setFileType(file.getContentType());
@@ -40,6 +40,7 @@ public class ReservationService {
         if (reservation.getStatus() == null || reservation.getStatus().isEmpty()) {
             reservation.setStatus("Pending");
         }
+        reservation.setUserEmail(userEmail);
         return resRepo.save(reservation);
     }
 

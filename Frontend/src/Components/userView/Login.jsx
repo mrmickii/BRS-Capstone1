@@ -2,41 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Preloader from './Preloader';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import '../../CSS/userCSS/login.css';
 import { auth, db } from '../../FirebaseConfig';
-import { onAuthStateChanged } from "firebase/auth";
 
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async user => {
       if (user) {
-        console.log("User:", user.email);
-        
         const userData = await getUserData(user.uid);
         if (userData) {
-          console.log("UserData:", userData);
-          const { userType, department } = userData;
-          switch (userType) {
-            case "head":
-              navigate("/head-view");
-              break;
-            case "user":
-              navigate("/reservation");
-              break;
-            case "staff":
-              navigate("/staff-view");
-              break;
-            default:
-              navigate("/");
-              break;
-          }
+          navigateToDashboard(userData);
         } else {
           navigate("/");
         }
@@ -52,65 +35,51 @@ const Login = () => {
     try {
       const docRef = doc(db, "users", uid);
       const docSnap = await getDoc(docRef);
-    
-      if (docSnap.exists) {
-        const userData = docSnap.data();
-        return userData;
-      } else {
-        console.log("User document not found in Firestore");
-        return null;
-      }
+      return docSnap.exists() ? docSnap.data() : null;
     } catch (error) {
       console.error("Error fetching user data from Firestore:", error);
       return null;
     }
   };
 
+  const navigateToDashboard = ({ userType, department }) => {
+    switch (userType) {
+      case "head":
+        navigate("/head-view", { state: { department } });
+        break;
+      case "user":
+        navigate("/reservation");
+        break;
+      case "staff":
+        navigate("/staff-view");
+        break;
+      default:
+        navigate("/");
+        break;
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-  
+    setErrorMessage('');
+
     try {
-      console.log("Attempting login...");
-  
       const userCredential = await signInWithEmailAndPassword(auth, username, password);
       const user = userCredential.user;
-  
-      console.log("User authenticated:", user);
-  
       const userData = await getUserData(user.uid);
       if (userData) {
-        const { userType, department } = userData;
-        switch (userType) {
-          case "head":
-            navigate("/head-view", { state: { department } }); 
-            break;
-          case "user":
-            navigate("/reservation");
-            break;
-          case "staff":
-            navigate("/staff-view");
-            break;
-          default:
-            navigate("/");
-            break;
-        }
-  
-        if (department) {
-          console.log("User Department:", department);
-        }
+        navigateToDashboard(userData);
       } else {
         navigate("/");
       }
-  
-      console.log("User successfully logged in:", user.email);
     } catch (error) {
       console.error("Login error:", error);
-      alert("Login failed. Please check email and password correctly.");
+      setErrorMessage("Login failed. Please check email and password correctly.");
     } finally {
       setIsLoading(false);
     }
-  };  
+  };
 
   const handleClear = () => {
     setUsername('');
@@ -130,28 +99,31 @@ const Login = () => {
           {isLoading ? (
             <Preloader />
           ) : (
-            <form>
+            <form onSubmit={handleLogin}>
               <label>
                 <FaUser />
                 <input
                   type="text"
-                  style ={{fontSize: '16px'}}
+                  style={{ fontSize: '16px' }}
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="Username"
+                  aria-label="Username"
                 />
               </label>
               <label>
                 <FaLock />
                 <input
                   type="password"
+                  style={{ fontSize: '16px' }}
                   value={password}
-                  style ={{fontSize: '16px'}}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
+                  aria-label="Password"
                 />
               </label>
-              <button className='login-btn' type="submit" onClick={handleLogin}>
+              {errorMessage && <p className="login-error-message">{errorMessage}</p>}
+              <button className='login-btn' type="submit">
                 LOGIN
               </button>
               <button className='clear-btn' type="button" onClick={handleClear}>

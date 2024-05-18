@@ -109,7 +109,8 @@
   max-height: 750px;
   margin-left: 18%;
   padding: 20px;
-  background-color: #cbc3c3;
+  background-color: #ccc;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
 }

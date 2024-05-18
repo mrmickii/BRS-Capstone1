@@ -4,11 +4,13 @@ import Header from './Header';
 import { FaClipboardList } from "react-icons/fa";
 import SideNavBar from './SideNavBar';
 import { FaBus } from "react-icons/fa";
+import { auth } from '../../FirebaseConfig'; 
 import { BsPersonFillCheck } from "react-icons/bs";
 import '../../CSS/userCSS/reservation.css';
 
 const Reservation = () => {
   const [vehicles, setVehicles] = useState([]);
+  const [userName, setUserName] = useState(null); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,9 +26,24 @@ const Reservation = () => {
         console.error('Error fetching vehicle data:', error);
       }
     };
-
     fetchVehicles();
+
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        const userEmail = user.email;
+        const name = capitalizeFirstLetter(userEmail.split('@')[0].replace('.', ' ')); 
+        setUserName(name); 
+        console.log("User logged in:", name); 
+      } else {
+        setUserName(null); 
+      }
+    });
+    return () => unsubscribe(); 
   }, []);
+
+  const capitalizeFirstLetter = (string) => {
+    return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  };
 
   const handleSelectVehicle = (vehicle) => {
     navigate('/user-view', { state: { vehicleType: vehicle.vehicleType } });
@@ -34,7 +51,7 @@ const Reservation = () => {
 
   return (
     <div className="reservation">
-      <Header />
+      <Header userName={userName} /> 
       <SideNavBar />
       <div className='subheader'>
         <h1>RESERVATION</h1>
@@ -54,12 +71,12 @@ const Reservation = () => {
             <h1 className='vehicle-name'>{vehicle.vehicleType}</h1>
             <p className='vehicle-stat'>Status: {vehicle.status}</p>
             <p className='vehicle-pn'>Plate Number: <span style={{fontSize: '16px', color: '#782324'}}>{vehicle.plateNumber}</span> </p>
-              <p className='vehicle-cap'><BsPersonFillCheck  size={18} style={{marginRight: '15px', color: '#782324'}}/>Capacity: <span style={{fontSize: '16px', color: '#782324'}}>{vehicle.capacity}</span></p>
-
+              <p className='vehicle-cap'><BsPersonFillCheck  size={18} style={{marginRight: '15px', color: '#782324'}}/>Capacity: 
+                <span style={{fontSize: '16px', color: '#782324'}}>{vehicle.capacity}</span>
+              </p>
             <button
               style={{width: '200px', height: '50px', fontSize: '16px', borderRadius: '30px', fontWeight: '700'}}
-              onClick={() => handleSelectVehicle(vehicle)}
-            >
+              onClick={() => handleSelectVehicle(vehicle)}>
               Select Vehicle
             </button>
           </div>

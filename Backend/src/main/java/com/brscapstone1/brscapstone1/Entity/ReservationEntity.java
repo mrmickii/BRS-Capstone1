@@ -28,7 +28,8 @@ public class ReservationEntity {
     private String fileType;
     private long fileSize;
     private String status;
-    
+    private String userEmail;
+
     public int getId() {
         return id;
     }
@@ -119,11 +120,17 @@ public class ReservationEntity {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    public ReservationEntity(String typeOfTrip, String destinationTo, String destinationFrom, int capacity,
+    public String getUserEmail() {
+        return userEmail;
+    }
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+    public ReservationEntity(String userEmail, String typeOfTrip, String destinationTo, String destinationFrom, int capacity,
             String department, Date schedule, String vehicleType, String pickUpTime, String departureTime,
             String reason, String fileName, String fileType, long fileSize, String status) {
         super();
+        this.userEmail = userEmail;
         this.typeOfTrip = typeOfTrip;
         this.destinationTo = destinationTo;
         this.destinationFrom = destinationFrom;

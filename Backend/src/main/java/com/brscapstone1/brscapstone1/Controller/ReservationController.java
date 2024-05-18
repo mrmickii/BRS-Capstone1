@@ -35,7 +35,7 @@ public class ReservationController {
     }
 
     @PostMapping("/add")
-    public ReservationEntity addReservation(@RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("reservation") String reservationJson) throws IOException {
+    public ReservationEntity addReservation(@RequestParam("userEmail") String userEmail, @RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("reservation") String reservationJson) throws IOException {
         System.out.println("Received file: " + (file != null ? file.getOriginalFilename() : "No file uploaded"));
         System.out.println("Received JSON: " + reservationJson);
         
@@ -44,7 +44,7 @@ public class ReservationController {
         
         System.out.println("Mapped reservation: " + reservation);
         
-        return resServ.saveReservation(reservation, file);
+        return resServ.saveReservation(userEmail, reservation, file);
     }
 
     @GetMapping("/reservations")

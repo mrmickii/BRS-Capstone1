@@ -15,10 +15,10 @@ import { AiFillMessage } from "react-icons/ai";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { HiDocumentDownload } from "react-icons/hi";
 import { IoIosSend } from "react-icons/io";
+import { IoArrowBackCircle } from "react-icons/io5";
 import '../../CSS/userCSS/reservation2.css';
 import { app, auth } from "../../FirebaseConfig";
 import { getFirestore } from 'firebase/firestore';
-import { IoArrowBackCircle } from "react-icons/io5";
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { useLocation } from 'react-router-dom';
 
@@ -47,9 +47,19 @@ const Reservation2 = () => {
   const [departments, setDepartments] = useState([]);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
 
   useEffect(() => {
     fetchDepartments();
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        const userEmail = user.email;
+        const name = userEmail.split('@')[0].split('.').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        setUserEmail(name);
+        console.log('User Name:', name);
+      }
+    });
+    return () => unsubscribe();
   }, []);
 
   const fetchDepartments = async () => {
@@ -69,17 +79,15 @@ const Reservation2 = () => {
   };
 
   const handleDateSelect = (date) => {
-    console.log(date); // Check if selectedDate is correct
+    console.log(date); 
     setSelectedDate(date);
     setIsModalOpen(false);
   };
   
   const handleDateConfirm = () => {
-    console.log('Confirming schedule:', selectedDate); // Check if handleDateConfirm is triggered
+    console.log('Confirming schedule:', selectedDate); 
     setFormValues({...formValues, schedule: selectedDate});
   };
-
- 
 
   const handleClearEntities = () => {
     setFormValues({
@@ -94,14 +102,13 @@ const Reservation2 = () => {
       departureTime: '',
       reason: '',
       file: null,
-      userEmail: ''
     });
     setSelectedDate(null);
   };
   
-    const goBack = () => {
-      window.history.back(); 
-    };
+  const goBack = () => {
+    window.history.back(); 
+  };
 
   const handleDepartmentChange = (e) => {
     setFormValues({ ...formValues, department: e.target.value });
@@ -147,10 +154,12 @@ const Reservation2 = () => {
       pickUpTime: pickUpTime,
       departureTime: formValues.departureTime,
       reason: formValues.reason,
+      userEmail: userEmail
     };
   
     const formData = new FormData();
     formData.append('reservation', JSON.stringify(reservationData));
+    formData.append('userEmail', userEmail);
   
     if (formValues.file) {
       formData.append('file', formValues.file);
@@ -212,7 +221,7 @@ const Reservation2 = () => {
           <Header />
           <SideNavBar />
           <div className='subheader'>
-            <h2 style={{fontSize: '36px'}}>RESERVATION</h2>
+            <h2 style={{fontSize: '36px'}}>RESERVATION </h2>
           </div>
           <div className='backing'>
             <button onClick={goBack} className='back-win'><IoArrowBackCircle style={{marginRight: '10px', marginBottom: '-3px'}}/>Back to Select Vehicle</button>
@@ -381,11 +390,9 @@ const Reservation2 = () => {
               <button className='sendreqbutton' onClick={handleSubmit}><IoIosSend style={{marginRight: '5px', marginBottom: '-2px'}}/>SEND REQUEST</button>
             </div>
             <CalendarModal show={isModalOpen} onClose={() => setIsModalOpen(false)} onDateConfirm={handleDateConfirm}>
-            <Calendar onDateSelect={handleDateSelect} />
-
+              <Calendar onDateSelect={handleDateSelect} />
             </CalendarModal>
-          
-    
+
             <div className='summarylabel'>
               <h2>SUMMARY OF REQUEST</h2>
             </div>
@@ -430,7 +437,6 @@ const Reservation2 = () => {
       )}
     </div>
   );
-
 }
 
 export default Reservation2;
