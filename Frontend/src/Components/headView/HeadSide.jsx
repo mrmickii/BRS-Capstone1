@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from '../userView/Header';
 import HeadNavbar from "./HeadNavBar"; 
 import FileDialogBox from './HeadViewFile';
+import { BiSolidBook } from 'react-icons/bi';
 import ConfirmationDialog from './ConfirmationDialog';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import '../../CSS/headCSS/head-side.css';
@@ -157,6 +158,7 @@ const HeadSide = () => {
       <Header />
       <HeadNavbar />
       <div className="head-view-container">
+        <h1> <BiSolidBook size={36} style={{ marginRight: '20px', marginLeft: '20px', marginBottom: '-5px' }} />REQUESTS</h1>
         <div className="content-container">
           <div className="view-history">
             <button>View History</button>

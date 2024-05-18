@@ -158,27 +158,27 @@ const OpcVehicle = () => {
     <div className="opc-view-container">
       <Header />
       <OpcNavBar />
-      <div className="opc-title">
-        <h1 className="title-opc">VEHICLES</h1>
+      <div className="opc-title" style={{marginBottom: '30px'}}>
+        <h1 style={{fontSize: '46px'}}>VEHICLES</h1>
       </div>
       <div className="vehicle-data-container1">
         <div className="sample">
           <div className="opc-vehicle-header-button-container">
             <div className="opc-vehicle-header-button">
               <button className="header-buttons" onClick={handleRequest}>
-                <AiOutlineFileText size={20} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{approvedReservationCount}</span>
+                <AiOutlineFileText size={40} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{approvedReservationCount}</span>
               </button>
               <button className="header-buttons" onClick={handleDriverManagement}>
-                <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{driverCount}</span>
+                <AiOutlineUser size={40} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{driverCount}</span>
               </button>
               <button className="header-buttons" id="vehicleButton" onClick={handleVehicleManagement}>
-                <FaBus size={20} style={{ marginLeft: '25px' }} /> VEHICLE <span className="number">{vehicleCount}</span>
+                <FaBus size={40} style={{ marginLeft: '25px' }} /> VEHICLE <span className="number">{vehicleCount}</span>
               </button>
             </div>
           </div>
           <div className="opc-vehicle-requests-header-container">
           <div className="opc-vehicle-requests-header">
-              <h1> <AiOutlineCar size={35}/> VEHICLES </h1>
+              <h1>  <FaBus size={32} style={{ marginRight: '15px' }} /> VEHICLES </h1>
               <button onClick={handleAddVehicle}>Add Vehicle</button>
             </div>
         </div>
@@ -189,11 +189,12 @@ const OpcVehicle = () => {
             <div className="request-vehicle-data-container1">
               {vehicles.map((vehicle, index) => (
                 <div className='vehicle-info' key={index}>
-                  <h1 className='vecihle-info-h1'>{vehicle.vehicleType}</h1>
-                    <button className='vehicle-update-button' onClick={() => handleUpdateVehicle(vehicle)}>Update</button>
-                  <p className='vecihle-info-plate'><FaRectangleAd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Plate Number: {vehicle.plateNumber}</p>
-                  <button className='vehicle-delete-button' onClick={() => handleDeleteVehicle(vehicle)}>Delete</button>
-                  <p className='vecihle-info-capa'><IoMdPersonAdd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Capacity: {vehicle.capacity}</p>
+                  <h1>{vehicle.vehicleType}</h1>
+                  <p className="vehicle-info-plate"><FaRectangleAd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Plate Number: {vehicle.plateNumber}</p>
+                  <p className="vehicle-info-capa"><IoMdPersonAdd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Capacity: {vehicle.capacity}</p>
+                  <button className="vehicle-update-button" onClick={() => handleUpdateVehicle(vehicle)}>Update</button>
+                  <button className="vehicle-delete-button" onClick={() => handleDeleteVehicle(vehicle)}>Delete</button>
+                  
                 </div>
               ))}
             </div>

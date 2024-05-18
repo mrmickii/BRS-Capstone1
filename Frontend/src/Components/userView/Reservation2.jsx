@@ -151,7 +151,7 @@ const Reservation2 = () => {
       department: formValues.department,
       schedule: selectedDate, 
       vehicleType: formValues.vehicleType,
-      pickUpTime: pickUpTime,
+       pickUpTime: pickUpTime,
       departureTime: formValues.departureTime,
       reason: formValues.reason,
       userEmail: userEmail

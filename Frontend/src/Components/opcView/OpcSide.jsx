@@ -75,27 +75,27 @@ const OpcSide = () => {
     <div className="opc-view-container">
       <Header />
       <OpcNavBar />
-      <div className="opc-title">
-        <h1 className="title-opc">REQUESTS</h1>
+      <div className="opc-title" style={{marginBottom: '30px'}}>
+        <h1 style={{fontSize: '46px'}}>REQUESTS</h1>
       </div>
       <div className="opc-data-container1">
         <div className="sample">
         <div class="opc-header-button-container">
             <div class="opc-header-button">
               <button id="request-button" class="header-buttons">
-                <AiOutlineFileText size={20} style={{ marginLeft: '19px' }}/> REQUEST <span class="number">{approvedReservations.length}</span>
+                <AiOutlineFileText size={40} style={{ marginLeft: '19px' }} /> REQUEST <span class="number">{approvedReservations.length}</span>
               </button>
               <button id="driver-button" class="header-buttons" onClick={handleDriverManagement}>
-                <AiOutlineUser size={20} style={{ marginLeft: '37px' }} /> DRIVER <span class="number">{drivers.length}</span>
+                <AiOutlineUser size={40} style={{ marginLeft: '37px' }} /> DRIVER <span class="number">{drivers.length}</span>
               </button>
               <button id="vehicle-button" class="header-buttons" onClick={handleVehicleManagement}>
-                <FaBus size={20}  style={{ marginLeft: '25px' }} /> VEHICLE <span class="number">{vehicles.length}</span>
+                <FaBus size={40}  style={{ marginLeft: '25px' }} /> VEHICLE <span class="number">{vehicles.length}</span>
               </button>
             </div>
           </div>
           <div className="opc-requests-header-container">
           <div className="opc-main-requests-header">
-            <h1> <AiOutlineFileText size={35}/> REQUESTS</h1>
+            <h1> <AiOutlineFileText size={32} style={{ marginRight: '10px' }}/> REQUESTS</h1>
               <button onClick={handleViewApproveRequests}>View Approved Requests</button>
             </div>
           </div> 
@@ -129,7 +129,7 @@ const OpcSide = () => {
           </div>
         </div>
       </div>
-      <div className="bg-logo"></div>
+      <div className='cit-bglogo'></div>
     </div>
   );
 };

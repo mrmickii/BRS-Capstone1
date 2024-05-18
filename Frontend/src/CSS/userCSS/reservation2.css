@@ -402,13 +402,12 @@ input[type="radio"]:checked + label::before {
   left: 40px;
   background-color: white;
   height: 250px;
-  width: 1215px;;
-  overflow-y: scroll;
+  width: 1215px;
   overflow-x: scroll;
 }
 
 .summary table {
-  width: 62vw;
+  width: 64vw;
   border-collapse: collapse;
 }
 
