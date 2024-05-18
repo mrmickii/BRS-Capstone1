@@ -168,20 +168,21 @@ const HeadSide = () => {
               filteredReservations.map((reservation, index) => (
                 <div className="request-data-container" key={index}>
                   <div className="r-d-container-left">
-                    <h2>Type of Trip: {reservation.typeOfTrip}</h2>
-                    <p>Capacity: {reservation.capacity}</p>
-                    <p>Department: {reservation.department}</p>
-                    <p>Departure Time: {reservation.departureTime}</p>
-                    <p>Requestor: {reservation.userEmail}</p>
+                    <h2 className="rdc-h2">Type of Trip: {reservation.typeOfTrip}</h2>
+                    <p>Schedule: <span>{reservation.schedule}</span></p>
+                    <p>Requestor: <span>{reservation.userEmail}</span></p>
+                    <p>Department: <span>{reservation.department}</span></p>
+                    <p>Capacity: <span>{reservation.capacity}</span></p>                    
                     <div className="feedback-container">
                       <input type="text" placeholder="Send feedback (optional)"/>
                       <button>Send Feedback</button>
                     </div>
-                    <h2>Vehicle Type: {reservation.vehicleType}</h2>
-                    <p>Destination To: {reservation.destinationTo}</p>
-                    <p>Destination From: {reservation.destinationFrom}</p>
-                    <p>Pick-up Time: {reservation.pickUpTime}</p>
-                    <p>Reason: {reservation.reason}</p>
+                    <h2 className="rdc-h2">Vehicle Type: </h2>
+                    <p>Destination To: <span>{reservation.destinationTo}</span></p>
+                    <p>Destination From: <span>{reservation.destinationFrom}</span></p>
+                    <p>Departure Time: <span>{reservation.departureTime}</span></p>
+                    <p>Pick-up Time: <span>{reservation.pickUpTime}</span></p>
+                    <p>Reason: <span>{reservation.reason}</span></p>
                   </div>
                   <div className="r-d-container-right">
                     <button onClick={() => handleApprove(reservation.id)}>Approve</button>

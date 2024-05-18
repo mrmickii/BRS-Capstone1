@@ -24,6 +24,10 @@
   align-items: center;
 }
 
+.file-dialog-header h3{
+  margin-left: 0px;
+}
+
 .file-dialog-header button{
   width: 30px;
   border: none;
@@ -33,6 +37,7 @@
 
 .file-dialog-content {
   margin-top: 20px;
+  font-size: 14px;
 }
 
 .file-download-container{

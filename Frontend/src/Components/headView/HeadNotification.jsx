@@ -37,6 +37,7 @@ const HeadNotifications = () => {
             </div>
           </div>
         )}
+        <div className='cit-bglogo'></div>
       </div>
     </div>
   );

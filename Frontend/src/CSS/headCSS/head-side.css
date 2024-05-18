@@ -101,6 +101,10 @@
   line-height: 1.5;
 }
 
+.rdc-h2{
+  margin-left: 0px;
+}
+
 .feedback-container{
   display: flex;
   justify-content: space-between;
