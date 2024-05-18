@@ -20,10 +20,6 @@
   justify-content: flex-end;
 }
 
-.modal-close-btn{
-  
-}
-
 .modal-close-btn:hover{
   cursor: pointer;
 }
