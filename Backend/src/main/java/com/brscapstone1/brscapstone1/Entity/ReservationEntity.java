@@ -1,6 +1,7 @@
 package com.brscapstone1.brscapstone1.Entity;
 
 import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,9 @@ public class ReservationEntity {
     private String fileType;
     private long fileSize;
     private String status;
+    private boolean isApproved; 
+    private boolean isRejected;
+    private boolean headIsApproved;
     private String userEmail;
 
     public int getId() {
@@ -126,9 +130,27 @@ public class ReservationEntity {
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
+    public boolean isApproved() {
+        return isApproved;
+    }
+    public void setApproved(boolean isApproved) {
+        this.isApproved = isApproved;
+    }
+    public boolean isRejected() {
+        return isRejected;
+    }
+    public void setRejected(boolean isRejected) {
+        this.isRejected = isRejected;
+    }
+    public boolean isHeadIsApproved() {
+        return headIsApproved;
+    }
+    public void setHeadIsApproved(boolean headIsApproved) {
+        this.headIsApproved = headIsApproved;
+    }
     public ReservationEntity(String userEmail, String typeOfTrip, String destinationTo, String destinationFrom, int capacity,
             String department, Date schedule, String vehicleType, String pickUpTime, String departureTime,
-            String reason, String fileName, String fileType, long fileSize, String status) {
+            String reason, String fileName, String fileType, long fileSize, String status, boolean isApproved, boolean isRejected, boolean headIsApproved) {
         super();
         this.userEmail = userEmail;
         this.typeOfTrip = typeOfTrip;
@@ -145,6 +167,9 @@ public class ReservationEntity {
         this.fileType = fileType;
         this.fileSize = fileSize;
         this.status = status;
+        this.isApproved = isApproved;
+        this.isRejected = isRejected;
+        this.headIsApproved = headIsApproved;
     }
     public ReservationEntity() {
         super();

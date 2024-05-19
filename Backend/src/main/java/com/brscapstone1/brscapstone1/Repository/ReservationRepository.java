@@ -8,4 +8,5 @@ import com.brscapstone1.brscapstone1.Entity.ReservationEntity;
 
 public interface ReservationRepository extends JpaRepository<ReservationEntity, Integer>{
   List<ReservationEntity> findByStatus(String status);
+  List<ReservationEntity> findByHeadIsApproved(boolean headIsApproved);
 }

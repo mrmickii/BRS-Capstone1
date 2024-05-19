@@ -14,17 +14,38 @@ public class ReservationService {
     @Autowired
     private ReservationRepository resRepo;
 
+    public void headApproveReservation(int reservationId) {
+        ReservationEntity reservation = resRepo.findById(reservationId).orElse(null);
+        if (reservation == null) {
+            throw new IllegalArgumentException("Reservation not found");
+        }
+        reservation.setHeadIsApproved(true); 
+        resRepo.save(reservation);
+    }
+
+
     public void approveReservation(int reservationId) {
         ReservationEntity reservation = resRepo.findById(reservationId).orElse(null);
         if (reservation == null) {
             throw new IllegalArgumentException("Reservation not found");
         }
         reservation.setStatus("Approved");
+        reservation.setApproved(true); 
         resRepo.save(reservation);
     }
 
-    public List<ReservationEntity> getApprovedReservations() {
-        return resRepo.findByStatus("Approved");
+    public List<ReservationEntity> getHeadApprovedReservations() {
+        return resRepo.findByHeadIsApproved(true);
+    }
+
+    public void rejectReservation(int reservationId) {
+        ReservationEntity reservation = resRepo.findById(reservationId).orElse(null);
+        if (reservation == null) {
+            throw new IllegalArgumentException("Reservation not found");
+        }
+        reservation.setStatus("Rejected");
+        reservation.setRejected(true); 
+        resRepo.save(reservation);
     }
 
     public ReservationEntity saveReservation(String userEmail, ReservationEntity reservation, MultipartFile file) throws IOException {

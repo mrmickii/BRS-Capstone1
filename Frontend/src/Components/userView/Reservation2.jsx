@@ -182,9 +182,9 @@ const Reservation2 = () => {
       if (!response.ok) {
         throw new Error('Failed to submit reservation');
       }
-  
       console.log('Reservation submitted successfully.');
       alert('Reservation submitted successfully.');
+      window.location.reload();
   
       setFormValues({
         typeOfTrip: '',

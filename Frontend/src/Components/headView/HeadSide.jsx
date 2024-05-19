@@ -101,7 +101,7 @@ const HeadSide = () => {
 
   const handleApproveAction = async (reservationId) => {
     try {
-      const response = await fetch(`http://localhost:8080/reservation/approve/${reservationId}`, {
+      const response = await fetch(`http://localhost:8080/reservation/head-approve/${reservationId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -112,12 +112,13 @@ const HeadSide = () => {
       }
       const updatedReservations = reservations.map(reservation => {
         if (reservation.id === reservationId) {
-          return { ...reservation, status: 'Approved' };
+          return { ...reservation, headisApproved: true };
         }
         return reservation;
       });
       setReservations(updatedReservations);
       console.log('Reservation approved successfully.');
+      window.location.reload();
     } catch (error) {
       console.error('Error approving reservation:', error);
     }
@@ -126,7 +127,7 @@ const HeadSide = () => {
   const handleRejectAction = async (reservationId) => {
     try {
       const response = await fetch(`http://localhost:8080/reservation/reject/${reservationId}`, {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         }
@@ -136,12 +137,13 @@ const HeadSide = () => {
       }
       const updatedReservations = reservations.map(reservation => {
         if (reservation.id === reservationId) {
-          return { ...reservation, status: 'Rejected' };
+          return { ...reservation, isRejected: true };
         }
         return reservation;
       });
       setReservations(updatedReservations);
       console.log('Reservation rejected successfully.');
+      window.location.reload();
     } catch (error) {
       console.error('Error rejecting reservation:', error);
     }
@@ -151,7 +153,7 @@ const HeadSide = () => {
     setShowFileDialog(false);
   };
 
-  const filteredReservations = reservations.filter(reservation => reservation.department === userDepartment);
+  const filteredReservations = reservations.filter(reservation => !reservation.headIsApproved && !reservation.rejected && reservation.department === userDepartment);
 
   return(
     <>

@@ -19,11 +19,21 @@ public class ReservationController {
     @Autowired
     private ReservationService resServ;
     
-    @GetMapping("/reservations/approved")
+    @GetMapping("/reservations/head-approved")
     public List<ReservationEntity> getApprovedReservations(){
-        return resServ.getApprovedReservations();
+        return resServ.getHeadApprovedReservations();
     }
     
+    @PostMapping("/head-approve/{reservationId}")
+    public ResponseEntity<String> headApproveReservation(@PathVariable int reservationId) {
+        try {
+            resServ.headApproveReservation(reservationId);
+            return ResponseEntity.ok("Reservation approved by Head of the Department successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to approve reservation: " + e.getMessage());
+        }
+    }
+
     @PostMapping("/approve/{reservationId}")
     public ResponseEntity<String> approveReservation(@PathVariable int reservationId) {
         try {
@@ -31,6 +41,16 @@ public class ReservationController {
             return ResponseEntity.ok("Reservation approved successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to approve reservation: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/reject/{reservationId}")
+    public ResponseEntity<String> rejectReservation(@PathVariable int reservationId) {
+        try {
+            resServ.rejectReservation(reservationId);
+            return ResponseEntity.ok("Reservation rejected successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to reject reservation: " + e.getMessage());
         }
     }
 

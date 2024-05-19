@@ -18,7 +18,6 @@ const SideNavbar = () => {
       <ul>
       <Link to="/head-view">
         <li className={activeTab === '/head-view' ? 'active' : ''}>
-        
           <BiSolidBook size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           REQUESTS
         </li>
@@ -30,16 +29,12 @@ const SideNavbar = () => {
         </li>
         </Link>
         <Link to="/head-view/settings">
-          
         <li className={activeTab === '/head-view/settings' ? 'active' : ''}>
-        
           <IoMdSettings size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           SETTINGS
-          
         </li>
         </Link>
       </ul>
-
       <div className="sublogo"></div>
       <div className="laban1">
         <h1 style={{color: 'white'}}>BRS WILDCATS</h1>
