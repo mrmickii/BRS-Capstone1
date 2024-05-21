@@ -72,4 +72,8 @@ public class ReservationService {
     public ReservationEntity getReservationById(int id) {
         return resRepo.findById(id).orElse(null);
     }
+
+    public List<ReservationEntity> getUserReservations(String userEmail) {
+        return resRepo.findByUserEmail(userEmail);
+    }
 }

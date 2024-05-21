@@ -16,7 +16,7 @@ public class VehicleService {
   public VehicleEntity post(VehicleEntity post){
 
     if(post.getStatus() == null || post.getStatus().isEmpty()){
-      post.setStatus("Pending");
+      post.setStatus("Available");
     }
     return vehicleRepository.save(post);
   }

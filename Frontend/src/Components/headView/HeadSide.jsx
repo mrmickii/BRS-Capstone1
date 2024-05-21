@@ -23,8 +23,13 @@ const HeadSide = () => {
 
   useEffect(() => {
     fetchUserDepartment();
-    fetchReservations();
   }, []);
+
+  useEffect(() => {
+    if (userDepartment) {
+      fetchReservations();
+    }
+  }, [userDepartment]);
 
   const fetchUserDepartment = async () => {
     try {
@@ -34,8 +39,7 @@ const HeadSide = () => {
         const userDocSnap = await getDoc(userDocRef);
         if (userDocSnap.exists()) {
           const userData = userDocSnap.data();
-          const department = userData.department;
-          setUserDepartment(department);
+          setUserDepartment(userData.department);
         } else {
           console.error('User document does not exist');
         }
@@ -70,7 +74,7 @@ const HeadSide = () => {
     setConfirmationData({
       isOpen: true,
       action: 'approve',
-      reservationId: reservationId,
+      reservationId,
     });
   };
 
@@ -78,7 +82,7 @@ const HeadSide = () => {
     setConfirmationData({
       isOpen: true,
       action: 'reject',
-      reservationId: reservationId,
+      reservationId,
     });
   };
 
@@ -110,13 +114,11 @@ const HeadSide = () => {
       if (!response.ok) {
         throw new Error('Failed to approve reservation');
       }
-      const updatedReservations = reservations.map(reservation => {
-        if (reservation.id === reservationId) {
-          return { ...reservation, headisApproved: true };
-        }
-        return reservation;
-      });
-      setReservations(updatedReservations);
+      setReservations(prevReservations => 
+        prevReservations.map(reservation => 
+          reservation.id === reservationId ? { ...reservation, headisApproved: true } : reservation
+        )
+      );
       console.log('Reservation approved successfully.');
       window.location.reload();
     } catch (error) {
@@ -135,13 +137,11 @@ const HeadSide = () => {
       if (!response.ok) {
         throw new Error('Failed to reject reservation');
       }
-      const updatedReservations = reservations.map(reservation => {
-        if (reservation.id === reservationId) {
-          return { ...reservation, isRejected: true };
-        }
-        return reservation;
-      });
-      setReservations(updatedReservations);
+      setReservations(prevReservations => 
+        prevReservations.map(reservation => 
+          reservation.id === reservationId ? { ...reservation, isRejected: true } : reservation
+        )
+      );
       console.log('Reservation rejected successfully.');
       window.location.reload();
     } catch (error) {
@@ -155,12 +155,15 @@ const HeadSide = () => {
 
   const filteredReservations = reservations.filter(reservation => !reservation.headIsApproved && !reservation.rejected && reservation.department === userDepartment);
 
-  return(
+  return (
     <>
       <Header />
       <HeadNavbar />
       <div className="head-view-container">
-        <h1> <BiSolidBook size={36} style={{ marginRight: '20px', marginLeft: '20px', marginBottom: '-5px' }} />REQUESTS</h1>
+        <h1>
+          <BiSolidBook size={36} style={{ marginRight: '20px', marginLeft: '20px', marginBottom: '-5px' }} />
+          REQUESTS
+        </h1>
         <div className="content-container">
           <div className="view-history">
             <button>View History</button>
@@ -168,31 +171,13 @@ const HeadSide = () => {
           <div className="data-container">
             {filteredReservations.length > 0 ? (
               filteredReservations.map((reservation, index) => (
-                <div className="request-data-container" key={index}>
-                  <div className="r-d-container-left">
-                    <h2 className="rdc-h2">Type of Trip: {reservation.typeOfTrip}</h2>
-                    <p>Schedule: <span>{reservation.schedule}</span></p>
-                    <p>Requestor: <span>{reservation.userEmail}</span></p>
-                    <p>Department: <span>{reservation.department}</span></p>
-                    <p>Capacity: <span>{reservation.capacity}</span></p>                    
-                    <div className="feedback-container">
-                      <input type="text" placeholder="Send feedback (optional)"/>
-                      <button>Send Feedback</button>
-                    </div>
-                    <h2 className="rdc-h2">Vehicle Type: </h2>
-                    <p>Destination To: <span>{reservation.destinationTo}</span></p>
-                    <p>Destination From: <span>{reservation.destinationFrom}</span></p>
-                    <p>Departure Time: <span>{reservation.departureTime}</span></p>
-                    <p>Pick-up Time: <span>{reservation.pickUpTime}</span></p>
-                    <p>Reason: <span>{reservation.reason}</span></p>
-                  </div>
-                  <div className="r-d-container-right">
-                    <button onClick={() => handleApprove(reservation.id)}>Approve</button>
-                    <button onClick={() => handleReject(reservation.id)}>Reject</button>
-                    <button>View Feedback</button>
-                    <button onClick={() => handleViewFile(reservation)}>View Attached File</button>
-                  </div>
-                </div>
+                <ReservationItem
+                  key={index}
+                  reservation={reservation}
+                  onApprove={handleApprove}
+                  onReject={handleReject}
+                  onViewFile={handleViewFile}
+                />
               ))
             ) : (
               <div className="no-reservations-message">
@@ -214,5 +199,33 @@ const HeadSide = () => {
     </>
   );
 }
+
+const ReservationItem = ({ reservation, onApprove, onReject, onViewFile }) => (
+  <div className="request-data-container">
+    <div className="r-d-container-left">
+      <h2 className="rdc-h2">Type of Trip: {reservation.typeOfTrip}</h2>
+      <p>Schedule: <span>{reservation.schedule}</span></p>
+      <p>Requestor: <span>{reservation.userEmail}</span></p>
+      <p>Department: <span>{reservation.department}</span></p>
+      <p>Capacity: <span>{reservation.capacity}</span></p>                    
+      <div className="feedback-container">
+        <input type="text" placeholder="Send feedback (optional)" />
+        <button>Send Feedback</button>
+      </div>
+      <h2 className="rdc-h2">Vehicle Type: {reservation.vehicleType}</h2>
+      <p>Destination To: <span>{reservation.destinationTo}</span></p>
+      <p>Destination From: <span>{reservation.destinationFrom}</span></p>
+      <p>Departure Time: <span>{reservation.departureTime}</span></p>
+      <p>Pick-up Time: <span>{reservation.pickUpTime}</span></p>
+      <p>Reason: <span>{reservation.reason}</span></p>
+    </div>
+    <div className="r-d-container-right">
+      <button onClick={() => onApprove(reservation.id)}>Approve</button>
+      <button onClick={() => onReject(reservation.id)}>Reject</button>
+      <button>View Feedback</button>
+      <button onClick={() => onViewFile(reservation)}>View Attached File</button>
+    </div>
+  </div>
+);
 
 export default HeadSide;

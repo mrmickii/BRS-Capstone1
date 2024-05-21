@@ -1,35 +1,71 @@
 *{
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .subheader2 {
-    position: absolute;
-    left: 350px;
-    top: 100px;
-    color: #782324;
+  font-family: 'Poppins', sans-serif;
+}
 
-  }
+.subheader2 {
+  position: absolute;
+  left: 350px;
+  top: 100px;
+  color: #782324;
 
-  
-  .requestsmade-container{
-    position: absolute;
-    left: 400px;
-    top: 190px;
-    background-color: #CBC3C3;
-    height: 680px;
-    width: 1350px;
-    overflow-y: scroll;
-  
-  }
-  .back-button{
-    position: absolute;
-    left: 1450px;
-    top: 115px;
-    padding: 10px 30px;
-    background-color: #782324;
-    border: none;
-    color: white;
-    font-size: 18px;
-    font-weight: 800;
-    border-radius: 50px;
-  }
+}
+
+.requestsmade-container{
+  position: absolute;
+  left: 400px;
+  top: 190px;
+  background-color: #CCC;
+  height: 680px;
+  width: 1350px;
+  overflow-y: auto;
+  padding: 20px;
+  border: 1px solid #CBC3C3;
+}
+
+.back-button{
+  position: absolute;
+  left: 1450px;
+  top: 115px;
+  padding: 10px 30px;
+  background-color: #782324;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  border-radius: 50px;
+}
+
+.user-reservation-made{
+  display: flex;
+  gap: 500px;
+  padding: 20px;
+  background: white;
+}
+
+.urm-header{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0px;
+}
+
+.urm-status{
+  font-size: 14px;
+}
+
+.urm-li{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.approved{
+  color: green;
+}
+
+.rejected{
+  color: #782324;
+}
+
+.pending{
+  color: #f4c108;
+}

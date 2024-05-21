@@ -71,4 +71,14 @@ public class ReservationController {
     public List<ReservationEntity> getAllReservations(){
         return resServ.getAllReservations();
     }
+
+    @GetMapping("/reservations/{userEmail}")
+    public ResponseEntity<List<ReservationEntity>> getUserReservations(@PathVariable String userEmail) {
+        try {
+            List<ReservationEntity> userReservations = resServ.getUserReservations(userEmail);
+            return ResponseEntity.ok(userReservations);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }
