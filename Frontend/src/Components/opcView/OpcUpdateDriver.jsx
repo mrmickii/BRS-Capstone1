@@ -50,7 +50,7 @@ const UpdateDriver = ({ driver, onUpdate, onClose }) => {
     <div className="update-dialog-overlay">
       <div className="update-dialog-box">
         <div className="dialog-header">
-          <h3>Update Driver Information</h3>
+          <h1>Update Driver Information</h1>
           <button onClick={handleClose}>X</button>
         </div>
         <input
@@ -66,8 +66,22 @@ const UpdateDriver = ({ driver, onUpdate, onClose }) => {
           placeholder="Contact Number"
         />
         <div className="update-dialog-buttons">
-          <button onClick={handleUpdateDriver}>Update</button>
-          <button onClick={handleClose}>Cancel</button>
+          <button onClick={handleUpdateDriver} 
+          style={{
+            backgroundColor: "#782324", 
+            width: "150px",
+            position: "absolute",
+            left: "1090px"
+            }}>
+            Update
+            </button>
+          <button onClick={handleClose}
+           style={{
+            width: "150px",
+            position: "absolute",
+            left: "920px"
+            }}
+          >Cancel</button>
         </div>
         {successMessage && <p className="success-message">{successMessage}</p>}
         {errorMessage && <p className="error-message">{errorMessage}</p>}

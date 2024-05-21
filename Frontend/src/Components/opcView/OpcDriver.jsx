@@ -165,7 +165,7 @@ const OpcDriver = () => {
               <button className="header-buttons" onClick={handleRequest}>
                 <AiOutlineFileText size={40} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{approvedReservationCount}</span>
               </button>
-              <button className="header-buttons" onClick={handleDriverManagement}>
+              <button className="header-buttons" onClick={handleDriverManagement} style={{backgroundColor: "#f4c108"}}>
                 <AiOutlineUser size={40} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{driverCount}</span>
               </button>
               <button className="header-buttons" id="vehicleButton" onClick={handleVehicleManagement}>
@@ -184,7 +184,7 @@ const OpcDriver = () => {
           {drivers.length === 0 ? (
             <p className='driver-availability'>No drivers available.</p>
           ) : (
-            <div className="driver-data-container">
+            <div className="driver-data-container" style={{backgroundColor: "#ccc", height: "450px", overflowY: "scroll"}}>
               {drivers.map((driver, index) => (
                 <div className='driver-info' key={index}>
                   <h1>{driver.driverName}

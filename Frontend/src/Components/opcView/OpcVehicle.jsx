@@ -168,10 +168,10 @@ const OpcVehicle = () => {
               <button className="header-buttons" onClick={handleRequest}>
                 <AiOutlineFileText size={40} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{approvedReservationCount}</span>
               </button>
-              <button className="header-buttons" onClick={handleDriverManagement}>
+              <button className="header-buttons" onClick={handleDriverManagement} >
                 <AiOutlineUser size={40} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{driverCount}</span>
               </button>
-              <button className="header-buttons" id="vehicleButton" onClick={handleVehicleManagement}>
+              <button className="header-buttons" id="vehicleButton" onClick={handleVehicleManagement} style={{backgroundColor: "#f4c108"}}>
                 <FaBus size={40} style={{ marginLeft: '25px' }} /> VEHICLE <span className="number">{vehicleCount}</span>
               </button>
             </div>

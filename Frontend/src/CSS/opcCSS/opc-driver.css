@@ -21,6 +21,7 @@
 .opc-driver-requests-header{
   display: flex;
   max-width: 1308px;
+  height: 200px;
   gap: 974px;
   background-color: #782324;
   align-items: center;
@@ -31,16 +32,23 @@
 
 .opc-driver-requests-header h1{
   color: #FFF;
-  margin-left: 20px;
+  position: absolute;
+  margin-top: -100px;
 }
 
 .opc-driver-requests-header button{
+  position: absolute;
+  top: 10px;
+  left: 1565px;
   border: none;
   background-color: #f4c108;
-  border-radius: 20px;
+  border-radius: 10px;
   color: #782324;
   font-weight: bold;
-  padding: 10px 15px;
+  font-size: 18px;
+  height: 40px;
+  width: 200px;
+  top: 330px;
 }
 
 .opc-driver-requests-header button:hover {
@@ -50,20 +58,20 @@
 
 .driver-data-container1 {
   width: 1400px;
-  max-height: 750px;
+  height: 650px;
   margin-left: 18%;
   padding: 20px;
   background-color: #ccc;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
 .driver-data {
-  width: 100%;
-  background-color: #FFF;
-  overflow-y: auto;
-  min-height: 350px;
+  position: absolute;
+  left: 433px;
+  top: 400px;
+  width: 1400px;
+ 
 }
 
 .driver-availability{
@@ -73,14 +81,19 @@
 }
 
 .driver-data-container {
-  display: flex;
+
   flex-direction: column;
+ 
 }
 
 .driver-info{
-  background-color: #ccc;
+  margin-top:25px;
+  background-color: white;
+  width: 1310px;
   padding: 20px;
-  margin: 20px;
+  border-radius: 15px;
+  margin-left: 45px;
+  margin-bottom: 25px;
 }
 .driver-info h1, .driver-info p{
   display: flex;
@@ -96,10 +109,19 @@
 }
 
 .driver-update-button{
-  background-color: #00bf63;
+  background-color: green;
+  width: 200px;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 10px;
 }
 
 .driver-delete-button{
   background-color: #782324;
   color: #FFF;
+  width: 200px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 10px;
 }

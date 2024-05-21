@@ -130,6 +130,8 @@
   position: absolute;
   left: 1020px;
   width: 150px;
+  color: white;
+  font-size: 18px;
   background-color: #00bf63;
   font-weight: 700;
 }
@@ -138,6 +140,7 @@
   width: 150px;
   background-color: #782324;
   color: #FFF;
+  font-size: 18px;
   font-weight: 700;
 }
 .vehicle-info-capa{
