@@ -11,9 +11,20 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Set loading to true initially
   const [errorMessage, setErrorMessage] = useState('');
 
+  useEffect(() => {
+    // Simulate preloader for 2000ms (adjust time as needed)
+    const timer = setTimeout(() => {
+      setIsLoading(false); // Set loading to false after 2000ms
+    }, 2000); 
+
+    // Clean up the timer
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Your existing useEffect for authentication
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async user => {
       if (user) {

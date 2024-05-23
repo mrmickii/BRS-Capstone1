@@ -126,7 +126,7 @@ const OpcDriver = () => {
               <button className="header-buttons" onClick={handleRequest}>
                 <AiOutlineFileText size={40} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{filteredApprovedReservations.length}</span>
               </button>
-              <button className="header-buttons" onClick={handleDriverManagement}>
+              <button className="header-buttons" onClick={handleDriverManagement} style={{backgroundColor: "#f4c108"}}>
                 <AiOutlineUser size={40} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{drivers.length}</span>
               </button>
               <button className="header-buttons" id="vehicleButton" onClick={handleVehicleManagement}>
@@ -137,7 +137,7 @@ const OpcDriver = () => {
           <div className="opc-requests-header-container">
             <div className="opc-driver-requests-header">
               <h1><AiOutlineUser size={35} style={{ marginRight: '10px' }} />DRIVERS</h1>
-              <button onClick={handleAddDriver}>Add Driver</button>
+              <button onClick={handleAddDriver} style={{fontSize: "16px"}}>Add Driver</button>
             </div>
           </div>
           <div className="driver-data">

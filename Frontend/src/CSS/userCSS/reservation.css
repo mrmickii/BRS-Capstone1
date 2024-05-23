@@ -46,6 +46,7 @@
   left: 400px;
   top: 290px;
   background-color: #ccc;
+  border-radius: 10px;
   height: 600px;
   width: 1350px;
   overflow-y: auto;
@@ -60,6 +61,9 @@
   background-color: white !important;
   justify-content: space-between; 
   align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 
@@ -78,6 +82,7 @@
   border: none;
   border-radius: 10px;
   font-size: 12px;
+  margin-right: 20px;
   background-color: #782324;
   color: white;
 }

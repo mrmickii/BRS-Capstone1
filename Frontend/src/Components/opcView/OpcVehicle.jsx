@@ -175,7 +175,7 @@ const OpcVehicle = () => {
           <div className="opc-vehicle-requests-header-container">
             <div className="opc-vehicle-requests-header">
               <h1> <FaBus size={32} style={{ marginRight: '10px' }} /> VEHICLES </h1>
-              <button onClick={handleAddVehicle}>Add Vehicle</button>
+              <button onClick={handleAddVehicle}  style={{fontSize: "14px"}}>Add Vehicle</button>
             </div>
           </div>
           <div className="rdc-box1">

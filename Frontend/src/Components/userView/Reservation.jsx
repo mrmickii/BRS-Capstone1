@@ -49,6 +49,19 @@ const Reservation = () => {
     navigate('/user-view', { state: { vehicleType: vehicle.vehicleType } });
   };  
 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Pending':
+        return 'orange';
+      case 'Available':
+        return 'green';
+      case 'Booked':
+        return 'red';
+      default:
+        return 'black';
+    }
+  };
+
   return (
     <div className="reservation">
       <Header userName={userName} /> 
@@ -69,7 +82,7 @@ const Reservation = () => {
         {vehicles.map((vehicle, index) => (
           <div className='vehicle-info' key={index}>
             <h1 className='vehicle-name'>{vehicle.vehicleType}</h1>
-            <p className='vehicle-stat'>Status: {vehicle.status}</p>
+            <p className='vehicle-stat'>Status: <span style={{ color: getStatusColor(vehicle.status) }}>{vehicle.status}</span></p>
             <p className='vehicle-pn'>Plate Number: <span style={{fontSize: '16px', color: '#782324'}}>{vehicle.plateNumber}</span> </p>
               <p className='vehicle-cap'><BsPersonFillCheck  size={18} style={{marginRight: '15px', color: '#782324'}}/>Capacity: 
                 <span style={{fontSize: '16px', color: '#782324'}}>{vehicle.capacity}</span>

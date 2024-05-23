@@ -1,4 +1,4 @@
-
+/* Updated CSS for Preloader with fade-out animation */
 .preloader {
   position: fixed;
   top: 0;
@@ -9,15 +9,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.3s;
+  transition: opacity 0.5s; 
   z-index: 9999;
-  opacity: 0;
+  opacity: 1; 
   pointer-events: none;
 }
-  
-.preloader.active {
-  opacity: 1;
-  pointer-events: auto;
+
+.preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .loader {
