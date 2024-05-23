@@ -30,8 +30,8 @@ const Reservation = () => {
 
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        const userEmail = user.email;
-        const name = capitalizeFirstLetter(userEmail.split('@')[0].replace('.', ' ')); 
+        const userName = user.email;
+        const name = capitalizeFirstLetter(userName.split('@')[0].replace('.', ' ')); 
         setUserName(name); 
         console.log("User logged in:", name); 
       } else {

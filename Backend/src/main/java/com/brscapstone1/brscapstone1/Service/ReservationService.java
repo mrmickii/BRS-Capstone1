@@ -24,13 +24,13 @@ public class ReservationService {
     }
 
 
-    public void approveReservation(int reservationId) {
+    public void opcApproveReservation(int reservationId) {
         ReservationEntity reservation = resRepo.findById(reservationId).orElse(null);
         if (reservation == null) {
             throw new IllegalArgumentException("Reservation not found");
         }
         reservation.setStatus("Approved");
-        reservation.setApproved(true); 
+        reservation.setOpcIsApproved(true); 
         resRepo.save(reservation);
     }
 
@@ -48,7 +48,7 @@ public class ReservationService {
         resRepo.save(reservation);
     }
 
-    public ReservationEntity saveReservation(String userEmail, ReservationEntity reservation, MultipartFile file) throws IOException {
+    public ReservationEntity saveReservation(String userName, ReservationEntity reservation, MultipartFile file) throws IOException {
         if (file != null && !file.isEmpty()) {
             reservation.setFileName(file.getOriginalFilename());
             reservation.setFileType(file.getContentType());
@@ -61,7 +61,7 @@ public class ReservationService {
         if (reservation.getStatus() == null || reservation.getStatus().isEmpty()) {
             reservation.setStatus("Pending");
         }
-        reservation.setUserEmail(userEmail);
+        reservation.setUserName(userName);
         return resRepo.save(reservation);
     }
 
@@ -73,7 +73,7 @@ public class ReservationService {
         return resRepo.findById(id).orElse(null);
     }
 
-    public List<ReservationEntity> getUserReservations(String userEmail) {
-        return resRepo.findByUserEmail(userEmail);
+    public List<ReservationEntity> getUserReservations(String userName) {
+        return resRepo.findByUserName(userName);
     }
 }

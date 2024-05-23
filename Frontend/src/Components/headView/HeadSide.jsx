@@ -205,7 +205,7 @@ const ReservationItem = ({ reservation, onApprove, onReject, onViewFile }) => (
     <div className="r-d-container-left">
       <h2 className="rdc-h2">Type of Trip: {reservation.typeOfTrip}</h2>
       <p>Schedule: <span>{reservation.schedule}</span></p>
-      <p>Requestor: <span>{reservation.userEmail}</span></p>
+      <p>Requestor: <span>{reservation.userName}</span></p>
       <p>Department: <span>{reservation.department}</span></p>
       <p>Capacity: <span>{reservation.capacity}</span></p>                    
       <div className="feedback-container">

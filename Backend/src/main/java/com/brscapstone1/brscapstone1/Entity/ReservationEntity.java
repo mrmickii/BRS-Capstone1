@@ -29,10 +29,10 @@ public class ReservationEntity {
     private String fileType;
     private long fileSize;
     private String status;
-    private boolean isApproved; 
+    private boolean opcIsApproved; 
     private boolean isRejected;
     private boolean headIsApproved;
-    private String userEmail;
+    private String userName;
 
     public int getId() {
         return id;
@@ -124,23 +124,11 @@ public class ReservationEntity {
     public void setStatus(String status) {
         this.status = status;
     }
-    public String getUserEmail() {
-        return userEmail;
+    public String getUserName() {
+        return userName;
     }
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-    public boolean isApproved() {
-        return isApproved;
-    }
-    public void setApproved(boolean isApproved) {
-        this.isApproved = isApproved;
-    }
-    public boolean isRejected() {
-        return isRejected;
-    }
-    public void setRejected(boolean isRejected) {
-        this.isRejected = isRejected;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
     public boolean isHeadIsApproved() {
         return headIsApproved;
@@ -148,11 +136,23 @@ public class ReservationEntity {
     public void setHeadIsApproved(boolean headIsApproved) {
         this.headIsApproved = headIsApproved;
     }
-    public ReservationEntity(String userEmail, String typeOfTrip, String destinationTo, String destinationFrom, int capacity,
+    public boolean opcIsApproved() {
+        return opcIsApproved;
+    }
+    public void setOpcIsApproved(boolean opcIsApproved) {
+        this.opcIsApproved = opcIsApproved;
+    }
+    public boolean isRejected() {
+        return isRejected;
+    }
+    public void setRejected(boolean isRejected) {
+        this.isRejected = isRejected;
+    }
+    public ReservationEntity(String userName, String typeOfTrip, String destinationTo, String destinationFrom, int capacity,
             String department, Date schedule, String vehicleType, String pickUpTime, String departureTime,
-            String reason, String fileName, String fileType, long fileSize, String status, boolean isApproved, boolean isRejected, boolean headIsApproved) {
+            String reason, String fileName, String fileType, long fileSize, String status, boolean opcIsApproved, boolean isRejected, boolean headIsApproved) {
         super();
-        this.userEmail = userEmail;
+        this.userName = userName;
         this.typeOfTrip = typeOfTrip;
         this.destinationTo = destinationTo;
         this.destinationFrom = destinationFrom;
@@ -167,7 +167,7 @@ public class ReservationEntity {
         this.fileType = fileType;
         this.fileSize = fileSize;
         this.status = status;
-        this.isApproved = isApproved;
+        this.opcIsApproved = opcIsApproved;
         this.isRejected = isRejected;
         this.headIsApproved = headIsApproved;
     }

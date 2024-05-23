@@ -47,15 +47,15 @@ const Reservation2 = () => {
   const [departments, setDepartments] = useState([]);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     fetchDepartments();
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        const userEmail = user.email;
-        const name = userEmail.split('@')[0].split('.').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        setUserEmail(name);
+        const userName = user.email;
+        const name = userName.split('@')[0].split('.').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        setUserName(name);
         console.log('User Name:', name);
       }
     });
@@ -151,15 +151,15 @@ const Reservation2 = () => {
       department: formValues.department,
       schedule: selectedDate, 
       vehicleType: formValues.vehicleType,
-       pickUpTime: pickUpTime,
+      pickUpTime: pickUpTime,
       departureTime: formValues.departureTime,
       reason: formValues.reason,
-      userEmail: userEmail
+      userName: userName
     };
   
     const formData = new FormData();
     formData.append('reservation', JSON.stringify(reservationData));
-    formData.append('userEmail', userEmail);
+    formData.append('userName', userName);
   
     if (formValues.file) {
       formData.append('file', formValues.file);

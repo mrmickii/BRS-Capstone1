@@ -21,8 +21,8 @@ const Settings = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async user => {
       if (user) {
-        const userEmail = user.email;
-        const name = capitalizeFirstLetter(userEmail.split('@')[0].replace('.', ' '));
+        const userName = user.email;
+        const name = capitalizeFirstLetter(userName.split('@')[0].replace('.', ' '));
 
         const userDocRef = doc(db, 'users', user.uid);
         const userDocSnap = await getDoc(userDocRef);
@@ -33,7 +33,7 @@ const Settings = () => {
 
           setUserData({
             name: name,
-            email: userEmail,
+            email: userName,
             department: department,
             userType: userType 
           });

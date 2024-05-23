@@ -19,7 +19,7 @@ public class DriverService {
 
   public DriverEntity post(DriverEntity post){
     if(post.getStatus() == null || post.getStatus().isEmpty()){
-      post.setStatus("Pending");
+      post.setStatus("Available");
     }
     return driverRepo.save(post);
   }

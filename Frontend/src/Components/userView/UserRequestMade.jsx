@@ -7,15 +7,15 @@ import { auth } from "../../FirebaseConfig";
 
 const UserRequestsMade = () => {
   const [reservations, setReservations] = useState([]);
-  const [userEmail, setUserEmail] = useState('');
+  const [userName, setUserName] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        const userEmail = user.email;
-        const name = userEmail.split('@')[0].split('.').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        setUserEmail(name);
+        const userName = user.email;
+        const name = userName.split('@')[0].split('.').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        setUserName(name);
         console.log('User Name:', name);
       }
     });
@@ -23,14 +23,14 @@ const UserRequestsMade = () => {
   }, []);
 
   useEffect(() => {
-    if (userEmail) {
+    if (userName) {
       fetchUserReservations();
     }
-  }, [userEmail]);
+  }, [userName]);
 
   const fetchUserReservations = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/reservation/reservations/${userEmail}`);
+      const response = await fetch(`http://localhost:8080/reservation/reservations/${userName}`);
       if (!response.ok) {
         throw new Error('Failed to fetch user reservations');
       }

@@ -42,7 +42,7 @@
     }, []);
 
     useEffect(() => {
-      const filtered = approvedReservations.filter(reservation => !reservation.approved && reservation.headIsApproved && !reservation.rejected);
+      const filtered = approvedReservations.filter(reservation => !reservation.opcIsApproved && reservation.headIsApproved && !reservation.rejected);
       setFilteredApprovedReservations(filtered);
     }, [approvedReservations]);
 
@@ -123,7 +123,7 @@
 
     const handleApproveAction = async (reservationId) => {
       try {
-        const response = await fetch(`http://localhost:8080/reservation/approve/${reservationId}`, {
+        const response = await fetch(`http://localhost:8080/reservation/opc-approve/${reservationId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -206,7 +206,7 @@
                   <div className="r-d-container-left1">
                     <h2 className="rdc-h2">Type of Trip: {reservation.typeOfTrip}</h2>
                     <p>Schedule: <span>{reservation.schedule}</span></p>
-                    <p>Requestor: <span>{reservation.userEmail}</span></p>
+                    <p>Requestor: <span>{reservation.userName}</span></p>
                     <p>Department: <span>{reservation.department}</span></p>
                     <p>Capacity: <span>{reservation.capacity}</span></p>
                     <div className="feedback-container1">

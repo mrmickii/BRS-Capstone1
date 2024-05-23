@@ -34,10 +34,10 @@ public class ReservationController {
         }
     }
 
-    @PostMapping("/approve/{reservationId}")
-    public ResponseEntity<String> approveReservation(@PathVariable int reservationId) {
+    @PostMapping("/opc-approve/{reservationId}")
+    public ResponseEntity<String> opcApproveReservation(@PathVariable int reservationId) {
         try {
-            resServ.approveReservation(reservationId);
+            resServ.opcApproveReservation(reservationId);
             return ResponseEntity.ok("Reservation approved successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to approve reservation: " + e.getMessage());
@@ -55,7 +55,7 @@ public class ReservationController {
     }
 
     @PostMapping("/add")
-    public ReservationEntity addReservation(@RequestParam("userEmail") String userEmail, @RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("reservation") String reservationJson) throws IOException {
+    public ReservationEntity addReservation(@RequestParam("userName") String userName, @RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("reservation") String reservationJson) throws IOException {
         System.out.println("Received file: " + (file != null ? file.getOriginalFilename() : "No file uploaded"));
         System.out.println("Received JSON: " + reservationJson);
         
@@ -64,7 +64,7 @@ public class ReservationController {
         
         System.out.println("Mapped reservation: " + reservation);
         
-        return resServ.saveReservation(userEmail, reservation, file);
+        return resServ.saveReservation(userName, reservation, file);
     }
 
     @GetMapping("/reservations")
@@ -72,10 +72,10 @@ public class ReservationController {
         return resServ.getAllReservations();
     }
 
-    @GetMapping("/reservations/{userEmail}")
-    public ResponseEntity<List<ReservationEntity>> getUserReservations(@PathVariable String userEmail) {
+    @GetMapping("/reservations/{userName}")
+    public ResponseEntity<List<ReservationEntity>> getUserReservations(@PathVariable String userName) {
         try {
-            List<ReservationEntity> userReservations = resServ.getUserReservations(userEmail);
+            List<ReservationEntity> userReservations = resServ.getUserReservations(userName);
             return ResponseEntity.ok(userReservations);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
