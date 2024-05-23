@@ -43,9 +43,10 @@
   padding: 10px 15px;
 }
 
+
 .opc-driver-requests-header button:hover {
-  background-color: #ffffff; /* Change background to white */
-  color: #782324; /* Keep font color the same */
+  background-color: #fff; 
+  color: #782324;
 }
 
 .driver-data-container1 {
@@ -61,9 +62,8 @@
 
 .driver-data {
   width: 100%;
-  background-color: #FFF;
   overflow-y: auto;
-  min-height: 350px;
+  max-height: 450px;
 }
 
 .driver-availability{
@@ -75,12 +75,16 @@
 .driver-data-container {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .driver-info{
-  background-color: #ccc;
-  padding: 20px;
-  margin: 20px;
+  background-color: #FFF;
+  padding: 15px 15px;
+  padding-right: 20px;
+  max-width: 1308px;
+  margin-left: 26px;
+  width: 97.8%;
 }
 .driver-info h1, .driver-info p{
   display: flex;
@@ -88,18 +92,19 @@
 }
 
 .driver-update-button, .driver-delete-button{
-  width: 100px;
+  width: 150px;
+  height: 40px;
   padding: 10px 20px;
   border: none;
-  border-radius: 15px;
   margin-top: 10px;
 }
 
 .driver-update-button{
-  background-color: #00bf63;
+  background-color: #0fac0f;
+  color: #FFF;
 }
 
 .driver-delete-button{
-  background-color: #782324;
+  background-color: #c23a3c;
   color: #FFF;
 }

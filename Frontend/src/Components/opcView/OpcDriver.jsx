@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../userView/Header';
 import OpcNavBar from './OpcSideNavBar';
-import { AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
-import '../../CSS/opcCSS/opc-driver.css';
-import { useNavigate } from 'react-router-dom';
-import DialogBox from './OpcAddDriver'; 
-import DeleteConfirmationDialogBox from './OpcDeleteDriver';
-import UpdateDialogBox from './OpcUpdateDriver'; 
+import { AiOutlineUser, AiOutlineFileText } from 'react-icons/ai';
 import { FaBus } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import DialogBox from './OpcAddDriver';
+import DeleteConfirmationDialogBox from './OpcDeleteDriver';
+import UpdateDialogBox from './OpcUpdateDriver';
+import '../../CSS/opcCSS/opc-driver.css';
 
 const OpcDriver = () => {
   const navigate = useNavigate();
@@ -18,9 +18,6 @@ const OpcDriver = () => {
   const [showDeleteConfirmationDialog, setShowDeleteConfirmationDialog] = useState(false);
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);
   const [driverToUpdate, setDriverToUpdate] = useState(null);
-  const [driverCount, setDriverCount] = useState(0); 
-  const [vehicleCount, setVehicleCount] = useState(0); 
-  const [approvedReservationCount, setApprovedReservationCount] = useState(0);
 
   useEffect(() => {
     fetchReservations();
@@ -28,25 +25,10 @@ const OpcDriver = () => {
     fetchVehicles();
   }, []);
 
-  useEffect(() => {
-    setDriverCount(drivers.length); 
-  }, [drivers]);
-
-  useEffect(() => {
-    setVehicleCount(vehicles.length); 
-  }, [vehicles]);
-
-  useEffect(() => {
-    const approvedReservations = reservations.filter(reservation => reservation.status === 'Approved');
-    setApprovedReservationCount(approvedReservations.length);
-  }, [reservations]);
-
   const fetchReservations = async () => {
     try {
       const response = await fetch('http://localhost:8080/reservation/reservations');
-      if (!response.ok) {
-        throw new Error('Failed to fetch reservation data');
-      }
+      if (!response.ok) throw new Error('Failed to fetch reservation data');
       const reservationData = await response.json();
       setReservations(reservationData);
     } catch (error) {
@@ -57,9 +39,7 @@ const OpcDriver = () => {
   const fetchDrivers = async () => {
     try {
       const response = await fetch('http://localhost:8080/driver/drivers');
-      if (!response.ok) {
-        throw new Error('Failed to fetch driver data');
-      }
+      if (!response.ok) throw new Error('Failed to fetch driver data');
       const driverData = await response.json();
       setDrivers(driverData);
     } catch (error) {
@@ -70,9 +50,7 @@ const OpcDriver = () => {
   const fetchVehicles = async () => {
     try {
       const response = await fetch('http://localhost:8080/vehicle/vehicles');
-      if (!response.ok) {
-        throw new Error('Failed to fetch vehicle data');
-      }
+      if (!response.ok) throw new Error('Failed to fetch vehicle data');
       const vehicleData = await response.json();
       setVehicles(vehicleData);
     } catch (error) {
@@ -98,26 +76,19 @@ const OpcDriver = () => {
 
   const handleDeleteDriver = (driver) => {
     setShowDeleteConfirmationDialog(true);
-    setDriverToUpdate(driver); 
+    setDriverToUpdate(driver);
   };
 
   const handleUpdateDriver = (driver) => {
     setShowUpdateDialog(true);
-    setDriverToUpdate(driver); 
+    setDriverToUpdate(driver);
   };
 
   const confirmDeleteDriver = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/driver/delete/${driverToUpdate.id}`, {
-        method: 'DELETE',
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to delete driver');
-      }
-  
-      const updatedDrivers = drivers.filter(d => d.id !== driverToUpdate.id);
-      setDrivers(updatedDrivers);
+      const response = await fetch(`http://localhost:8080/driver/delete/${driverToUpdate.id}`, { method: 'DELETE' });
+      if (!response.ok) throw new Error('Failed to delete driver');
+      setDrivers(drivers.filter(d => d.id !== driverToUpdate.id));
       setShowDeleteConfirmationDialog(false);
     } catch (error) {
       console.error('Error deleting driver:', error);
@@ -128,77 +99,65 @@ const OpcDriver = () => {
     try {
       const response = await fetch(`http://localhost:8080/driver/update/${updatedDriver.id}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedDriver),
       });
-  
-      if (!response.ok) {
-        throw new Error('Failed to update driver');
-      }
-  
-      const updatedDrivers = drivers.map(d => {
-        if (d.id === updatedDriver.id) {
-          return updatedDriver;
-        }
-        return d;
-      });
-      setDrivers(updatedDrivers);
+      if (!response.ok) throw new Error('Failed to update driver');
+      setDrivers(drivers.map(d => (d.id === updatedDriver.id ? updatedDriver : d)));
       setShowUpdateDialog(false);
     } catch (error) {
       console.error('Error updating driver:', error);
     }
   };
 
+  const filteredApprovedReservations = reservations.filter(reservation => !reservation.opcIsApproved && reservation.headIsApproved && !reservation.rejected);
+
   return (
     <div className="opc-view-container">
       <Header />
       <OpcNavBar />
-      <div className="opc-title" style={{marginBottom: '30px'}}>
-        <h1 style={{fontSize: '46px'}}>DRIVERS</h1>
+      <div className="opc-title" style={{ marginBottom: '30px' }}>
+        <h1 style={{ fontSize: '46px' }}>DRIVERS</h1>
       </div>
       <div className="driver-data-container1">
         <div className="sample">
           <div className="opc-header-button-container">
             <div className="opc-header-button">
               <button className="header-buttons" onClick={handleRequest}>
-                <AiOutlineFileText size={40} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{approvedReservationCount}</span>
+                <AiOutlineFileText size={40} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{filteredApprovedReservations.length}</span>
               </button>
               <button className="header-buttons" onClick={handleDriverManagement}>
-                <AiOutlineUser size={40} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{driverCount}</span>
+                <AiOutlineUser size={40} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{drivers.length}</span>
               </button>
               <button className="header-buttons" id="vehicleButton" onClick={handleVehicleManagement}>
-                <FaBus size={40} style={{ marginLeft: '25px' }} /> VEHICLE <span className="number">{vehicleCount}</span>
+                <FaBus size={40} style={{ marginLeft: '25px' }} /> VEHICLE <span className="number">{vehicles.length}</span>
               </button>
             </div>
           </div>
           <div className="opc-requests-header-container">
             <div className="opc-driver-requests-header">
-              <h1> <AiOutlineUser size={35} style={{ marginRight: '5px' }}/>DRIVERS </h1>
+              <h1><AiOutlineUser size={35} style={{ marginRight: '5px' }} />DRIVERS</h1>
               <button onClick={handleAddDriver}>Add Driver</button>
-            </div> 
-          </div> 
-        </div> 
-        <div className="driver-data">
-          {drivers.length === 0 ? (
-            <p className='driver-availability'>No drivers available.</p>
-          ) : (
-            <div className="driver-data-container">
-              {drivers.map((driver, index) => (
-                <div className='driver-info' key={index}>
-                  <h1>{driver.driverName}
-                    <button className='driver-update-button' onClick={() => handleUpdateDriver(driver)}>Update
-                    </button>
-                  </h1> 
-                  <p>Contact Number: {driver.contactNumber}
-                    <button className='driver-delete-button' onClick={() => handleDeleteDriver(driver)}>Delete
-                    </button>
-                  </p> 
-                </div>
-              ))}
             </div>
-          )}
+          </div>
+          <div className="driver-data">
+            {drivers.length === 0 ? (
+              <p className='driver-availability'>No drivers available.</p>
+            ) : (
+              <div className="driver-data-container">
+                {drivers.map((driver, index) => (
+                  <div className='driver-info' key={index}>
+                    <h1>{driver.driverName}
+                      <button className='driver-update-button' onClick={() => handleUpdateDriver(driver)}>Update</button>
+                    </h1>
+                    <p>Contact Number: {driver.contactNumber}
+                      <button className='driver-delete-button' onClick={() => handleDeleteDriver(driver)}>Delete</button>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
         <div className='cit-bglogo'></div>
       </div>

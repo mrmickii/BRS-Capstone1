@@ -22,8 +22,7 @@ const OpcVehicle = () => {
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);
   const [vehicleToUpdate, setVehicleToUpdate] = useState(null);
   const [vehicleCount, setVehicleCount] = useState(0);
-  const [driverCount, setDriverCount] = useState(0); 
-  const [approvedReservationCount, setApprovedReservationCount] = useState(0);
+  const [driverCount, setDriverCount] = useState(0);
 
   useEffect(() => {
     fetchReservations();
@@ -38,11 +37,6 @@ const OpcVehicle = () => {
   useEffect(() => {
     setDriverCount(drivers.length); 
   }, [drivers]);
-
-  useEffect(() => {
-    const approvedReservations = reservations.filter(reservation => reservation.status === 'Approved');
-    setApprovedReservationCount(approvedReservations.length);
-  }, [reservations]);
 
   const fetchReservations = async () => {
     try {
@@ -154,6 +148,8 @@ const OpcVehicle = () => {
     }
   };
 
+  const filteredApprovedReservations = reservations.filter(reservation => !reservation.opcIsApproved && reservation.headIsApproved && !reservation.rejected);
+
   return (
     <div className="opc-view-container">
       <Header />
@@ -166,7 +162,7 @@ const OpcVehicle = () => {
           <div className="opc-vehicle-header-button-container">
             <div className="opc-vehicle-header-button">
               <button className="header-buttons" onClick={handleRequest}>
-                <AiOutlineFileText size={40} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{approvedReservationCount}</span>
+                <AiOutlineFileText size={40} style={{ marginLeft: '19px' }} /> REQUEST <span className="number">{filteredApprovedReservations.length}</span>
               </button>
               <button className="header-buttons" onClick={handleDriverManagement}>
                 <AiOutlineUser size={40} style={{ marginLeft: '37px' }} /> DRIVER <span className="number">{driverCount}</span>
@@ -177,39 +173,35 @@ const OpcVehicle = () => {
             </div>
           </div>
           <div className="opc-vehicle-requests-header-container">
-          <div className="opc-vehicle-requests-header">
-              <h1>  <FaBus size={32} style={{ marginRight: '15px' }} /> VEHICLES </h1>
+            <div className="opc-vehicle-requests-header">
+              <h1> <FaBus size={32} style={{ marginRight: '15px' }} /> VEHICLES </h1>
               <button onClick={handleAddVehicle}>Add Vehicle</button>
             </div>
-        </div>
-        <div className="rdc-box1">
-          {vehicles.length === 0 ? (
-            <p className='vehicle-availability'>No vehicles available.</p>
-          ) : (
-            <div className="request-vehicle-data-container1">
-              {vehicles.map((vehicle, index) => (
-                <div className='vehicle-info' key={index}>
-                  <h1>{vehicle.vehicleType}</h1>
-                  <p className="vehicle-info-plate"><FaRectangleAd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Plate Number: {vehicle.plateNumber}</p>
-                  <p className="vehicle-info-capa"><IoMdPersonAdd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Capacity: {vehicle.capacity}</p>
-                  <button className="vehicle-update-button" onClick={() => handleUpdateVehicle(vehicle)}>Update</button>
-                  <button className="vehicle-delete-button" onClick={() => handleDeleteVehicle(vehicle)}>Delete</button>
-                  
-                </div>
-              ))}
-            </div>
-          
-          )}
-        </div>
           </div>
-          {showAddVehicleDialog && <AddVehicle onClose={() => setShowAddVehicleDialog(false)} />} 
-          {showDeleteConfirmationDialog && <DeleteConfirmationDialogBox onClose={() => setShowDeleteConfirmationDialog(false)} onDelete={confirmDeleteVehicle} />}
-          {showUpdateDialog && <UpdateDialogBox vehicle={vehicleToUpdate} onUpdate={confirmUpdateVehicle} onClose={() => setShowUpdateDialog(false)} />}
-          <div className='cit-bglogo'></div>
+          <div className="rdc-box1">
+            {vehicles.length === 0 ? (
+              <p className='vehicle-availability'>No vehicles available.</p>
+            ) : (
+              <div className="request-vehicle-data-container1">
+                {vehicles.map((vehicle, index) => (
+                  <div className='vehicle-info' key={index}>
+                    <h1>{vehicle.vehicleType}</h1>
+                    <p className="vehicle-info-plate"><FaRectangleAd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Plate Number: {vehicle.plateNumber}</p>
+                    <p className="vehicle-info-capa"><IoMdPersonAdd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Capacity: {vehicle.capacity}</p>
+                    <button className="vehicle-update-button" onClick={() => handleUpdateVehicle(vehicle)}>Update</button>
+                    <button className="vehicle-delete-button" onClick={() => handleDeleteVehicle(vehicle)}>Delete</button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
+        {showAddVehicleDialog && <AddVehicle onClose={() => setShowAddVehicleDialog(false)} />} 
+        {showDeleteConfirmationDialog && <DeleteConfirmationDialogBox onClose={() => setShowDeleteConfirmationDialog(false)} onDelete={confirmDeleteVehicle} />}
+        {showUpdateDialog && <UpdateDialogBox vehicle={vehicleToUpdate} onUpdate={confirmUpdateVehicle} onClose={() => setShowUpdateDialog(false)} />}
+        <div className='cit-bglogo'></div>
       </div>
-    
-    
+    </div>
   );
 }
 

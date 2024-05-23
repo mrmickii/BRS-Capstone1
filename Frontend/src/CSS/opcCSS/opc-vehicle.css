@@ -1,5 +1,4 @@
 .opc-view-container {
- 
   align-items: center;
 }
  
@@ -22,20 +21,19 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
-  height: 90px;
   max-width: 1400px;
 }
  
 .opc-vehicle-requests-header-container{
-  height: 100px;
+  height: 80px;
 }
  
 .opc-vehicle-requests-header{
   display: flex;
   max-width: 1308px;
+  gap: 935px;
   background-color: #782324;
   align-items: center;
-  padding: 15px 0px;
   margin-left: 26px;
   padding: 15px 15px;
   padding-right: 20px;
@@ -45,9 +43,7 @@
   background-color: #782324;
   align-items: center;
   margin-left: 26px;
-  padding: 15px 15px;
   padding-right: 20px;
-  padding: 15px 0px;
 }
  
 .opc-vehicle-requests-header h1{
@@ -55,28 +51,30 @@
   margin-left: 20px;
 }
  
- 
 .opc-vehicle-requests-header button {
-  position: absolute;
-  left: 1590px;
-  height: 40px;
   border: none;
-  font-size: 16px;
   background-color: #f4c108;
   border-radius: 20px;
   color: #782324;
   font-weight: bold;
-  cursor: pointer;
-  width: 180px;
- 
+  padding: 10px 15px;
 }
-
 
 .rdc-box1{
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   overflow-y: auto;
+  max-height: 450px !important;
+}
+
+.request-vehicle-data-container1{
+  height: 440px;
+  max-width: 1400px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
  
 .vehicle-availability{
@@ -101,21 +99,17 @@
   flex-direction: column;
 }
  
- 
 .vehicle-info{
-  padding: 20px;
-  margin: 20px;
-  border-radius: 10px;
-  justify-content: space-between;
-
-  
+  max-width: 1308px;
+  margin-left: 26px;
+  padding: 15px 15px;
+  padding-right: 20px;
+  min-height: 130px;
 }
+
 .vehicle-info-plate{
-  position: absolute;
-  left: 400px;
   font-weight: 700;
 }
- 
  
 .vehicle-update-button, .vehicle-delete-button{
   width: 100px;
@@ -123,11 +117,9 @@
   border: none;
   border-radius: 15px;
   margin-top: 10px;
-  
 }
  
 .vehicle-update-button{
-  position: absolute;
   left: 1020px;
   width: 150px;
   background-color: #00bf63;
@@ -141,42 +133,6 @@
   font-weight: 700;
 }
 .vehicle-info-capa{
-  position: absolute;
   left: 750px;
   font-weight: 700;
-}
-.cit-bglogo {
-  position: fixed;
-  top: 200px;
-  left: 1200px;
-  width: 1000px;
-  height: 900px;
-  background-image: url(../../Images/citbglogo.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: -2;
-  filter: saturate(0%);
-  opacity: 0.2;
-}
- 
-.sample{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-height: 1000px;
-  min-height: 100px;
- 
-}
-.request-vehicle-data-container1{
-  position: absolute;
-  left: 433px;
-  top: 400px;
-  background-color: #CBC3C3;
-  height: 440px;
-  width: 1400px;
-  overflow-y: scroll;
-}
-.vehicle-info{
-  background-color: red;
 }

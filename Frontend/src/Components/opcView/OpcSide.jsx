@@ -171,7 +171,6 @@
       }
     };
     
-
     return (
       <div className="opc-view-container">
         <Header />
