@@ -89,6 +89,7 @@ const UserRequestsMade = () => {
                       <p className='urm-status'>Status: 
                         <span className={`${getStatusColor(reservation.status)}`}> {reservation.status}</span>
                       </p>
+                      <p>Feedback: {reservation.feedback}</p>
                     </div>
                     <div>
                       <h3 className='urm-header'>Vehicle: {reservation.vehicleType}</h3>

@@ -20,7 +20,7 @@ public class ReservationController {
     private ReservationService resServ;
     
     @GetMapping("/reservations/head-approved")
-    public List<ReservationEntity> getApprovedReservations(){
+    public List<ReservationEntity> getApprovedReservations() {
         return resServ.getHeadApprovedReservations();
     }
     
@@ -45,9 +45,9 @@ public class ReservationController {
     }
 
     @PostMapping("/reject/{reservationId}")
-    public ResponseEntity<String> rejectReservation(@PathVariable int reservationId) {
+    public ResponseEntity<String> rejectReservation(@PathVariable int reservationId, @RequestBody String feedback) {
         try {
-            resServ.rejectReservation(reservationId);
+            resServ.rejectReservation(reservationId, feedback);
             return ResponseEntity.ok("Reservation rejected successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to reject reservation: " + e.getMessage());
@@ -56,19 +56,13 @@ public class ReservationController {
 
     @PostMapping("/add")
     public ReservationEntity addReservation(@RequestParam("userName") String userName, @RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("reservation") String reservationJson) throws IOException {
-        System.out.println("Received file: " + (file != null ? file.getOriginalFilename() : "No file uploaded"));
-        System.out.println("Received JSON: " + reservationJson);
-        
         ObjectMapper objectMapper = new ObjectMapper();
         ReservationEntity reservation = objectMapper.readValue(reservationJson, ReservationEntity.class);
-        
-        System.out.println("Mapped reservation: " + reservation);
-        
         return resServ.saveReservation(userName, reservation, file);
     }
 
     @GetMapping("/reservations")
-    public List<ReservationEntity> getAllReservations(){
+    public List<ReservationEntity> getAllReservations() {
         return resServ.getAllReservations();
     }
 

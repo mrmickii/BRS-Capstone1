@@ -33,7 +33,6 @@
   cursor: pointer;
 }
 
-
 .modal-btn{
   display: flex;
   justify-content: space-around;
@@ -47,4 +46,18 @@
 .confirmation-modal button:last-child {
   background-color: #c23a3c;
   color: white;
+}
+
+.confirmation-modal textarea{
+  border: solid 1px;
+  height: 100px;
+  max-height: 300px;
+  width: 350px;
+  resize: none;
+  overflow-y: auto;
+}
+
+.confirmation-modal .error-message{
+  text-align: center;
+  font-size: 12px;
 }

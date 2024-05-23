@@ -15,20 +15,13 @@ public class ReservationService {
     private ReservationRepository resRepo;
 
     public void headApproveReservation(int reservationId) {
-        ReservationEntity reservation = resRepo.findById(reservationId).orElse(null);
-        if (reservation == null) {
-            throw new IllegalArgumentException("Reservation not found");
-        }
+        ReservationEntity reservation = resRepo.findById(reservationId).orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
         reservation.setHeadIsApproved(true); 
         resRepo.save(reservation);
     }
 
-
     public void opcApproveReservation(int reservationId) {
-        ReservationEntity reservation = resRepo.findById(reservationId).orElse(null);
-        if (reservation == null) {
-            throw new IllegalArgumentException("Reservation not found");
-        }
+        ReservationEntity reservation = resRepo.findById(reservationId).orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
         reservation.setStatus("Approved");
         reservation.setOpcIsApproved(true); 
         resRepo.save(reservation);
@@ -38,13 +31,11 @@ public class ReservationService {
         return resRepo.findByHeadIsApproved(true);
     }
 
-    public void rejectReservation(int reservationId) {
-        ReservationEntity reservation = resRepo.findById(reservationId).orElse(null);
-        if (reservation == null) {
-            throw new IllegalArgumentException("Reservation not found");
-        }
+    public void rejectReservation(int reservationId, String feedback) {
+        ReservationEntity reservation = resRepo.findById(reservationId).orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
         reservation.setStatus("Rejected");
         reservation.setRejected(true); 
+        reservation.setFeedback(feedback);
         resRepo.save(reservation);
     }
 
@@ -60,6 +51,9 @@ public class ReservationService {
         }
         if (reservation.getStatus() == null || reservation.getStatus().isEmpty()) {
             reservation.setStatus("Pending");
+        }
+        if (reservation.getFeedback() == null || reservation.getFeedback().isEmpty()) {
+            reservation.setFeedback("No feedback");
         }
         reservation.setUserName(userName);
         return resRepo.save(reservation);

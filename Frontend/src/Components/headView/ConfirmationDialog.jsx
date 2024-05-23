@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../CSS/headCSS/confirmation-dialog.css";
 
-const ConfirmationDialog = ({ action, onConfirm, onCancel }) => {
+const ConfirmationDialog = ({ action, onConfirm, onCancel, onFeedbackChange, feedback }) => {
+  const [error, setError] = useState("");
+
   const getMessage = () => {
     if (action === 'approve') {
       return 'Are you sure you want to approve this reservation?';
@@ -11,14 +13,37 @@ const ConfirmationDialog = ({ action, onConfirm, onCancel }) => {
     return '';
   };
 
+  const handleFeedbackChange = (e) => {
+    onFeedbackChange(e.target.value);
+    setError("");
+  };
+
+  const handleConfirm = () => {
+    if (action === "reject" && feedback.trim() === "") {
+      setError("Feedback is required when rejecting a reservation.");
+      return;
+    }
+    onConfirm();
+  };
+
   return (
     <div className="confirmation-modal">
       <span className="modal-close-span">
         <p className="modal-close-btn" onClick={onCancel}>x</p>
       </span>
       <p>{getMessage()}</p>
+      {action === "reject" && (
+        <div>
+          <textarea
+            value={feedback}
+            onChange={handleFeedbackChange}
+            placeholder="Enter feedback"
+          />
+          <p className="error-message">{error}</p>
+        </div>
+      )}
       <div className="modal-btn">
-        <button onClick={onConfirm}>Confirm</button>
+        <button onClick={handleConfirm}>Confirm</button>
         <button onClick={onCancel}>Cancel</button>
       </div>
     </div>

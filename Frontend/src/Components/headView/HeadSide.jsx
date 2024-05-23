@@ -19,6 +19,7 @@ const HeadSide = () => {
     isOpen: false,
     action: '',
     reservationId: null,
+    feedback: ''
   });
 
   useEffect(() => {
@@ -34,18 +35,12 @@ const HeadSide = () => {
   const fetchUserDepartment = async () => {
     try {
       const user = auth.currentUser; 
-      if (user) {
-        const userDocRef = doc(db, 'users', user.uid); 
-        const userDocSnap = await getDoc(userDocRef);
-        if (userDocSnap.exists()) {
-          const userData = userDocSnap.data();
-          setUserDepartment(userData.department);
-        } else {
-          console.error('User document does not exist');
-        }
-      } else {
-        console.error('No user signed in');
-      }
+      if (!user) throw new Error('No user signed in');
+      const userDocRef = doc(db, 'users', user.uid); 
+      const userDocSnap = await getDoc(userDocRef);
+      if (!userDocSnap.exists()) throw new Error('User document does not exist');
+      const userData = userDocSnap.data();
+      setUserDepartment(userData.department);
     } catch (error) {
       console.error('Error fetching user department:', error);
     }
@@ -54,9 +49,7 @@ const HeadSide = () => {
   const fetchReservations = async () => {
     try {
       const response = await fetch('http://localhost:8080/reservation/reservations');
-      if (!response.ok) {
-        throw new Error('Failed to fetch reservation data');
-      }
+      if (!response.ok) throw new Error('Failed to fetch reservation data');
       const reservationData = await response.json();
       setReservations(reservationData);
       console.log('Success fetching reservation data.');
@@ -75,6 +68,7 @@ const HeadSide = () => {
       isOpen: true,
       action: 'approve',
       reservationId,
+      feedback: ''
     });
   };
 
@@ -83,6 +77,7 @@ const HeadSide = () => {
       isOpen: true,
       action: 'reject',
       reservationId,
+      feedback: ''
     });
   };
 
@@ -91,14 +86,19 @@ const HeadSide = () => {
       isOpen: false,
       action: '',
       reservationId: null,
+      feedback: ''
     });
+  };
+
+  const handleFeedbackChange = (feedback) => {
+    setConfirmationData(prevData => ({ ...prevData, feedback }));
   };
 
   const confirmAction = async () => {
     if (confirmationData.action === 'approve') {
       await handleApproveAction(confirmationData.reservationId);
     } else if (confirmationData.action === 'reject') {
-      await handleRejectAction(confirmationData.reservationId);
+      await handleRejectAction(confirmationData.reservationId, confirmationData.feedback);
     }
     handleCloseConfirmation();
   };
@@ -107,18 +107,12 @@ const HeadSide = () => {
     try {
       const response = await fetch(`http://localhost:8080/reservation/head-approve/${reservationId}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        headers: { 'Content-Type': 'application/json' }
       });
-      if (!response.ok) {
-        throw new Error('Failed to approve reservation');
-      }
-      setReservations(prevReservations => 
-        prevReservations.map(reservation => 
-          reservation.id === reservationId ? { ...reservation, headisApproved: true } : reservation
-        )
-      );
+      if (!response.ok) throw new Error('Failed to approve reservation');
+      setReservations(prevReservations => prevReservations.map(reservation => 
+        reservation.id === reservationId ? { ...reservation, headisApproved: true } : reservation
+      ));
       console.log('Reservation approved successfully.');
       window.location.reload();
     } catch (error) {
@@ -126,22 +120,17 @@ const HeadSide = () => {
     }
   };
   
-  const handleRejectAction = async (reservationId) => {
+  const handleRejectAction = async (reservationId, feedback) => {
     try {
       const response = await fetch(`http://localhost:8080/reservation/reject/${reservationId}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        headers: { 'Content-Type': 'application/json' },
+        body: feedback 
       });
-      if (!response.ok) {
-        throw new Error('Failed to reject reservation');
-      }
-      setReservations(prevReservations => 
-        prevReservations.map(reservation => 
-          reservation.id === reservationId ? { ...reservation, isRejected: true } : reservation
-        )
-      );
+      if (!response.ok) throw new Error('Failed to reject reservation');
+      setReservations(prevReservations => prevReservations.map(reservation => 
+        reservation.id === reservationId ? { ...reservation, isRejected: true, feedback } : reservation
+      ));
       console.log('Reservation rejected successfully.');
       window.location.reload();
     } catch (error) {
@@ -194,6 +183,8 @@ const HeadSide = () => {
           action={confirmationData.action}
           onConfirm={confirmAction}
           onCancel={handleCloseConfirmation}
+          onFeedbackChange={handleFeedbackChange}
+          feedback={confirmationData.feedback}
         />
       )}
     </>
@@ -207,9 +198,14 @@ const ReservationItem = ({ reservation, onApprove, onReject, onViewFile }) => (
       <p>Schedule: <span>{reservation.schedule}</span></p>
       <p>Requestor: <span>{reservation.userName}</span></p>
       <p>Department: <span>{reservation.department}</span></p>
-      <p>Capacity: <span>{reservation.capacity}</span></p>                    
+      <p>Capacity: <span>{reservation.capacity}</span></p>
       <div className="feedback-container">
-        <input type="text" placeholder="Send feedback (optional)" />
+        <input
+          type="text"
+          placeholder="Send feedback (optional)"
+          value={reservation.feedback} 
+          readOnly
+        />
         <button>Send Feedback</button>
       </div>
       <h2 className="rdc-h2">Vehicle Type: {reservation.vehicleType}</h2>
@@ -229,3 +225,4 @@ const ReservationItem = ({ reservation, onApprove, onReject, onViewFile }) => (
 );
 
 export default HeadSide;
+
