@@ -15,7 +15,7 @@
   flex-direction: column;
   gap: 10px;
   max-height: 1500px;
-  min-height: 100px;
+  height: 650px;
 }
 
 .rdc-box{
@@ -28,7 +28,7 @@
 
 .opc-data-container1 {
   width: 1400px;
-  max-height: 700px;
+  max-height: 690px;
   height: 700px;
   margin-left: 18%;
   padding: 20px;

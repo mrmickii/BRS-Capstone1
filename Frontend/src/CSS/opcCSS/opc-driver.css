@@ -18,7 +18,7 @@
 .opc-driver-requests-header{
   display: flex;
   max-width: 1308px;
-  gap: 960px;
+  gap: 970px;
   background-color: #782324;
   align-items: center;
   margin-left: 26px;
@@ -28,7 +28,6 @@
 
 .opc-driver-requests-header h1{
   color: #FFF;
-  margin-left: 20px;
 }
 
 .opc-driver-requests-header button{
@@ -37,9 +36,9 @@
   border-radius: 20px;
   color: #782324;
   font-weight: bold;
-  padding: 10px 15px;
+  height: 40px;
+  width: 120px;
 }
-
 
 .opc-driver-requests-header button:hover {
   background-color: #fff; 
@@ -48,16 +47,18 @@
 
 .driver-data-container1 {
   width: 1400px;
-  max-height: 700px;
+  max-height: 750px;
   margin-left: 18%;
   padding: 20px;
   background-color: #ccc;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
 .driver-data {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 100%;
   overflow-y: auto;
   max-height: 490px;
@@ -73,6 +74,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  overflow-y: auto;
 }
 
 .driver-info{
@@ -82,6 +84,7 @@
   max-width: 1308px;
   margin-left: 26px;
   width: 97.8%;
+  min-height: 160px;
 }
 .driver-info h1, .driver-info p{
   display: flex;
