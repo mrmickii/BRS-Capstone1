@@ -5,10 +5,7 @@
 }
 
 .opc-title {
-  margin-right: 900px;
   margin-top: 1%;
-  display: flex;
-  align-items: flex-start;
 }
 
 .opc-view-req-container {
@@ -21,7 +18,7 @@
 .opc-driver-requests-header{
   display: flex;
   max-width: 1308px;
-  gap: 974px;
+  gap: 960px;
   background-color: #782324;
   align-items: center;
   margin-left: 26px;
@@ -51,7 +48,7 @@
 
 .driver-data-container1 {
   width: 1400px;
-  max-height: 750px;
+  max-height: 700px;
   margin-left: 18%;
   padding: 20px;
   background-color: #ccc;
@@ -63,7 +60,7 @@
 .driver-data {
   width: 100%;
   overflow-y: auto;
-  max-height: 450px;
+  max-height: 490px;
 }
 
 .driver-availability{
@@ -80,7 +77,7 @@
 
 .driver-info{
   background-color: #FFF;
-  padding: 15px 15px;
+  padding: 30px 30px;
   padding-right: 20px;
   max-width: 1308px;
   margin-left: 26px;

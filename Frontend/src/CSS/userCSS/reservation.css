@@ -50,6 +50,9 @@
   width: 1350px;
   overflow-y: auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .vehicle-info{

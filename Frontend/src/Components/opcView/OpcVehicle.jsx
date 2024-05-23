@@ -154,7 +154,7 @@ const OpcVehicle = () => {
     <div className="opc-view-container">
       <Header />
       <OpcNavBar />
-      <div className="opc-title" style={{marginBottom: '30px'}}>
+      <div className="opc-title" style={{marginBottom: '30px', marginRight: '850px'}}>
         <h1 style={{fontSize: '46px'}}>VEHICLES</h1>
       </div>
       <div className="vehicle-data-container1">
@@ -174,7 +174,7 @@ const OpcVehicle = () => {
           </div>
           <div className="opc-vehicle-requests-header-container">
             <div className="opc-vehicle-requests-header">
-              <h1> <FaBus size={32} style={{ marginRight: '15px' }} /> VEHICLES </h1>
+              <h1> <FaBus size={32} style={{ marginRight: '10px' }} /> VEHICLES </h1>
               <button onClick={handleAddVehicle}>Add Vehicle</button>
             </div>
           </div>
@@ -185,11 +185,15 @@ const OpcVehicle = () => {
               <div className="request-vehicle-data-container1">
                 {vehicles.map((vehicle, index) => (
                   <div className='vehicle-info' key={index}>
-                    <h1>{vehicle.vehicleType}</h1>
-                    <p className="vehicle-info-plate"><FaRectangleAd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Plate Number: {vehicle.plateNumber}</p>
-                    <p className="vehicle-info-capa"><IoMdPersonAdd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Capacity: {vehicle.capacity}</p>
-                    <button className="vehicle-update-button" onClick={() => handleUpdateVehicle(vehicle)}>Update</button>
-                    <button className="vehicle-delete-button" onClick={() => handleDeleteVehicle(vehicle)}>Delete</button>
+                    <div className='vechile-info-d1'>
+                      <h1>{vehicle.vehicleType}</h1>
+                      <p className="vehicle-info-plate"><FaRectangleAd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Plate Number: {vehicle.plateNumber}</p>
+                      <p className="vehicle-info-capa"><IoMdPersonAdd size={24} style={{marginRight: '10px', marginBottom: '-5px'}}/>Capacity: {vehicle.capacity}</p>
+                    </div>
+                    <div className='vehicle-info-d2'>
+                      <button className="vehicle-update-button" onClick={() => handleUpdateVehicle(vehicle)}>Update</button>
+                      <button className="vehicle-delete-button" onClick={() => handleDeleteVehicle(vehicle)}>Delete</button>
+                    </div>
                   </div>
                 ))}
               </div>

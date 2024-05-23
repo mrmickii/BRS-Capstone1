@@ -6,12 +6,6 @@
   height: 100vh;
 }
 
-.opc-title {
-  margin-right: 900px;
-  margin-top: 1%;
-  display: flex;
-}
-
 .opc-view-req-container {
   padding-bottom: 1.1%;
 }
@@ -20,7 +14,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 1000px;
+  max-height: 1500px;
   min-height: 100px;
 }
 
@@ -29,12 +23,13 @@
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
-  max-height: 450px;
+  max-height: 490px;
 }
 
 .opc-data-container1 {
   width: 1400px;
-  max-height: 750px;
+  max-height: 700px;
+  height: 700px;
   margin-left: 18%;
   padding: 20px;
   background-color: #ccc;

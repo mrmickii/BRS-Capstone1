@@ -2,12 +2,6 @@
   align-items: center;
 }
  
-.opc-title {
-  margin-right: 900px;
-  margin-top: 1%;
-  align-items: flex-start;
-}
- 
 .opc-view-req-container {
   padding-bottom: 1.1%;
 }
@@ -65,11 +59,11 @@
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
-  max-height: 450px !important;
+  max-height: 490px;
 }
 
 .request-vehicle-data-container1{
-  height: 440px;
+  height: 500px;
   max-width: 1400px;
   overflow-y: scroll;
   display: flex;
@@ -102,9 +96,9 @@
 .vehicle-info{
   max-width: 1308px;
   margin-left: 26px;
-  padding: 15px 15px;
+  padding: 30px 30px;
   padding-right: 20px;
-  min-height: 130px;
+  min-height: 160px;
 }
 
 .vehicle-info-plate{
@@ -115,24 +109,28 @@
   width: 100px;
   padding: 10px 20px;
   border: none;
-  border-radius: 15px;
   margin-top: 10px;
 }
  
 .vehicle-update-button{
   left: 1020px;
   width: 150px;
-  background-color: #00bf63;
-  font-weight: 700;
+  background-color:#0fac0f;
+  color: #FFF;
 }
  
 .vehicle-delete-button{
   width: 150px;
-  background-color: #782324;
+  background-color: #c23a3c;
   color: #FFF;
-  font-weight: 700;
 }
+
 .vehicle-info-capa{
   left: 750px;
   font-weight: 700;
+}
+
+.vehicle-info-d2{
+  display: flex;
+  flex-direction: column;
 }

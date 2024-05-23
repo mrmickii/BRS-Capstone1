@@ -116,7 +116,7 @@ const OpcDriver = () => {
     <div className="opc-view-container">
       <Header />
       <OpcNavBar />
-      <div className="opc-title" style={{ marginBottom: '30px' }}>
+      <div className="opc-title" style={{ marginBottom: '30px', marginRight: '870px' }}>
         <h1 style={{ fontSize: '46px' }}>DRIVERS</h1>
       </div>
       <div className="driver-data-container1">
@@ -136,7 +136,7 @@ const OpcDriver = () => {
           </div>
           <div className="opc-requests-header-container">
             <div className="opc-driver-requests-header">
-              <h1><AiOutlineUser size={35} style={{ marginRight: '5px' }} />DRIVERS</h1>
+              <h1><AiOutlineUser size={35} style={{ marginRight: '10px' }} />DRIVERS</h1>
               <button onClick={handleAddDriver}>Add Driver</button>
             </div>
           </div>

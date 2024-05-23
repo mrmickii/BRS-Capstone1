@@ -221,7 +221,7 @@ const Reservation2 = () => {
           <Header />
           <SideNavBar />
           <div className='subheader'>
-            <h2 style={{fontSize: '36px'}}>RESERVATION </h2>
+            <h2 style={{fontSize: '32px'}}>RESERVATION </h2>
           </div>
           <div className='backing'>
             <button onClick={goBack} className='back-win'><IoArrowBackCircle style={{marginRight: '10px', marginBottom: '-3px'}}/>Back to Select Vehicle</button>

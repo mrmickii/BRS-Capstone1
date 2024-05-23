@@ -175,7 +175,7 @@
       <div className="opc-view-container">
         <Header />
         <OpcNavBar />
-        <div className="opc-title" style={{marginBottom: '30px'}}>
+        <div className="opc-title" style={{marginBottom: '30px', marginRight: '830px'}}>
           <h1 style={{fontSize: '46px'}}>REQUESTS</h1>
         </div>
         <div className="opc-data-container1">
