@@ -65,7 +65,7 @@
 .request-vehicle-data-container1{
   height: 500px;
   max-width: 1400px;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;

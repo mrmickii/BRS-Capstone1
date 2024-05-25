@@ -225,4 +225,3 @@ const ReservationItem = ({ reservation, onApprove, onReject, onViewFile }) => (
 );
 
 export default HeadSide;
-

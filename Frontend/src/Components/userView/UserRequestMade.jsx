@@ -30,7 +30,7 @@ const UserRequestsMade = () => {
 
   const fetchUserReservations = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/reservation/reservations/${userName}`);
+      const response = await fetch(`http://localhost:8080/reservation/reservations/user/${userName}`);
       if (!response.ok) {
         throw new Error('Failed to fetch user reservations');
       }
@@ -86,10 +86,11 @@ const UserRequestsMade = () => {
                       <p>Schedule: <span>{reservation.schedule}</span></p>
                       <p>Department: <span>{reservation.department}</span></p>
                       <p>Capacity: <span>{reservation.capacity}</span></p>
+                      <p>Feedback: {reservation.feedback}</p>
                       <p className='urm-status'>Status: 
                         <span className={`${getStatusColor(reservation.status)}`}> {reservation.status}</span>
                       </p>
-                      <p>Feedback: {reservation.feedback}</p>
+                      <p>Assigned Driver: {reservation.driverName}</p>
                     </div>
                     <div>
                       <h3 className='urm-header'>Vehicle: {reservation.vehicleType}</h3>

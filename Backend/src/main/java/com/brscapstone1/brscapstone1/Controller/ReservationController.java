@@ -15,15 +15,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @CrossOrigin
 @RequestMapping("/reservation")
 public class ReservationController {
-    
+
     @Autowired
     private ReservationService resServ;
-    
+
+    //[GET] all reservations that is approved by HEAD
     @GetMapping("/reservations/head-approved")
     public List<ReservationEntity> getApprovedReservations() {
         return resServ.getHeadApprovedReservations();
     }
-    
+
+    //[POST] approved reservations by HEAD
     @PostMapping("/head-approve/{reservationId}")
     public ResponseEntity<String> headApproveReservation(@PathVariable int reservationId) {
         try {
@@ -34,16 +36,18 @@ public class ReservationController {
         }
     }
 
+    //[POST] approved reservations by OPC
     @PostMapping("/opc-approve/{reservationId}")
-    public ResponseEntity<String> opcApproveReservation(@PathVariable int reservationId) {
+    public ResponseEntity<String> opcApproveReservation(@PathVariable int reservationId, @RequestParam int driverId, @RequestParam String driverName) {
         try {
-            resServ.opcApproveReservation(reservationId);
+            resServ.opcApproveReservation(reservationId, driverId, driverName);
             return ResponseEntity.ok("Reservation approved successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to approve reservation: " + e.getMessage());
         }
     }
 
+    //[isRejected] rejects a reservation and returns boolean output
     @PostMapping("/reject/{reservationId}")
     public ResponseEntity<String> rejectReservation(@PathVariable int reservationId, @RequestBody String feedback) {
         try {
@@ -54,6 +58,7 @@ public class ReservationController {
         }
     }
 
+    //[POST] || submits a reservation
     @PostMapping("/add")
     public ReservationEntity addReservation(@RequestParam("userName") String userName, @RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("reservation") String reservationJson) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -61,12 +66,20 @@ public class ReservationController {
         return resServ.saveReservation(userName, reservation, file);
     }
 
+    //[GET] all Reservations
     @GetMapping("/reservations")
     public List<ReservationEntity> getAllReservations() {
         return resServ.getAllReservations();
     }
 
-    @GetMapping("/reservations/{userName}")
+    //[GET] Reservation by ID
+    @GetMapping("/reservations/{id}")
+    public ReservationEntity getReservationById(@PathVariable("id") int id) {
+        return resServ.getReservationById(id);
+    }
+
+    //[GET] all user's reservations
+    @GetMapping("/reservations/user/{userName}") // Update the mapping to include a more specific path
     public ResponseEntity<List<ReservationEntity>> getUserReservations(@PathVariable String userName) {
         try {
             List<ReservationEntity> userReservations = resServ.getUserReservations(userName);
@@ -75,4 +88,16 @@ public class ReservationController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+
+     //[POST] || update assigned driver
+     @PostMapping("/update-driver/{reservationId}")
+     public ResponseEntity<String> updateAssignedDriver(@PathVariable int reservationId, @RequestParam int driverId, @RequestParam String assignedDriverName) {
+         try {
+             resServ.updateAssignedDriver(reservationId, driverId, assignedDriverName);
+             return ResponseEntity.ok("Assigned driver updated successfully");
+         } catch (Exception e) {
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update assigned driver: " + e.getMessage());
+         }
+     }
 }

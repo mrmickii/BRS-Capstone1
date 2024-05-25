@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineFileText } from 'react-icons/ai';
 import { FaBus } from "react-icons/fa";
 import ConfirmationDialog from '../headView/ConfirmationDialog';
+import DriverSelectionDialog from './OpcDriverSelection';
 
 const OpcSide = () => {
   const navigate = useNavigate();
@@ -22,6 +23,9 @@ const OpcSide = () => {
     reservationId: null,
   });
   const [feedback, setFeedback] = useState("");
+  const [showDriverDialog, setShowDriverDialog] = useState(false);
+  const [reservationIdToApprove, setReservationIdToApprove] = useState(null);
+  const [selectedDriver, setSelectedDriver] = useState(null);
 
   const handleDriverManagement = () => {
     navigate('/driver-management');
@@ -90,11 +94,8 @@ const OpcSide = () => {
   };
 
   const handleApprove = (reservationId) => {
-    setConfirmationData({
-      isOpen: true,
-      action: 'approve',
-      reservationId: reservationId,
-    });
+    setReservationIdToApprove(reservationId);
+    setShowDriverDialog(true);
   };
 
   const handleReject = (reservationId) => {
@@ -116,27 +117,31 @@ const OpcSide = () => {
 
   const confirmAction = async () => {
     if (confirmationData.action === 'approve') {
-      await handleApproveAction(confirmationData.reservationId);
+      if (selectedDriver) {
+        await handleApproveAction(confirmationData.reservationId, selectedDriver.id, selectedDriver.name);
+      } else {
+        setError("Please select a driver to approve the reservation.");
+      }
     } else if (confirmationData.action === 'reject') {
       await handleRejectAction(confirmationData.reservationId);
     }
     handleCloseConfirmation();
   };
 
-  const handleApproveAction = async (reservationId) => {
+  const handleApproveAction = async (reservationId, driverId, driverName) => {
     try {
-      const response = await fetch(`http://localhost:8080/reservation/opc-approve/${reservationId}`, {
+      const response = await fetch(`http://localhost:8080/reservation/opc-approve/${reservationId}?driverId=${driverId}&driverName=${driverName}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
       });
       if (!response.ok) {
         throw new Error('Failed to approve reservation');
       }
       const updatedReservations = approvedReservations.map(reservation => {
         if (reservation.id === reservationId) {
-          return { ...reservation, opcIsApproved: true };
+          return { ...reservation, opcIsApproved: true, assignedDriverId: driverId, driverName: driverName };
         }
         return reservation;
       });
@@ -155,7 +160,7 @@ const OpcSide = () => {
         headers: {
           'Content-Type': 'text/plain'
         },
-        body: feedback // Send feedback as plain text
+        body: feedback 
       });
       if (!response.ok) {
         throw new Error('Failed to reject reservation');
@@ -211,10 +216,6 @@ const OpcSide = () => {
                   <p>Requestor: <span>{reservation.userName}</span></p>
                   <p>Department: <span>{reservation.department}</span></p>
                   <p>Capacity: <span>{reservation.capacity}</span></p>
-                  <div className="feedback-container1">
-                    <input type="text" placeholder="Send feedback (optional)" />
-                    <button>Send Feedback</button>
-                  </div>
                   <h2 className="rdc-h2">Vehicle Type: {reservation.vehicleType}</h2>
                   <p>Destination To: <span>{reservation.destinationTo}</span></p>
                   <p>Destination From: <span>{reservation.destinationFrom}</span></p>
@@ -225,8 +226,7 @@ const OpcSide = () => {
                 <div className="r-d-container-right1">
                   <button onClick={() => handleApprove(reservation.id)}>Accept</button>
                   <button onClick={() => handleReject(reservation.id)}>Reject</button>
-                  <button onClick={() => handleViewFile(reservation)}>View Attached File</button>
-                  <button>View Feedback</button>
+                  <button onClick={() => handleViewFile(reservation)}>                  View Attached File</button>
                 </div>
               </div>
             ))}
@@ -242,6 +242,17 @@ const OpcSide = () => {
           onCancel={handleCloseConfirmation}
           onFeedbackChange={setFeedback}
           feedback={feedback}
+        />
+      )}
+      {showDriverDialog && (
+        <DriverSelectionDialog  
+          drivers={drivers}
+          onSelectDriver={(driverId, driverName) => {
+            setSelectedDriver({ id: driverId, name: driverName });
+            setShowDriverDialog(false);
+            handleApproveAction(reservationIdToApprove, driverId, driverName);
+          }}
+          onCancel={() => setShowDriverDialog(false)}
         />
       )}
     </div>

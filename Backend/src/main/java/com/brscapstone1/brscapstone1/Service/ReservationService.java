@@ -14,23 +14,33 @@ public class ReservationService {
     @Autowired
     private ReservationRepository resRepo;
 
+    //[POST] approved reservations by HEAD
     public void headApproveReservation(int reservationId) {
         ReservationEntity reservation = resRepo.findById(reservationId).orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
         reservation.setHeadIsApproved(true); 
         resRepo.save(reservation);
     }
 
-    public void opcApproveReservation(int reservationId) {
+    //[POST] approved reservations by OPC
+    public void opcApproveReservation(int reservationId, int driverId, String driverName) {
         ReservationEntity reservation = resRepo.findById(reservationId).orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
+        
+        if(reservation.getDriverName() == null || reservation.getDriverName().isEmpty()) {
+            reservation.setDriverName("No driver assign");
+        }
         reservation.setStatus("Approved");
         reservation.setOpcIsApproved(true); 
+        reservation.setDriverId(driverId);
+        reservation.setDriverName(driverName);
         resRepo.save(reservation);
     }
 
+    //[GET] all reservations that is approved by HEAD
     public List<ReservationEntity> getHeadApprovedReservations() {
         return resRepo.findByHeadIsApproved(true);
     }
 
+    //[isRejected] rejects a reservation and returns boolean output
     public void rejectReservation(int reservationId, String feedback) {
         ReservationEntity reservation = resRepo.findById(reservationId).orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
         reservation.setStatus("Rejected");
@@ -39,6 +49,7 @@ public class ReservationService {
         resRepo.save(reservation);
     }
 
+    //[POST] || submits a reservation
     public ReservationEntity saveReservation(String userName, ReservationEntity reservation, MultipartFile file) throws IOException {
         if (file != null && !file.isEmpty()) {
             reservation.setFileName(file.getOriginalFilename());
@@ -59,15 +70,27 @@ public class ReservationService {
         return resRepo.save(reservation);
     }
 
+    //[GET] all Reservations
     public List<ReservationEntity> getAllReservations() {
         return resRepo.findAll();
     }
 
+    //[GET] all Reservations by their ID
     public ReservationEntity getReservationById(int id) {
         return resRepo.findById(id).orElse(null);
     }
 
+    //[GET] all user's reservations
     public List<ReservationEntity> getUserReservations(String userName) {
         return resRepo.findByUserName(userName);
+    }
+
+    //[POST] || update assigned driver
+    public void updateAssignedDriver(int reservationId, int driverId, String assignedDriverName) {
+        ReservationEntity reservation = resRepo.findById(reservationId)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
+        reservation.setDriverId(driverId);
+        reservation.setDriverName(assignedDriverName);
+        resRepo.save(reservation);
     }
 }
