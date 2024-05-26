@@ -91,6 +91,7 @@
   margin: 0 10px;
   padding: 10px 20px;
 }
+
 .yes-btn{
   background-color: #782324;
   color: white;
@@ -100,6 +101,7 @@
   font-size: 18px;
   border: none;
 }
+
 .no-btn{
   background-color: #f4c108;
   color: #782324;
@@ -109,6 +111,7 @@
   font-size: 18px;
   border: none;
 }
+
 .no-btn:hover{
   background-color: white;
   color: #782324;

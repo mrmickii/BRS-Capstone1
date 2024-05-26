@@ -90,19 +90,22 @@
 .select-bus-btn{
   padding: 0;
 }
-.vehicle-pn
-{
+
+.vehicle-pn{
   position: absolute;
   left: 500px;
 }
+
 .vehicle-cap{
   position: absolute;
   left: 800px;
 }
+
 .vehicle-stat{
   position: absolute;
   left: 270px;
 }
+
 .cit-bglogo {
   position: fixed;
   top: 200px;

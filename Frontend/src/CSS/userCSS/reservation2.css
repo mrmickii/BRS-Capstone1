@@ -151,6 +151,7 @@
 input[type="radio"] {
   display: none;
 }
+
 .back-win{
   position: absolute;
   top: 120px;
@@ -166,6 +167,7 @@ input[type="radio"] {
   z-index: 100;
   font-weight: 700;
 }
+
 input[type="radio"] + label {
   position: relative;
   padding-left: 30px; 
@@ -431,6 +433,7 @@ input[type="radio"]:checked + label::before {
 .summary tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
 .pick-depart-container {
   display: flex;
   align-items: center;
@@ -440,13 +443,16 @@ input[type="radio"]:checked + label::before {
   margin-left: 10px;
   margin-top: 50px;
 }
+
 .pick-depart-container h4{
   margin-right: 15px;
 }
+
 .pick-depart-container option{
  color: green;
  font-weight: 800;
 }
+
 .pick-depart-container option:hover{
   background: #f4c108 ;
  }
@@ -461,6 +467,7 @@ input[type="radio"]:checked + label::before {
 .pick-depart-container select:hover {
   border-color: #999;
 }
+
 .pick-pick-container {
   display: flex;
   align-items: center;
@@ -471,13 +478,16 @@ input[type="radio"]:checked + label::before {
   margin-left: 10px;
   margin-top: 20px;
 }
+
 .pick-pick-container h4{
   margin-right: 15px;
 }
+
 .pick-pick-container option{
  color: green;
  font-weight: 800;
 }
+
 .pick-pick-container option:hover{
   background: #f4c108 ;
  }

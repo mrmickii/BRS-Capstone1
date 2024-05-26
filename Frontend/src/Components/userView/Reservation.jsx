@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
-import { FaClipboardList } from "react-icons/fa";
 import SideNavBar from './SideNavBar';
 import { FaBus } from "react-icons/fa";
 import { auth } from '../../FirebaseConfig'; 

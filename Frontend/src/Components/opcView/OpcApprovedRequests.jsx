@@ -28,14 +28,10 @@ const OpcApprovedRequests = () => {
   };
 
   const handleExport = () => {
-    // Convert reservations data to worksheet
     const worksheet = XLSX.utils.json_to_sheet(reservations);
-
-    // Create a new workbook and add the worksheet
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, worksheet, 'Reservations');
 
-    // Save the workbook as an Excel file
+    XLSX.utils.book_append_sheet(wb, worksheet, 'Reservations');
     XLSX.writeFile(wb, 'reservations.xlsx');
   };
 

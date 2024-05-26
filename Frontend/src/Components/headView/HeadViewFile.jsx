@@ -11,7 +11,6 @@ const HeadViewFile = ({ onClose, reservation }) => {
         return;
       }
       const fileRef = ref(storage, `${reservation.fileName}`);
-
       const downloadUrl = await getDownloadURL(fileRef);
   
       window.open(downloadUrl, "_blank");

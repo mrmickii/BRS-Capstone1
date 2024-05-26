@@ -48,6 +48,7 @@
   background-position: center;
  
 }
+
 .laban{
   position: absolute;
   top: 780px;
@@ -55,6 +56,7 @@
   font-size: 22px;
   color: white;
 }
+
 .sidenavbar a {
   text-decoration: none; 
   color: white; 
