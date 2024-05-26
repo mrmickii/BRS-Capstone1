@@ -95,34 +95,34 @@ const ManageRequests = () => {
     try {
       updatedReservation.status = "Pending";
       updatedReservation.rejected = 0;
-  
+
       const formData = new FormData();
       formData.append('reservation', JSON.stringify(updatedReservation));
       if (file) {
         formData.append('file', file);
       }
-  
+
       const response = await fetch(`http://localhost:8080/reservation/update/${updatedReservation.id}`, {
         method: 'PUT',
         body: formData,
       });
-  
+
       if (!response.ok) {
         throw new Error('Failed to update reservation');
       }
-  
+
       const updatedReservationData = await response.json();
       console.log('Updated reservation:', updatedReservationData);
-  
+
       setReservations(reservations.map(reservation =>
         reservation.id === updatedReservationData.id ? updatedReservationData : reservation
       ));
-  
+
       setShowModal(false);
     } catch (error) {
       console.error('Error updating reservation:', error);
     }
-  };  
+  };
 
   return (
     <div className="manage-requests">
@@ -165,7 +165,7 @@ const ManageRequests = () => {
                         <p>Pick-up Time: <span>{reservation.pickUpTime}</span></p>
                         <p>Reason: <span>{reservation.reason}</span></p>
                         {reservation.status === 'Rejected' && (
-                          <button className='urm-update-btn' onClick={() => handleUpdateClick(reservation)}>Update</button>
+                          <button className='urm-update-btn' onClick={() => handleUpdateClick(reservation)}>Resend Request</button>
                         )}
                       </div>
                     </div>
@@ -193,9 +193,24 @@ const UpdateModal = ({ reservation, onClose, onUpdate, departments }) => {
   const [updatedReservation, setUpdatedReservation] = useState({ ...reservation });
   const [file, setFile] = useState(null);
 
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById("schedule").setAttribute("min", today);
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUpdatedReservation(prevState => ({ ...prevState, [name]: value }));
+    if (name === 'schedule') {
+      const selectedDate = new Date(value);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Remove time part for comparison
+
+      if (selectedDate < today) {
+        alert("The selected date is in the past. Please choose a future date.");
+        setUpdatedReservation(prevState => ({ ...prevState, schedule: "" }));
+      }
+    }
   };
 
   const handleFileChange = (e) => {
@@ -286,6 +301,7 @@ const UpdateModal = ({ reservation, onClose, onUpdate, departments }) => {
             <input 
               type="date" 
               name="schedule" 
+              id="schedule"
               value={updatedReservation.schedule} 
               onChange={handleChange}
             />

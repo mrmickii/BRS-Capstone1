@@ -81,6 +81,7 @@
   background-color: rgb(243, 236, 228);
   overflow-y: auto;
   display: flex;
+  margin-top: 15px;
   flex-direction: column;
   gap: 10px;
 }
@@ -153,25 +154,35 @@
 .r-d-container-right button:nth-child(1){
   background-color:rgb(15, 172, 15) ;
   color: white;
-  text-align: center; 
-
+  font-size: 18px;
+  text-align: center;
+  width: 150px;
+  border-radius: 5px;
 }
 
 .r-d-container-right button:nth-child(2){
   background-color:#c23a3c;
   color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  width: 150px;
+  
 
 }
 .r-d-container-right button:nth-child(3){
   background-color: #782324;
   color: white;
+  font-size: 18px;
+  height: auto;
+  width: 150px;
+  border-radius: 5px;
 }
 
 button:hover{
   cursor: pointer;
   background-color: #f4c108;
   color: #782324;
-  font-weight: 800;
+  font-weight: 550;
   transition: background-color 0.3s;
 }
 

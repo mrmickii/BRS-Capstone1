@@ -70,7 +70,7 @@ const Reservation = () => {
         <h1>RESERVATION</h1>
       </div>
       <div className='subheader3'>
-        <h2><FaBus size={32} style={{marginRight: '15px', marginBottom: '-5px'}}/>SELECT VEHICLE</h2>
+        <h2 style={{color: "#782324"}}><FaBus size={32} style={{marginRight: '15px', marginBottom: '-5px'}}/>SELECT VEHICLE</h2>
       </div>
       <div className='reminder'>
         <p>Note: Please select the vehicle that will be reasonable to use with its capacity</p>
