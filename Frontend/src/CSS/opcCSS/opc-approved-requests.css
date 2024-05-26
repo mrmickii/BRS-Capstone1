@@ -2,7 +2,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.head-view-requests-container {
+.opc-view-requests-container {
   position: absolute;
   left: 400px;
   top: 100px;
@@ -14,7 +14,7 @@
   overflow-y: auto;
 }
 
-.head-view-requests-title {
+.opc-view-requests-title {
   background-color: #782324;
   color: white !important;
   padding: 20px;
@@ -23,24 +23,38 @@
   top: 0;
 }
 
-.head-view-requests-title h2{
+.opc-view-requests-title h2{
   margin-left: 0px;
 }
 
-.reservation-list{
+.opc-reservation-list{
   padding: 20px;
 }
-.reservation-list ul{
+.opc-reservation-list ul{
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.reservation-list li{
+.opc-reservation-list li{
   display: flex;
   background-color: #FFF;
   min-height: 150px;
-  gap: 500px;
+  gap: 300px;
   padding-left: 20px;
 }
   
+.export-btn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.export-btn button{
+  border: none;
+  font-size: 12px;
+  padding: 10px 15px;
+  background-color: #782324;
+  color: #FFF;
+}

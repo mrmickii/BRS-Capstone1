@@ -13,7 +13,7 @@ import HeadSettings from './Components/headView/HeadSettings';
 import OpcSide from './Components/opcView/OpcSide';
 import OpcDriver from './Components/opcView/OpcDriver';
 import OpcSettings from './Components/opcView/OpcSettings';
-import OpcNotification from './Components/opcView/OpcNotification';
+import OpcApprovedRequests from './Components/opcView/OpcApprovedRequests';
 import OpcVehicle from './Components/opcView/OpcVehicle';
 import { auth } from './FirebaseConfig';
 
@@ -52,7 +52,7 @@ function App() {
       <Route path="/head-view" element={<HeadView />} />
       <Route path="/head-view/settings" element={<HeadSettings />} /> 
       <Route path="/head-view/view-requests" element={<HeadViewRequests />} />
-      <Route path="/opc-view/notification" element={<OpcNotification />} />
+      <Route path="/opc-view/approved-requests" element={<OpcApprovedRequests />} />
       <Route path="/reservation" element={<Reservation />} /> 
       <Route path="/user-view" element={<Reservation2 />} />
       <Route path="/settings" element={<Settings />} />

@@ -22,8 +22,8 @@ const OpcSideNavBar = () => {
           DASHBOARD
         </li>
         </Link>
-        <Link to="/opc-view/notification">
-        <li className={activeTab === '/opc-view/notification' ? 'active' : ''} style={{fontSize: "18px"}}>
+        <Link to="/opc-view/approved-requests">
+        <li className={activeTab === '/opc-view/approved-requests' ? 'active' : ''} style={{fontSize: "18px"}}>
           <BsBellFill size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           APPROVED REQUESTS
         </li>
