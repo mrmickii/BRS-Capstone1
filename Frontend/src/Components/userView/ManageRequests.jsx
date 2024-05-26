@@ -165,7 +165,7 @@ const ManageRequests = () => {
                         <p>Pick-up Time: <span>{reservation.pickUpTime}</span></p>
                         <p>Reason: <span>{reservation.reason}</span></p>
                         {reservation.status === 'Rejected' && (
-                          <button className='urm-update-btn' onClick={() => handleUpdateClick(reservation)}>Update</button>
+                          <button className='urm-update-btn' onClick={() => handleUpdateClick(reservation)}>Resend</button>
                         )}
                       </div>
                     </div>

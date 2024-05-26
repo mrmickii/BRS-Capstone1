@@ -11,6 +11,7 @@
   height: 800px;
   width: 1400px;
   border-radius: 15px;
+  overflow-y: auto;
 }
 
 .head-view-requests-title {
@@ -18,6 +19,8 @@
   color: white !important;
   padding: 20px;
   height: 70px;
+  position: sticky;
+  top: 0;
 }
 
 .head-view-requests-title h2{
@@ -26,7 +29,6 @@
 
 .reservation-list{
   padding: 20px;
-  overflow-y: auto;
 }
 
 .reservation-list ul{
