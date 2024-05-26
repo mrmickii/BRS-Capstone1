@@ -69,12 +69,12 @@ const OpcSettings = () => {
         setCurrentPassword('');
         setNewPassword('');
         setConfirmNewPassword('');
-        setError(null); // Reset error message when successful
+        setError(null); 
       }
     } catch (error) {
       console.error("Error updating password:", error);
       setError("Failed to update password. Please try again.");
-      setSuccess(null); // Reset success message on error
+      setSuccess(null);
     }
   };
 

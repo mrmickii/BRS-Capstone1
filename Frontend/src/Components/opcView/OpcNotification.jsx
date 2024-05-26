@@ -8,7 +8,6 @@ import OpcNavBar from './OpcSideNavBar';
 const OpcNotifications = () => {
   const [showNotifications, setShowNotifications] = useState(false);
 
- 
   const handleNotificationClick = () => {
     setShowNotifications(!showNotifications);
   };

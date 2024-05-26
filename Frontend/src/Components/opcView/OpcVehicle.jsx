@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../userView/Header';
 import OpcNavBar from './OpcSideNavBar';
-import { AiOutlineUser, AiOutlineCar, AiOutlineFileText } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineFileText } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { FaBus } from "react-icons/fa";
 import DeleteConfirmationDialogBox from './OpcDeleteVehicle'; 
@@ -10,7 +10,6 @@ import AddVehicle from './OpcAddVehicle';
 import "../../CSS/opcCSS/opc-vehicle.css"; 
 import { FaRectangleAd } from "react-icons/fa6";
 import { IoMdPersonAdd } from "react-icons/io";
-import { FaPlusCircle } from "react-icons/fa";
 
 const OpcVehicle = () => {
   const navigate = useNavigate();

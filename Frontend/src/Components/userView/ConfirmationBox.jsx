@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../CSS/userCSS/confirmation-box.css'
 
 const ConfirmationBox = ({ onCancel, onConfirm }) => {
   return (

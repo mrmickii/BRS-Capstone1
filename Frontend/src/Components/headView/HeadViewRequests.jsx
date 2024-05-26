@@ -51,7 +51,6 @@ const HeadViewRequests = () => {
         throw new Error('Failed to fetch reservation data');
       }
       const reservationData = await response.json();
-      // Filter reservations based on userDepartment
       const filteredReservations = reservationData.filter(reservation => reservation.department === userDepartment);
       setReservations(filteredReservations);
       console.log('Success fetching reservation data.');

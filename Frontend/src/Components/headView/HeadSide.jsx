@@ -196,15 +196,6 @@ const ReservationItem = ({ reservation, onApprove, onReject, onViewFile }) => (
       <p>Requestor: <span>{reservation.userName}</span></p>
       <p>Department: <span>{reservation.department}</span></p>
       <p>Capacity: <span>{reservation.capacity}</span></p>
-      <div className="feedback-container">
-        <input
-          type="text"
-          placeholder="Send feedback (optional)"
-          value={reservation.feedback} 
-          readOnly
-        />
-        <button>Send Feedback</button>
-      </div>
       <h2 className="rdc-h2">Vehicle Type: {reservation.vehicleType}</h2>
       <p>Destination To: <span>{reservation.destinationTo}</span></p>
       <p>Destination From: <span>{reservation.destinationFrom}</span></p>
@@ -215,7 +206,6 @@ const ReservationItem = ({ reservation, onApprove, onReject, onViewFile }) => (
     <div className="r-d-container-right">
       <button onClick={() => onApprove(reservation.id)}>Approve</button>
       <button onClick={() => onReject(reservation.id)}>Reject</button>
-      <button>View Feedback</button>
       <button onClick={() => onViewFile(reservation)}>View Attached File</button>
     </div>
   </div>

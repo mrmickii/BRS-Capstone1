@@ -93,4 +93,37 @@ public class ReservationService {
         reservation.setDriverName(assignedDriverName);
         resRepo.save(reservation);
     }
+
+    public ReservationEntity updateReservation(int reservationId, ReservationEntity updatedReservation, MultipartFile file) throws IOException {
+        ReservationEntity existingReservation = resRepo.findById(reservationId)
+            .orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
+
+        existingReservation.setTypeOfTrip(updatedReservation.getTypeOfTrip());
+        existingReservation.setDestinationTo(updatedReservation.getDestinationTo());
+        existingReservation.setDestinationFrom(updatedReservation.getDestinationFrom());
+        existingReservation.setCapacity(updatedReservation.getCapacity());
+        existingReservation.setDepartment(updatedReservation.getDepartment());
+        existingReservation.setSchedule(updatedReservation.getSchedule());
+        existingReservation.setVehicleType(updatedReservation.getVehicleType());
+        existingReservation.setPickUpTime(updatedReservation.getPickUpTime());
+        existingReservation.setDepartureTime(updatedReservation.getDepartureTime());
+        existingReservation.setReason(updatedReservation.getReason());
+
+        if (file != null && !file.isEmpty()) {
+            existingReservation.setFileName(file.getOriginalFilename());
+            existingReservation.setFileType(file.getContentType());
+            existingReservation.setFileSize(file.getSize());
+        }
+        
+        existingReservation.setStatus(updatedReservation.getStatus());
+        existingReservation.setOpcIsApproved(updatedReservation.isOpcIsApproved());
+        existingReservation.setRejected(updatedReservation.isRejected());
+        existingReservation.setHeadIsApproved(updatedReservation.isHeadIsApproved());
+        existingReservation.setUserName(updatedReservation.getUserName());
+        existingReservation.setFeedback(updatedReservation.getFeedback());
+        existingReservation.setDriverId(updatedReservation.getDriverId());
+        existingReservation.setDriverName(updatedReservation.getDriverName());
+
+        return resRepo.save(existingReservation);
+    }
 }
