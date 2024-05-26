@@ -204,7 +204,6 @@ const OpcSide = () => {
           <div className="opc-requests-header-container">
             <div className="opc-main-requests-header">
               <h1> <AiOutlineFileText size={32} style={{ marginRight: '10px' }} /> REQUESTS</h1>
-              <button>View Approved Requests</button>
             </div>
           </div>
           <div className="rdc-box">

@@ -23,9 +23,9 @@ const OpcSideNavBar = () => {
         </li>
         </Link>
         <Link to="/opc-view/notification">
-        <li className={activeTab === '/opc-view/notification' ? 'active' : ''}>
+        <li className={activeTab === '/opc-view/notification' ? 'active' : ''} style={{fontSize: "18px"}}>
           <BsBellFill size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
-          NOTIFICATIONS
+          APPROVED REQUESTS
         </li>
         </Link>
         <Link to="/opc-vew/settings">

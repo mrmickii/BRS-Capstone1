@@ -55,11 +55,13 @@
 
 .urm-update-btn{
   border: none;
-  background-color: #f4c108;
+  background-color: #782324;
   padding: 5px 15px;
   font-size: 12px;
   color: #FFF;
+  font-size: 18px;
   margin: 10px 0px;
+  border-radius: 5px;
 }
 
 .update-modal {
@@ -120,7 +122,7 @@
 }
 
 .modal-content button[type="submit"] {
-  background: #f4c108;
+  background: #782324;
   color: white;
   border: none;
   cursor: pointer;

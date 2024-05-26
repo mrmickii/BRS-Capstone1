@@ -27,24 +27,26 @@ const ConfirmationDialog = ({ action, onConfirm, onCancel, onFeedbackChange, fee
   };
 
   return (
-    <div className="confirmation-modal">
-      <span className="modal-close-span">
-        <p className="modal-close-btn" onClick={onCancel}>x</p>
-      </span>
-      <p>{getMessage()}</p>
-      {action === "reject" && (
-        <div>
-          <textarea
-            value={feedback}
-            onChange={handleFeedbackChange}
-            placeholder="Enter feedback"
-          />
-          <p className="error-message">{error}</p>
+    <div className="overlay">
+      <div className="confirmation-modal">
+        <span className="modal-close-span">
+          <p className="modal-close-btn" onClick={onCancel}>x</p>
+        </span>
+        <p>{getMessage()}</p>
+        {action === "reject" && (
+          <div>
+            <textarea
+              value={feedback}
+              onChange={handleFeedbackChange}
+              placeholder="Enter feedback"
+            />
+            <p className="error-message">{error}</p>
+          </div>
+        )}
+        <div className="modal-btn">
+          <button onClick={handleConfirm}>Confirm</button>
+          <button onClick={onCancel}>Cancel</button>
         </div>
-      )}
-      <div className="modal-btn">
-        <button onClick={handleConfirm}>Confirm</button>
-        <button onClick={onCancel}>Cancel</button>
       </div>
     </div>
   );

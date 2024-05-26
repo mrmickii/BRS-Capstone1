@@ -29,8 +29,11 @@
 
 .reservation-list{
   padding: 20px;
+<<<<<<< HEAD
+=======
+  overflow-y: scroll;
+>>>>>>> 51e211a371729f49ed5519a27fe37db89a289b5f
 }
-
 .reservation-list ul{
   display: flex;
   flex-direction: column;
