@@ -22,10 +22,10 @@ const SideNavbar = () => {
           REQUESTS
         </li>
         </Link>
-        <Link to="/head-view/notification">
-        <li className={activeTab === '/head-view/notification' ? 'active' : ''}>
+        <Link to="/head-view/view-requests">
+        <li className={activeTab === '/head-view/view-requests' ? 'active' : ''}>
           <BsBellFill size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
-          NOTIFICATIONS
+          VIEW REQUESTS
         </li>
         </Link>
         <Link to="/head-view/settings">

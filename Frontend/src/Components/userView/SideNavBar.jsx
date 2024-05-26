@@ -23,10 +23,10 @@ const SideNavBar = () => {
           RESERVATION
         </li>
         </Link>
-        <Link to="/notification">
-        <li className={activeTab === '/notification' ? 'active' : ''}>
+        <Link to="/manage-requests">
+        <li className={activeTab === '/manage-requests' ? 'active' : ''}>
           <BsBellFill size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
-          NOTIFICATIONS
+          MANAGE REQUESTS
         </li>
         </Link>
         <Link to="/settings">

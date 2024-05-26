@@ -1,0 +1,54 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.manage-requests-container {
+  position: absolute;
+  left: 400px;
+  top: 100px;
+  font-size: 14px;
+  background-color: #ccc;
+  height: 800px;
+  width: 1400px;
+  border-radius: 15px;
+  overflow-y: auto;
+}
+
+.manage-requests-title {
+  position: sticky;
+  top: 0px;
+  background-color: #782324;
+  color: white !important;
+  padding: 20px;
+  margin-left: -20px;
+  height: 70px;
+}
+
+.manage-requests-data {
+  padding: 10px;
+}
+
+.urm-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0px;
+}
+
+.user-reservation-made {
+  display: flex;
+  gap: 500px;
+  padding: 20px;
+  background: white;
+}
+
+.approved {
+  color: green;
+}
+
+.rejected {
+  color: #782324;
+}
+
+.pending {
+  color: #f4c108;
+}

@@ -154,9 +154,6 @@ const HeadSide = () => {
           REQUESTS
         </h1>
         <div className="content-container">
-          <div className="view-history">
-            <button>View History</button>
-          </div>
           <div className="data-container">
             {filteredReservations.length > 0 ? (
               filteredReservations.map((reservation, index) => (

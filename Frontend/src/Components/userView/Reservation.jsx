@@ -72,9 +72,6 @@ const Reservation = () => {
       <div className='subheader3'>
         <h2><FaBus size={32} style={{marginRight: '15px', marginBottom: '-5px'}}/>SELECT VEHICLE</h2>
       </div>
-      <div className='view-request1'>
-        <button className="viewrequest-button" ><Link to="/user-request-made" style={{textDecoration: 'none', color: 'white', fontWeight: '700'}}><FaClipboardList style={{marginRight: '10px'}}/>VIEW REQUESTS MADE</Link></button>
-      </div>
       <div className='reminder'>
         <p>Note: Please select the vehicle that will be reasonable to use with its capacity</p>
       </div>
