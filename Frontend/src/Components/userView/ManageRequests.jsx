@@ -93,7 +93,6 @@ const ManageRequests = () => {
 
   const handleUpdateReservation = async (updatedReservation, file) => {
     try {
-      // Set the status back to "Pending"
       updatedReservation.status = "Pending";
       updatedReservation.rejected = 0;
   
@@ -309,15 +308,17 @@ const UpdateModal = ({ reservation, onClose, onUpdate, departments }) => {
               onChange={handleChange}
             />
           </label>
-          <label>
-            Pick-up Time:
-            <input 
-              type="time" 
-              name="pickUpTime" 
-              value={updatedReservation.pickUpTime} 
-              onChange={handleChange}
-            />
-          </label>
+          {updatedReservation.typeOfTrip === 'One Way' ? null : (
+            <label>
+              Pick-up Time:
+              <input 
+                type="time" 
+                name="pickUpTime" 
+                value={updatedReservation.pickUpTime} 
+                onChange={handleChange}
+              />
+            </label>
+          )}
           <label>
             Reason:
             <textarea 
