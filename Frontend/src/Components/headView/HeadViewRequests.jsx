@@ -51,7 +51,7 @@ const HeadViewRequests = () => {
         throw new Error('Failed to fetch reservation data');
       }
       const reservationData = await response.json();
-      const filteredReservations = reservationData.filter(reservation => reservation.department === userDepartment);
+      const filteredReservations = reservationData.filter(reservation => reservation.department === userDepartment && reservation.headIsApproved);
       setReservations(filteredReservations);
       console.log('Success fetching reservation data.');
     } catch (error) {
@@ -67,7 +67,7 @@ const HeadViewRequests = () => {
         <div className="head-view-requests-title">
           <h2 style={{color: 'white'}}>
             <BsBellFill size={25} style={{ marginRight: '20px', marginBottom: '-5px' }} />
-            VIEW REQUESTS
+            APPROVED REQUESTS
           </h2>
         </div>
         <div className='reservation-list'>
@@ -75,11 +75,21 @@ const HeadViewRequests = () => {
             <ul>
               {reservations.map((reservation, index) => (
                 <li key={index}>
-                  {/* Render reservation details here */}
-                  <p>Type of Trip: {reservation.typeOfTrip}</p>
-                  <p>Schedule: {reservation.schedule}</p>
-                  <p>{reservation.department}</p>
-                  {/* Add more details as needed */}
+                  <div>
+                    <h2 className="rdc-h2">Type of Trip: {reservation.typeOfTrip}</h2>
+                    <p>Schedule: <span>{reservation.schedule}</span></p>
+                    <p>Requestor: <span>{reservation.userName}</span></p>
+                    <p>Department: <span>{reservation.department}</span></p>
+                    <p>Capacity: <span>{reservation.capacity}</span></p>
+                  </div>
+                  <div>
+                    <h2 className="rdc-h2">Vehicle Type: {reservation.vehicleType}</h2>
+                    <p>Destination To: <span>{reservation.destinationTo}</span></p>
+                    <p>Destination From: <span>{reservation.destinationFrom}</span></p>
+                    <p>Departure Time: <span>{reservation.departureTime}</span></p>
+                    <p>Pick-up Time: <span>{reservation.pickUpTime}</span></p>
+                    <p>Reason: <span>{reservation.reason}</span></p>
+                  </div>
                 </li>
               ))}
             </ul>
