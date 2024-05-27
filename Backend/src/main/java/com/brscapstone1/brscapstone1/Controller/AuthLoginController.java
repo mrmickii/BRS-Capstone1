@@ -1,7 +1,6 @@
 package com.brscapstone1.brscapstone1.Controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +25,24 @@ public class AuthLoginController {
     return authService.post(post);
   }
 
-  @GetMapping("/login")
+  @GetMapping("/logins")
   public List<AuthLoginEntity> logins(){
     return authService.logins();
   }
 
   @PostMapping("/login")
   public AuthLoginEntity login(@RequestBody AuthLoginEntity loginRequest){
-    return authService.login(loginRequest.getEmail(), loginRequest.getPassword());
+    return authService.login(loginRequest.getEmail(), loginRequest.getPassword(), loginRequest.getRole());
+  }
+
+  @PostMapping("/add-user")
+  public AuthLoginEntity addUser(@RequestBody AuthLoginEntity user){
+    return authService.addUser(user);
+  }
+
+  @GetMapping("/users")
+  public List<AuthLoginEntity> getUsers(){
+    return authService.getUsers();
   }
 }
+
