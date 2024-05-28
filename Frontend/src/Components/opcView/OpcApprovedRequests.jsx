@@ -57,6 +57,7 @@ const OpcApprovedRequests = () => {
                     <p>Requestor: <span>{reservation.userName}</span></p>
                     <p>Department: <span>{reservation.department}</span></p>
                     <p>Capacity: <span>{reservation.capacity}</span></p>
+                    <p>Assigned Driver: <span>{reservation.driverName}</span></p>
                   </div>
                   <div>
                     <h2 className="rdc-h2">Vehicle Type: {reservation.vehicleType}</h2>

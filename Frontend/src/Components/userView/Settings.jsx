@@ -80,7 +80,7 @@ const Settings = () => {
   };
 
   const showChangePassword = () => {
-    setDisplayedContainer('password');
+    setDisplayedContainer('change-password');
   };
 
   const showViewAccount = () => {
@@ -101,7 +101,7 @@ const Settings = () => {
           <FaLockOpen size={20} style={{marginRight: '10px', marginBottom: '5px'}}/>Change Password
           </button>
         </div>
-        {displayedContainer === 'password' && (
+        {displayedContainer === 'change-password' && (
           <div className="s-container-two">
             <h3>CHANGE PASSWORD</h3>
             <input

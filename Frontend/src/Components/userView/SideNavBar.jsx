@@ -18,7 +18,6 @@ const SideNavBar = () => {
       <ul>
       <Link to="/reservation">
         <li className={activeTab === '/reservation' || activeTab === '/user-view' || activeTab === '/user-request-made' ? 'active' : ''}>
-        
           <BiSolidBook size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           RESERVATION
         </li>
@@ -30,16 +29,12 @@ const SideNavBar = () => {
         </li>
         </Link>
         <Link to="/settings">
-          
         <li className={activeTab === '/settings' ? 'active' : ''}>
-        
           <IoMdSettings size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           SETTINGS
-          
         </li>
         </Link>
       </ul>
-
       <div className="sublogo"></div>
       <div className="laban1">
         <h1 style={{color: 'white'}}>BRS WILDCATS</h1>

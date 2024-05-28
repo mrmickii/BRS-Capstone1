@@ -17,12 +17,10 @@ import { HiDocumentDownload } from "react-icons/hi";
 import { IoIosSend } from "react-icons/io";
 import { IoArrowBackCircle } from "react-icons/io5";
 import '../../CSS/userCSS/reservation2.css';
-import { app, auth } from "../../FirebaseConfig";
-import { getFirestore } from 'firebase/firestore';
+import { auth } from "../../FirebaseConfig";
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { useLocation } from 'react-router-dom';
 
-const db = getFirestore(app);
 const storageRef = getStorage();
 
 const Reservation2 = () => {
