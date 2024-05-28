@@ -24,16 +24,21 @@ public class AuthLoginService {
     return authRepo.save(user);
   }
 
-  public AuthLoginEntity login(String email, String password, String role) {
-    AuthLoginEntity user = authRepo.findByEmailAndPassword(email, password);
-    if (user != null && user.getRole().equalsIgnoreCase(role)) {
-        return user;
-    }
-    return null;
+  public AuthLoginEntity login(String email, String password) {
+    return authRepo.findByEmailAndPassword(email, password);
   }
 
   public List<AuthLoginEntity> getUsers(){
     return authRepo.findAll();
   }
-}
 
+  public AuthLoginEntity updatePassword(String email, String currentPassword, String newPassword) {
+    AuthLoginEntity user = authRepo.findByEmailAndPassword(email, currentPassword);
+    if (user != null) {
+      user.setPassword(newPassword);
+      return authRepo.save(user);
+    } else {
+      return null;
+    }
+  }
+}

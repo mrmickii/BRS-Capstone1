@@ -66,6 +66,9 @@ public class ReservationService {
         if (reservation.getFeedback() == null || reservation.getFeedback().isEmpty()) {
             reservation.setFeedback("No feedback");
         }
+        if(reservation.getDriverName() == null || reservation.getDriverName().isEmpty()){
+            reservation.setDriverName("No assigned driver");
+        }
         reservation.setUserName(userName);
         return resRepo.save(reservation);
     }

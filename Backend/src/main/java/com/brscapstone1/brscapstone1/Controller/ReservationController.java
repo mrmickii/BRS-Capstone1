@@ -79,16 +79,15 @@ public class ReservationController {
     }
 
     //[GET] all user's reservations
-    @GetMapping("/reservations/user/{userName}") // Update the mapping to include a more specific path
+    @GetMapping("/reservations/user/{userName}")
     public ResponseEntity<List<ReservationEntity>> getUserReservations(@PathVariable String userName) {
-        try {
-            List<ReservationEntity> userReservations = resServ.getUserReservations(userName);
-            return ResponseEntity.ok(userReservations);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+      try {
+        List<ReservationEntity> userReservations = resServ.getUserReservations(userName);
+        return ResponseEntity.ok(userReservations);
+      } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+      }
     }
-
 
      //[POST] || update assigned driver
      @PostMapping("/update-driver/{reservationId}")
