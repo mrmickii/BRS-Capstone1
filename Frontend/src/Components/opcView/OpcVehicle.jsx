@@ -201,7 +201,13 @@ const OpcVehicle = () => {
         </div>
         {showAddVehicleDialog && <AddVehicle onClose={() => setShowAddVehicleDialog(false)} />} 
         {showDeleteConfirmationDialog && <DeleteConfirmationDialogBox onClose={() => setShowDeleteConfirmationDialog(false)} onDelete={confirmDeleteVehicle} />}
-        {showUpdateDialog && <UpdateDialogBox vehicle={vehicleToUpdate} onUpdate={confirmUpdateVehicle} onClose={() => setShowUpdateDialog(false)} />}
+        {showUpdateDialog && vehicleToUpdate && (
+          <UpdateDialogBox 
+            vehicle={vehicleToUpdate} 
+            onUpdate={confirmUpdateVehicle} 
+            onClose={() => setShowUpdateDialog(false)} 
+          />
+        )}
         <div className='cit-bglogo'></div>
       </div>
     </div>

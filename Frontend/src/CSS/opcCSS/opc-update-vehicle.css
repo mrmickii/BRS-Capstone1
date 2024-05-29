@@ -13,6 +13,7 @@
 .update-dialog-box {
   background-color: #fff;
   padding: 20px;
+  height: 400px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -31,7 +32,8 @@
 
 .update-dialog-buttons {
   display: flex;
-  justify-content: space-between;
+  margin-top: 30px;
+  
 }
 
 .update-dialog-buttons button {
@@ -43,17 +45,24 @@
 }
 
 .update-dialog-buttons button:first-child {
-  background-color: #1890ff;
+  background-color: #782324;;
+  width: 250px;
   color: #fff;
 }
 
 .update-dialog-buttons button:last-child {
   background-color: #d9d9d9;
+  width: 250px;
   color: #000;
 }
 
-.update-dialog-buttons button:hover {
-  opacity: 0.8;
+.update-dialog-buttons button:first-child:hover{
+  background-color: #471516;
+  color: white;
+}
+.update-dialog-buttons button:last-child:hover{
+  background-color: #f4c108;
+  
 }
 
 .success-message,

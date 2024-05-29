@@ -1,15 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../CSS/opcCSS/opc-update-vehicle.css';
 
 const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
-  const [updatedVehicleType, setUpdatedVehicleType] = useState(vehicle.name);
-  const [updatedPlateNumber, setUpdatedPlateNumber] = useState(vehicle.plateNumber);
-  const [updatedCapacity, setUpdatedCapacity] = useState(vehicle.capacity);
-  const [updatedStatus, setUpdatedStatus] = useState(vehicle.capacity);
+  const [updatedVehicleType, setUpdatedVehicleType] = useState('');
+  const [updatedPlateNumber, setUpdatedPlateNumber] = useState('');
+  const [updatedCapacity, setUpdatedCapacity] = useState('');
+  const [updatedStatus, setUpdatedStatus] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  useEffect(() => {
+    if (vehicle) {
+      setUpdatedVehicleType(vehicle.vehicleType || '');
+      setUpdatedPlateNumber(vehicle.plateNumber || '');
+      setUpdatedCapacity(vehicle.capacity || '');
+      setUpdatedStatus(vehicle.status || '');
+    }
+  }, [vehicle]);
+
   const handleUpdateVehicle = async () => {
+    // Check for empty fields
+    if (!updatedVehicleType || !updatedPlateNumber || !updatedCapacity || !updatedStatus) {
+      setErrorMessage('All fields are required.');
+      setSuccessMessage('');
+      return;
+    }
+
+    // Validate plate number format
+    const plateNumberPattern = /^[A-Z0-9]{3}-[A-Z0-9]{3}$/;
+    if (!plateNumberPattern.test(updatedPlateNumber)) {
+      setErrorMessage('Plate number must be in the format XXX-XXX, where X can be a letter or a digit.');
+      setSuccessMessage('');
+      return;
+    }
+
+    // Check for changes
+    if (
+      updatedVehicleType === vehicle.vehicleType &&
+      updatedPlateNumber === vehicle.plateNumber &&
+      updatedCapacity === vehicle.capacity &&
+      updatedStatus === vehicle.status
+    ) {
+      setErrorMessage('No changes detected.');
+      setSuccessMessage('');
+      return;
+    }
+
     try {
       const response = await fetch(`http://localhost:8080/vehicle/update/${vehicle.id}`, {
         method: 'PUT',
@@ -29,6 +65,7 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
       }
 
       onUpdate({
+        id: vehicle.id,
         vehicleType: updatedVehicleType,
         plateNumber: updatedPlateNumber,
         capacity: updatedCapacity,
@@ -37,6 +74,7 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
 
       setSuccessMessage('Vehicle information updated successfully!');
       setErrorMessage('');
+      alert('Vehicle information updated successfully!');
     } catch (error) {
       console.error('Error updating vehicle:', error);
       setErrorMessage('Error updating vehicle: ' + error.message);
@@ -46,7 +84,6 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
 
   const handleClose = () => {
     onClose();
-    window.location.reload();
   };
 
   return (
