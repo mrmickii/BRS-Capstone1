@@ -107,3 +107,8 @@ input::placeholder{
 span{
   font-weight: bold;
 }
+.s-container-one > button.active {
+  background-color: #782324; 
+  color: #fff; 
+}
+

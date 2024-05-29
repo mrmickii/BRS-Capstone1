@@ -2,9 +2,15 @@ import React from 'react';
 import '../../CSS/opcCSS/opc-delete-driver.css';
 
 const DeleteDriver = ({ onClose, onDelete }) => {
-  const handleDelete = () => {
-    onDelete();
-    window.location.reload();
+  const handleDelete = async () => {
+    try {
+      await onDelete();
+      alert('Driver successfully deleted.');
+      window.location.reload();
+    } catch (error) {
+      console.error('Error deleting driver:', error);
+      alert('Failed to delete driver. Please try again.');
+    }
   };
 
   return (

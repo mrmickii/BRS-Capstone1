@@ -3,6 +3,7 @@ import '../../CSS/userCSS/manage-requests.css';
 import { BsBellFill } from "react-icons/bs";
 import Header from './Header';
 import SideNavBar from './SideNavBar';
+import { FaFileAlt } from "react-icons/fa";
 import { auth } from "../../FirebaseConfig";
 
 const ManageRequests = () => {
@@ -132,7 +133,7 @@ const ManageRequests = () => {
       <div className="manage-requests-container">
         <div className="manage-requests-title">
           <h2 style={{ color: 'white' }}>
-            <BsBellFill size={25} style={{ marginRight: '20px', marginBottom: '-5px' }} />
+            <FaFileAlt size={25} style={{ marginRight: '20px', marginBottom: '-2px' }} />
             MANAGE REQUESTS
           </h2>
         </div>

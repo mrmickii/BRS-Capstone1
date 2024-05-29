@@ -36,8 +36,9 @@
 
 .user-reservation-made {
   display: flex;
-  gap: 500px;
+  gap: 300px;
   padding: 20px;
+  font-size: 18px;
   background: white;
 }
 
@@ -80,13 +81,12 @@
 
 .modal-content-h2{
   display: flex;
-  justify-content: space-between;
   margin-left: 0px;
   color: #782324;
 }
 
 .modal-content {
-  background: white;
+  background:  #ccc;
   padding: 20px;
   border-radius: 5px;
   width: 500px;
@@ -106,6 +106,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+
 }
 
 .modal-content input,

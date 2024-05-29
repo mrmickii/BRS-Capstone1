@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../../CSS/opcCSS/opc-side-nav-bar.css';
 import { MdSpaceDashboard } from "react-icons/md";
-import { BsBellFill } from 'react-icons/bs';
+import { HiMiniClipboardDocumentCheck } from "react-icons/hi2";
 import { IoMdSettings } from 'react-icons/io';
 
 const OpcSideNavBar = () => {
@@ -24,7 +24,7 @@ const OpcSideNavBar = () => {
         </Link>
         <Link to="/opc-view/approved-requests">
         <li className={activeTab === '/opc-view/approved-requests' ? 'active' : ''} style={{fontSize: "18px"}}>
-          <BsBellFill size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
+          <HiMiniClipboardDocumentCheck size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
           APPROVED REQUESTS
         </li>
         </Link>

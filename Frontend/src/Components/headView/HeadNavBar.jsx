@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../../CSS/headCSS/head-nav-bar.css';
 import { BiSolidBook } from 'react-icons/bi';
-import { BsBellFill } from 'react-icons/bs';
+import { HiMiniClipboardDocumentCheck } from "react-icons/hi2";
 import { IoMdSettings } from 'react-icons/io';
 
 const SideNavbar = () => {
@@ -23,9 +23,9 @@ const SideNavbar = () => {
         </li>
         </Link>
         <Link to="/head-view/view-requests">
-        <li className={activeTab === '/head-view/view-requests' ? 'active' : ''}>
-          <BsBellFill size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
-          VIEW REQUESTS
+        <li style={{fontSize: "18px"}}className={activeTab === '/head-view/view-requests' ? 'active' : ''}>
+          <HiMiniClipboardDocumentCheck size={26} style={{ marginRight: '30px', marginLeft: '20px', marginBottom: '-5px' }} />
+          APPROVED REQUEST
         </li>
         </Link>
         <Link to="/head-view/settings">
