@@ -4,19 +4,24 @@ import '../../CSS/opcCSS/opc-update-driver.css';
 const UpdateDriver = ({ driver, onUpdate, onClose }) => {
   const [updatedDriverName, setUpdatedDriverName] = useState(driver.driverName);
   const [updatedContactNumber, setUpdatedContactNumber] = useState(driver.contactNumber);
-  const [updatedStatus, setUpdatedStatus] = useState(driver.status); // Corrected state initialization
+  const [updatedStatus, setUpdatedStatus] = useState(driver.status); 
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setSuccessMessage('');
-    }, 3000); // Clear success message after 3 seconds
+    }, 3000); 
     return () => clearTimeout(timer);
   }, [successMessage]);
 
   const handleUpdateDriver = async () => {
-    // Check if any field has been updated
+    // Show confirmation dialog
+    const confirmed = window.confirm("Are you sure to update this driver?");
+    if (!confirmed) {
+      return;
+    }
+
     if (
       updatedDriverName === driver.driverName &&
       updatedContactNumber === driver.contactNumber &&
