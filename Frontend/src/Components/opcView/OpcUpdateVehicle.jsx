@@ -71,9 +71,6 @@ const UpdateVehicle = ({ vehicle, onUpdate, onClose }) => {
         capacity: updatedCapacity,
         status: updatedStatus,
       });
-
-      setSuccessMessage('Vehicle information updated successfully!');
-      setErrorMessage('');
       alert('Vehicle information updated successfully!');
     } catch (error) {
       console.error('Error updating vehicle:', error);
