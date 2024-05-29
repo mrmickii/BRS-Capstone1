@@ -49,14 +49,23 @@
 }
 
 .dialog-footer {
-  margin-top: 20px;
+  margin-top: 0px;
   display: flex;
   justify-content: flex-end;
 }
 
+.message-column {
+  flex-grow: 1;
+}
+
+.button-column {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .dialog-footer button {
   padding: 8px 20px;
-  margin-left: 10px;
+  margin-left: 0px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -69,13 +78,15 @@
 }
 
 .success-message, .error-message{
-  margin: 10px;
+  display: flex;
 }
 
 .success-message{
   color: green;
+  max-width: 160px;
 }
 
 .error-message{
   color: red ;
+  max-width: 160px;
 }

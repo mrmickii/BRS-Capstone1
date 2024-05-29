@@ -16,6 +16,16 @@ const UpdateDriver = ({ driver, onUpdate, onClose }) => {
   }, [successMessage]);
 
   const handleUpdateDriver = async () => {
+    // Check if any field has been updated
+    if (
+      updatedDriverName === driver.driverName &&
+      updatedContactNumber === driver.contactNumber &&
+      updatedStatus === driver.status
+    ) {
+      setErrorMessage('No changes detected. Please update at least one field.');
+      setSuccessMessage('');
+      return;
+    }
     try {
       const response = await fetch(`http://localhost:8080/driver/update/${driver.id}`, {
         method: 'PUT',

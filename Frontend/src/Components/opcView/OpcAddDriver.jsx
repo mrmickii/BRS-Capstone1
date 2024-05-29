@@ -15,14 +15,24 @@ const AddDriver = ({ onClose }) => {
   const handleAddDriver = async () => {
     try {
       if (!driverName || !contactNumber) {
-        setErrorMessage('Please enter driver name and contact number.');
+        setErrorMessage('Please input all fields');
+        setTimeout(() => setErrorMessage(''), 4000);
         return;
       }
+
+    // Validation for driver name (should not contain integers)
+    const driverNameRegex = /^[^\d]+$/;
+    if (!driverNameRegex.test(driverName)) {
+      setErrorMessage('Driver name should not contain integers.');
+      setTimeout(() => setErrorMessage(''), 4000);
+      return;
+    }
 
       // Validation for contact number
       const contactNumberRegex = /^(09)\d{9}$/;
       if (!contactNumberRegex.test(contactNumber)) {
         setErrorMessage('Contact number should start with 09 and have 11 digits.');
+        setTimeout(() => setErrorMessage(''), 4000);
         return;
       }
 
@@ -46,6 +56,7 @@ const AddDriver = ({ onClose }) => {
       setContactNumber('');
     } catch (error) {
       setErrorMessage('Error adding driver: ' + error.message);
+      setTimeout(() => setErrorMessage(''), 4000);
     }
   };
 
@@ -69,13 +80,20 @@ const AddDriver = ({ onClose }) => {
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
           />
+
         </div>
         <div className="dialog-footer">
-          <button onClick={handleAddDriver}>Add</button>
-          <button onClick={handleClose}>Cancel</button>
+          <div className="message-column">
+            {successMessage && <p className="success-message">{successMessage}</p>}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+          </div>
+          <div className="button-column">
+            <button onClick={handleAddDriver}>Add</button>
+          </div>
+          <div className="button-column">
+            <button onClick={handleClose}>Cancel</button>
+          </div>
         </div>
-        {successMessage && <p className="success-message">{successMessage}</p>}
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
     </div>
   );
