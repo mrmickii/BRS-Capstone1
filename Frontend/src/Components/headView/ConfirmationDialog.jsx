@@ -23,6 +23,11 @@ const ConfirmationDialog = ({ action, onConfirm, onCancel, onFeedbackChange, fee
       setError("Feedback is required when rejecting a reservation.");
       return;
     }
+    if (action === "approve") {
+      alert("Request has been Approved successfully!");
+    } else if (action === "reject") {
+      alert("Request has been Rejected");
+    }
     onConfirm();
   };
 

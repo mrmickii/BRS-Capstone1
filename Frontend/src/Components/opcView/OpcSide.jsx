@@ -180,7 +180,7 @@ const OpcSide = () => {
   };
   
   return (
-    <div className="opc-view-container">
+    <div className={`opc-view-container ${showDriverDialog || showFileDialog || confirmationData.isOpen ? 'dim-background' : ''}`}>
       <Header />
       <OpcNavBar />
       <div className="opc-title" style={{ marginBottom: '30px', marginRight: '830px' }}>
@@ -225,7 +225,7 @@ const OpcSide = () => {
                 <div className="r-d-container-right1">
                   <button onClick={() => handleApprove(reservation.id)}>Accept</button>
                   <button onClick={() => handleReject(reservation.id)}>Reject</button>
-                  <button onClick={() => handleViewFile(reservation)}>                  View Attached File</button>
+                  <button onClick={() => handleViewFile(reservation)}>View Attached File</button>
                 </div>
               </div>
             ))}
@@ -254,6 +254,7 @@ const OpcSide = () => {
           onCancel={() => setShowDriverDialog(false)}
         />
       )}
+      {showDriverDialog && <div className="dim-background"></div>}
     </div>
   );
 };

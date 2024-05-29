@@ -19,6 +19,13 @@ const AddDriver = ({ onClose }) => {
         return;
       }
 
+      // Validation for contact number
+      const contactNumberRegex = /^(09)\d{9}$/;
+      if (!contactNumberRegex.test(contactNumber)) {
+        setErrorMessage('Contact number should start with 09 and have 11 digits.');
+        return;
+      }
+
       const response = await fetch('http://localhost:8080/driver/post', { 
         method: 'POST',
         headers: {
@@ -29,7 +36,7 @@ const AddDriver = ({ onClose }) => {
           contactNumber,
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error('Failed to add driver');
       }

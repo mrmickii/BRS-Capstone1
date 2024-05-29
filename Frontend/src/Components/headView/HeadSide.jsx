@@ -23,40 +23,29 @@ const HeadSide = () => {
   });
 
   useEffect(() => {
-    fetchUserDepartment();
+    const fetchUserDepartmentAndReservations = async () => {
+      try {
+        const user = auth.currentUser; 
+        if (!user) throw new Error('No user signed in');
+
+        const userDocRef = doc(db, 'users', user.uid); 
+        const userDocSnap = await getDoc(userDocRef);
+        if (!userDocSnap.exists()) throw new Error('User document does not exist');
+        const userData = userDocSnap.data();
+        setUserDepartment(userData.department);
+
+        const response = await fetch('http://localhost:8080/reservation/reservations');
+        if (!response.ok) throw new Error('Failed to fetch reservation data');
+        const reservationData = await response.json();
+        setReservations(reservationData);
+        console.log('Success fetching reservation data.');
+      } catch (error) {
+        console.error('Error fetching user department or reservation data:', error);
+      }
+    };
+
+    fetchUserDepartmentAndReservations();
   }, []);
-
-  useEffect(() => {
-    if (userDepartment) {
-      fetchReservations();
-    }
-  }, [userDepartment]);
-
-  const fetchUserDepartment = async () => {
-    try {
-      const user = auth.currentUser; 
-      if (!user) throw new Error('No user signed in');
-      const userDocRef = doc(db, 'users', user.uid); 
-      const userDocSnap = await getDoc(userDocRef);
-      if (!userDocSnap.exists()) throw new Error('User document does not exist');
-      const userData = userDocSnap.data();
-      setUserDepartment(userData.department);
-    } catch (error) {
-      console.error('Error fetching user department:', error);
-    }
-  };
-
-  const fetchReservations = async () => {
-    try {
-      const response = await fetch('http://localhost:8080/reservation/reservations');
-      if (!response.ok) throw new Error('Failed to fetch reservation data');
-      const reservationData = await response.json();
-      setReservations(reservationData);
-      console.log('Success fetching reservation data.');
-    } catch (error) {
-      console.error('Error fetching reservation data:', error);
-    }
-  };  
 
   const handleViewFile = (reservation) => {
     setSelectedReservation(reservation);
@@ -111,10 +100,9 @@ const HeadSide = () => {
       });
       if (!response.ok) throw new Error('Failed to approve reservation');
       setReservations(prevReservations => prevReservations.map(reservation => 
-        reservation.id === reservationId ? { ...reservation, headisApproved: true } : reservation
+        reservation.id === reservationId ? { ...reservation, headIsApproved: true } : reservation
       ));
       console.log('Reservation approved successfully.');
-      window.location.reload();
     } catch (error) {
       console.error('Error approving reservation:', error);
     }
@@ -125,14 +113,13 @@ const HeadSide = () => {
       const response = await fetch(`http://localhost:8080/reservation/reject/${reservationId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: feedback 
+        body: JSON.stringify({ feedback }) 
       });
       if (!response.ok) throw new Error('Failed to reject reservation');
       setReservations(prevReservations => prevReservations.map(reservation => 
         reservation.id === reservationId ? { ...reservation, isRejected: true, feedback } : reservation
       ));
       console.log('Reservation rejected successfully.');
-      window.location.reload();
     } catch (error) {
       console.error('Error rejecting reservation:', error);
     }
@@ -142,7 +129,7 @@ const HeadSide = () => {
     setShowFileDialog(false);
   };
 
-  const filteredReservations = reservations.filter(reservation => !reservation.headIsApproved && !reservation.rejected && reservation.department === userDepartment);
+  const filteredReservations = reservations.filter(reservation => !reservation.headIsApproved && !reservation.isRejected && reservation.department === userDepartment);
 
   return (
     <>

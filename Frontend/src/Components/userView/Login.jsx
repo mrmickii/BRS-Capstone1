@@ -81,6 +81,7 @@ const Login = () => {
       } else {
         navigate("/");
       }
+      window.location.reload();
     } catch (error) {
       console.error("Login error:", error);
       setErrorMessage("Login failed. Please check email and password correctly.");

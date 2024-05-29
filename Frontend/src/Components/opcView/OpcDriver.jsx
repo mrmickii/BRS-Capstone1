@@ -150,9 +150,9 @@ const OpcDriver = () => {
                     <h1>{driver.driverName}
                       <button className='driver-update-button' onClick={() => handleUpdateDriver(driver)}>Update</button>
                     </h1>
-                    <p>
+                    <p style={{fontWeight: "600"}}>
                       Contact Number: {driver.contactNumber}
-                      <p>Status: {driver.status}</p>
+                      <p>Status:&nbsp;&nbsp;<span style={{ color: driver.status === 'Available' ? 'green' : 'maroon' }}> {driver.status}</span></p>
                       <button className='driver-delete-button' onClick={() => handleDeleteDriver(driver)}>Delete</button>
                     </p>
                   </div>

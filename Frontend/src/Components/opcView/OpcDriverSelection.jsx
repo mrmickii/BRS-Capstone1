@@ -11,6 +11,7 @@ const DriverSelectionDialog = ({ drivers, onSelectDriver, onCancel }) => {
   const confirmSelection = () => {
     if (selectedDriver) {
       onSelectDriver(selectedDriver.id, selectedDriver.driverName);
+      window.alert("Request approved Successfully");
     }
   };
 
@@ -27,13 +28,17 @@ const DriverSelectionDialog = ({ drivers, onSelectDriver, onCancel }) => {
               key={driver.id} 
               className={selectedDriver && selectedDriver.id === driver.id ? 'selected' : ''} 
               onClick={() => handleSelectDriver(driver)}
+              style={{
+                backgroundColor: selectedDriver && selectedDriver.id === driver.id ? '#782324' : 'transparent',
+                color: selectedDriver && selectedDriver.id === driver.id ? 'white' : 'black'
+              }}
             >
               {driver.driverName}
             </li>
           ))}
         </ul>
         <div className="modal-actions">
-          <button onClick={confirmSelection} disabled={!selectedDriver}>Confirm</button>
+          <button onClick={confirmSelection} disabled={!selectedDriver}>Confirm</button>&nbsp;&nbsp;&nbsp;
           <button onClick={onCancel}>Cancel</button>
         </div>
       </div>

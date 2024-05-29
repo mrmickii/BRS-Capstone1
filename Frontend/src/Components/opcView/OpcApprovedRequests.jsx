@@ -3,6 +3,7 @@ import '../../CSS/opcCSS/opc-approved-requests.css';
 import { BsBellFill } from "react-icons/bs";
 import Header from '../userView/Header';
 import OpcSideNavBar from './OpcSideNavBar';
+import { FaFileExcel } from "react-icons/fa";
 import * as XLSX from 'xlsx';
 
 const OpcApprovedRequests = () => {
@@ -68,7 +69,7 @@ const OpcApprovedRequests = () => {
                     <p>Reason: <span>{reservation.reason}</span></p>
                   </div>
                   <div className='export-btn'>
-                    <button onClick={handleExport}>Export to Excel File</button>
+                    <button onClick={handleExport}><FaFileExcel size={20} style={{marginRight: "10px", marginBottom: "-3px"}}/>Export Excel File</button>
                   </div>
                 </li>
               ))}

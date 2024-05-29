@@ -119,6 +119,7 @@ const ManageRequests = () => {
       ));
 
       setShowModal(false);
+      alert("Request Resend Successfully");
     } catch (error) {
       console.error('Error updating reservation:', error);
     }
@@ -219,7 +220,26 @@ const UpdateModal = ({ reservation, onClose, onUpdate, departments }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdate(updatedReservation, file);
+
+    // Validation to check if all required fields are filled
+    const requiredFields = ['typeOfTrip', 'destinationTo', 'destinationFrom', 'capacity', 'department', 'schedule', 'vehicleType', 'departureTime', 'reason'];
+    for (const field of requiredFields) {
+        if (!updatedReservation[field]) {
+            alert('All fields must be filled');
+            return;
+        }
+    }
+
+    // Additional check for pick-up time if it is a round trip
+    if (updatedReservation.typeOfTrip === 'Round Trip' && !updatedReservation.pickUpTime) {
+        alert('All fields must be filled');
+        return;
+    }
+
+    // Confirmation alert before resending the request
+    if (window.confirm("Are you sure you want to resend again your request?")) {
+        onUpdate(updatedReservation, file);
+    }
   };
 
   return (
