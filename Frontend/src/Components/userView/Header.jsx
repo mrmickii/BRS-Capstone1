@@ -41,9 +41,17 @@ const Header = () => {
   };
 
   const confirmLogout = () => {
-    auth.signOut() 
+    auth.signOut()
       .then(() => {
         console.log("User logged out successfully");
+        
+        // Clear session storage or local storage
+        sessionStorage.clear();
+        localStorage.clear();
+        
+        // Redirect to login page
+        window.location.href = '/login';
+  
         setShowLogoutModal(false);
       })
       .catch((error) => {
