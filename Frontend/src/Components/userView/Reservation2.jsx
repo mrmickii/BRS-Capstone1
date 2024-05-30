@@ -25,7 +25,7 @@ const storageRef = getStorage();
 
 const Reservation2 = () => {
   const location = useLocation();
-  const { vehicleType } = location.state || {};
+  const { vehicleType, capacity: maxCapacity } = location.state || {};
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(null);
   const [formValues, setFormValues] = useState({
@@ -75,6 +75,13 @@ const Reservation2 = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      window.alert(error);
+    }
+  }, [error]);
+
 
   const handleDateSelect = (date) => {
     console.log(date); 
@@ -205,8 +212,11 @@ const Reservation2 = () => {
 
   const handleCapacityChange = (e) => {
     const value = parseInt(e.target.value, 10); 
-    if (!isNaN(value) && value >= 0) {
+    if (!isNaN(value) && value >= 0 && value <= maxCapacity) {
       setFormValues({...formValues, capacity: value});
+      setError(''); // Clear error if capacity is within limits
+    } else {
+      setError(`Capacity should be between 0 and ${maxCapacity}`);
     }
   };
   
@@ -219,7 +229,7 @@ const Reservation2 = () => {
           <Header />
           <SideNavBar />
           <div className='subheader'>
-            <h2 style={{fontSize: '32px'}}>RESERVATION </h2>
+            <h2 style={{fontSize: '32px', color: '#782324'}}>RESERVATION </h2>
           </div>
           <div className='backing'>
             <button onClick={goBack} className='back-win'><IoArrowBackCircle style={{marginRight: '10px', marginBottom: '-3px'}}/>Back to Select Vehicle</button>
@@ -269,10 +279,10 @@ const Reservation2 = () => {
                 id="capacity" 
                 name="capacity" 
                 style={{fontSize: '14px'}} 
-                placeholder='Capacity'
-                value={formValues.capacity}
-                onChange={handleCapacityChange} 
-              />
+                placeholder={`(Max: ${maxCapacity})`}
+              value={formValues.capacity}
+              onChange={handleCapacityChange} 
+            />
             </div>
             <div className='schedule'>
               <LuCalendarClock size={25} style={{ marginRight: '10px', marginBottom: '-5px', background: 'white', borderRadius: '50px', padding: '5px' }}/>

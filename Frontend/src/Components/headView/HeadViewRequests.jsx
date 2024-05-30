@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../CSS/headCSS/head-view-requests.css';
-import { BsBellFill } from "react-icons/bs";
+import { HiMiniClipboardDocumentCheck } from "react-icons/hi2";
 import Header from '../userView/Header';
 import HeadNavBar from './HeadNavBar';
 import { auth } from '../../FirebaseConfig';
@@ -66,7 +66,7 @@ const HeadViewRequests = () => {
       <div className="head-view-requests-container">
         <div className="head-view-requests-title">
           <h2 style={{color: 'white'}}>
-            <BsBellFill size={25} style={{ marginRight: '20px', marginBottom: '-5px' }} />
+            <HiMiniClipboardDocumentCheck size={25} style={{ marginRight: '20px', marginBottom: '-5px' }} />
             APPROVED REQUESTS
           </h2>
         </div>

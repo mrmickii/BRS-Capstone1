@@ -18,10 +18,25 @@ const AddVehicle = ({ onClose }) => {
     window.location.reload();
   };
 
+  const validatePlateNumber = (plate) => {
+    const plateRegex = /^[A-Z0-9]{1,3}-[A-Z0-9]{1,3}$/;
+    return plateRegex.test(plate);
+  };
+
   const handleAddVehicle = async () => {
     try {
       if (!vehicleType || !plateNumber || !capacity) {
         setErrorMessage('Please fill in all fields.');
+        return;
+      }
+
+      if (!validatePlateNumber(plateNumber)) {
+        setErrorMessage('Invalid plate number format. Expected format: Y17-56T');
+        return;
+      }
+
+      if (capacity > 100) {
+        setErrorMessage('Capacity cannot exceed 100.');
         return;
       }
 
@@ -78,8 +93,8 @@ const AddVehicle = ({ onClose }) => {
           />
         </div>
         <div className="dialog-footer">
-          <button onClick={handleAddVehicle}>Add</button>
-          <button onClick={handleCancel}>Cancel</button>
+          <button className="add-btn" onClick={handleAddVehicle}>Add</button>&nbsp;&nbsp;&nbsp;
+          <button className="cancel-btn" onClick={handleCancel}>Cancel</button>
         </div>
         {successMessage && <p className="success-message">{successMessage}</p>}
         {errorMessage && <p className="error-message">{errorMessage}</p>}

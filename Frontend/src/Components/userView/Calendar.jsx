@@ -7,11 +7,11 @@ const Calendar = ({ onDateSelect }) => {
   const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
   const [currentDay] = useState(currentDate.getDate());
-  const [selectedDay, setSelectedDay] = useState(currentDay); 
+  const [selectedDay, setSelectedDay] = useState(currentDay);
 
   const prevMonth = () => {
     if (currentMonth === 0) {
-      return; 
+      return;
     }
     setCurrentMonth(currentMonth - 1);
   };
@@ -40,8 +40,8 @@ const Calendar = ({ onDateSelect }) => {
 
     for (let i = 1; i <= totalDays; i++) {
       const date = new Date(currentYear, currentMonth, i);
-      const isPast = date < currentDate;
-      days.push({ day: i, selected: selectedDay === i, disabled: isPast });
+      const isPast = date < currentDate && date.getMonth() === currentDate.getMonth() && date.getFullYear() === currentDate.getFullYear();
+      days.push({ day: i, selected: selectedDay === i, disabled: isPast, isPast });
     }
 
     return days;
@@ -64,7 +64,11 @@ const Calendar = ({ onDateSelect }) => {
           <div key={day} className="calendar-day-name">{day}</div>
         ))}
         {generateDays().map((item, index) => (
-          <div key={index} className={`calendar-day${item.selected ? ' active' : ''}${item.disabled ? ' disabled' : ''}`} onClick={() => !item.disabled && handleDayClick(item.day)}>
+          <div
+            key={index}
+            className={`calendar-day${item.selected ? ' active' : ''}${item.disabled ? ' disabled' : ''}${item.isPast ? ' past' : ''}`}
+            onClick={() => !item.disabled && handleDayClick(item.day)}
+          >
             {item.day}
           </div>
         ))}

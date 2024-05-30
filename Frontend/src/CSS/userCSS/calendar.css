@@ -95,3 +95,6 @@
   transition: background-color 0.3s;
   color: #ffcc00;
 }
+.calendar-day.past {
+  opacity: 0.5;
+}

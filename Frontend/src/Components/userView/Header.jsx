@@ -71,7 +71,7 @@ const Header = () => {
         <div className="bus-icon-container">
           <FaBus size={32}/>
         </div>
-        <h2 className="header-label">TRANSPORTATION RESERVATION SYSTEM</h2>
+        <h2 className="header-label" style={{marginTop: "15px"}}>TRANSPORTATION RESERVATION SYSTEM</h2>
         <div className="logged-in-user-name">{greeting}, {userName}</div>
         <div className="button-container">
           <button className="header1-button" onClick={handleLogout}>

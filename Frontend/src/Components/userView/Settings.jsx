@@ -17,6 +17,8 @@ const Settings = () => {
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [viewAccountActive, setViewAccountActive] = useState(true);
+  const [changePasswordActive, setChangePasswordActive] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async user => {
@@ -81,10 +83,14 @@ const Settings = () => {
 
   const showChangePassword = () => {
     setDisplayedContainer('change-password');
+    setViewAccountActive(false);
+    setChangePasswordActive(true);
   };
 
   const showViewAccount = () => {
     setDisplayedContainer('account');
+    setViewAccountActive(true);
+    setChangePasswordActive(false);
   };
 
   return (
@@ -94,13 +100,13 @@ const Settings = () => {
       <div className="settings-page-box">
         <h1>SETTINGS</h1>
         <div className="s-container-one">
-          <button className="s-box-one" onClick={showViewAccount}>
-          <MdOutlineManageAccounts size={28} style={{marginRight: '10px'}}/>View Account
+        <button className={`s-box-one ${viewAccountActive ? 'active' : ''}`} onClick={showViewAccount}>
+            <MdOutlineManageAccounts size={28} style={{marginRight: '10px'}}/>View Account
           </button>
-          <button className="s-box-two" onClick={showChangePassword}>
-          <FaLockOpen size={20} style={{marginRight: '10px', marginBottom: '5px'}}/>Change Password
+          <button className={`s-box-two ${changePasswordActive ? 'active' : ''}`} onClick={showChangePassword}>
+            <FaLockOpen size={20} style={{marginRight: '10px', marginBottom: '5px'}}/>Change Password
           </button>
-        </div>
+          </div>
         {displayedContainer === 'change-password' && (
           <div className="s-container-two">
             <h3>CHANGE PASSWORD</h3>

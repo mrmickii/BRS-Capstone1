@@ -69,12 +69,16 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #007bff;
   color: white;
 }
-
-.dialog-footer button:hover {
-  background-color: #0056b3;
+.add-btn{
+  background-color: #782324;
+}
+.cancel-btn{
+  background-color: grey;
+}
+.add-btn:hover{
+  background-color: #4b0e0e;
 }
 
 .success-message, .error-message{
