@@ -15,7 +15,7 @@ const CalendarModal = ({ show, onClose, onDateConfirm, children }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-content1">
         <button className="modal-close" onClick={onClose}><IoIosCloseCircle size={32} style={{color: '#782324'}}/></button>
         <div className='subhead-modal'><FaCalendarDay style={{marginRight: '15px'}}/>SELECT SCHEDULE</div>
         {children}
