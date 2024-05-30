@@ -31,7 +31,6 @@ const OpcApprovedRequests = () => {
   const handleExport = () => {
     const worksheet = XLSX.utils.json_to_sheet(reservations);
     const wb = XLSX.utils.book_new();
-
     XLSX.utils.book_append_sheet(wb, worksheet, 'Reservations');
     XLSX.writeFile(wb, 'reservations.xlsx');
   };
@@ -42,10 +41,14 @@ const OpcApprovedRequests = () => {
       <OpcSideNavBar />
       <div className="opc-view-requests-container">
         <div className="opc-view-requests-title">
-          <h2 style={{color: 'white'}}>
+          <h2 style={{ color: 'white' }}>
             <BsBellFill size={25} style={{ marginRight: '20px', marginBottom: '-5px' }} />
             MANAGE REQUESTS
           </h2>
+          <button className='export-btn' onClick={handleExport}>
+            <FaFileExcel size={20} style={{ marginRight: '10px' }} />
+            Export to Excel
+          </button>
         </div>
         <div className='opc-reservation-list'>
           {reservations.length > 0 ? (
@@ -67,9 +70,6 @@ const OpcApprovedRequests = () => {
                     <p>Departure Time: <span>{reservation.departureTime}</span></p>
                     <p>Pick-up Time: <span>{reservation.pickUpTime}</span></p>
                     <p>Reason: <span>{reservation.reason}</span></p>
-                  </div>
-                  <div className='export-btn'>
-                    <button onClick={handleExport}><FaFileExcel size={20} style={{marginRight: "10px", marginBottom: "-3px"}}/>Export Excel File</button>
                   </div>
                 </li>
               ))}

@@ -96,7 +96,8 @@ public class ReservationService {
         reservation.setDriverName(assignedDriverName);
         resRepo.save(reservation);
     }
-
+    
+    //[PUT] update reservation
     public ReservationEntity updateReservation(int reservationId, ReservationEntity updatedReservation, MultipartFile file) throws IOException {
         ReservationEntity existingReservation = resRepo.findById(reservationId)
             .orElseThrow(() -> new IllegalArgumentException("Reservation not found"));
