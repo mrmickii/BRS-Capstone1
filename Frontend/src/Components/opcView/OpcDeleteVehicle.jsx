@@ -2,9 +2,15 @@ import React from 'react';
 import '../../CSS/opcCSS/opc-delete-vehicle.css';
 
 const DeleteVehicle = ({ onClose, onDelete }) => {
-  const handleDelete = () => {
-    onDelete();
-    window.location.reload();
+  const handleDelete = async () => {
+    try {
+      await onDelete();
+      alert('Vehicle successfully deleted.');
+      window.location.reload();
+    } catch (error) {
+      console.error('Error deleting Vehicle:', error);
+      alert('Failed to delete Vehicle. Please try again.');
+    }
   };
 
   return (
