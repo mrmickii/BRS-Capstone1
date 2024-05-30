@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from 'firebase/auth';
+import { getAuth, setPersistence, browserSessionPersistence } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore'; 
 import { getAnalytics } from "firebase/analytics";
@@ -19,5 +19,13 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 const db = getFirestore(app); 
 const analytics = getAnalytics(app);
+
+// Set persistence to 'NONE' to disable local storage persistence
+setPersistence(auth, browserSessionPersistence)
+  .then(() => {
+  })
+  .catch((error) => {
+    console.error('Error setting persistence:', error);
+  });
 
 export { app, auth, storage, db, analytics };

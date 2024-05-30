@@ -58,6 +58,7 @@ const OpcVehicle = () => {
       }
       const vehicleData = await response.json();
       setVehicles(vehicleData);
+      console.log('Success fetching vehicle data');
     } catch (error) {
       console.error('Error fetching vehicle data:', error);
     }

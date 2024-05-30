@@ -42,6 +42,7 @@ const OpcDriver = () => {
       if (!response.ok) throw new Error('Failed to fetch driver data');
       const driverData = await response.json();
       setDrivers(driverData);
+      console.log('Success fetching driver data');
     } catch (error) {
       console.error('Error fetching driver data:', error);
     }
@@ -53,6 +54,7 @@ const OpcDriver = () => {
       if (!response.ok) throw new Error('Failed to fetch vehicle data');
       const vehicleData = await response.json();
       setVehicles(vehicleData);
+      console.log('Success fetching vehicle data');
     } catch (error) {
       console.error('Error fetching vehicle data:', error);
     }
