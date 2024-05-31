@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 15;
 }
 
 .vehicle-dialog-box {
@@ -60,14 +61,18 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
+  color: #4b0e0e;
+  background-color: #F4C108;
 }
 
-.vehicle-dialog-footer button:hover {
-  background-color: #0056b3;
-}
 
+.vehicle-add-btn{
+  color: #F4C108;
+  background-color: #782324;
+}
+.vehicle-cancel-btn{
+  background-color: #782324;
+}
 .success-message,
 .error-message {
   margin: 10px;

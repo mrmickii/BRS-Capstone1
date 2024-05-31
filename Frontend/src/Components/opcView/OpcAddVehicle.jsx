@@ -92,9 +92,9 @@ const AddVehicle = ({ onClose }) => {
             onChange={(e) => setCapacity(e.target.value)}
           />
         </div>
-        <div className="dialog-footer">
-          <button className="add-btn" onClick={handleAddVehicle}>Add</button>&nbsp;&nbsp;&nbsp;
-          <button className="cancel-btn" onClick={handleCancel}>Cancel</button>
+        <div className="vehicle-dialog-footer">
+          <button className="vehicle-add-btn" onClick={handleAddVehicle}>Add</button>&nbsp;&nbsp;&nbsp;
+          <button className="vehicle-cancel-btn" onClick={handleCancel}>Cancel</button>
         </div>
         {successMessage && <p className="success-message">{successMessage}</p>}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
